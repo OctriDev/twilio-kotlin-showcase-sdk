@@ -11,75 +11,121 @@ import dev.octri.showcase.twilio.Validation
 
 object AuthorizedConnectApps {
 
-data class ListAuthorizedConnectAppsResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("authorized_connect_apps") val authorizedConnectApps: List<ApiV2010AccountAuthorizedConnectApp>? = null
-)
-
+    data class ListAuthorizedConnectAppsResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("authorized_connect_apps")
+        val authorizedConnectApps: List<ApiV2010AccountAuthorizedConnectApp>? = null,
+    )
 
     /**
-     * Retrieves an authorized Connect App for an account. Use the account SID and Connect App SID to identify the authorization and review the app details and permissions granted to it.
+     * Retrieves an authorized Connect App for an account. Use the account SID and Connect App SID
+     * to identify the authorization and review the app details and permissions granted to it.
      *
      * Fetch an instance of an authorized-connect-app
      *
-     * @param accountSid The SID of the Account that created the AuthorizedConnectApp
-     *   resource to fetch.
+     * @param accountSid The SID of the Account that created the AuthorizedConnectApp resource to
+     *   fetch.
      * @param connectAppSid The SID of the Connect App to fetch.
      */
-    fun fetchAuthorizedConnectApps(clientConfig: ClientConfig, accountSid: String, connectAppSid: String, options: RequestOptions? = null): ApiV2010AccountAuthorizedConnectApp {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun fetchAuthorizedConnectApps(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        connectAppSid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountAuthorizedConnectApp {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("ConnectAppSid", connectAppSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "ConnectAppSid",
+            connectAppSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("ConnectAppSid", connectAppSid, "^CN[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountAuthorizedConnectApp>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/AuthorizedConnectApps/${SdkClient.encodePathSegment(connectAppSid)}.json", config = clientConfig, operationId = "fetchAuthorizedConnectApps", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountAuthorizedConnectApp>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/AuthorizedConnectApps/${SdkClient.encodePathSegment(connectAppSid)}.json",
+                    config = clientConfig,
+                    operationId = "fetchAuthorizedConnectApps",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists the Connect Apps authorized for an account. Use the pagination parameters to browse the account's authorized apps and their granted permissions.
+     * Lists the Connect Apps authorized for an account. Use the pagination parameters to browse the
+     * account's authorized apps and their granted permissions.
      *
      * Retrieve a list of authorized-connect-apps belonging to the account used to make the request
      *
-     * @param accountSid The SID of the Account that created the AuthorizedConnectApp
-     *   resources to read.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param accountSid The SID of the Account that created the AuthorizedConnectApp resources to
+     *   read.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listAuthorizedConnectApps(clientConfig: ClientConfig, accountSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): ListAuthorizedConnectAppsResponse {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun listAuthorizedConnectApps(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): ListAuthorizedConnectAppsResponse {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (pageSize != null) {
-            Validation.validateRange("PageSize", pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (page != null) {
             Validation.validateRange("Page", page, Validation.RangeOpts(min = 0.0))
-}
+        }
 
-        return SdkClient.request<ListAuthorizedConnectAppsResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/AuthorizedConnectApps.json", config = clientConfig, query = mapOf("PageSize" to SdkClient.queryValue(pageSize, "form", true), "Page" to SdkClient.queryValue(page, "form", true), "PageToken" to SdkClient.queryValue(pageToken, "form", true)), operationId = "listAuthorizedConnectApps", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ListAuthorizedConnectAppsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/AuthorizedConnectApps.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "PageSize" to SdkClient.queryValue(pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(page, "form", true),
+                            "PageToken" to SdkClient.queryValue(pageToken, "form", true),
+                        ),
+                    operationId = "listAuthorizedConnectApps",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

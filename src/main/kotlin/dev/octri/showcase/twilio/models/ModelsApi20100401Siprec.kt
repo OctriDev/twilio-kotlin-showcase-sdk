@@ -3,36 +3,25 @@
 
 package dev.octri.showcase.twilio.models
 
-/**
- * Typed representation of the `ApiV2010AccountCallSiprec` API schema.
- */
+/** Typed representation of the `ApiV2010AccountCallSiprec` API schema. */
 data class ApiV2010AccountCallSiprec(
-    /**
-     * The SID of the Siprec resource.
-     */
+    /** The SID of the Siprec resource. */
     val sid: String? = null,
-    /**
-     * The SID of the Account that created this Siprec resource.
-     */
+    /** The SID of the Account that created this Siprec resource. */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
-    /**
-     * The SID of the Call the Siprec resource is associated with.
-     */
+    /** The SID of the Call the Siprec resource is associated with. */
     @com.fasterxml.jackson.annotation.JsonProperty("call_sid") val callSid: String? = null,
     /**
-     * The user-specified name of this Siprec, if one was given when the Siprec was created. This may be used to stop the Siprec.
+     * The user-specified name of this Siprec, if one was given when the Siprec was created. This
+     * may be used to stop the Siprec.
      */
     val name: String? = null,
-    /**
-     * The status - one of `stopped`, `in-progress`
-     */
+    /** The status - one of `stopped`, `in-progress` */
     val status: SiprecEnumStatus? = null,
     /**
      * The date and time in GMT that this resource was last updated, specified in RFC 2822 format.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
-    /**
-     * The URI of the resource, relative to `api.twilio.com`.
-     */
-    val uri: String? = null
+    /** The URI of the resource, relative to `api.twilio.com`. */
+    val uri: String? = null,
 )

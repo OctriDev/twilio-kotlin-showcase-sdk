@@ -17,17 +17,20 @@ import dev.octri.showcase.twilio.UpdateConferencesParticipantsHoldMethodEnum
 import dev.octri.showcase.twilio.UpdateConferencesParticipantsWaitMethodEnum
 
 object ConferencesParticipants {
-data class ListConferencesParticipantsResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    val participants: List<ApiV2010AccountConferenceParticipant>? = null
-)
+    data class ListConferencesParticipantsResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        val participants: List<ApiV2010AccountConferenceParticipant>? = null,
+    )
 
     /** Parameters for [updateConferencesParticipants]. */
     data class UpdateConferencesParticipantsRequest(
@@ -45,7 +48,7 @@ data class ListConferencesParticipantsResponse(
         val beepOnExit: Boolean? = null,
         val endConferenceOnExit: Boolean? = null,
         val coaching: Boolean? = null,
-        val callSidToCoach: String? = null
+        val callSidToCoach: String? = null,
     )
 
     /** Parameters for [createConferencesParticipants]. */
@@ -71,16 +74,22 @@ data class ListConferencesParticipantsResponse(
         val conferenceRecord: String? = null,
         val conferenceTrim: String? = null,
         val conferenceStatusCallback: String? = null,
-        val conferenceStatusCallbackMethod: CreateConferencesParticipantsConferenceStatusCallbackMethodEnum? = null,
+        val conferenceStatusCallbackMethod:
+            CreateConferencesParticipantsConferenceStatusCallbackMethodEnum? =
+            null,
         val conferenceStatusCallbackEvent: List<String>? = null,
         val recordingChannels: String? = null,
         val recordingStatusCallback: String? = null,
-        val recordingStatusCallbackMethod: CreateConferencesParticipantsRecordingStatusCallbackMethodEnum? = null,
+        val recordingStatusCallbackMethod:
+            CreateConferencesParticipantsRecordingStatusCallbackMethodEnum? =
+            null,
         val sipAuthUsername: String? = null,
         val sipAuthPassword: String? = null,
         val region: String? = null,
         val conferenceRecordingStatusCallback: String? = null,
-        val conferenceRecordingStatusCallbackMethod: CreateConferencesParticipantsConferenceRecordingStatusCallbackMethodEnum? = null,
+        val conferenceRecordingStatusCallbackMethod:
+            CreateConferencesParticipantsConferenceRecordingStatusCallbackMethodEnum? =
+            null,
         val recordingStatusCallbackEvent: List<String>? = null,
         val conferenceRecordingStatusCallbackEvent: List<String>? = null,
         val coaching: Boolean? = null,
@@ -98,7 +107,8 @@ data class ListConferencesParticipantsResponse(
         val machineDetectionSpeechEndThreshold: Long? = null,
         val machineDetectionSilenceTimeout: Long? = null,
         val amdStatusCallback: String? = null,
-        val amdStatusCallbackMethod: CreateConferencesParticipantsAmdStatusCallbackMethodEnum? = null,
+        val amdStatusCallbackMethod: CreateConferencesParticipantsAmdStatusCallbackMethodEnum? =
+            null,
         val trim: String? = null,
         val callToken: String? = null,
         val passports: String? = null,
@@ -111,7 +121,7 @@ data class ListConferencesParticipantsResponse(
         val emergencyZipCode: String? = null,
         val emergencyCity: String? = null,
         val emergencyState: String? = null,
-        val emergencyCountry: String? = null
+        val emergencyCountry: String? = null,
     )
 
     /** Parameters for [listConferencesParticipants]. */
@@ -123,60 +133,104 @@ data class ListConferencesParticipantsResponse(
         val coaching: Boolean? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null
+        val pageToken: String? = null,
     )
 
     /**
-     * Retrieves a participant in a specific conference. Use `AccountSid`, `ConferenceSid`, and `CallSid` to identify the account, conference, and participant. You can identify the participant by call SID or label; percent-encode characters in a label that are not URL-safe.
+     * Retrieves a participant in a specific conference. Use `AccountSid`, `ConferenceSid`, and
+     * `CallSid` to identify the account, conference, and participant. You can identify the
+     * participant by call SID or label; percent-encode characters in a label that are not URL-safe.
      */
-    fun fetchConferencesParticipants(clientConfig: ClientConfig, accountSid: String, conferenceSid: String, callSid: String, options: RequestOptions? = null): ApiV2010AccountConferenceParticipant =
-        dev.octri.showcase.twilio.methods.conferences.ConferencesParticipantsFetchConferencesParticipantsOperation.fetchConferencesParticipants(
-            clientConfig,
-            accountSid,
-            conferenceSid,
-            callSid,
-            options,
-        )
+    fun fetchConferencesParticipants(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        conferenceSid: String,
+        callSid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountConferenceParticipant =
+        dev.octri.showcase.twilio.methods.conferences
+            .ConferencesParticipantsFetchConferencesParticipantsOperation
+            .fetchConferencesParticipants(
+                clientConfig,
+                accountSid,
+                conferenceSid,
+                callSid,
+                options,
+            )
 
     /**
-     * Updates configurable properties of a participant in a conference. Use `AccountSid`, `ConferenceSid`, and `CallSid` to identify the participant, then supply the form fields for the settings you want to change. If `Coaching` is true, provide `CallSidToCoach`.
+     * Updates configurable properties of a participant in a conference. Use `AccountSid`,
+     * `ConferenceSid`, and `CallSid` to identify the participant, then supply the form fields for
+     * the settings you want to change. If `Coaching` is true, provide `CallSidToCoach`.
      */
-    fun updateConferencesParticipants(clientConfig: ClientConfig, request: UpdateConferencesParticipantsRequest, options: RequestOptions? = null): ApiV2010AccountConferenceParticipant =
-        dev.octri.showcase.twilio.methods.conferences.ConferencesParticipantsUpdateConferencesParticipantsOperation.updateConferencesParticipants(
-            clientConfig,
-            request,
-            options,
-        )
+    fun updateConferencesParticipants(
+        clientConfig: ClientConfig,
+        request: UpdateConferencesParticipantsRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountConferenceParticipant =
+        dev.octri.showcase.twilio.methods.conferences
+            .ConferencesParticipantsUpdateConferencesParticipantsOperation
+            .updateConferencesParticipants(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Removes a participant from a conference. Use `AccountSid`, `ConferenceSid`, and `CallSid` to identify the account, conference, and participant. You can identify the participant by call SID or label; percent-encode characters in a label that are not URL-safe.
+     * Removes a participant from a conference. Use `AccountSid`, `ConferenceSid`, and `CallSid` to
+     * identify the account, conference, and participant. You can identify the participant by call
+     * SID or label; percent-encode characters in a label that are not URL-safe.
      */
-    fun deleteConferencesParticipants(clientConfig: ClientConfig, accountSid: String, conferenceSid: String, callSid: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.twilio.methods.conferences.ConferencesParticipantsDeleteConferencesParticipantsOperation.deleteConferencesParticipants(
-            clientConfig,
-            accountSid,
-            conferenceSid,
-            callSid,
-            options,
-        )
+    fun deleteConferencesParticipants(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        conferenceSid: String,
+        callSid: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.twilio.methods.conferences
+            .ConferencesParticipantsDeleteConferencesParticipantsOperation
+            .deleteConferencesParticipants(
+                clientConfig,
+                accountSid,
+                conferenceSid,
+                callSid,
+                options,
+            )
 
     /**
-     * Creates a participant in a conference by placing a call from `From` to `To`. Provide both endpoints and optionally configure call behavior, conference settings, and status callbacks. The response includes the participant and associated call identifiers.
+     * Creates a participant in a conference by placing a call from `From` to `To`. Provide both
+     * endpoints and optionally configure call behavior, conference settings, and status callbacks.
+     * The response includes the participant and associated call identifiers.
      */
-    fun createConferencesParticipants(clientConfig: ClientConfig, request: CreateConferencesParticipantsRequest, options: RequestOptions? = null): ApiV2010AccountConferenceParticipant =
-        dev.octri.showcase.twilio.methods.conferences.ConferencesParticipantsCreateConferencesParticipantsOperation.createConferencesParticipants(
-            clientConfig,
-            request,
-            options,
-        )
+    fun createConferencesParticipants(
+        clientConfig: ClientConfig,
+        request: CreateConferencesParticipantsRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountConferenceParticipant =
+        dev.octri.showcase.twilio.methods.conferences
+            .ConferencesParticipantsCreateConferencesParticipantsOperation
+            .createConferencesParticipants(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists participants in a specific conference. Use `Muted`, `Hold`, and `Coaching` to filter participants by their current settings. Use `PageSize`, `Page`, and `PageToken` to paginate the results.
+     * Lists participants in a specific conference. Use `Muted`, `Hold`, and `Coaching` to filter
+     * participants by their current settings. Use `PageSize`, `Page`, and `PageToken` to paginate
+     * the results.
      */
-    fun listConferencesParticipants(clientConfig: ClientConfig, request: ListConferencesParticipantsRequest, options: RequestOptions? = null): ListConferencesParticipantsResponse =
-        dev.octri.showcase.twilio.methods.conferences.ConferencesParticipantsListConferencesParticipantsOperation.listConferencesParticipants(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listConferencesParticipants(
+        clientConfig: ClientConfig,
+        request: ListConferencesParticipantsRequest,
+        options: RequestOptions? = null,
+    ): ListConferencesParticipantsResponse =
+        dev.octri.showcase.twilio.methods.conferences
+            .ConferencesParticipantsListConferencesParticipantsOperation
+            .listConferencesParticipants(
+                clientConfig,
+                request,
+                options,
+            )
 }

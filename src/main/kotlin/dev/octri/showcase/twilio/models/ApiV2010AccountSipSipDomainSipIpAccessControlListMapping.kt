@@ -4,35 +4,23 @@
 package dev.octri.showcase.twilio.models
 
 /**
- * Typed representation of the `ApiV2010AccountSipSipDomainSipIpAccessControlListMapping` API schema.
+ * Typed representation of the `ApiV2010AccountSipSipDomainSipIpAccessControlListMapping` API
+ * schema.
  */
 data class ApiV2010AccountSipSipDomainSipIpAccessControlListMapping(
-    /**
-     * The unique id of the Account that is responsible for this resource.
-     */
+    /** The unique id of the Account that is responsible for this resource. */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
-    /**
-     * The date that this resource was created, given as GMT in RFC 2822 format.
-     */
+    /** The date that this resource was created, given as GMT in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
-    /**
-     * The date that this resource was last updated, given as GMT in RFC 2822 format.
-     */
+    /** The date that this resource was last updated, given as GMT in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
-    /**
-     * The unique string that is created to identify the SipDomain resource.
-     */
+    /** The unique string that is created to identify the SipDomain resource. */
     @com.fasterxml.jackson.annotation.JsonProperty("domain_sid") val domainSid: String? = null,
-    /**
-     * A human readable descriptive text for this resource, up to 64 characters long.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name") val friendlyName: String? = null,
-    /**
-     * A 34 character string that uniquely identifies this resource.
-     */
+    /** A human readable descriptive text for this resource, up to 64 characters long. */
+    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name")
+    val friendlyName: String? = null,
+    /** A 34 character string that uniquely identifies this resource. */
     val sid: String? = null,
-    /**
-     * The URI for this resource, relative to `api.twilio.com`
-     */
-    val uri: String? = null
+    /** The URI for this resource, relative to `api.twilio.com` */
+    val uri: String? = null,
 )

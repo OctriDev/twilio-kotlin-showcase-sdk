@@ -3,32 +3,21 @@
 
 package dev.octri.showcase.twilio.models
 
-/**
- * Typed representation of the `ApiV2010AccountCallPayments` API schema.
- */
+/** Typed representation of the `ApiV2010AccountCallPayments` API schema. */
 data class ApiV2010AccountCallPayments(
-    /**
-     * The SID of the Account that created the Payments resource.
-     */
+    /** The SID of the Account that created the Payments resource. */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
     /**
-     * The SID of the Call the Payments resource is associated with. This will refer to the call sid that is producing the payment card (credit/ACH) information thru DTMF.
+     * The SID of the Call the Payments resource is associated with. This will refer to the call sid
+     * that is producing the payment card (credit/ACH) information thru DTMF.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("call_sid") val callSid: String? = null,
-    /**
-     * The SID of the Payments resource.
-     */
+    /** The SID of the Payments resource. */
     val sid: String? = null,
-    /**
-     * The date and time in GMT that the resource was created specified in RFC 2822 format.
-     */
+    /** The date and time in GMT that the resource was created specified in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
-    /**
-     * The date and time in GMT that the resource was last updated specified in RFC 2822 format.
-     */
+    /** The date and time in GMT that the resource was last updated specified in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
-    /**
-     * The URI of the resource, relative to `api.twilio.com`.
-     */
-    val uri: String? = null
+    /** The URI of the resource, relative to `api.twilio.com`. */
+    val uri: String? = null,
 )

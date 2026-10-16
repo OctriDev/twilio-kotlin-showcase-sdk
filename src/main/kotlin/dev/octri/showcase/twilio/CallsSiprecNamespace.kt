@@ -3,24 +3,45 @@
 
 package dev.octri.showcase.twilio
 
-
 class CallsSiprecNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Creates a SIPREC resource associated with a call. Use `Track` to choose which audio tracks to record, and optionally provide a connector name and status callback settings.
+     * Creates a SIPREC resource associated with a call. Use `Track` to choose which audio tracks to
+     * record, and optionally provide a connector name and status callback settings.
      *
      * Create a Siprec
      */
-    fun create(request: dev.octri.showcase.twilio.methods.calls.CallsSiprec.CreateCallsSiprecRequest, options: RequestOptions? = null): ApiV2010AccountCallSiprec {
-        return dev.octri.showcase.twilio.methods.calls.CallsSiprec.createCallsSiprec(clientConfig, request, options)
+    fun create(
+        request: dev.octri.showcase.twilio.methods.calls.CallsSiprec.CreateCallsSiprecRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountCallSiprec {
+        return dev.octri.showcase.twilio.methods.calls.CallsSiprec.createCallsSiprec(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Stops a SIPREC resource associated with a call. Set `Status` to `stopped`, and identify the resource by its SID or the name used when it was created.
+     * Stops a SIPREC resource associated with a call. Set `Status` to `stopped`, and identify the
+     * resource by its SID or the name used when it was created.
      *
-     * Stop a Siprec using either the SID of the Siprec resource or the `name` used when creating the resource
+     * Stop a Siprec using either the SID of the Siprec resource or the `name` used when creating
+     * the resource
      */
-    fun update(accountSid: String, callSid: String, sid: String, status: SiprecEnumUpdateStatus, options: RequestOptions? = null): ApiV2010AccountCallSiprec {
-        return dev.octri.showcase.twilio.methods.calls.CallsSiprec.updateCallsSiprec(clientConfig, accountSid, callSid, sid, status, options)
+    fun update(
+        accountSid: String,
+        callSid: String,
+        sid: String,
+        status: SiprecEnumUpdateStatus,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountCallSiprec {
+        return dev.octri.showcase.twilio.methods.calls.CallsSiprec.updateCallsSiprec(
+            clientConfig,
+            accountSid,
+            callSid,
+            sid,
+            status,
+            options,
+        )
     }
-
 }

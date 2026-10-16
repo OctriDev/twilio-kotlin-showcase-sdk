@@ -3,51 +3,110 @@
 
 package dev.octri.showcase.twilio
 
-
 class CallsRecordingsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Creates a recording for a specific call. Configure callback events, recording channels, and audio tracks with the form fields; omitted options use their documented defaults. A successful response includes the recording resource and its current status.
+     * Creates a recording for a specific call. Configure callback events, recording channels, and
+     * audio tracks with the form fields; omitted options use their documented defaults. A
+     * successful response includes the recording resource and its current status.
      *
      * Create a recording for the call
      */
-    fun create(request: dev.octri.showcase.twilio.methods.calls.CallsRecordings.CreateCallsRecordingsRequest, options: RequestOptions? = null): ApiV2010AccountCallCallRecording {
-        return dev.octri.showcase.twilio.methods.calls.CallsRecordings.createCallsRecordings(clientConfig, request, options)
+    fun create(
+        request:
+            dev.octri.showcase.twilio.methods.calls.CallsRecordings.CreateCallsRecordingsRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountCallCallRecording {
+        return dev.octri.showcase.twilio.methods.calls.CallsRecordings.createCallsRecordings(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Lists recordings associated with a specific call. Use the date filters to narrow the results to recordings created on or around a given date, and use the page parameters to navigate the list.
+     * Lists recordings associated with a specific call. Use the date filters to narrow the results
+     * to recordings created on or around a given date, and use the page parameters to navigate the
+     * list.
      *
      * Retrieve a list of recordings belonging to the call used to make the request
      */
-    fun list(request: dev.octri.showcase.twilio.methods.calls.CallsRecordings.ListCallsRecordingsRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.calls.CallsRecordings.ListCallsRecordingsResponse {
-        return dev.octri.showcase.twilio.methods.calls.CallsRecordings.listCallsRecordings(clientConfig, request, options)
+    fun list(
+        request: dev.octri.showcase.twilio.methods.calls.CallsRecordings.ListCallsRecordingsRequest,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.calls.CallsRecordings.ListCallsRecordingsResponse {
+        return dev.octri.showcase.twilio.methods.calls.CallsRecordings.listCallsRecordings(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Updates the status or pause behavior of a recording associated with a call. Supply the required `Status` field to pause, stop, or resume the recording, and use `Twilio.CURRENT` as the recording identifier to target the current active recording.
+     * Updates the status or pause behavior of a recording associated with a call. Supply the
+     * required `Status` field to pause, stop, or resume the recording, and use `Twilio.CURRENT` as
+     * the recording identifier to target the current active recording.
      *
-     * Changes the status of the recording to paused, stopped, or in-progress. Note: Pass `Twilio.CURRENT` instead of recording sid to reference current active recording.
+     * Changes the status of the recording to paused, stopped, or in-progress. Note: Pass
+     * `Twilio.CURRENT` instead of recording sid to reference current active recording.
      */
-    fun update(accountSid: String, callSid: String, sid: String, status: CallRecordingEnumStatus, pauseBehavior: String? = null, options: RequestOptions? = null): ApiV2010AccountCallCallRecording {
-        return dev.octri.showcase.twilio.methods.calls.CallsRecordings.updateCallsRecordings(clientConfig, accountSid, callSid, sid, status, pauseBehavior, options)
+    fun update(
+        accountSid: String,
+        callSid: String,
+        sid: String,
+        status: CallRecordingEnumStatus,
+        pauseBehavior: String? = null,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountCallCallRecording {
+        return dev.octri.showcase.twilio.methods.calls.CallsRecordings.updateCallsRecordings(
+            clientConfig,
+            accountSid,
+            callSid,
+            sid,
+            status,
+            pauseBehavior,
+            options,
+        )
     }
 
     /**
-     * Retrieves a specific recording associated with a call. Use the account, call, and recording SIDs to identify the recording and inspect its status, timing, and recording details.
+     * Retrieves a specific recording associated with a call. Use the account, call, and recording
+     * SIDs to identify the recording and inspect its status, timing, and recording details.
      *
      * Fetch an instance of a recording for a call
      */
-    fun fetch(accountSid: String, callSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountCallCallRecording {
-        return dev.octri.showcase.twilio.methods.calls.CallsRecordings.fetchCallsRecordings(clientConfig, accountSid, callSid, sid, options)
+    fun fetch(
+        accountSid: String,
+        callSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountCallCallRecording {
+        return dev.octri.showcase.twilio.methods.calls.CallsRecordings.fetchCallsRecordings(
+            clientConfig,
+            accountSid,
+            callSid,
+            sid,
+            options,
+        )
     }
 
     /**
-     * Deletes a recording associated with a specific call from the account. Supply the account, call, and recording SIDs to identify the recording to remove.
+     * Deletes a recording associated with a specific call from the account. Supply the account,
+     * call, and recording SIDs to identify the recording to remove.
      *
      * Delete a recording from your account
      */
-    fun delete(accountSid: String, callSid: String, sid: String, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.twilio.methods.calls.CallsRecordings.deleteCallsRecordings(clientConfig, accountSid, callSid, sid, options)
+    fun delete(
+        accountSid: String,
+        callSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        return dev.octri.showcase.twilio.methods.calls.CallsRecordings.deleteCallsRecordings(
+            clientConfig,
+            accountSid,
+            callSid,
+            sid,
+            options,
+        )
     }
-
 }

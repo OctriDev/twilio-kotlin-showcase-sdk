@@ -11,27 +11,42 @@ import dev.octri.showcase.twilio.Validation
 
 object Tokens {
 
-
     /**
-     * Creates a token containing temporary credentials and ICE server details for an account. Set `Ttl` to control how long the generated credentials remain valid; it defaults to 86400 seconds when omitted.
+     * Creates a token containing temporary credentials and ICE server details for an account. Set
+     * `Ttl` to control how long the generated credentials remain valid; it defaults to 86400
+     * seconds when omitted.
      *
      * Create a new token for ICE servers
      *
      * @param accountSid The SID of the Account that will create the resource.
-     * @param ttl The duration in seconds for which the generated credentials are
-     *   valid. The default value is 86400 (24 hours).
+     * @param ttl The duration in seconds for which the generated credentials are valid. The default
+     *   value is 86400 (24 hours).
      */
-    fun createTokens(clientConfig: ClientConfig, accountSid: String, ttl: Long? = null, options: RequestOptions? = null): ApiV2010AccountToken {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun createTokens(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        ttl: Long? = null,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountToken {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountToken>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Tokens.json", config = clientConfig, body = SdkClient.bodyMap("Ttl" to (SdkClient.omitIfNull(ttl))), contentType = "application/x-www-form-urlencoded", operationId = "createTokens", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountToken>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Tokens.json",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("Ttl" to (SdkClient.omitIfNull(ttl))),
+                    contentType = "application/x-www-form-urlencoded",
+                    operationId = "createTokens",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }
