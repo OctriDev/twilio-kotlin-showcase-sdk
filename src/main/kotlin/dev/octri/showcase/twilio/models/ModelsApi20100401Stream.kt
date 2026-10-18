@@ -3,36 +3,25 @@
 
 package dev.octri.showcase.twilio.models
 
-/**
- * Typed representation of the `ApiV2010AccountCallStream` API schema.
- */
+/** Typed representation of the `ApiV2010AccountCallStream` API schema. */
 data class ApiV2010AccountCallStream(
-    /**
-     * The SID of the Stream resource.
-     */
+    /** The SID of the Stream resource. */
     val sid: String? = null,
-    /**
-     * The SID of the Account that created this Stream resource.
-     */
+    /** The SID of the Account that created this Stream resource. */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
-    /**
-     * The SID of the Call the Stream resource is associated with.
-     */
+    /** The SID of the Call the Stream resource is associated with. */
     @com.fasterxml.jackson.annotation.JsonProperty("call_sid") val callSid: String? = null,
     /**
-     * The user-specified name of this Stream, if one was given when the Stream was created. This can be used to stop the Stream.
+     * The user-specified name of this Stream, if one was given when the Stream was created. This
+     * can be used to stop the Stream.
      */
     val name: String? = null,
-    /**
-     * The status of the Stream. Possible values are `stopped` and `in-progress`.
-     */
+    /** The status of the Stream. Possible values are `stopped` and `in-progress`. */
     val status: StreamEnumStatus? = null,
     /**
      * The date and time in GMT that this resource was last updated, specified in RFC 2822 format.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
-    /**
-     * The URI of the resource, relative to `api.twilio.com`.
-     */
-    val uri: String? = null
+    /** The URI of the resource, relative to `api.twilio.com`. */
+    val uri: String? = null,
 )

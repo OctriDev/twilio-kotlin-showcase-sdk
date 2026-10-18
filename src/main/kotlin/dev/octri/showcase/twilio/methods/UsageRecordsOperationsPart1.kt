@@ -10,542 +10,792 @@ import dev.octri.showcase.twilio.Validation
 
 internal object UsageRecordsListUsageRecordsOperation {
     /**
-     * Lists usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`,
+     * and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from
+     * subaccounts is included.
      *
      * Retrieve a list of usage-records belonging to the account used to make the request
      *
-     * @param accountSid The SID of the Account that created the UsageRecord
-     *   resources to read.
-     * @param category The usage category of the UsageRecord resources to read. Only
-     *   UsageRecord resources in the specified category are retrieved.
-     * @param startDate Only include usage that has occurred on or after this date.
-     *   Specify the date in GMT and format as `YYYY-MM-DD`. You can also specify
-     *   offsets from the current date, such as: `-30days`, which will set the start
-     *   date to be 30 days before the current date.
-     * @param endDate Only include usage that occurred on or before this date.
-     *   Specify the date in GMT and format as `YYYY-MM-DD`. You can also specify
-     *   offsets from the current date, such as: `+30days`, which will set the end date
-     *   to 30 days from the current date.
-     * @param includeSubaccounts Whether to include usage from the master account and
-     *   all its subaccounts. Can be: `true` (the default) to include usage from the
-     *   master account and all subaccounts or `false` to retrieve usage from only the
-     *   specified account.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param accountSid The SID of the Account that created the UsageRecord resources to read.
+     * @param category The usage category of the UsageRecord resources to read. Only UsageRecord
+     *   resources in the specified category are retrieved.
+     * @param startDate Only include usage that has occurred on or after this date. Specify the date
+     *   in GMT and format as `YYYY-MM-DD`. You can also specify offsets from the current date, such
+     *   as: `-30days`, which will set the start date to be 30 days before the current date.
+     * @param endDate Only include usage that occurred on or before this date. Specify the date in
+     *   GMT and format as `YYYY-MM-DD`. You can also specify offsets from the current date, such
+     *   as: `+30days`, which will set the end date to 30 days from the current date.
+     * @param includeSubaccounts Whether to include usage from the master account and all its
+     *   subaccounts. Can be: `true` (the default) to include usage from the master account and all
+     *   subaccounts or `false` to retrieve usage from only the specified account.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listUsageRecords(clientConfig: ClientConfig, request: UsageRecords.ListUsageRecordsRequest, options: RequestOptions? = null): UsageRecords.ListUsageRecordsResponse {
+    fun listUsageRecords(
+        clientConfig: ClientConfig,
+        request: UsageRecords.ListUsageRecordsRequest,
+        options: RequestOptions? = null,
+    ): UsageRecords.ListUsageRecordsResponse {
         validateListUsageRecordsRequest(request)
 
-        return SdkClient.request<UsageRecords.ListUsageRecordsResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Records.json", config = clientConfig, query = mapOf("Category" to
-    SdkClient.queryValue(request.category, "form", true), "StartDate" to
-    SdkClient.queryValue(request.startDate, "form", true, "date"), "EndDate" to
-    SdkClient.queryValue(request.endDate, "form", true, "date"), "IncludeSubaccounts" to
-    SdkClient.queryValue(request.includeSubaccounts, "form", true), "PageSize" to
-    SdkClient.queryValue(request.pageSize, "form", true), "Page" to SdkClient.queryValue(request.page, "form", true), "PageToken" to
-    SdkClient.queryValue(request.pageToken, "form", true)), operationId = "listUsageRecords", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<UsageRecords.ListUsageRecordsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Records.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "Category" to SdkClient.queryValue(request.category, "form", true),
+                            "StartDate" to
+                                SdkClient.queryValue(request.startDate, "form", true, "date"),
+                            "EndDate" to
+                                SdkClient.queryValue(request.endDate, "form", true, "date"),
+                            "IncludeSubaccounts" to
+                                SdkClient.queryValue(request.includeSubaccounts, "form", true),
+                            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(request.page, "form", true),
+                            "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
+                        ),
+                    operationId = "listUsageRecords",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
     private fun validateListUsageRecordsRequest(request: UsageRecords.ListUsageRecordsRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.startDate != null) {
             Validation.validateDate("StartDate", request.startDate)
-}
+        }
 
         if (request.endDate != null) {
             Validation.validateDate("EndDate", request.endDate)
-}
+        }
 
         if (request.pageSize != null) {
-            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                request.pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-}
+        }
     }
 }
 
 internal object UsageRecordsListUsageRecordsAllTimeOperation {
     /**
-     * Lists all-time usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists all-time usage records for the account identified by `AccountSid`. Use `Category`,
+     * `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether
+     * usage from subaccounts is included.
      *
-     * @param accountSid The SID of the Account that created the UsageRecord
-     *   resources to read.
-     * @param category The usage category of the UsageRecord resources to read. Only
-     *   UsageRecord resources in the specified category are retrieved.
-     * @param startDate Only include usage that has occurred on or after this date.
-     *   Specify the date in GMT and format as `YYYY-MM-DD`. You can also specify
-     *   offsets from the current date, such as: `-30days`, which will set the start
-     *   date to be 30 days before the current date.
-     * @param endDate Only include usage that occurred on or before this date.
-     *   Specify the date in GMT and format as `YYYY-MM-DD`. You can also specify
-     *   offsets from the current date, such as: `+30days`, which will set the end date
-     *   to 30 days from the current date.
-     * @param includeSubaccounts Whether to include usage from the master account and
-     *   all its subaccounts. Can be: `true` (the default) to include usage from the
-     *   master account and all subaccounts or `false` to retrieve usage from only the
-     *   specified account.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param accountSid The SID of the Account that created the UsageRecord resources to read.
+     * @param category The usage category of the UsageRecord resources to read. Only UsageRecord
+     *   resources in the specified category are retrieved.
+     * @param startDate Only include usage that has occurred on or after this date. Specify the date
+     *   in GMT and format as `YYYY-MM-DD`. You can also specify offsets from the current date, such
+     *   as: `-30days`, which will set the start date to be 30 days before the current date.
+     * @param endDate Only include usage that occurred on or before this date. Specify the date in
+     *   GMT and format as `YYYY-MM-DD`. You can also specify offsets from the current date, such
+     *   as: `+30days`, which will set the end date to 30 days from the current date.
+     * @param includeSubaccounts Whether to include usage from the master account and all its
+     *   subaccounts. Can be: `true` (the default) to include usage from the master account and all
+     *   subaccounts or `false` to retrieve usage from only the specified account.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listUsageRecordsAllTime(clientConfig: ClientConfig, request: UsageRecords.ListUsageRecordsAllTimeRequest, options: RequestOptions? = null): UsageRecords.ListUsageRecordsAllTimeResponse {
+    fun listUsageRecordsAllTime(
+        clientConfig: ClientConfig,
+        request: UsageRecords.ListUsageRecordsAllTimeRequest,
+        options: RequestOptions? = null,
+    ): UsageRecords.ListUsageRecordsAllTimeResponse {
         validateListUsageRecordsAllTimeRequest(request)
 
-        return SdkClient.request<UsageRecords.ListUsageRecordsAllTimeResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Records/AllTime.json", config = clientConfig, query = mapOf("Category" to
-    SdkClient.queryValue(request.category, "form", true), "StartDate" to
-    SdkClient.queryValue(request.startDate, "form", true, "date"), "EndDate" to
-    SdkClient.queryValue(request.endDate, "form", true, "date"), "IncludeSubaccounts" to
-    SdkClient.queryValue(request.includeSubaccounts, "form", true), "PageSize" to
-    SdkClient.queryValue(request.pageSize, "form", true), "Page" to SdkClient.queryValue(request.page, "form", true), "PageToken" to
-    SdkClient.queryValue(request.pageToken, "form", true)), operationId = "listUsageRecordsAllTime", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<UsageRecords.ListUsageRecordsAllTimeResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Records/AllTime.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "Category" to SdkClient.queryValue(request.category, "form", true),
+                            "StartDate" to
+                                SdkClient.queryValue(request.startDate, "form", true, "date"),
+                            "EndDate" to
+                                SdkClient.queryValue(request.endDate, "form", true, "date"),
+                            "IncludeSubaccounts" to
+                                SdkClient.queryValue(request.includeSubaccounts, "form", true),
+                            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(request.page, "form", true),
+                            "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
+                        ),
+                    operationId = "listUsageRecordsAllTime",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-    private fun validateListUsageRecordsAllTimeRequest(request: UsageRecords.ListUsageRecordsAllTimeRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+    private fun validateListUsageRecordsAllTimeRequest(
+        request: UsageRecords.ListUsageRecordsAllTimeRequest
+    ) {
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.startDate != null) {
             Validation.validateDate("StartDate", request.startDate)
-}
+        }
 
         if (request.endDate != null) {
             Validation.validateDate("EndDate", request.endDate)
-}
+        }
 
         if (request.pageSize != null) {
-            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                request.pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-}
+        }
     }
 }
 
 internal object UsageRecordsListUsageRecordsDailyOperation {
     /**
-     * Lists daily usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists daily usage records for the account identified by `AccountSid`. Use `Category`,
+     * `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether
+     * usage from subaccounts is included.
      *
-     * @param accountSid The SID of the Account that created the UsageRecord
-     *   resources to read.
-     * @param category The usage category of the UsageRecord resources to read. Only
-     *   UsageRecord resources in the specified category are retrieved.
-     * @param startDate Only include usage that has occurred on or after this date.
-     *   Specify the date in GMT and format as `YYYY-MM-DD`. You can also specify
-     *   offsets from the current date, such as: `-30days`, which will set the start
-     *   date to be 30 days before the current date.
-     * @param endDate Only include usage that occurred on or before this date.
-     *   Specify the date in GMT and format as `YYYY-MM-DD`. You can also specify
-     *   offsets from the current date, such as: `+30days`, which will set the end date
-     *   to 30 days from the current date.
-     * @param includeSubaccounts Whether to include usage from the master account and
-     *   all its subaccounts. Can be: `true` (the default) to include usage from the
-     *   master account and all subaccounts or `false` to retrieve usage from only the
-     *   specified account.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param accountSid The SID of the Account that created the UsageRecord resources to read.
+     * @param category The usage category of the UsageRecord resources to read. Only UsageRecord
+     *   resources in the specified category are retrieved.
+     * @param startDate Only include usage that has occurred on or after this date. Specify the date
+     *   in GMT and format as `YYYY-MM-DD`. You can also specify offsets from the current date, such
+     *   as: `-30days`, which will set the start date to be 30 days before the current date.
+     * @param endDate Only include usage that occurred on or before this date. Specify the date in
+     *   GMT and format as `YYYY-MM-DD`. You can also specify offsets from the current date, such
+     *   as: `+30days`, which will set the end date to 30 days from the current date.
+     * @param includeSubaccounts Whether to include usage from the master account and all its
+     *   subaccounts. Can be: `true` (the default) to include usage from the master account and all
+     *   subaccounts or `false` to retrieve usage from only the specified account.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listUsageRecordsDaily(clientConfig: ClientConfig, request: UsageRecords.ListUsageRecordsDailyRequest, options: RequestOptions? = null): UsageRecords.ListUsageRecordsDailyResponse {
+    fun listUsageRecordsDaily(
+        clientConfig: ClientConfig,
+        request: UsageRecords.ListUsageRecordsDailyRequest,
+        options: RequestOptions? = null,
+    ): UsageRecords.ListUsageRecordsDailyResponse {
         validateListUsageRecordsDailyRequest(request)
 
-        return SdkClient.request<UsageRecords.ListUsageRecordsDailyResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Records/Daily.json", config = clientConfig, query = mapOf("Category" to
-    SdkClient.queryValue(request.category, "form", true), "StartDate" to
-    SdkClient.queryValue(request.startDate, "form", true, "date"), "EndDate" to
-    SdkClient.queryValue(request.endDate, "form", true, "date"), "IncludeSubaccounts" to
-    SdkClient.queryValue(request.includeSubaccounts, "form", true), "PageSize" to
-    SdkClient.queryValue(request.pageSize, "form", true), "Page" to SdkClient.queryValue(request.page, "form", true), "PageToken" to
-    SdkClient.queryValue(request.pageToken, "form", true)), operationId = "listUsageRecordsDaily", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<UsageRecords.ListUsageRecordsDailyResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Records/Daily.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "Category" to SdkClient.queryValue(request.category, "form", true),
+                            "StartDate" to
+                                SdkClient.queryValue(request.startDate, "form", true, "date"),
+                            "EndDate" to
+                                SdkClient.queryValue(request.endDate, "form", true, "date"),
+                            "IncludeSubaccounts" to
+                                SdkClient.queryValue(request.includeSubaccounts, "form", true),
+                            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(request.page, "form", true),
+                            "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
+                        ),
+                    operationId = "listUsageRecordsDaily",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-    private fun validateListUsageRecordsDailyRequest(request: UsageRecords.ListUsageRecordsDailyRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+    private fun validateListUsageRecordsDailyRequest(
+        request: UsageRecords.ListUsageRecordsDailyRequest
+    ) {
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.startDate != null) {
             Validation.validateDate("StartDate", request.startDate)
-}
+        }
 
         if (request.endDate != null) {
             Validation.validateDate("EndDate", request.endDate)
-}
+        }
 
         if (request.pageSize != null) {
-            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                request.pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-}
+        }
     }
 }
 
 internal object UsageRecordsListUsageRecordsLastMonthOperation {
     /**
-     * Lists usage records for the previous month for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the previous month for the account identified by `AccountSid`. Use
+     * `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to
+     * control whether usage from subaccounts is included.
      *
-     * @param accountSid The SID of the Account that created the UsageRecord
-     *   resources to read.
-     * @param category The usage category of the UsageRecord resources to read. Only
-     *   UsageRecord resources in the specified category are retrieved.
-     * @param startDate Only include usage that has occurred on or after this date.
-     *   Specify the date in GMT and format as `YYYY-MM-DD`. You can also specify
-     *   offsets from the current date, such as: `-30days`, which will set the start
-     *   date to be 30 days before the current date.
-     * @param endDate Only include usage that occurred on or before this date.
-     *   Specify the date in GMT and format as `YYYY-MM-DD`. You can also specify
-     *   offsets from the current date, such as: `+30days`, which will set the end date
-     *   to 30 days from the current date.
-     * @param includeSubaccounts Whether to include usage from the master account and
-     *   all its subaccounts. Can be: `true` (the default) to include usage from the
-     *   master account and all subaccounts or `false` to retrieve usage from only the
-     *   specified account.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param accountSid The SID of the Account that created the UsageRecord resources to read.
+     * @param category The usage category of the UsageRecord resources to read. Only UsageRecord
+     *   resources in the specified category are retrieved.
+     * @param startDate Only include usage that has occurred on or after this date. Specify the date
+     *   in GMT and format as `YYYY-MM-DD`. You can also specify offsets from the current date, such
+     *   as: `-30days`, which will set the start date to be 30 days before the current date.
+     * @param endDate Only include usage that occurred on or before this date. Specify the date in
+     *   GMT and format as `YYYY-MM-DD`. You can also specify offsets from the current date, such
+     *   as: `+30days`, which will set the end date to 30 days from the current date.
+     * @param includeSubaccounts Whether to include usage from the master account and all its
+     *   subaccounts. Can be: `true` (the default) to include usage from the master account and all
+     *   subaccounts or `false` to retrieve usage from only the specified account.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listUsageRecordsLastMonth(clientConfig: ClientConfig, request: UsageRecords.ListUsageRecordsLastMonthRequest, options: RequestOptions? = null): UsageRecords.ListUsageRecordsLastMonthResponse {
+    fun listUsageRecordsLastMonth(
+        clientConfig: ClientConfig,
+        request: UsageRecords.ListUsageRecordsLastMonthRequest,
+        options: RequestOptions? = null,
+    ): UsageRecords.ListUsageRecordsLastMonthResponse {
         validateListUsageRecordsLastMonthRequest(request)
 
-        return SdkClient.request<UsageRecords.ListUsageRecordsLastMonthResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Records/LastMonth.json", config = clientConfig, query = mapOf("Category" to
-    SdkClient.queryValue(request.category, "form", true), "StartDate" to
-    SdkClient.queryValue(request.startDate, "form", true, "date"), "EndDate" to
-    SdkClient.queryValue(request.endDate, "form", true, "date"), "IncludeSubaccounts" to
-    SdkClient.queryValue(request.includeSubaccounts, "form", true), "PageSize" to
-    SdkClient.queryValue(request.pageSize, "form", true), "Page" to SdkClient.queryValue(request.page, "form", true), "PageToken" to
-    SdkClient.queryValue(request.pageToken, "form", true)), operationId = "listUsageRecordsLastMonth", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<UsageRecords.ListUsageRecordsLastMonthResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Records/LastMonth.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "Category" to SdkClient.queryValue(request.category, "form", true),
+                            "StartDate" to
+                                SdkClient.queryValue(request.startDate, "form", true, "date"),
+                            "EndDate" to
+                                SdkClient.queryValue(request.endDate, "form", true, "date"),
+                            "IncludeSubaccounts" to
+                                SdkClient.queryValue(request.includeSubaccounts, "form", true),
+                            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(request.page, "form", true),
+                            "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
+                        ),
+                    operationId = "listUsageRecordsLastMonth",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-    private fun validateListUsageRecordsLastMonthRequest(request: UsageRecords.ListUsageRecordsLastMonthRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+    private fun validateListUsageRecordsLastMonthRequest(
+        request: UsageRecords.ListUsageRecordsLastMonthRequest
+    ) {
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.startDate != null) {
             Validation.validateDate("StartDate", request.startDate)
-}
+        }
 
         if (request.endDate != null) {
             Validation.validateDate("EndDate", request.endDate)
-}
+        }
 
         if (request.pageSize != null) {
-            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                request.pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-}
+        }
     }
 }
 
 internal object UsageRecordsListUsageRecordsMonthlyOperation {
     /**
-     * Lists monthly usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists monthly usage records for the account identified by `AccountSid`. Use `Category`,
+     * `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether
+     * usage from subaccounts is included.
      *
-     * @param accountSid The SID of the Account that created the UsageRecord
-     *   resources to read.
-     * @param category The usage category of the UsageRecord resources to read. Only
-     *   UsageRecord resources in the specified category are retrieved.
-     * @param startDate Only include usage that has occurred on or after this date.
-     *   Specify the date in GMT and format as `YYYY-MM-DD`. You can also specify
-     *   offsets from the current date, such as: `-30days`, which will set the start
-     *   date to be 30 days before the current date.
-     * @param endDate Only include usage that occurred on or before this date.
-     *   Specify the date in GMT and format as `YYYY-MM-DD`. You can also specify
-     *   offsets from the current date, such as: `+30days`, which will set the end date
-     *   to 30 days from the current date.
-     * @param includeSubaccounts Whether to include usage from the master account and
-     *   all its subaccounts. Can be: `true` (the default) to include usage from the
-     *   master account and all subaccounts or `false` to retrieve usage from only the
-     *   specified account.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param accountSid The SID of the Account that created the UsageRecord resources to read.
+     * @param category The usage category of the UsageRecord resources to read. Only UsageRecord
+     *   resources in the specified category are retrieved.
+     * @param startDate Only include usage that has occurred on or after this date. Specify the date
+     *   in GMT and format as `YYYY-MM-DD`. You can also specify offsets from the current date, such
+     *   as: `-30days`, which will set the start date to be 30 days before the current date.
+     * @param endDate Only include usage that occurred on or before this date. Specify the date in
+     *   GMT and format as `YYYY-MM-DD`. You can also specify offsets from the current date, such
+     *   as: `+30days`, which will set the end date to 30 days from the current date.
+     * @param includeSubaccounts Whether to include usage from the master account and all its
+     *   subaccounts. Can be: `true` (the default) to include usage from the master account and all
+     *   subaccounts or `false` to retrieve usage from only the specified account.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listUsageRecordsMonthly(clientConfig: ClientConfig, request: UsageRecords.ListUsageRecordsMonthlyRequest, options: RequestOptions? = null): UsageRecords.ListUsageRecordsMonthlyResponse {
+    fun listUsageRecordsMonthly(
+        clientConfig: ClientConfig,
+        request: UsageRecords.ListUsageRecordsMonthlyRequest,
+        options: RequestOptions? = null,
+    ): UsageRecords.ListUsageRecordsMonthlyResponse {
         validateListUsageRecordsMonthlyRequest(request)
 
-        return SdkClient.request<UsageRecords.ListUsageRecordsMonthlyResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Records/Monthly.json", config = clientConfig, query = mapOf("Category" to
-    SdkClient.queryValue(request.category, "form", true), "StartDate" to
-    SdkClient.queryValue(request.startDate, "form", true, "date"), "EndDate" to
-    SdkClient.queryValue(request.endDate, "form", true, "date"), "IncludeSubaccounts" to
-    SdkClient.queryValue(request.includeSubaccounts, "form", true), "PageSize" to
-    SdkClient.queryValue(request.pageSize, "form", true), "Page" to SdkClient.queryValue(request.page, "form", true), "PageToken" to
-    SdkClient.queryValue(request.pageToken, "form", true)), operationId = "listUsageRecordsMonthly", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<UsageRecords.ListUsageRecordsMonthlyResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Records/Monthly.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "Category" to SdkClient.queryValue(request.category, "form", true),
+                            "StartDate" to
+                                SdkClient.queryValue(request.startDate, "form", true, "date"),
+                            "EndDate" to
+                                SdkClient.queryValue(request.endDate, "form", true, "date"),
+                            "IncludeSubaccounts" to
+                                SdkClient.queryValue(request.includeSubaccounts, "form", true),
+                            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(request.page, "form", true),
+                            "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
+                        ),
+                    operationId = "listUsageRecordsMonthly",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-    private fun validateListUsageRecordsMonthlyRequest(request: UsageRecords.ListUsageRecordsMonthlyRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+    private fun validateListUsageRecordsMonthlyRequest(
+        request: UsageRecords.ListUsageRecordsMonthlyRequest
+    ) {
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.startDate != null) {
             Validation.validateDate("StartDate", request.startDate)
-}
+        }
 
         if (request.endDate != null) {
             Validation.validateDate("EndDate", request.endDate)
-}
+        }
 
         if (request.pageSize != null) {
-            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                request.pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-}
+        }
     }
 }
 
 internal object UsageRecordsListUsageRecordsThisMonthOperation {
     /**
-     * Lists usage records for the current month for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the current month for the account identified by `AccountSid`. Use
+     * `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to
+     * control whether usage from subaccounts is included.
      *
-     * @param accountSid The SID of the Account that created the UsageRecord
-     *   resources to read.
-     * @param category The usage category of the UsageRecord resources to read. Only
-     *   UsageRecord resources in the specified category are retrieved.
-     * @param startDate Only include usage that has occurred on or after this date.
-     *   Specify the date in GMT and format as `YYYY-MM-DD`. You can also specify
-     *   offsets from the current date, such as: `-30days`, which will set the start
-     *   date to be 30 days before the current date.
-     * @param endDate Only include usage that occurred on or before this date.
-     *   Specify the date in GMT and format as `YYYY-MM-DD`. You can also specify
-     *   offsets from the current date, such as: `+30days`, which will set the end date
-     *   to 30 days from the current date.
-     * @param includeSubaccounts Whether to include usage from the master account and
-     *   all its subaccounts. Can be: `true` (the default) to include usage from the
-     *   master account and all subaccounts or `false` to retrieve usage from only the
-     *   specified account.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param accountSid The SID of the Account that created the UsageRecord resources to read.
+     * @param category The usage category of the UsageRecord resources to read. Only UsageRecord
+     *   resources in the specified category are retrieved.
+     * @param startDate Only include usage that has occurred on or after this date. Specify the date
+     *   in GMT and format as `YYYY-MM-DD`. You can also specify offsets from the current date, such
+     *   as: `-30days`, which will set the start date to be 30 days before the current date.
+     * @param endDate Only include usage that occurred on or before this date. Specify the date in
+     *   GMT and format as `YYYY-MM-DD`. You can also specify offsets from the current date, such
+     *   as: `+30days`, which will set the end date to 30 days from the current date.
+     * @param includeSubaccounts Whether to include usage from the master account and all its
+     *   subaccounts. Can be: `true` (the default) to include usage from the master account and all
+     *   subaccounts or `false` to retrieve usage from only the specified account.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listUsageRecordsThisMonth(clientConfig: ClientConfig, request: UsageRecords.ListUsageRecordsThisMonthRequest, options: RequestOptions? = null): UsageRecords.ListUsageRecordsThisMonthResponse {
+    fun listUsageRecordsThisMonth(
+        clientConfig: ClientConfig,
+        request: UsageRecords.ListUsageRecordsThisMonthRequest,
+        options: RequestOptions? = null,
+    ): UsageRecords.ListUsageRecordsThisMonthResponse {
         validateListUsageRecordsThisMonthRequest(request)
 
-        return SdkClient.request<UsageRecords.ListUsageRecordsThisMonthResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Records/ThisMonth.json", config = clientConfig, query = mapOf("Category" to
-    SdkClient.queryValue(request.category, "form", true), "StartDate" to
-    SdkClient.queryValue(request.startDate, "form", true, "date"), "EndDate" to
-    SdkClient.queryValue(request.endDate, "form", true, "date"), "IncludeSubaccounts" to
-    SdkClient.queryValue(request.includeSubaccounts, "form", true), "PageSize" to
-    SdkClient.queryValue(request.pageSize, "form", true), "Page" to SdkClient.queryValue(request.page, "form", true), "PageToken" to
-    SdkClient.queryValue(request.pageToken, "form", true)), operationId = "listUsageRecordsThisMonth", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<UsageRecords.ListUsageRecordsThisMonthResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Records/ThisMonth.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "Category" to SdkClient.queryValue(request.category, "form", true),
+                            "StartDate" to
+                                SdkClient.queryValue(request.startDate, "form", true, "date"),
+                            "EndDate" to
+                                SdkClient.queryValue(request.endDate, "form", true, "date"),
+                            "IncludeSubaccounts" to
+                                SdkClient.queryValue(request.includeSubaccounts, "form", true),
+                            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(request.page, "form", true),
+                            "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
+                        ),
+                    operationId = "listUsageRecordsThisMonth",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-    private fun validateListUsageRecordsThisMonthRequest(request: UsageRecords.ListUsageRecordsThisMonthRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+    private fun validateListUsageRecordsThisMonthRequest(
+        request: UsageRecords.ListUsageRecordsThisMonthRequest
+    ) {
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.startDate != null) {
             Validation.validateDate("StartDate", request.startDate)
-}
+        }
 
         if (request.endDate != null) {
             Validation.validateDate("EndDate", request.endDate)
-}
+        }
 
         if (request.pageSize != null) {
-            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                request.pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-}
+        }
     }
 }
 
 internal object UsageRecordsListUsageRecordsTodayOperation {
     /**
-     * Lists usage records for the current day for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the current day for the account identified by `AccountSid`. Use
+     * `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to
+     * control whether usage from subaccounts is included.
      *
-     * @param accountSid The SID of the Account that created the UsageRecord
-     *   resources to read.
-     * @param category The usage category of the UsageRecord resources to read. Only
-     *   UsageRecord resources in the specified category are retrieved.
-     * @param startDate Only include usage that has occurred on or after this date.
-     *   Specify the date in GMT and format as `YYYY-MM-DD`. You can also specify
-     *   offsets from the current date, such as: `-30days`, which will set the start
-     *   date to be 30 days before the current date.
-     * @param endDate Only include usage that occurred on or before this date.
-     *   Specify the date in GMT and format as `YYYY-MM-DD`. You can also specify
-     *   offsets from the current date, such as: `+30days`, which will set the end date
-     *   to 30 days from the current date.
-     * @param includeSubaccounts Whether to include usage from the master account and
-     *   all its subaccounts. Can be: `true` (the default) to include usage from the
-     *   master account and all subaccounts or `false` to retrieve usage from only the
-     *   specified account.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param accountSid The SID of the Account that created the UsageRecord resources to read.
+     * @param category The usage category of the UsageRecord resources to read. Only UsageRecord
+     *   resources in the specified category are retrieved.
+     * @param startDate Only include usage that has occurred on or after this date. Specify the date
+     *   in GMT and format as `YYYY-MM-DD`. You can also specify offsets from the current date, such
+     *   as: `-30days`, which will set the start date to be 30 days before the current date.
+     * @param endDate Only include usage that occurred on or before this date. Specify the date in
+     *   GMT and format as `YYYY-MM-DD`. You can also specify offsets from the current date, such
+     *   as: `+30days`, which will set the end date to 30 days from the current date.
+     * @param includeSubaccounts Whether to include usage from the master account and all its
+     *   subaccounts. Can be: `true` (the default) to include usage from the master account and all
+     *   subaccounts or `false` to retrieve usage from only the specified account.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listUsageRecordsToday(clientConfig: ClientConfig, request: UsageRecords.ListUsageRecordsTodayRequest, options: RequestOptions? = null): UsageRecords.ListUsageRecordsTodayResponse {
+    fun listUsageRecordsToday(
+        clientConfig: ClientConfig,
+        request: UsageRecords.ListUsageRecordsTodayRequest,
+        options: RequestOptions? = null,
+    ): UsageRecords.ListUsageRecordsTodayResponse {
         validateListUsageRecordsTodayRequest(request)
 
-        return SdkClient.request<UsageRecords.ListUsageRecordsTodayResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Records/Today.json", config = clientConfig, query = mapOf("Category" to
-    SdkClient.queryValue(request.category, "form", true), "StartDate" to
-    SdkClient.queryValue(request.startDate, "form", true, "date"), "EndDate" to
-    SdkClient.queryValue(request.endDate, "form", true, "date"), "IncludeSubaccounts" to
-    SdkClient.queryValue(request.includeSubaccounts, "form", true), "PageSize" to
-    SdkClient.queryValue(request.pageSize, "form", true), "Page" to SdkClient.queryValue(request.page, "form", true), "PageToken" to
-    SdkClient.queryValue(request.pageToken, "form", true)), operationId = "listUsageRecordsToday", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<UsageRecords.ListUsageRecordsTodayResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Records/Today.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "Category" to SdkClient.queryValue(request.category, "form", true),
+                            "StartDate" to
+                                SdkClient.queryValue(request.startDate, "form", true, "date"),
+                            "EndDate" to
+                                SdkClient.queryValue(request.endDate, "form", true, "date"),
+                            "IncludeSubaccounts" to
+                                SdkClient.queryValue(request.includeSubaccounts, "form", true),
+                            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(request.page, "form", true),
+                            "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
+                        ),
+                    operationId = "listUsageRecordsToday",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-    private fun validateListUsageRecordsTodayRequest(request: UsageRecords.ListUsageRecordsTodayRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+    private fun validateListUsageRecordsTodayRequest(
+        request: UsageRecords.ListUsageRecordsTodayRequest
+    ) {
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.startDate != null) {
             Validation.validateDate("StartDate", request.startDate)
-}
+        }
 
         if (request.endDate != null) {
             Validation.validateDate("EndDate", request.endDate)
-}
+        }
 
         if (request.pageSize != null) {
-            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                request.pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-}
+        }
     }
 }
 
 internal object UsageRecordsListUsageRecordsYearlyOperation {
     /**
-     * Lists yearly usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists yearly usage records for the account identified by `AccountSid`. Use `Category`,
+     * `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether
+     * usage from subaccounts is included.
      *
-     * @param accountSid The SID of the Account that created the UsageRecord
-     *   resources to read.
-     * @param category The usage category of the UsageRecord resources to read. Only
-     *   UsageRecord resources in the specified category are retrieved.
-     * @param startDate Only include usage that has occurred on or after this date.
-     *   Specify the date in GMT and format as `YYYY-MM-DD`. You can also specify
-     *   offsets from the current date, such as: `-30days`, which will set the start
-     *   date to be 30 days before the current date.
-     * @param endDate Only include usage that occurred on or before this date.
-     *   Specify the date in GMT and format as `YYYY-MM-DD`. You can also specify
-     *   offsets from the current date, such as: `+30days`, which will set the end date
-     *   to 30 days from the current date.
-     * @param includeSubaccounts Whether to include usage from the master account and
-     *   all its subaccounts. Can be: `true` (the default) to include usage from the
-     *   master account and all subaccounts or `false` to retrieve usage from only the
-     *   specified account.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param accountSid The SID of the Account that created the UsageRecord resources to read.
+     * @param category The usage category of the UsageRecord resources to read. Only UsageRecord
+     *   resources in the specified category are retrieved.
+     * @param startDate Only include usage that has occurred on or after this date. Specify the date
+     *   in GMT and format as `YYYY-MM-DD`. You can also specify offsets from the current date, such
+     *   as: `-30days`, which will set the start date to be 30 days before the current date.
+     * @param endDate Only include usage that occurred on or before this date. Specify the date in
+     *   GMT and format as `YYYY-MM-DD`. You can also specify offsets from the current date, such
+     *   as: `+30days`, which will set the end date to 30 days from the current date.
+     * @param includeSubaccounts Whether to include usage from the master account and all its
+     *   subaccounts. Can be: `true` (the default) to include usage from the master account and all
+     *   subaccounts or `false` to retrieve usage from only the specified account.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listUsageRecordsYearly(clientConfig: ClientConfig, request: UsageRecords.ListUsageRecordsYearlyRequest, options: RequestOptions? = null): UsageRecords.ListUsageRecordsYearlyResponse {
+    fun listUsageRecordsYearly(
+        clientConfig: ClientConfig,
+        request: UsageRecords.ListUsageRecordsYearlyRequest,
+        options: RequestOptions? = null,
+    ): UsageRecords.ListUsageRecordsYearlyResponse {
         validateListUsageRecordsYearlyRequest(request)
 
-        return SdkClient.request<UsageRecords.ListUsageRecordsYearlyResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Records/Yearly.json", config = clientConfig, query = mapOf("Category" to
-    SdkClient.queryValue(request.category, "form", true), "StartDate" to
-    SdkClient.queryValue(request.startDate, "form", true, "date"), "EndDate" to
-    SdkClient.queryValue(request.endDate, "form", true, "date"), "IncludeSubaccounts" to
-    SdkClient.queryValue(request.includeSubaccounts, "form", true), "PageSize" to
-    SdkClient.queryValue(request.pageSize, "form", true), "Page" to SdkClient.queryValue(request.page, "form", true), "PageToken" to
-    SdkClient.queryValue(request.pageToken, "form", true)), operationId = "listUsageRecordsYearly", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<UsageRecords.ListUsageRecordsYearlyResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Records/Yearly.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "Category" to SdkClient.queryValue(request.category, "form", true),
+                            "StartDate" to
+                                SdkClient.queryValue(request.startDate, "form", true, "date"),
+                            "EndDate" to
+                                SdkClient.queryValue(request.endDate, "form", true, "date"),
+                            "IncludeSubaccounts" to
+                                SdkClient.queryValue(request.includeSubaccounts, "form", true),
+                            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(request.page, "form", true),
+                            "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
+                        ),
+                    operationId = "listUsageRecordsYearly",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-    private fun validateListUsageRecordsYearlyRequest(request: UsageRecords.ListUsageRecordsYearlyRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+    private fun validateListUsageRecordsYearlyRequest(
+        request: UsageRecords.ListUsageRecordsYearlyRequest
+    ) {
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.startDate != null) {
             Validation.validateDate("StartDate", request.startDate)
-}
+        }
 
         if (request.endDate != null) {
             Validation.validateDate("EndDate", request.endDate)
-}
+        }
 
         if (request.pageSize != null) {
-            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                request.pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-}
+        }
     }
 }
 
 internal object UsageRecordsListUsageRecordsYesterdayOperation {
     /**
-     * Lists usage records for the previous day for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the previous day for the account identified by `AccountSid`. Use
+     * `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to
+     * control whether usage from subaccounts is included.
      *
-     * @param accountSid The SID of the Account that created the UsageRecord
-     *   resources to read.
-     * @param category The usage category of the UsageRecord resources to read. Only
-     *   UsageRecord resources in the specified category are retrieved.
-     * @param startDate Only include usage that has occurred on or after this date.
-     *   Specify the date in GMT and format as `YYYY-MM-DD`. You can also specify
-     *   offsets from the current date, such as: `-30days`, which will set the start
-     *   date to be 30 days before the current date.
-     * @param endDate Only include usage that occurred on or before this date.
-     *   Specify the date in GMT and format as `YYYY-MM-DD`. You can also specify
-     *   offsets from the current date, such as: `+30days`, which will set the end date
-     *   to 30 days from the current date.
-     * @param includeSubaccounts Whether to include usage from the master account and
-     *   all its subaccounts. Can be: `true` (the default) to include usage from the
-     *   master account and all subaccounts or `false` to retrieve usage from only the
-     *   specified account.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param accountSid The SID of the Account that created the UsageRecord resources to read.
+     * @param category The usage category of the UsageRecord resources to read. Only UsageRecord
+     *   resources in the specified category are retrieved.
+     * @param startDate Only include usage that has occurred on or after this date. Specify the date
+     *   in GMT and format as `YYYY-MM-DD`. You can also specify offsets from the current date, such
+     *   as: `-30days`, which will set the start date to be 30 days before the current date.
+     * @param endDate Only include usage that occurred on or before this date. Specify the date in
+     *   GMT and format as `YYYY-MM-DD`. You can also specify offsets from the current date, such
+     *   as: `+30days`, which will set the end date to 30 days from the current date.
+     * @param includeSubaccounts Whether to include usage from the master account and all its
+     *   subaccounts. Can be: `true` (the default) to include usage from the master account and all
+     *   subaccounts or `false` to retrieve usage from only the specified account.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listUsageRecordsYesterday(clientConfig: ClientConfig, request: UsageRecords.ListUsageRecordsYesterdayRequest, options: RequestOptions? = null): UsageRecords.ListUsageRecordsYesterdayResponse {
+    fun listUsageRecordsYesterday(
+        clientConfig: ClientConfig,
+        request: UsageRecords.ListUsageRecordsYesterdayRequest,
+        options: RequestOptions? = null,
+    ): UsageRecords.ListUsageRecordsYesterdayResponse {
         validateListUsageRecordsYesterdayRequest(request)
 
-        return SdkClient.request<UsageRecords.ListUsageRecordsYesterdayResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Records/Yesterday.json", config = clientConfig, query = mapOf("Category" to
-    SdkClient.queryValue(request.category, "form", true), "StartDate" to
-    SdkClient.queryValue(request.startDate, "form", true, "date"), "EndDate" to
-    SdkClient.queryValue(request.endDate, "form", true, "date"), "IncludeSubaccounts" to
-    SdkClient.queryValue(request.includeSubaccounts, "form", true), "PageSize" to
-    SdkClient.queryValue(request.pageSize, "form", true), "Page" to SdkClient.queryValue(request.page, "form", true), "PageToken" to
-    SdkClient.queryValue(request.pageToken, "form", true)), operationId = "listUsageRecordsYesterday", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<UsageRecords.ListUsageRecordsYesterdayResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Records/Yesterday.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "Category" to SdkClient.queryValue(request.category, "form", true),
+                            "StartDate" to
+                                SdkClient.queryValue(request.startDate, "form", true, "date"),
+                            "EndDate" to
+                                SdkClient.queryValue(request.endDate, "form", true, "date"),
+                            "IncludeSubaccounts" to
+                                SdkClient.queryValue(request.includeSubaccounts, "form", true),
+                            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(request.page, "form", true),
+                            "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
+                        ),
+                    operationId = "listUsageRecordsYesterday",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-    private fun validateListUsageRecordsYesterdayRequest(request: UsageRecords.ListUsageRecordsYesterdayRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+    private fun validateListUsageRecordsYesterdayRequest(
+        request: UsageRecords.ListUsageRecordsYesterdayRequest
+    ) {
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.startDate != null) {
             Validation.validateDate("StartDate", request.startDate)
-}
+        }
 
         if (request.endDate != null) {
             Validation.validateDate("EndDate", request.endDate)
-}
+        }
 
         if (request.pageSize != null) {
-            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                request.pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-}
+        }
     }
 }

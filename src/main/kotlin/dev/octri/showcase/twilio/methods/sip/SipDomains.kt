@@ -17,51 +17,78 @@ import dev.octri.showcase.twilio.Validation
 
 object SipDomains {
 
-data class ListSipDomainsResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    val domains: List<ApiV2010AccountSipSipDomain>? = null
-)
-
+    data class ListSipDomainsResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        val domains: List<ApiV2010AccountSipSipDomain>? = null,
+    )
 
     /**
-     * Lists SIP domains belonging to an account. Use the page parameters to control which results you retrieve and how many domains appear in each page.
+     * Lists SIP domains belonging to an account. Use the page parameters to control which results
+     * you retrieve and how many domains appear in each page.
      *
      * Retrieve a list of domains belonging to the account used to make the request
      *
-     * @param accountSid The SID of the Account that created the SipDomain resources
-     *   to read.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param accountSid The SID of the Account that created the SipDomain resources to read.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listSipDomains(clientConfig: ClientConfig, accountSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): ListSipDomainsResponse {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun listSipDomains(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): ListSipDomainsResponse {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (pageSize != null) {
-            Validation.validateRange("PageSize", pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (page != null) {
             Validation.validateRange("Page", page, Validation.RangeOpts(min = 0.0))
-}
+        }
 
-        return SdkClient.request<ListSipDomainsResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains.json", config = clientConfig, query = mapOf("PageSize" to SdkClient.queryValue(pageSize, "form", true), "Page" to SdkClient.queryValue(page, "form", true), "PageToken" to SdkClient.queryValue(pageToken, "form", true)), operationId = "listSipDomains", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ListSipDomainsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "PageSize" to SdkClient.queryValue(pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(page, "form", true),
+                            "PageToken" to SdkClient.queryValue(pageToken, "form", true),
+                        ),
+                    operationId = "listSipDomains",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /** Parameters for [createSipDomains]. */
     data class CreateSipDomainsRequest(
@@ -78,52 +105,65 @@ data class ListSipDomainsResponse(
         val emergencyCallingEnabled: Boolean? = null,
         val secure: Boolean? = null,
         val byocTrunkSid: String? = null,
-        val emergencyCallerSid: String? = null
+        val emergencyCallerSid: String? = null,
     )
 
     /**
-     * Creates a SIP domain for an account. Supply `DomainName` and optionally configure its voice URLs, SIP registration, security, and emergency calling settings.
+     * Creates a SIP domain for an account. Supply `DomainName` and optionally configure its voice
+     * URLs, SIP registration, security, and emergency calling settings.
      *
      * Create a new Domain
      *
      * @param accountSid The SID of the Account that will create the resource.
-     * @param domainName The unique address you reserve on Twilio to which you route
-     *   your SIP traffic. Domain names can contain letters, digits, and "-" and must
-     *   end with `sip.twilio.com`.
-     * @param friendlyName A descriptive string that you created to describe the
-     *   resource. It can be up to 64 characters long.
+     * @param domainName The unique address you reserve on Twilio to which you route your SIP
+     *   traffic. Domain names can contain letters, digits, and "-" and must end with
+     *   `sip.twilio.com`.
+     * @param friendlyName A descriptive string that you created to describe the resource. It can be
+     *   up to 64 characters long.
      * @param voiceUrl The URL we should when the domain receives a call.
-     * @param voiceMethod The HTTP method we should use to call `voice_url`. Can be:
-     *   `GET` or `POST`.
-     * @param voiceFallbackUrl The URL that we should call when an error occurs while
-     *   retrieving or executing the TwiML from `voice_url`.
-     * @param voiceFallbackMethod The HTTP method we should use to call
-     *   `voice_fallback_url`. Can be: `GET` or `POST`.
-     * @param voiceStatusCallbackUrl The URL that we should call to pass status
-     *   parameters (such as call ended) to your application.
+     * @param voiceMethod The HTTP method we should use to call `voice_url`. Can be: `GET` or
+     *   `POST`.
+     * @param voiceFallbackUrl The URL that we should call when an error occurs while retrieving or
+     *   executing the TwiML from `voice_url`.
+     * @param voiceFallbackMethod The HTTP method we should use to call `voice_fallback_url`. Can
+     *   be: `GET` or `POST`.
+     * @param voiceStatusCallbackUrl The URL that we should call to pass status parameters (such as
+     *   call ended) to your application.
      * @param voiceStatusCallbackMethod The HTTP method we should use to call
      *   `voice_status_callback_url`. Can be: `GET` or `POST`.
-     * @param sipRegistration Whether to allow SIP Endpoints to register with the
-     *   domain to receive calls. Can be `true` or `false`. `true` allows SIP Endpoints
-     *   to register with the domain to receive calls, `false` does not.
-     * @param emergencyCallingEnabled Whether emergency calling is enabled for the
-     *   domain. If enabled, allows emergency calls on the domain from phone numbers
-     *   with validated addresses.
-     * @param secure Whether secure SIP is enabled for the domain. If enabled, TLS
-     *   will be enforced and SRTP will be negotiated on all incoming calls to this sip
-     *   domain.
-     * @param byocTrunkSid The SID of the BYOC Trunk(Bring Your Own Carrier) resource
-     *   that the Sip Domain will be associated with.
-     * @param emergencyCallerSid Whether an emergency caller sid is configured for
-     *   the domain. If present, this phone number will be used as the callback for the
-     *   emergency call.
+     * @param sipRegistration Whether to allow SIP Endpoints to register with the domain to receive
+     *   calls. Can be `true` or `false`. `true` allows SIP Endpoints to register with the domain to
+     *   receive calls, `false` does not.
+     * @param emergencyCallingEnabled Whether emergency calling is enabled for the domain. If
+     *   enabled, allows emergency calls on the domain from phone numbers with validated addresses.
+     * @param secure Whether secure SIP is enabled for the domain. If enabled, TLS will be enforced
+     *   and SRTP will be negotiated on all incoming calls to this sip domain.
+     * @param byocTrunkSid The SID of the BYOC Trunk(Bring Your Own Carrier) resource that the Sip
+     *   Domain will be associated with.
+     * @param emergencyCallerSid Whether an emergency caller sid is configured for the domain. If
+     *   present, this phone number will be used as the callback for the emergency call.
      */
-    fun createSipDomains(clientConfig: ClientConfig, request: CreateSipDomainsRequest, options: RequestOptions? = null): ApiV2010AccountSipSipDomain {
+    fun createSipDomains(
+        clientConfig: ClientConfig,
+        request: CreateSipDomainsRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountSipSipDomain {
         validateCreateSipDomainsRequest(request)
 
-        return SdkClient.request<ApiV2010AccountSipSipDomain>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/SIP/Domains.json", config = clientConfig, body = buildCreateSipDomainsBody(request), contentType = "application/x-www-form-urlencoded", operationId = "createSipDomains", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountSipSipDomain>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/SIP/Domains.json",
+                    config = clientConfig,
+                    body = buildCreateSipDomainsBody(request),
+                    contentType = "application/x-www-form-urlencoded",
+                    operationId = "createSipDomains",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
 
     private fun validateCreateSipDomainsRequest(request: CreateSipDomainsRequest) {
         validateCreateSipDomainsRequestPart1(request)
@@ -131,35 +171,49 @@ data class ListSipDomainsResponse(
     }
 
     private fun validateCreateSipDomainsRequestPart1(request: CreateSipDomainsRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.voiceUrl != null) {
             Validation.validateUri("VoiceUrl", request.voiceUrl)
-}
+        }
 
         if (request.voiceFallbackUrl != null) {
             Validation.validateUri("VoiceFallbackUrl", request.voiceFallbackUrl)
-}
+        }
 
         if (request.voiceStatusCallbackUrl != null) {
             Validation.validateUri("VoiceStatusCallbackUrl", request.voiceStatusCallbackUrl)
-}
+        }
 
         if (request.byocTrunkSid != null) {
-            Validation.validateLength("ByocTrunkSid", request.byocTrunkSid, Validation.LengthOpts(min = 34, max = 34))
+            Validation.validateLength(
+                "ByocTrunkSid",
+                request.byocTrunkSid,
+                Validation.LengthOpts(min = 34, max = 34),
+            )
             Validation.validatePattern("ByocTrunkSid", request.byocTrunkSid, "^BY[0-9a-fA-F]{32}$")
-}
+        }
     }
 
     private fun validateCreateSipDomainsRequestPart2(request: CreateSipDomainsRequest) {
         if (request.emergencyCallerSid != null) {
-            Validation.validateLength("EmergencyCallerSid", request.emergencyCallerSid, Validation.LengthOpts(min = 34, max = 34))
-            Validation.validatePattern("EmergencyCallerSid", request.emergencyCallerSid, "^PN[0-9a-fA-F]{32}$")
-}
+            Validation.validateLength(
+                "EmergencyCallerSid",
+                request.emergencyCallerSid,
+                Validation.LengthOpts(min = 34, max = 34),
+            )
+            Validation.validatePattern(
+                "EmergencyCallerSid",
+                request.emergencyCallerSid,
+                "^PN[0-9a-fA-F]{32}$",
+            )
+        }
     }
-
-
 
     private fun buildCreateSipDomainsBody(request: CreateSipDomainsRequest): Map<String, Any?> =
         buildMap {
@@ -167,64 +221,70 @@ data class ListSipDomainsResponse(
             putAll(buildCreateSipDomainsBodyPart2(request))
         }
 
-    private fun buildCreateSipDomainsBodyPart1(request: CreateSipDomainsRequest): Map<String, Any?> =
+    private fun buildCreateSipDomainsBodyPart1(
+        request: CreateSipDomainsRequest
+    ): Map<String, Any?> =
         SdkClient.bodyMap(
             "DomainName" to (request.domainName),
-            "FriendlyName" to
-    (SdkClient.omitIfNull(request.friendlyName)),
+            "FriendlyName" to (SdkClient.omitIfNull(request.friendlyName)),
             "VoiceUrl" to (SdkClient.omitIfNull(request.voiceUrl)),
             "VoiceMethod" to (SdkClient.omitIfNull(request.voiceMethod)),
-            "VoiceFallbackUrl" to
-    (SdkClient.omitIfNull(request.voiceFallbackUrl)),
-            "VoiceFallbackMethod" to
-    (SdkClient.omitIfNull(request.voiceFallbackMethod)),
-            "VoiceStatusCallbackUrl" to
-    (SdkClient.omitIfNull(request.voiceStatusCallbackUrl)),
+            "VoiceFallbackUrl" to (SdkClient.omitIfNull(request.voiceFallbackUrl)),
+            "VoiceFallbackMethod" to (SdkClient.omitIfNull(request.voiceFallbackMethod)),
+            "VoiceStatusCallbackUrl" to (SdkClient.omitIfNull(request.voiceStatusCallbackUrl)),
             "VoiceStatusCallbackMethod" to
-    (SdkClient.omitIfNull(request.voiceStatusCallbackMethod)),
-            "SipRegistration" to
-    (SdkClient.omitIfNull(request.sipRegistration)),
-            "EmergencyCallingEnabled" to
-    (SdkClient.omitIfNull(request.emergencyCallingEnabled)),
+                (SdkClient.omitIfNull(request.voiceStatusCallbackMethod)),
+            "SipRegistration" to (SdkClient.omitIfNull(request.sipRegistration)),
+            "EmergencyCallingEnabled" to (SdkClient.omitIfNull(request.emergencyCallingEnabled)),
             "Secure" to (SdkClient.omitIfNull(request.secure)),
-            "ByocTrunkSid" to
-    (SdkClient.omitIfNull(request.byocTrunkSid)),
+            "ByocTrunkSid" to (SdkClient.omitIfNull(request.byocTrunkSid)),
         )
 
-    private fun buildCreateSipDomainsBodyPart2(request: CreateSipDomainsRequest): Map<String, Any?> =
+    private fun buildCreateSipDomainsBodyPart2(
+        request: CreateSipDomainsRequest
+    ): Map<String, Any?> =
         SdkClient.bodyMap(
-            "EmergencyCallerSid" to
-    (SdkClient.omitIfNull(request.emergencyCallerSid)),
+            "EmergencyCallerSid" to (SdkClient.omitIfNull(request.emergencyCallerSid))
         )
-
-
-
 
     /**
-     * Retrieves a SIP domain from an account. Provide the account and domain identifiers to select the domain and view its configuration.
+     * Retrieves a SIP domain from an account. Provide the account and domain identifiers to select
+     * the domain and view its configuration.
      *
      * Fetch an instance of a Domain
      *
-     * @param accountSid The SID of the Account that created the SipDomain resource
-     *   to fetch.
-     * @param sid The Twilio-provided string that uniquely identifies the SipDomain
-     *   resource to fetch.
+     * @param accountSid The SID of the Account that created the SipDomain resource to fetch.
+     * @param sid The Twilio-provided string that uniquely identifies the SipDomain resource to
+     *   fetch.
      */
-    fun fetchSipDomains(clientConfig: ClientConfig, accountSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountSipSipDomain {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun fetchSipDomains(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountSipSipDomain {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^SD[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountSipSipDomain>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "fetchSipDomains", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountSipSipDomain>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(sid)}.json",
+                    config = clientConfig,
+                    operationId = "fetchSipDomains",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /** Parameters for [updateSipDomains]. */
     data class UpdateSipDomainsRequest(
@@ -242,54 +302,66 @@ data class ListSipDomainsResponse(
         val emergencyCallingEnabled: Boolean? = null,
         val secure: Boolean? = null,
         val byocTrunkSid: String? = null,
-        val emergencyCallerSid: String? = null
+        val emergencyCallerSid: String? = null,
     )
 
     /**
-     * Updates the configuration of a SIP domain. Supply only the attributes you want to change; method fields accept `GET` or `POST`, and URL fields must be valid URIs.
+     * Updates the configuration of a SIP domain. Supply only the attributes you want to change;
+     * method fields accept `GET` or `POST`, and URL fields must be valid URIs.
      *
      * Update the attributes of a domain
      *
-     * @param accountSid The SID of the Account that created the SipDomain resource
-     *   to update.
-     * @param sid The Twilio-provided string that uniquely identifies the SipDomain
-     *   resource to update.
-     * @param friendlyName A descriptive string that you created to describe the
-     *   resource. It can be up to 64 characters long.
-     * @param voiceFallbackMethod The HTTP method we should use to call
-     *   `voice_fallback_url`. Can be: `GET` or `POST`.
-     * @param voiceFallbackUrl The URL that we should call when an error occurs while
-     *   retrieving or executing the TwiML requested by `voice_url`.
+     * @param accountSid The SID of the Account that created the SipDomain resource to update.
+     * @param sid The Twilio-provided string that uniquely identifies the SipDomain resource to
+     *   update.
+     * @param friendlyName A descriptive string that you created to describe the resource. It can be
+     *   up to 64 characters long.
+     * @param voiceFallbackMethod The HTTP method we should use to call `voice_fallback_url`. Can
+     *   be: `GET` or `POST`.
+     * @param voiceFallbackUrl The URL that we should call when an error occurs while retrieving or
+     *   executing the TwiML requested by `voice_url`.
      * @param voiceMethod The HTTP method we should use to call `voice_url`
      * @param voiceStatusCallbackMethod The HTTP method we should use to call
      *   `voice_status_callback_url`. Can be: `GET` or `POST`.
-     * @param voiceStatusCallbackUrl The URL that we should call to pass status
-     *   parameters (such as call ended) to your application.
+     * @param voiceStatusCallbackUrl The URL that we should call to pass status parameters (such as
+     *   call ended) to your application.
      * @param voiceUrl The URL we should call when the domain receives a call.
-     * @param sipRegistration Whether to allow SIP Endpoints to register with the
-     *   domain to receive calls. Can be `true` or `false`. `true` allows SIP Endpoints
-     *   to register with the domain to receive calls, `false` does not.
-     * @param domainName The unique address you reserve on Twilio to which you route
-     *   your SIP traffic. Domain names can contain letters, digits, and "-" and must
-     *   end with `sip.twilio.com`.
-     * @param emergencyCallingEnabled Whether emergency calling is enabled for the
-     *   domain. If enabled, allows emergency calls on the domain from phone numbers
-     *   with validated addresses.
-     * @param secure Whether secure SIP is enabled for the domain. If enabled, TLS
-     *   will be enforced and SRTP will be negotiated on all incoming calls to this sip
-     *   domain.
-     * @param byocTrunkSid The SID of the BYOC Trunk(Bring Your Own Carrier) resource
-     *   that the Sip Domain will be associated with.
-     * @param emergencyCallerSid Whether an emergency caller sid is configured for
-     *   the domain. If present, this phone number will be used as the callback for the
-     *   emergency call.
+     * @param sipRegistration Whether to allow SIP Endpoints to register with the domain to receive
+     *   calls. Can be `true` or `false`. `true` allows SIP Endpoints to register with the domain to
+     *   receive calls, `false` does not.
+     * @param domainName The unique address you reserve on Twilio to which you route your SIP
+     *   traffic. Domain names can contain letters, digits, and "-" and must end with
+     *   `sip.twilio.com`.
+     * @param emergencyCallingEnabled Whether emergency calling is enabled for the domain. If
+     *   enabled, allows emergency calls on the domain from phone numbers with validated addresses.
+     * @param secure Whether secure SIP is enabled for the domain. If enabled, TLS will be enforced
+     *   and SRTP will be negotiated on all incoming calls to this sip domain.
+     * @param byocTrunkSid The SID of the BYOC Trunk(Bring Your Own Carrier) resource that the Sip
+     *   Domain will be associated with.
+     * @param emergencyCallerSid Whether an emergency caller sid is configured for the domain. If
+     *   present, this phone number will be used as the callback for the emergency call.
      */
-    fun updateSipDomains(clientConfig: ClientConfig, request: UpdateSipDomainsRequest, options: RequestOptions? = null): ApiV2010AccountSipSipDomain {
+    fun updateSipDomains(
+        clientConfig: ClientConfig,
+        request: UpdateSipDomainsRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountSipSipDomain {
         validateUpdateSipDomainsRequest(request)
 
-        return SdkClient.request<ApiV2010AccountSipSipDomain>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(request.sid)}.json", config = clientConfig, body = buildUpdateSipDomainsBody(request), contentType = "application/x-www-form-urlencoded", operationId = "updateSipDomains", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountSipSipDomain>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(request.sid)}.json",
+                    config = clientConfig,
+                    body = buildUpdateSipDomainsBody(request),
+                    contentType = "application/x-www-form-urlencoded",
+                    operationId = "updateSipDomains",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
 
     private fun validateUpdateSipDomainsRequest(request: UpdateSipDomainsRequest) {
         validateUpdateSipDomainsRequestPart1(request)
@@ -297,7 +369,11 @@ data class ListSipDomainsResponse(
     }
 
     private fun validateUpdateSipDomainsRequestPart1(request: UpdateSipDomainsRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", request.sid, Validation.LengthOpts(min = 34, max = 34))
@@ -305,30 +381,40 @@ data class ListSipDomainsResponse(
 
         if (request.voiceFallbackUrl != null) {
             Validation.validateUri("VoiceFallbackUrl", request.voiceFallbackUrl)
-}
+        }
 
         if (request.voiceStatusCallbackUrl != null) {
             Validation.validateUri("VoiceStatusCallbackUrl", request.voiceStatusCallbackUrl)
-}
+        }
 
         if (request.voiceUrl != null) {
             Validation.validateUri("VoiceUrl", request.voiceUrl)
-}
+        }
     }
 
     private fun validateUpdateSipDomainsRequestPart2(request: UpdateSipDomainsRequest) {
         if (request.byocTrunkSid != null) {
-            Validation.validateLength("ByocTrunkSid", request.byocTrunkSid, Validation.LengthOpts(min = 34, max = 34))
+            Validation.validateLength(
+                "ByocTrunkSid",
+                request.byocTrunkSid,
+                Validation.LengthOpts(min = 34, max = 34),
+            )
             Validation.validatePattern("ByocTrunkSid", request.byocTrunkSid, "^BY[0-9a-fA-F]{32}$")
-}
+        }
 
         if (request.emergencyCallerSid != null) {
-            Validation.validateLength("EmergencyCallerSid", request.emergencyCallerSid, Validation.LengthOpts(min = 34, max = 34))
-            Validation.validatePattern("EmergencyCallerSid", request.emergencyCallerSid, "^PN[0-9a-fA-F]{32}$")
-}
+            Validation.validateLength(
+                "EmergencyCallerSid",
+                request.emergencyCallerSid,
+                Validation.LengthOpts(min = 34, max = 34),
+            )
+            Validation.validatePattern(
+                "EmergencyCallerSid",
+                request.emergencyCallerSid,
+                "^PN[0-9a-fA-F]{32}$",
+            )
+        }
     }
-
-
 
     private fun buildUpdateSipDomainsBody(request: UpdateSipDomainsRequest): Map<String, Any?> =
         buildMap {
@@ -336,63 +422,67 @@ data class ListSipDomainsResponse(
             putAll(buildUpdateSipDomainsBodyPart2(request))
         }
 
-    private fun buildUpdateSipDomainsBodyPart1(request: UpdateSipDomainsRequest): Map<String, Any?> =
+    private fun buildUpdateSipDomainsBodyPart1(
+        request: UpdateSipDomainsRequest
+    ): Map<String, Any?> =
         SdkClient.bodyMap(
-            "FriendlyName" to
-    (SdkClient.omitIfNull(request.friendlyName)),
-            "VoiceFallbackMethod" to
-    (SdkClient.omitIfNull(request.voiceFallbackMethod)),
-            "VoiceFallbackUrl" to
-    (SdkClient.omitIfNull(request.voiceFallbackUrl)),
+            "FriendlyName" to (SdkClient.omitIfNull(request.friendlyName)),
+            "VoiceFallbackMethod" to (SdkClient.omitIfNull(request.voiceFallbackMethod)),
+            "VoiceFallbackUrl" to (SdkClient.omitIfNull(request.voiceFallbackUrl)),
             "VoiceMethod" to (SdkClient.omitIfNull(request.voiceMethod)),
             "VoiceStatusCallbackMethod" to
-    (SdkClient.omitIfNull(request.voiceStatusCallbackMethod)),
-            "VoiceStatusCallbackUrl" to
-    (SdkClient.omitIfNull(request.voiceStatusCallbackUrl)),
+                (SdkClient.omitIfNull(request.voiceStatusCallbackMethod)),
+            "VoiceStatusCallbackUrl" to (SdkClient.omitIfNull(request.voiceStatusCallbackUrl)),
             "VoiceUrl" to (SdkClient.omitIfNull(request.voiceUrl)),
-            "SipRegistration" to
-    (SdkClient.omitIfNull(request.sipRegistration)),
+            "SipRegistration" to (SdkClient.omitIfNull(request.sipRegistration)),
             "DomainName" to (SdkClient.omitIfNull(request.domainName)),
-            "EmergencyCallingEnabled" to
-    (SdkClient.omitIfNull(request.emergencyCallingEnabled)),
+            "EmergencyCallingEnabled" to (SdkClient.omitIfNull(request.emergencyCallingEnabled)),
             "Secure" to (SdkClient.omitIfNull(request.secure)),
-            "ByocTrunkSid" to
-    (SdkClient.omitIfNull(request.byocTrunkSid)),
+            "ByocTrunkSid" to (SdkClient.omitIfNull(request.byocTrunkSid)),
         )
 
-    private fun buildUpdateSipDomainsBodyPart2(request: UpdateSipDomainsRequest): Map<String, Any?> =
+    private fun buildUpdateSipDomainsBodyPart2(
+        request: UpdateSipDomainsRequest
+    ): Map<String, Any?> =
         SdkClient.bodyMap(
-            "EmergencyCallerSid" to
-    (SdkClient.omitIfNull(request.emergencyCallerSid)),
+            "EmergencyCallerSid" to (SdkClient.omitIfNull(request.emergencyCallerSid))
         )
-
-
-
 
     /**
-     * Deletes a SIP domain from an account. Specify the account and domain identifiers for the resource to remove.
+     * Deletes a SIP domain from an account. Specify the account and domain identifiers for the
+     * resource to remove.
      *
      * Delete an instance of a Domain
      *
-     * @param accountSid The SID of the Account that created the SipDomain resources
-     *   to delete.
-     * @param sid The Twilio-provided string that uniquely identifies the SipDomain
-     *   resource to delete.
+     * @param accountSid The SID of the Account that created the SipDomain resources to delete.
+     * @param sid The Twilio-provided string that uniquely identifies the SipDomain resource to
+     *   delete.
      */
-    fun deleteSipDomains(clientConfig: ClientConfig, accountSid: String, sid: String, options: RequestOptions? = null): Unit {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun deleteSipDomains(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^SD[0-9a-fA-F]{32}$")
 
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "deleteSipDomains", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(sid)}.json",
+                config = clientConfig,
+                operationId = "deleteSipDomains",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
-
-
-
-
-
-
-
 }

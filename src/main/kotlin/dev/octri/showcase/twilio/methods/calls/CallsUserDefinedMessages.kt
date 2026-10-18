@@ -11,32 +11,49 @@ import dev.octri.showcase.twilio.Validation
 
 object CallsUserDefinedMessages {
 
-
     /**
      * Create a new User Defined Message for the given Call SID.
      *
      * @param accountSid The SID of the Account that created User Defined Message.
-     * @param callSid The SID of the Call the User Defined Message is associated
-     *   with.
-     * @param content The User Defined Message in the form of URL-encoded JSON
-     *   string.
-     * @param idempotencyKey A unique string value to identify API call. This should
-     *   be a unique string value per API call and can be a randomly generated.
+     * @param callSid The SID of the Call the User Defined Message is associated with.
+     * @param content The User Defined Message in the form of URL-encoded JSON string.
+     * @param idempotencyKey A unique string value to identify API call. This should be a unique
+     *   string value per API call and can be a randomly generated.
      */
-    fun createCallsUserDefinedMessages(clientConfig: ClientConfig, accountSid: String, callSid: String, content: String, idempotencyKey: String? = null, options: RequestOptions? = null): ApiV2010AccountCallUserDefinedMessage {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun createCallsUserDefinedMessages(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        callSid: String,
+        content: String,
+        idempotencyKey: String? = null,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountCallUserDefinedMessage {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("CallSid", callSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("CallSid", callSid, "^CA[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountCallUserDefinedMessage>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Calls/${SdkClient.encodePathSegment(callSid)}/UserDefinedMessages.json", config = clientConfig, body = SdkClient.bodyMap("Content" to (content), "IdempotencyKey" to (SdkClient.omitIfNull(idempotencyKey))), contentType = "application/x-www-form-urlencoded", operationId = "createCallsUserDefinedMessages", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountCallUserDefinedMessage>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Calls/${SdkClient.encodePathSegment(callSid)}/UserDefinedMessages.json",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "Content" to (content),
+                            "IdempotencyKey" to (SdkClient.omitIfNull(idempotencyKey)),
+                        ),
+                    contentType = "application/x-www-form-urlencoded",
+                    operationId = "createCallsUserDefinedMessages",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

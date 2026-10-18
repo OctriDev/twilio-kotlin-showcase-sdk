@@ -11,111 +11,175 @@ import dev.octri.showcase.twilio.Validation
 
 object RecordingsTranscriptions {
 
-data class ListRecordingsTranscriptionsResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    val transcriptions: List<ApiV2010AccountRecordingRecordingTranscription>? = null
-)
-
+    data class ListRecordingsTranscriptionsResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        val transcriptions: List<ApiV2010AccountRecordingRecordingTranscription>? = null,
+    )
 
     /**
-     * Retrieves a transcription created from a recording. Use the account, recording, and transcription SIDs to identify it, then inspect its status and transcription text when available.
+     * Retrieves a transcription created from a recording. Use the account, recording, and
+     * transcription SIDs to identify it, then inspect its status and transcription text when
+     * available.
      *
-     * @param accountSid The SID of the Account that created the Transcription
-     *   resource to fetch.
-     * @param recordingSid The SID of the Recording that created the transcription to
+     * @param accountSid The SID of the Account that created the Transcription resource to fetch.
+     * @param recordingSid The SID of the Recording that created the transcription to fetch.
+     * @param sid The Twilio-provided string that uniquely identifies the Transcription resource to
      *   fetch.
-     * @param sid The Twilio-provided string that uniquely identifies the
-     *   Transcription resource to fetch.
      */
-    fun fetchRecordingsTranscriptions(clientConfig: ClientConfig, accountSid: String, recordingSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountRecordingRecordingTranscription {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun fetchRecordingsTranscriptions(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        recordingSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountRecordingRecordingTranscription {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("RecordingSid", recordingSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "RecordingSid",
+            recordingSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("RecordingSid", recordingSid, "^RE[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^TR[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountRecordingRecordingTranscription>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Recordings/${SdkClient.encodePathSegment(recordingSid)}/Transcriptions/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "fetchRecordingsTranscriptions", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountRecordingRecordingTranscription>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Recordings/${SdkClient.encodePathSegment(recordingSid)}/Transcriptions/${SdkClient.encodePathSegment(sid)}.json",
+                    config = clientConfig,
+                    operationId = "fetchRecordingsTranscriptions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Deletes a transcription created from a recording. Identify the transcription using the account, recording, and transcription SIDs.
+     * Deletes a transcription created from a recording. Identify the transcription using the
+     * account, recording, and transcription SIDs.
      *
-     * @param accountSid The SID of the Account that created the Transcription
-     *   resources to delete.
-     * @param recordingSid The SID of the Recording that created the transcription to
+     * @param accountSid The SID of the Account that created the Transcription resources to delete.
+     * @param recordingSid The SID of the Recording that created the transcription to delete.
+     * @param sid The Twilio-provided string that uniquely identifies the Transcription resource to
      *   delete.
-     * @param sid The Twilio-provided string that uniquely identifies the
-     *   Transcription resource to delete.
      */
-    fun deleteRecordingsTranscriptions(clientConfig: ClientConfig, accountSid: String, recordingSid: String, sid: String, options: RequestOptions? = null): Unit {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun deleteRecordingsTranscriptions(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        recordingSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("RecordingSid", recordingSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "RecordingSid",
+            recordingSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("RecordingSid", recordingSid, "^RE[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^TR[0-9a-fA-F]{32}$")
 
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Recordings/${SdkClient.encodePathSegment(recordingSid)}/Transcriptions/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "deleteRecordingsTranscriptions", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Recordings/${SdkClient.encodePathSegment(recordingSid)}/Transcriptions/${SdkClient.encodePathSegment(sid)}.json",
+                config = clientConfig,
+                operationId = "deleteRecordingsTranscriptions",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Lists transcriptions associated with a specific recording. Use `PageSize`, `Page`, and `PageToken` to control pagination; `PageSize` defaults to 50 when omitted.
+     * Lists transcriptions associated with a specific recording. Use `PageSize`, `Page`, and
+     * `PageToken` to control pagination; `PageSize` defaults to 50 when omitted.
      *
-     * @param accountSid The SID of the Account that created the Transcription
-     *   resources to read.
-     * @param recordingSid The SID of the Recording that created the transcriptions
-     *   to read.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param accountSid The SID of the Account that created the Transcription resources to read.
+     * @param recordingSid The SID of the Recording that created the transcriptions to read.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listRecordingsTranscriptions(clientConfig: ClientConfig, accountSid: String, recordingSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): ListRecordingsTranscriptionsResponse {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun listRecordingsTranscriptions(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        recordingSid: String,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): ListRecordingsTranscriptionsResponse {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("RecordingSid", recordingSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "RecordingSid",
+            recordingSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("RecordingSid", recordingSid, "^RE[0-9a-fA-F]{32}$")
 
         if (pageSize != null) {
-            Validation.validateRange("PageSize", pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (page != null) {
             Validation.validateRange("Page", page, Validation.RangeOpts(min = 0.0))
-}
+        }
 
-        return SdkClient.request<ListRecordingsTranscriptionsResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Recordings/${SdkClient.encodePathSegment(recordingSid)}/Transcriptions.json", config = clientConfig, query = mapOf("PageSize" to SdkClient.queryValue(pageSize, "form", true), "Page" to SdkClient.queryValue(page, "form", true), "PageToken" to SdkClient.queryValue(pageToken, "form", true)), operationId = "listRecordingsTranscriptions", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ListRecordingsTranscriptionsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Recordings/${SdkClient.encodePathSegment(recordingSid)}/Transcriptions.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "PageSize" to SdkClient.queryValue(pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(page, "form", true),
+                            "PageToken" to SdkClient.queryValue(pageToken, "form", true),
+                        ),
+                    operationId = "listRecordingsTranscriptions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

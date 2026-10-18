@@ -3,32 +3,19 @@
 
 package dev.octri.showcase.twilio.models
 
-/**
- * Typed representation of the `ApiV2010AccountQueueMember` API schema.
- */
+/** Typed representation of the `ApiV2010AccountQueueMember` API schema. */
 data class ApiV2010AccountQueueMember(
-    /**
-     * The SID of the Call the Member resource is associated with.
-     */
+    /** The SID of the Call the Member resource is associated with. */
     @com.fasterxml.jackson.annotation.JsonProperty("call_sid") val callSid: String? = null,
-    /**
-     * The date that the member was enqueued, given in RFC 2822 format.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("date_enqueued") val dateEnqueued: String? = null,
-    /**
-     * This member's current position in the queue.
-     */
+    /** The date that the member was enqueued, given in RFC 2822 format. */
+    @com.fasterxml.jackson.annotation.JsonProperty("date_enqueued")
+    val dateEnqueued: String? = null,
+    /** This member's current position in the queue. */
     val position: Long? = null,
-    /**
-     * The URI of the resource, relative to `api.twilio.com`.
-     */
+    /** The URI of the resource, relative to `api.twilio.com`. */
     val uri: String? = null,
-    /**
-     * The number of seconds the member has been in the queue.
-     */
+    /** The number of seconds the member has been in the queue. */
     @com.fasterxml.jackson.annotation.JsonProperty("wait_time") val waitTime: Long? = null,
-    /**
-     * The SID of the Queue the member is in.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("queue_sid") val queueSid: String? = null
+    /** The SID of the Queue the member is in. */
+    @com.fasterxml.jackson.annotation.JsonProperty("queue_sid") val queueSid: String? = null,
 )

@@ -13,44 +13,60 @@ import dev.octri.showcase.twilio.Validation
 
 object ShortCodes {
 
-data class ListShortCodesResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("short_codes") val shortCodes: List<ApiV2010AccountShortCode>? = null
-)
-
+    data class ListShortCodesResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("short_codes")
+        val shortCodes: List<ApiV2010AccountShortCode>? = null,
+    )
 
     /**
-     * Retrieves a specific short code from an account. Use `AccountSid` and `Sid` to identify the account and short code; both identifiers must match their documented SID formats.
+     * Retrieves a specific short code from an account. Use `AccountSid` and `Sid` to identify the
+     * account and short code; both identifiers must match their documented SID formats.
      *
      * Fetch an instance of a short code
      *
-     * @param accountSid The SID of the Account that created the ShortCode
-     *   resource(s) to fetch.
-     * @param sid The Twilio-provided string that uniquely identifies the ShortCode
-     *   resource to fetch
+     * @param accountSid The SID of the Account that created the ShortCode resource(s) to fetch.
+     * @param sid The Twilio-provided string that uniquely identifies the ShortCode resource to
+     *   fetch
      */
-    fun fetchShortCodes(clientConfig: ClientConfig, accountSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountShortCode {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun fetchShortCodes(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountShortCode {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^SC[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountShortCode>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SMS/ShortCodes/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "fetchShortCodes", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountShortCode>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SMS/ShortCodes/${SdkClient.encodePathSegment(sid)}.json",
+                    config = clientConfig,
+                    operationId = "fetchShortCodes",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /** Parameters for [updateShortCodes]. */
     data class UpdateShortCodesRequest(
@@ -61,44 +77,69 @@ data class ListShortCodesResponse(
         val smsUrl: String? = null,
         val smsMethod: UpdateShortCodesSmsMethodEnum? = null,
         val smsFallbackUrl: String? = null,
-        val smsFallbackMethod: UpdateShortCodesSmsFallbackMethodEnum? = null
+        val smsFallbackMethod: UpdateShortCodesSmsFallbackMethodEnum? = null,
     )
 
     /**
-     * Updates a short code's configuration for handling incoming SMS messages. Supply any fields you want to change; `SmsMethod` and `SmsFallbackMethod` accept GET or POST, and `ApiVersion` accepts either of the documented API versions.
+     * Updates a short code's configuration for handling incoming SMS messages. Supply any fields
+     * you want to change; `SmsMethod` and `SmsFallbackMethod` accept GET or POST, and `ApiVersion`
+     * accepts either of the documented API versions.
      *
      * Update a short code with the following parameters
      *
-     * @param accountSid The SID of the Account that created the ShortCode
-     *   resource(s) to update.
-     * @param sid The Twilio-provided string that uniquely identifies the ShortCode
-     *   resource to update
-     * @param friendlyName A descriptive string that you created to describe this
-     *   resource. It can be up to 64 characters long. By default, the `FriendlyName`
-     *   is the short code.
-     * @param apiVersion The API version to use to start a new TwiML session. Can be:
-     *   `2010-04-01` or `2008-08-01`.
-     * @param smsUrl The URL we should call when receiving an incoming SMS message to
-     *   this short code.
-     * @param smsMethod The HTTP method we should use when calling the `sms_url`. Can
-     *   be: `GET` or `POST`.
-     * @param smsFallbackUrl The URL that we should call if an error occurs while
-     *   retrieving or executing the TwiML from `sms_url`.
-     * @param smsFallbackMethod The HTTP method that we should use to call the
-     *   `sms_fallback_url`. Can be: `GET` or `POST`.
+     * @param accountSid The SID of the Account that created the ShortCode resource(s) to update.
+     * @param sid The Twilio-provided string that uniquely identifies the ShortCode resource to
+     *   update
+     * @param friendlyName A descriptive string that you created to describe this resource. It can
+     *   be up to 64 characters long. By default, the `FriendlyName` is the short code.
+     * @param apiVersion The API version to use to start a new TwiML session. Can be: `2010-04-01`
+     *   or `2008-08-01`.
+     * @param smsUrl The URL we should call when receiving an incoming SMS message to this short
+     *   code.
+     * @param smsMethod The HTTP method we should use when calling the `sms_url`. Can be: `GET` or
+     *   `POST`.
+     * @param smsFallbackUrl The URL that we should call if an error occurs while retrieving or
+     *   executing the TwiML from `sms_url`.
+     * @param smsFallbackMethod The HTTP method that we should use to call the `sms_fallback_url`.
+     *   Can be: `GET` or `POST`.
      */
-    fun updateShortCodes(clientConfig: ClientConfig, request: UpdateShortCodesRequest, options: RequestOptions? = null): ApiV2010AccountShortCode {
+    fun updateShortCodes(
+        clientConfig: ClientConfig,
+        request: UpdateShortCodesRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountShortCode {
         validateUpdateShortCodesRequest(request)
 
-        return SdkClient.request<ApiV2010AccountShortCode>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/SMS/ShortCodes/${SdkClient.encodePathSegment(request.sid)}.json", config = clientConfig, body = SdkClient.bodyMap("FriendlyName" to
-    (SdkClient.omitIfNull(request.friendlyName)), "ApiVersion" to (SdkClient.omitIfNull(request.apiVersion)), "SmsUrl" to (SdkClient.omitIfNull(request.smsUrl)), "SmsMethod" to (SdkClient.omitIfNull(request.smsMethod)), "SmsFallbackUrl" to
-    (SdkClient.omitIfNull(request.smsFallbackUrl)), "SmsFallbackMethod" to
-    (SdkClient.omitIfNull(request.smsFallbackMethod))), contentType = "application/x-www-form-urlencoded", operationId = "updateShortCodes", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountShortCode>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/SMS/ShortCodes/${SdkClient.encodePathSegment(request.sid)}.json",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "FriendlyName" to (SdkClient.omitIfNull(request.friendlyName)),
+                            "ApiVersion" to (SdkClient.omitIfNull(request.apiVersion)),
+                            "SmsUrl" to (SdkClient.omitIfNull(request.smsUrl)),
+                            "SmsMethod" to (SdkClient.omitIfNull(request.smsMethod)),
+                            "SmsFallbackUrl" to (SdkClient.omitIfNull(request.smsFallbackUrl)),
+                            "SmsFallbackMethod" to
+                                (SdkClient.omitIfNull(request.smsFallbackMethod)),
+                        ),
+                    contentType = "application/x-www-form-urlencoded",
+                    operationId = "updateShortCodes",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
     private fun validateUpdateShortCodesRequest(request: UpdateShortCodesRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", request.sid, Validation.LengthOpts(min = 34, max = 34))
@@ -106,17 +147,12 @@ data class ListShortCodesResponse(
 
         if (request.smsUrl != null) {
             Validation.validateUri("SmsUrl", request.smsUrl)
-}
+        }
 
         if (request.smsFallbackUrl != null) {
             Validation.validateUri("SmsFallbackUrl", request.smsFallbackUrl)
-}
+        }
     }
-
-
-
-
-
 
     /** Parameters for [listShortCodes]. */
     data class ListShortCodesRequest(
@@ -125,52 +161,72 @@ data class ListShortCodesResponse(
         val shortCode: String? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null
+        val pageToken: String? = null,
     )
 
     /**
-     * Lists short codes belonging to an account. Filter the results by `FriendlyName` or match numbers with `ShortCode`, which supports partial numbers and `*` as a wildcard; use the pagination parameters to retrieve additional pages.
+     * Lists short codes belonging to an account. Filter the results by `FriendlyName` or match
+     * numbers with `ShortCode`, which supports partial numbers and `*` as a wildcard; use the
+     * pagination parameters to retrieve additional pages.
      *
      * Retrieve a list of short-codes belonging to the account used to make the request
      *
-     * @param accountSid The SID of the Account that created the ShortCode
-     *   resource(s) to read.
-     * @param friendlyName The string that identifies the ShortCode resources to
-     *   read.
-     * @param shortCode Only show the ShortCode resources that match this pattern.
-     *   You can specify partial numbers and use '*' as a wildcard for any digit.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param accountSid The SID of the Account that created the ShortCode resource(s) to read.
+     * @param friendlyName The string that identifies the ShortCode resources to read.
+     * @param shortCode Only show the ShortCode resources that match this pattern. You can specify
+     *   partial numbers and use '*' as a wildcard for any digit.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listShortCodes(clientConfig: ClientConfig, request: ListShortCodesRequest, options: RequestOptions? = null): ListShortCodesResponse {
+    fun listShortCodes(
+        clientConfig: ClientConfig,
+        request: ListShortCodesRequest,
+        options: RequestOptions? = null,
+    ): ListShortCodesResponse {
         validateListShortCodesRequest(request)
 
-        return SdkClient.request<ListShortCodesResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/SMS/ShortCodes.json", config = clientConfig, query = mapOf("FriendlyName" to
-    SdkClient.queryValue(request.friendlyName, "form", true), "ShortCode" to
-    SdkClient.queryValue(request.shortCode, "form", true), "PageSize" to
-    SdkClient.queryValue(request.pageSize, "form", true), "Page" to SdkClient.queryValue(request.page, "form", true), "PageToken" to
-    SdkClient.queryValue(request.pageToken, "form", true)), operationId = "listShortCodes", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ListShortCodesResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/SMS/ShortCodes.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "FriendlyName" to
+                                SdkClient.queryValue(request.friendlyName, "form", true),
+                            "ShortCode" to SdkClient.queryValue(request.shortCode, "form", true),
+                            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(request.page, "form", true),
+                            "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
+                        ),
+                    operationId = "listShortCodes",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
     private fun validateListShortCodesRequest(request: ListShortCodesRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.pageSize != null) {
-            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                request.pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-}
+        }
     }
-
-
-
-
-
-
 }
