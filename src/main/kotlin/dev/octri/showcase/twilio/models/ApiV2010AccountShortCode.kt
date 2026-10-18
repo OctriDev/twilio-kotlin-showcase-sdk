@@ -3,45 +3,56 @@
 
 package dev.octri.showcase.twilio.models
 
-/** Typed representation of the `ApiV2010AccountShortCode` API schema. */
+/**
+ * Typed representation of the `ApiV2010AccountShortCode` API schema.
+ */
 data class ApiV2010AccountShortCode(
-    /** The SID of the Account that created this ShortCode resource. */
+    /**
+     * The SID of the Account that created this ShortCode resource.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
     /**
-     * The API version used to start a new TwiML session when an SMS message is sent to this short
-     * code.
+     * The API version used to start a new TwiML session when an SMS message is sent to this short code.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("api_version") val apiVersion: String? = null,
-    /** The date and time in GMT that this resource was created specified in RFC 2822 format. */
+    /**
+     * The date and time in GMT that this resource was created specified in RFC 2822 format.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
     /**
      * The date and time in GMT that this resource was last updated, specified in RFC 2822 format.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
     /**
-     * A string that you assigned to describe this resource. By default, the `FriendlyName` is the
-     * short code.
+     * A string that you assigned to describe this resource. By default, the `FriendlyName` is the short code.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name")
-    val friendlyName: String? = null,
-    /** The short code. e.g., 894546. */
-    @com.fasterxml.jackson.annotation.JsonProperty("short_code") val shortCode: String? = null,
-    /** The unique string that that we created to identify this ShortCode resource. */
-    val sid: String? = null,
-    /** The HTTP method we use to call the `sms_fallback_url`. Can be: `GET` or `POST`. */
-    @com.fasterxml.jackson.annotation.JsonProperty("sms_fallback_method")
-    val smsFallbackMethod: ApiV2010AccountShortCodeSmsFallbackMethodEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name") val friendlyName: String? = null,
     /**
-     * The URL that we call if an error occurs while retrieving or executing the TwiML from
-     * `sms_url`.
+     * The short code. e.g., 894546.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("sms_fallback_url")
-    val smsFallbackUrl: String? = null,
-    /** The HTTP method we use to call the `sms_url`. Can be: `GET` or `POST`. */
-    @com.fasterxml.jackson.annotation.JsonProperty("sms_method")
-    val smsMethod: ApiV2010AccountShortCodeSmsMethodEnum? = null,
-    /** The URL we call when receiving an incoming SMS message to this short code. */
+    @com.fasterxml.jackson.annotation.JsonProperty("short_code") val shortCode: String? = null,
+    /**
+     * The unique string that that we created to identify this ShortCode resource.
+     */
+    val sid: String? = null,
+    /**
+     * The HTTP method we use to call the `sms_fallback_url`. Can be: `GET` or `POST`.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("sms_fallback_method") val smsFallbackMethod: ApiV2010AccountShortCodeSmsFallbackMethodEnum? = null,
+    /**
+     * The URL that we call if an error occurs while retrieving or executing the TwiML from `sms_url`.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("sms_fallback_url") val smsFallbackUrl: String? = null,
+    /**
+     * The HTTP method we use to call the `sms_url`. Can be: `GET` or `POST`.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("sms_method") val smsMethod: ApiV2010AccountShortCodeSmsMethodEnum? = null,
+    /**
+     * The URL we call when receiving an incoming SMS message to this short code.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("sms_url") val smsUrl: String? = null,
-    /** The URI of this resource, relative to `api.twilio.com`. */
-    val uri: String? = null,
+    /**
+     * The URI of this resource, relative to `api.twilio.com`.
+     */
+    val uri: String? = null
 )

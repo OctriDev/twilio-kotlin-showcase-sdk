@@ -3,13 +3,14 @@
 
 package dev.octri.showcase.twilio.models
 
-/** The status of this account. Usually `active`, but can be `suspended` or `closed`. */
-class AccountEnumStatus
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/**
+ * The status of this account. Usually `active`, but can be `suspended` or `closed`.
+ */
+class AccountEnumStatus private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
     override fun equals(other: Any?): Boolean = other is AccountEnumStatus && value == other.value
-
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -18,21 +19,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val SUSPENDED = AccountEnumStatus("suspended")
         @JvmField val CLOSED = AccountEnumStatus("closed")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = AccountEnumStatus(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = AccountEnumStatus(value)
     }
 }
 
-/** The type of this account. Either `Trial` or `Full` if it's been upgraded */
-class AccountEnumType
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/**
+ * The type of this account. Either `Trial` or `Full` if it's been upgraded
+ */
+class AccountEnumType private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
     override fun equals(other: Any?): Boolean = other is AccountEnumType && value == other.value
-
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -40,23 +39,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val TRIAL = AccountEnumType("Trial")
         @JvmField val FULL = AccountEnumType("Full")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = AccountEnumType(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = AccountEnumType(value)
     }
 }
 
-/** The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountAddressDependentPhoneNumberSmsFallbackMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountAddressDependentPhoneNumberSmsFallbackMethodEnum &&
-            value == other.value
-
+/**
+ * The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountAddressDependentPhoneNumberSmsFallbackMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountAddressDependentPhoneNumberSmsFallbackMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -64,23 +59,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val GET = ApiV2010AccountAddressDependentPhoneNumberSmsFallbackMethodEnum("GET")
         @JvmField val POST = ApiV2010AccountAddressDependentPhoneNumberSmsFallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            ApiV2010AccountAddressDependentPhoneNumberSmsFallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountAddressDependentPhoneNumberSmsFallbackMethodEnum(value)
     }
 }
 
-/** The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountAddressDependentPhoneNumberSmsMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountAddressDependentPhoneNumberSmsMethodEnum && value == other.value
-
+/**
+ * The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountAddressDependentPhoneNumberSmsMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountAddressDependentPhoneNumberSmsMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -88,76 +79,59 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val GET = ApiV2010AccountAddressDependentPhoneNumberSmsMethodEnum("GET")
         @JvmField val POST = ApiV2010AccountAddressDependentPhoneNumberSmsMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            ApiV2010AccountAddressDependentPhoneNumberSmsMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountAddressDependentPhoneNumberSmsMethodEnum(value)
     }
 }
 
-/** The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`. */
-class ApiV2010AccountAddressDependentPhoneNumberStatusCallbackMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountAddressDependentPhoneNumberStatusCallbackMethodEnum &&
-            value == other.value
-
+/**
+ * The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountAddressDependentPhoneNumberStatusCallbackMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountAddressDependentPhoneNumberStatusCallbackMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val GET = ApiV2010AccountAddressDependentPhoneNumberStatusCallbackMethodEnum("GET")
-        @JvmField
-        val POST = ApiV2010AccountAddressDependentPhoneNumberStatusCallbackMethodEnum("POST")
+        @JvmField val GET = ApiV2010AccountAddressDependentPhoneNumberStatusCallbackMethodEnum("GET")
+        @JvmField val POST = ApiV2010AccountAddressDependentPhoneNumberStatusCallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            ApiV2010AccountAddressDependentPhoneNumberStatusCallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountAddressDependentPhoneNumberStatusCallbackMethodEnum(value)
     }
 }
 
-/** The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountAddressDependentPhoneNumberVoiceFallbackMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountAddressDependentPhoneNumberVoiceFallbackMethodEnum &&
-            value == other.value
-
+/**
+ * The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountAddressDependentPhoneNumberVoiceFallbackMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountAddressDependentPhoneNumberVoiceFallbackMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val GET = ApiV2010AccountAddressDependentPhoneNumberVoiceFallbackMethodEnum("GET")
-        @JvmField
-        val POST = ApiV2010AccountAddressDependentPhoneNumberVoiceFallbackMethodEnum("POST")
+        @JvmField val POST = ApiV2010AccountAddressDependentPhoneNumberVoiceFallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            ApiV2010AccountAddressDependentPhoneNumberVoiceFallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountAddressDependentPhoneNumberVoiceFallbackMethodEnum(value)
     }
 }
 
-/** The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountAddressDependentPhoneNumberVoiceMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountAddressDependentPhoneNumberVoiceMethodEnum && value == other.value
-
+/**
+ * The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountAddressDependentPhoneNumberVoiceMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountAddressDependentPhoneNumberVoiceMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -165,23 +139,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val GET = ApiV2010AccountAddressDependentPhoneNumberVoiceMethodEnum("GET")
         @JvmField val POST = ApiV2010AccountAddressDependentPhoneNumberVoiceMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            ApiV2010AccountAddressDependentPhoneNumberVoiceMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountAddressDependentPhoneNumberVoiceMethodEnum(value)
     }
 }
 
-/** The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountApplicationSmsFallbackMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountApplicationSmsFallbackMethodEnum && value == other.value
-
+/**
+ * The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountApplicationSmsFallbackMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountApplicationSmsFallbackMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -189,22 +159,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val GET = ApiV2010AccountApplicationSmsFallbackMethodEnum("GET")
         @JvmField val POST = ApiV2010AccountApplicationSmsFallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = ApiV2010AccountApplicationSmsFallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountApplicationSmsFallbackMethodEnum(value)
     }
 }
 
-/** The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountApplicationSmsMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountApplicationSmsMethodEnum && value == other.value
-
+/**
+ * The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountApplicationSmsMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountApplicationSmsMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -212,22 +179,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val GET = ApiV2010AccountApplicationSmsMethodEnum("GET")
         @JvmField val POST = ApiV2010AccountApplicationSmsMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = ApiV2010AccountApplicationSmsMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountApplicationSmsMethodEnum(value)
     }
 }
 
-/** The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`. */
-class ApiV2010AccountApplicationStatusCallbackMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountApplicationStatusCallbackMethodEnum && value == other.value
-
+/**
+ * The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountApplicationStatusCallbackMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountApplicationStatusCallbackMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -235,22 +199,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val GET = ApiV2010AccountApplicationStatusCallbackMethodEnum("GET")
         @JvmField val POST = ApiV2010AccountApplicationStatusCallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = ApiV2010AccountApplicationStatusCallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountApplicationStatusCallbackMethodEnum(value)
     }
 }
 
-/** The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountApplicationVoiceFallbackMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountApplicationVoiceFallbackMethodEnum && value == other.value
-
+/**
+ * The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountApplicationVoiceFallbackMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountApplicationVoiceFallbackMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -258,22 +219,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val GET = ApiV2010AccountApplicationVoiceFallbackMethodEnum("GET")
         @JvmField val POST = ApiV2010AccountApplicationVoiceFallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = ApiV2010AccountApplicationVoiceFallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountApplicationVoiceFallbackMethodEnum(value)
     }
 }
 
-/** The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountApplicationVoiceMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountApplicationVoiceMethodEnum && value == other.value
-
+/**
+ * The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountApplicationVoiceMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountApplicationVoiceMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -281,27 +239,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val GET = ApiV2010AccountApplicationVoiceMethodEnum("GET")
         @JvmField val POST = ApiV2010AccountApplicationVoiceMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = ApiV2010AccountApplicationVoiceMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountApplicationVoiceMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method used to generate the notification. If the notification was generated during a
- * phone call, this is the HTTP Method used to request the resource on your server. If the
- * notification was generated by your use of our REST API, this is the HTTP method used to call the
- * resource on our servers.
+ * The HTTP method used to generate the notification. If the notification was generated during a phone call, this is the HTTP Method used to request the resource on your server. If the notification was generated by your use of our REST API, this is the HTTP method used to call the resource on our servers.
  */
-class ApiV2010AccountCallCallNotificationRequestMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountCallCallNotificationRequestMethodEnum && value == other.value
-
+class ApiV2010AccountCallCallNotificationRequestMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountCallCallNotificationRequestMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -309,28 +259,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val GET = ApiV2010AccountCallCallNotificationRequestMethodEnum("GET")
         @JvmField val POST = ApiV2010AccountCallCallNotificationRequestMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = ApiV2010AccountCallCallNotificationRequestMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountCallCallNotificationRequestMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method used to generate the notification. If the notification was generated during a
- * phone call, this is the HTTP Method used to request the resource on your server. If the
- * notification was generated by your use of our REST API, this is the HTTP method used to call the
- * resource on our servers.
+ * The HTTP method used to generate the notification. If the notification was generated during a phone call, this is the HTTP Method used to request the resource on your server. If the notification was generated by your use of our REST API, this is the HTTP method used to call the resource on our servers.
  */
-class ApiV2010AccountCallCallNotificationInstanceRequestMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountCallCallNotificationInstanceRequestMethodEnum &&
-            value == other.value
-
+class ApiV2010AccountCallCallNotificationInstanceRequestMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountCallCallNotificationInstanceRequestMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -338,23 +279,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val GET = ApiV2010AccountCallCallNotificationInstanceRequestMethodEnum("GET")
         @JvmField val POST = ApiV2010AccountCallCallNotificationInstanceRequestMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            ApiV2010AccountCallCallNotificationInstanceRequestMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountCallCallNotificationInstanceRequestMethodEnum(value)
     }
 }
 
-/** The HTTP method we use to call `deauthorize_callback_url`. */
-class ApiV2010AccountConnectAppDeauthorizeCallbackMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountConnectAppDeauthorizeCallbackMethodEnum && value == other.value
-
+/**
+ * The HTTP method we use to call `deauthorize_callback_url`.
+ */
+class ApiV2010AccountConnectAppDeauthorizeCallbackMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountConnectAppDeauthorizeCallbackMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -362,22 +299,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val GET = ApiV2010AccountConnectAppDeauthorizeCallbackMethodEnum("GET")
         @JvmField val POST = ApiV2010AccountConnectAppDeauthorizeCallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = ApiV2010AccountConnectAppDeauthorizeCallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountConnectAppDeauthorizeCallbackMethodEnum(value)
     }
 }
 
-/** The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountIncomingPhoneNumberSmsFallbackMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountIncomingPhoneNumberSmsFallbackMethodEnum && value == other.value
-
+/**
+ * The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountIncomingPhoneNumberSmsFallbackMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountIncomingPhoneNumberSmsFallbackMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -385,23 +319,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val GET = ApiV2010AccountIncomingPhoneNumberSmsFallbackMethodEnum("GET")
         @JvmField val POST = ApiV2010AccountIncomingPhoneNumberSmsFallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            ApiV2010AccountIncomingPhoneNumberSmsFallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountIncomingPhoneNumberSmsFallbackMethodEnum(value)
     }
 }
 
-/** The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountIncomingPhoneNumberSmsMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountIncomingPhoneNumberSmsMethodEnum && value == other.value
-
+/**
+ * The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountIncomingPhoneNumberSmsMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountIncomingPhoneNumberSmsMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -409,22 +339,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val GET = ApiV2010AccountIncomingPhoneNumberSmsMethodEnum("GET")
         @JvmField val POST = ApiV2010AccountIncomingPhoneNumberSmsMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = ApiV2010AccountIncomingPhoneNumberSmsMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountIncomingPhoneNumberSmsMethodEnum(value)
     }
 }
 
-/** The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`. */
-class ApiV2010AccountIncomingPhoneNumberStatusCallbackMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountIncomingPhoneNumberStatusCallbackMethodEnum && value == other.value
-
+/**
+ * The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountIncomingPhoneNumberStatusCallbackMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountIncomingPhoneNumberStatusCallbackMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -432,23 +359,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val GET = ApiV2010AccountIncomingPhoneNumberStatusCallbackMethodEnum("GET")
         @JvmField val POST = ApiV2010AccountIncomingPhoneNumberStatusCallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            ApiV2010AccountIncomingPhoneNumberStatusCallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountIncomingPhoneNumberStatusCallbackMethodEnum(value)
     }
 }
 
-/** The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountIncomingPhoneNumberVoiceFallbackMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountIncomingPhoneNumberVoiceFallbackMethodEnum && value == other.value
-
+/**
+ * The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountIncomingPhoneNumberVoiceFallbackMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountIncomingPhoneNumberVoiceFallbackMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -456,23 +379,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val GET = ApiV2010AccountIncomingPhoneNumberVoiceFallbackMethodEnum("GET")
         @JvmField val POST = ApiV2010AccountIncomingPhoneNumberVoiceFallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            ApiV2010AccountIncomingPhoneNumberVoiceFallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountIncomingPhoneNumberVoiceFallbackMethodEnum(value)
     }
 }
 
-/** The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountIncomingPhoneNumberVoiceMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountIncomingPhoneNumberVoiceMethodEnum && value == other.value
-
+/**
+ * The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountIncomingPhoneNumberVoiceMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountIncomingPhoneNumberVoiceMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -480,253 +399,187 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val GET = ApiV2010AccountIncomingPhoneNumberVoiceMethodEnum("GET")
         @JvmField val POST = ApiV2010AccountIncomingPhoneNumberVoiceMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = ApiV2010AccountIncomingPhoneNumberVoiceMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountIncomingPhoneNumberVoiceMethodEnum(value)
     }
 }
 
-/** The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsXf535ca1f8d
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsXf535ca1f8d &&
-            value == other.value
-
+/**
+ * The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsXf535ca1f8d private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsXf535ca1f8d && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val GET = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsXf535ca1f8d("GET")
-        @JvmField
-        val POST = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsXf535ca1f8d("POST")
+        @JvmField val GET = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsXf535ca1f8d("GET")
+        @JvmField val POST = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsXf535ca1f8d("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsXf535ca1f8d(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsXf535ca1f8d(value)
     }
 }
 
-/** The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsMethodEnum &&
-            value == other.value
-
+/**
+ * The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val GET = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsMethodEnum("GET")
-        @JvmField
-        val POST = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsMethodEnum("POST")
+        @JvmField val GET = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsMethodEnum("GET")
+        @JvmField val POST = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalSmsMethodEnum(value)
     }
 }
 
-/** The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`. */
-class ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalStaX14c20d76a4
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalStaX14c20d76a4 &&
-            value == other.value
-
+/**
+ * The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalStaX14c20d76a4 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalStaX14c20d76a4 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val GET = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalStaX14c20d76a4("GET")
-        @JvmField
-        val POST = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalStaX14c20d76a4("POST")
+        @JvmField val GET = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalStaX14c20d76a4("GET")
+        @JvmField val POST = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalStaX14c20d76a4("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalStaX14c20d76a4(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalStaX14c20d76a4(value)
     }
 }
 
-/** The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX82fe68d657
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX82fe68d657 &&
-            value == other.value
-
+/**
+ * The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX82fe68d657 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX82fe68d657 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val GET = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX82fe68d657("GET")
-        @JvmField
-        val POST = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX82fe68d657("POST")
+        @JvmField val GET = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX82fe68d657("GET")
+        @JvmField val POST = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX82fe68d657("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX82fe68d657(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX82fe68d657(value)
     }
 }
 
-/** The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX3d56d70f5a
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX3d56d70f5a &&
-            value == other.value
-
+/**
+ * The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX3d56d70f5a private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX3d56d70f5a && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val GET = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX3d56d70f5a("GET")
-        @JvmField
-        val POST = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX3d56d70f5a("POST")
+        @JvmField val GET = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX3d56d70f5a("GET")
+        @JvmField val POST = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX3d56d70f5a("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX3d56d70f5a(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocalVoiX3d56d70f5a(value)
     }
 }
 
-/** The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmX47bc0f081f
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmX47bc0f081f &&
-            value == other.value
-
+/**
+ * The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmX47bc0f081f private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmX47bc0f081f && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val GET = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmX47bc0f081f("GET")
-        @JvmField
-        val POST = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmX47bc0f081f("POST")
+        @JvmField val GET = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmX47bc0f081f("GET")
+        @JvmField val POST = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmX47bc0f081f("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmX47bc0f081f(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmX47bc0f081f(value)
     }
 }
 
-/** The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmsMethodEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmsMethodEnum &&
-            value == other.value
-
+/**
+ * The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmsMethodEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmsMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val GET = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmsMethodEnum("GET")
-        @JvmField
-        val POST = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmsMethodEnum("POST")
+        @JvmField val GET = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmsMethodEnum("GET")
+        @JvmField val POST = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmsMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmsMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileSmsMethodEnum(value)
     }
 }
 
-/** The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`. */
-class ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileStX0ddc6e5d6d
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileStX0ddc6e5d6d &&
-            value == other.value
-
+/**
+ * The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileStX0ddc6e5d6d private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileStX0ddc6e5d6d && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val GET = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileStX0ddc6e5d6d("GET")
-        @JvmField
-        val POST = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileStX0ddc6e5d6d("POST")
+        @JvmField val GET = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileStX0ddc6e5d6d("GET")
+        @JvmField val POST = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileStX0ddc6e5d6d("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileStX0ddc6e5d6d(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileStX0ddc6e5d6d(value)
     }
 }
 
-/** The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`. */
-class ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileVoXfd404ddd62
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileVoXfd404ddd62 &&
-            value == other.value
-
+/**
+ * The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`.
+ */
+class ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileVoXfd404ddd62 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileVoXfd404ddd62 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val GET = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileVoXfd404ddd62("GET")
-        @JvmField
-        val POST = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileVoXfd404ddd62("POST")
+        @JvmField val GET = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileVoXfd404ddd62("GET")
+        @JvmField val POST = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileVoXfd404ddd62("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileVoXfd404ddd62(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobileVoXfd404ddd62(value)
     }
 }

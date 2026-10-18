@@ -3,48 +3,24 @@
 
 package dev.octri.showcase.twilio
 
-class IncomingPhoneNumbersAssignedAddOnsExtensionsNamespace(
-    private val clientConfig: ClientConfig
-) {
+
+class IncomingPhoneNumbersAssignedAddOnsExtensionsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Retrieves an Extension for an assigned Add-on on an incoming phone number. Use the account,
-     * phone number, assigned Add-on, and Extension SIDs to identify the resource.
+     * Retrieves an Extension for an assigned Add-on on an incoming phone number. Use the account, phone number, assigned Add-on, and Extension SIDs to identify the resource.
      *
      * Fetch an instance of an Extension for the Assigned Add-on.
      */
-    fun fetch(
-        accountSid: String,
-        resourceSid: String,
-        assignedAddOnSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberAssignedX1fcf5f2168 {
-        return dev.octri.showcase.twilio.methods.incomingPhoneNumbers.assignedAddOns
-            .IncomingPhoneNumbersAssignedAddOnsExtensions
-            .fetchIncomingPhoneNumbersAssignedAddOnsExtensions(
-                clientConfig,
-                accountSid,
-                resourceSid,
-                assignedAddOnSid,
-                sid,
-                options,
-            )
+    fun fetch(accountSid: String, resourceSid: String, assignedAddOnSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberAssignedX1fcf5f2168 {
+        return dev.octri.showcase.twilio.methods.incomingPhoneNumbers.assignedAddOns.IncomingPhoneNumbersAssignedAddOnsExtensions.fetchIncomingPhoneNumbersAssignedAddOnsExtensions(clientConfig, accountSid, resourceSid, assignedAddOnSid, sid, options)
     }
 
     /**
-     * Lists Extensions for an assigned Add-on on an incoming phone number. Use the account, phone
-     * number, and assigned Add-on SIDs to scope the list, and the paging parameters to select a
-     * page of results.
+     * Lists Extensions for an assigned Add-on on an incoming phone number. Use the account, phone number, and assigned Add-on SIDs to scope the list, and the paging parameters to select a page of results.
      *
      * Retrieve a list of Extensions for the Assigned Add-on.
      */
-    fun list(
-        request:
-            dev.octri.showcase.twilio.methods.incomingPhoneNumbers.assignedAddOns.IncomingPhoneNumbersAssignedAddOnsExtensions.ListIncomingPhoneNumbersAssignedAddOnsExtensionsRequest,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.twilio.methods.incomingPhoneNumbers.assignedAddOns.IncomingPhoneNumbersAssignedAddOnsExtensions.ListIncomingPhoneNumbersAssignedAddOnsExtensionsResponse {
-        return dev.octri.showcase.twilio.methods.incomingPhoneNumbers.assignedAddOns
-            .IncomingPhoneNumbersAssignedAddOnsExtensions
-            .listIncomingPhoneNumbersAssignedAddOnsExtensions(clientConfig, request, options)
+    fun list(request: dev.octri.showcase.twilio.methods.incomingPhoneNumbers.assignedAddOns.IncomingPhoneNumbersAssignedAddOnsExtensions.ListIncomingPhoneNumbersAssignedAddOnsExtensionsRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.incomingPhoneNumbers.assignedAddOns.IncomingPhoneNumbersAssignedAddOnsExtensions.ListIncomingPhoneNumbersAssignedAddOnsExtensionsResponse {
+        return dev.octri.showcase.twilio.methods.incomingPhoneNumbers.assignedAddOns.IncomingPhoneNumbersAssignedAddOnsExtensions.listIncomingPhoneNumbersAssignedAddOnsExtensions(clientConfig, request, options)
     }
+
 }

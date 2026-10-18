@@ -3,99 +3,42 @@
 
 package dev.octri.showcase.twilio
 
+
 class SipDomainsIpAccessControlListMappingsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Retrieves an IP access control list mapping for a SIP domain. Use `AccountSid`, `DomainSid`,
-     * and `Sid` to identify the account, SIP domain, and mapping. Each identifier must match the
-     * 34-character format for its resource.
+     * Retrieves an IP access control list mapping for a SIP domain. Use `AccountSid`, `DomainSid`, and `Sid` to identify the account, SIP domain, and mapping. Each identifier must match the 34-character format for its resource.
      *
      * Fetch an IpAccessControlListMapping resource.
      */
-    fun fetch(
-        accountSid: String,
-        domainSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountSipSipDomainSipIpAccessControlListMapping {
-        return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsIpAccessControlListMappings
-            .fetchSipDomainsIpAccessControlListMappings(
-                clientConfig,
-                accountSid,
-                domainSid,
-                sid,
-                options,
-            )
+    fun fetch(accountSid: String, domainSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountSipSipDomainSipIpAccessControlListMapping {
+        return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsIpAccessControlListMappings.fetchSipDomainsIpAccessControlListMappings(clientConfig, accountSid, domainSid, sid, options)
     }
 
     /**
-     * Deletes an IP access control list mapping from a SIP domain. Provide the account, domain, and
-     * mapping identifiers to select the mapping to remove. The response has no body.
+     * Deletes an IP access control list mapping from a SIP domain. Provide the account, domain, and mapping identifiers to select the mapping to remove. The response has no body.
      *
      * Delete an IpAccessControlListMapping resource.
      */
-    fun delete(
-        accountSid: String,
-        domainSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsIpAccessControlListMappings
-            .deleteSipDomainsIpAccessControlListMappings(
-                clientConfig,
-                accountSid,
-                domainSid,
-                sid,
-                options,
-            )
+    fun delete(accountSid: String, domainSid: String, sid: String, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsIpAccessControlListMappings.deleteSipDomainsIpAccessControlListMappings(clientConfig, accountSid, domainSid, sid, options)
     }
 
     /**
-     * Creates a mapping between an IP access control list and a SIP domain. Submit
-     * `IpAccessControlListSid` to identify the list to associate with the domain. The response
-     * includes the created mapping and its identifiers.
+     * Creates a mapping between an IP access control list and a SIP domain. Submit `IpAccessControlListSid` to identify the list to associate with the domain. The response includes the created mapping and its identifiers.
      *
      * Create a new IpAccessControlListMapping resource.
      */
-    fun create(
-        accountSid: String,
-        domainSid: String,
-        ipAccessControlListSid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountSipSipDomainSipIpAccessControlListMapping {
-        return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsIpAccessControlListMappings
-            .createSipDomainsIpAccessControlListMappings(
-                clientConfig,
-                accountSid,
-                domainSid,
-                ipAccessControlListSid,
-                options,
-            )
+    fun create(accountSid: String, domainSid: String, ipAccessControlListSid: String, options: RequestOptions? = null): ApiV2010AccountSipSipDomainSipIpAccessControlListMapping {
+        return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsIpAccessControlListMappings.createSipDomainsIpAccessControlListMappings(clientConfig, accountSid, domainSid, ipAccessControlListSid, options)
     }
 
     /**
-     * Lists IP access control list mappings for a SIP domain. Use the pagination parameters to
-     * control the page size and track the requested page. The response includes mapping resources
-     * and pagination metadata.
+     * Lists IP access control list mappings for a SIP domain. Use the pagination parameters to control the page size and track the requested page. The response includes mapping resources and pagination metadata.
      *
      * Retrieve a list of IpAccessControlListMapping resources.
      */
-    fun list(
-        accountSid: String,
-        domainSid: String,
-        pageSize: Long? = null,
-        page: Long? = null,
-        pageToken: String? = null,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.twilio.methods.sip.domains.SipDomainsIpAccessControlListMappings.ListSipDomainsIpAccessControlListMappingsResponse {
-        return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsIpAccessControlListMappings
-            .listSipDomainsIpAccessControlListMappings(
-                clientConfig,
-                accountSid,
-                domainSid,
-                pageSize,
-                page,
-                pageToken,
-                options,
-            )
+    fun list(accountSid: String, domainSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.sip.domains.SipDomainsIpAccessControlListMappings.ListSipDomainsIpAccessControlListMappingsResponse {
+        return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsIpAccessControlListMappings.listSipDomainsIpAccessControlListMappings(clientConfig, accountSid, domainSid, pageSize, page, pageToken, options)
     }
+
 }

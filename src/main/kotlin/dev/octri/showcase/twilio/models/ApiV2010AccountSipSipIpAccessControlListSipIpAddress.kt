@@ -7,31 +7,40 @@ package dev.octri.showcase.twilio.models
  * Typed representation of the `ApiV2010AccountSipSipIpAccessControlListSipIpAddress` API schema.
  */
 data class ApiV2010AccountSipSipIpAccessControlListSipIpAddress(
-    /** A 34 character string that uniquely identifies this resource. */
-    val sid: String? = null,
-    /** The unique id of the Account that is responsible for this resource. */
-    @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
-    /** A human readable descriptive text for this resource, up to 255 characters long. */
-    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name")
-    val friendlyName: String? = null,
     /**
-     * An IP address in dotted decimal notation from which you want to accept traffic. Any SIP
-     * requests from this IP address will be allowed by Twilio. IPv4 only supported today.
+     * A 34 character string that uniquely identifies this resource.
+     */
+    val sid: String? = null,
+    /**
+     * The unique id of the Account that is responsible for this resource.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
+    /**
+     * A human readable descriptive text for this resource, up to 255 characters long.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name") val friendlyName: String? = null,
+    /**
+     * An IP address in dotted decimal notation from which you want to accept traffic. Any SIP requests from this IP address will be allowed by Twilio. IPv4 only supported today.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("ip_address") val ipAddress: String? = null,
     /**
-     * An integer representing the length of the CIDR prefix to use with this IP address when
-     * accepting traffic. By default the entire IP address is used.
+     * An integer representing the length of the CIDR prefix to use with this IP address when accepting traffic. By default the entire IP address is used.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("cidr_prefix_length")
-    val cidrPrefixLength: Long? = null,
-    /** The unique id of the IpAccessControlList resource that includes this resource. */
-    @com.fasterxml.jackson.annotation.JsonProperty("ip_access_control_list_sid")
-    val ipAccessControlListSid: String? = null,
-    /** The date that this resource was created, given as GMT in RFC 2822 format. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cidr_prefix_length") val cidrPrefixLength: Long? = null,
+    /**
+     * The unique id of the IpAccessControlList resource that includes this resource.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("ip_access_control_list_sid") val ipAccessControlListSid: String? = null,
+    /**
+     * The date that this resource was created, given as GMT in RFC 2822 format.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
-    /** The date that this resource was last updated, given as GMT in RFC 2822 format. */
+    /**
+     * The date that this resource was last updated, given as GMT in RFC 2822 format.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
-    /** The URI for this resource, relative to `api.twilio.com` */
-    val uri: String? = null,
+    /**
+     * The URI for this resource, relative to `api.twilio.com`
+     */
+    val uri: String? = null
 )

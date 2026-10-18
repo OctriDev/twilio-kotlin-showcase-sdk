@@ -3,78 +3,42 @@
 
 package dev.octri.showcase.twilio
 
+
 class ConnectAppsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Retrieves a specific Connect App belonging to an account. Supply the account and Connect App
-     * identifiers to read its configuration and requested permissions.
+     * Retrieves a specific Connect App belonging to an account. Supply the account and Connect App identifiers to read its configuration and requested permissions.
      *
      * Fetch an instance of a connect-app
      */
-    fun fetch(
-        accountSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountConnectApp {
-        return dev.octri.showcase.twilio.methods.ConnectApps.fetchConnectApps(
-            clientConfig,
-            accountSid,
-            sid,
-            options,
-        )
+    fun fetch(accountSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountConnectApp {
+        return dev.octri.showcase.twilio.methods.ConnectApps.fetchConnectApps(clientConfig, accountSid, sid, options)
     }
 
     /**
-     * Updates the configuration of a Connect App belonging to an account. Provide the fields to
-     * change, such as its redirect URLs, descriptive details, or requested permissions.
+     * Updates the configuration of a Connect App belonging to an account. Provide the fields to change, such as its redirect URLs, descriptive details, or requested permissions.
      *
      * Update a connect-app with the specified parameters
      */
-    fun update(
-        request: dev.octri.showcase.twilio.methods.ConnectApps.UpdateConnectAppsRequest,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountConnectApp {
-        return dev.octri.showcase.twilio.methods.ConnectApps.updateConnectApps(
-            clientConfig,
-            request,
-            options,
-        )
+    fun update(request: dev.octri.showcase.twilio.methods.ConnectApps.UpdateConnectAppsRequest, options: RequestOptions? = null): ApiV2010AccountConnectApp {
+        return dev.octri.showcase.twilio.methods.ConnectApps.updateConnectApps(clientConfig, request, options)
     }
 
     /**
-     * Deletes a Connect App belonging to an account. Provide the account and Connect App
-     * identifiers to specify the resource to remove.
+     * Deletes a Connect App belonging to an account. Provide the account and Connect App identifiers to specify the resource to remove.
      *
      * Delete an instance of a connect-app
      */
     fun delete(accountSid: String, sid: String, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.twilio.methods.ConnectApps.deleteConnectApps(
-            clientConfig,
-            accountSid,
-            sid,
-            options,
-        )
+        return dev.octri.showcase.twilio.methods.ConnectApps.deleteConnectApps(clientConfig, accountSid, sid, options)
     }
 
     /**
-     * Lists Connect Apps belonging to the specified account. Use the page parameters to navigate
-     * through the account's Connect Apps.
+     * Lists Connect Apps belonging to the specified account. Use the page parameters to navigate through the account's Connect Apps.
      *
      * Retrieve a list of connect-apps belonging to the account used to make the request
      */
-    fun list(
-        accountSid: String,
-        pageSize: Long? = null,
-        page: Long? = null,
-        pageToken: String? = null,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.twilio.methods.ConnectApps.ListConnectAppsResponse {
-        return dev.octri.showcase.twilio.methods.ConnectApps.listConnectApps(
-            clientConfig,
-            accountSid,
-            pageSize,
-            page,
-            pageToken,
-            options,
-        )
+    fun list(accountSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.ConnectApps.ListConnectAppsResponse {
+        return dev.octri.showcase.twilio.methods.ConnectApps.listConnectApps(clientConfig, accountSid, pageSize, page, pageToken, options)
     }
+
 }

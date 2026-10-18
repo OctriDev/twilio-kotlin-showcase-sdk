@@ -3,79 +3,42 @@
 
 package dev.octri.showcase.twilio
 
+
 class OutgoingCallerIdsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Retrieves an outgoing caller ID belonging to an account. Supply the account SID and outgoing
-     * caller ID SID to identify the resource. The response includes the caller ID's phone number,
-     * friendly name, and resource metadata.
+     * Retrieves an outgoing caller ID belonging to an account. Supply the account SID and outgoing caller ID SID to identify the resource. The response includes the caller ID's phone number, friendly name, and resource metadata.
      *
      * Fetch an outgoing-caller-id belonging to the account used to make the request
      */
-    fun fetch(
-        accountSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountOutgoingCallerId {
-        return dev.octri.showcase.twilio.methods.OutgoingCallerIds.fetchOutgoingCallerIds(
-            clientConfig,
-            accountSid,
-            sid,
-            options,
-        )
+    fun fetch(accountSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountOutgoingCallerId {
+        return dev.octri.showcase.twilio.methods.OutgoingCallerIds.fetchOutgoingCallerIds(clientConfig, accountSid, sid, options)
     }
 
     /**
-     * Updates the friendly name of an outgoing caller ID resource. Use `AccountSid` and `Sid` to
-     * identify the account and caller ID, and supply `FriendlyName` to change its description. The
-     * friendly name can contain up to 64 characters.
+     * Updates the friendly name of an outgoing caller ID resource. Use `AccountSid` and `Sid` to identify the account and caller ID, and supply `FriendlyName` to change its description. The friendly name can contain up to 64 characters.
      *
      * Updates the caller-id
      */
-    fun update(
-        accountSid: String,
-        sid: String,
-        friendlyName: String? = null,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountOutgoingCallerId {
-        return dev.octri.showcase.twilio.methods.OutgoingCallerIds.updateOutgoingCallerIds(
-            clientConfig,
-            accountSid,
-            sid,
-            friendlyName,
-            options,
-        )
+    fun update(accountSid: String, sid: String, friendlyName: String? = null, options: RequestOptions? = null): ApiV2010AccountOutgoingCallerId {
+        return dev.octri.showcase.twilio.methods.OutgoingCallerIds.updateOutgoingCallerIds(clientConfig, accountSid, sid, friendlyName, options)
     }
 
     /**
-     * Deletes an outgoing caller ID resource from an account. Use `AccountSid` and `Sid` to
-     * identify the account and the caller ID to remove. The caller ID SID must use the `PN` format.
+     * Deletes an outgoing caller ID resource from an account. Use `AccountSid` and `Sid` to identify the account and the caller ID to remove. The caller ID SID must use the `PN` format.
      *
      * Delete the caller-id specified from the account
      */
     fun delete(accountSid: String, sid: String, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.twilio.methods.OutgoingCallerIds.deleteOutgoingCallerIds(
-            clientConfig,
-            accountSid,
-            sid,
-            options,
-        )
+        return dev.octri.showcase.twilio.methods.OutgoingCallerIds.deleteOutgoingCallerIds(clientConfig, accountSid, sid, options)
     }
 
     /**
-     * Lists outgoing caller IDs belonging to an account. Filter the results by `PhoneNumber` or
-     * `FriendlyName`, and use the page parameters to retrieve results across multiple pages.
-     * `PageSize` defaults to 50 and can be set up to 1000.
+     * Lists outgoing caller IDs belonging to an account. Filter the results by `PhoneNumber` or `FriendlyName`, and use the page parameters to retrieve results across multiple pages. `PageSize` defaults to 50 and can be set up to 1000.
      *
      * Retrieve a list of outgoing-caller-ids belonging to the account used to make the request
      */
-    fun list(
-        request: dev.octri.showcase.twilio.methods.OutgoingCallerIds.ListOutgoingCallerIdsRequest,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.twilio.methods.OutgoingCallerIds.ListOutgoingCallerIdsResponse {
-        return dev.octri.showcase.twilio.methods.OutgoingCallerIds.listOutgoingCallerIds(
-            clientConfig,
-            request,
-            options,
-        )
+    fun list(request: dev.octri.showcase.twilio.methods.OutgoingCallerIds.ListOutgoingCallerIdsRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.OutgoingCallerIds.ListOutgoingCallerIdsResponse {
+        return dev.octri.showcase.twilio.methods.OutgoingCallerIds.listOutgoingCallerIds(clientConfig, request, options)
     }
+
 }

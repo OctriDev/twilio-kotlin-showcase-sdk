@@ -3,37 +3,48 @@
 
 package dev.octri.showcase.twilio.models
 
-/** Typed representation of the `ApiV2010Account` API schema. */
+/**
+ * Typed representation of the `ApiV2010Account` API schema.
+ */
 data class ApiV2010Account(
     /**
      * The authorization token for this account. This token should be kept a secret, so no sharing.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("auth_token") val authToken: String? = null,
-    /** The date that this account was created, in GMT in RFC 2822 format */
+    /**
+     * The date that this account was created, in GMT in RFC 2822 format
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
-    /** The date that this account was last updated, in GMT in RFC 2822 format. */
+    /**
+     * The date that this account was last updated, in GMT in RFC 2822 format.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
     /**
-     * A human readable description of this account, up to 64 characters long. By default the
-     * FriendlyName is your email address.
+     * A human readable description of this account, up to 64 characters long. By default the FriendlyName is your email address.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name")
-    val friendlyName: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name") val friendlyName: String? = null,
     /**
-     * The unique 34 character id that represents the parent of this account. The OwnerAccountSid of
-     * a parent account is it's own sid.
+     * The unique 34 character id that represents the parent of this account. The OwnerAccountSid of a parent account is it's own sid.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("owner_account_sid")
-    val ownerAccountSid: String? = null,
-    /** A 34 character string that uniquely identifies this resource. */
+    @com.fasterxml.jackson.annotation.JsonProperty("owner_account_sid") val ownerAccountSid: String? = null,
+    /**
+     * A 34 character string that uniquely identifies this resource.
+     */
     val sid: String? = null,
-    /** The status of this account. Usually `active`, but can be `suspended` or `closed`. */
+    /**
+     * The status of this account. Usually `active`, but can be `suspended` or `closed`.
+     */
     val status: AccountEnumStatus? = null,
-    /** A Map of various subresources available for the given Account Instance */
-    @com.fasterxml.jackson.annotation.JsonProperty("subresource_uris")
-    val subresourceUris: Map<String, Any>? = null,
-    /** The type of this account. Either `Trial` or `Full` if it's been upgraded */
+    /**
+     * A Map of various subresources available for the given Account Instance
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("subresource_uris") val subresourceUris: Map<String, Any>? = null,
+    /**
+     * The type of this account. Either `Trial` or `Full` if it's been upgraded
+     */
     val type: AccountEnumType? = null,
-    /** The URI for this resource, relative to `api.twilio.com` */
-    val uri: String? = null,
+    /**
+     * The URI for this resource, relative to `api.twilio.com`
+     */
+    val uri: String? = null
 )

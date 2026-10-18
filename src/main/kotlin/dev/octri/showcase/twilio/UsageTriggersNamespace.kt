@@ -3,99 +3,49 @@
 
 package dev.octri.showcase.twilio
 
+
 class UsageTriggersNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Retrieves a specific usage trigger for the account identified by `AccountSid`. Use the `Sid`
-     * value to select the trigger whose configuration and current state you need to inspect.
+     * Retrieves a specific usage trigger for the account identified by `AccountSid`. Use the `Sid` value to select the trigger whose configuration and current state you need to inspect.
      *
      * Fetch and instance of a usage-trigger
      */
-    fun fetch(
-        accountSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountUsageUsageTrigger {
-        return dev.octri.showcase.twilio.methods.UsageTriggers.fetchUsageTriggers(
-            clientConfig,
-            accountSid,
-            sid,
-            options,
-        )
+    fun fetch(accountSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountUsageUsageTrigger {
+        return dev.octri.showcase.twilio.methods.UsageTriggers.fetchUsageTriggers(clientConfig, accountSid, sid, options)
     }
 
     /**
-     * Updates an existing usage trigger for an account. Supply the trigger fields you want to
-     * change, such as `CallbackUrl`, `CallbackMethod`, or `FriendlyName`; the request body is
-     * optional. The callback URL is used when the trigger fires.
+     * Updates an existing usage trigger for an account. Supply the trigger fields you want to change, such as `CallbackUrl`, `CallbackMethod`, or `FriendlyName`; the request body is optional. The callback URL is used when the trigger fires.
      *
      * Update an instance of a usage trigger
      */
-    fun update(
-        accountSid: String,
-        sid: String,
-        callbackMethod: UpdateUsageTriggersCallbackMethodEnum? = null,
-        callbackUrl: String? = null,
-        friendlyName: String? = null,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountUsageUsageTrigger {
-        return dev.octri.showcase.twilio.methods.UsageTriggers.updateUsageTriggers(
-            clientConfig,
-            accountSid,
-            sid,
-            callbackMethod,
-            callbackUrl,
-            friendlyName,
-            options,
-        )
+    fun update(accountSid: String, sid: String, callbackMethod: UpdateUsageTriggersCallbackMethodEnum? = null, callbackUrl: String? = null, friendlyName: String? = null, options: RequestOptions? = null): ApiV2010AccountUsageUsageTrigger {
+        return dev.octri.showcase.twilio.methods.UsageTriggers.updateUsageTriggers(clientConfig, accountSid, sid, callbackMethod, callbackUrl, friendlyName, options)
     }
 
     /**
-     * Deletes a specific usage trigger from an account. Use the account and trigger SIDs to
-     * identify the resource to remove. The deletion response has no content.
+     * Deletes a specific usage trigger from an account. Use the account and trigger SIDs to identify the resource to remove. The deletion response has no content.
      */
     fun delete(accountSid: String, sid: String, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.twilio.methods.UsageTriggers.deleteUsageTriggers(
-            clientConfig,
-            accountSid,
-            sid,
-            options,
-        )
+        return dev.octri.showcase.twilio.methods.UsageTriggers.deleteUsageTriggers(clientConfig, accountSid, sid, options)
     }
 
     /**
-     * Creates a usage trigger for an account to monitor a usage category and value. Supply
-     * `CallbackUrl`, `TriggerValue`, and `UsageCategory`; choose `TriggerBy` and `Recurring` to
-     * configure what the trigger monitors and how often it can fire. The callback method defaults
-     * to `POST` when omitted.
+     * Creates a usage trigger for an account to monitor a usage category and value. Supply `CallbackUrl`, `TriggerValue`, and `UsageCategory`; choose `TriggerBy` and `Recurring` to configure what the trigger monitors and how often it can fire. The callback method defaults to `POST` when omitted.
      *
      * Create a new UsageTrigger
      */
-    fun create(
-        request: dev.octri.showcase.twilio.methods.UsageTriggers.CreateUsageTriggersRequest,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountUsageUsageTrigger {
-        return dev.octri.showcase.twilio.methods.UsageTriggers.createUsageTriggers(
-            clientConfig,
-            request,
-            options,
-        )
+    fun create(request: dev.octri.showcase.twilio.methods.UsageTriggers.CreateUsageTriggersRequest, options: RequestOptions? = null): ApiV2010AccountUsageUsageTrigger {
+        return dev.octri.showcase.twilio.methods.UsageTriggers.createUsageTriggers(clientConfig, request, options)
     }
 
     /**
-     * Lists usage triggers belonging to an account. Filter the results by recurrence, trigger
-     * field, or usage category, and use the page parameters to navigate the results. The response
-     * includes pagination metadata and the matching usage triggers.
+     * Lists usage triggers belonging to an account. Filter the results by recurrence, trigger field, or usage category, and use the page parameters to navigate the results. The response includes pagination metadata and the matching usage triggers.
      *
      * Retrieve a list of usage-triggers belonging to the account used to make the request
      */
-    fun list(
-        request: dev.octri.showcase.twilio.methods.UsageTriggers.ListUsageTriggersRequest,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.twilio.methods.UsageTriggers.ListUsageTriggersResponse {
-        return dev.octri.showcase.twilio.methods.UsageTriggers.listUsageTriggers(
-            clientConfig,
-            request,
-            options,
-        )
+    fun list(request: dev.octri.showcase.twilio.methods.UsageTriggers.ListUsageTriggersRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.UsageTriggers.ListUsageTriggersResponse {
+        return dev.octri.showcase.twilio.methods.UsageTriggers.listUsageTriggers(clientConfig, request, options)
     }
+
 }

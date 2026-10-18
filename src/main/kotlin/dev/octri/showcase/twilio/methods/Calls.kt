@@ -22,20 +22,18 @@ import java.time.OffsetDateTime
 
 object Calls {
 
-    data class ListCallsResponse(
-        val end: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
-        val firstPageUri: String? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
-        val nextPageUri: String? = null,
-        val page: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
-        val previousPageUri: String? = null,
-        val start: Long? = null,
-        val uri: String? = null,
-        val calls: List<ApiV2010AccountCall>? = null,
-    )
+data class ListCallsResponse(
+    val end: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
+    val page: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
+    val start: Long? = null,
+    val uri: String? = null,
+    val calls: List<ApiV2010AccountCall>? = null
+)
+
 
     /** Parameters for [createCalls]. */
     data class CreateCallsRequest(
@@ -77,7 +75,7 @@ object Calls {
         val clientNotificationUrl: String? = null,
         val url: String? = null,
         val twiml: String? = null,
-        val applicationSid: String? = null,
+        val applicationSid: String? = null
     )
 
     /**
@@ -85,140 +83,143 @@ object Calls {
      *
      * @param accountSid The SID of the Account that will create the resource.
      * @param to The phone number, SIP address, or client identifier to call.
-     * @param from The phone number or client identifier to use as the caller id. If using a phone
-     *   number, it must be a Twilio number or a Verified outgoing caller id for your account. If
-     *   the `to` parameter is a phone number, `From` must also be a phone number.
-     * @param method The HTTP method we should use when calling the `url` parameter's value. Can be:
-     *   `GET` or `POST` and the default is `POST`. If an `application_sid` parameter is present,
-     *   this parameter is ignored.
-     * @param fallbackUrl The URL that we call using the `fallback_method` if an error occurs when
-     *   requesting or executing the TwiML at `url`. If an `application_sid` parameter is present,
-     *   this parameter is ignored.
-     * @param fallbackMethod The HTTP method that we should use to request the `fallback_url`. Can
-     *   be: `GET` or `POST` and the default is `POST`. If an `application_sid` parameter is
-     *   present, this parameter is ignored.
-     * @param statusCallback The URL we should call using the `status_callback_method` to send
-     *   status information to your application. If no `status_callback_event` is specified, we will
-     *   send the `completed` status. If an `application_sid` parameter is present, this parameter
-     *   is ignored. URLs must contain a valid hostname (underscores are not permitted).
+     * @param from The phone number or client identifier to use as the caller id. If
+     *   using a phone number, it must be a Twilio number or a Verified outgoing caller
+     *   id for your account. If the `to` parameter is a phone number, `From` must also
+     *   be a phone number.
+     * @param method The HTTP method we should use when calling the `url` parameter's
+     *   value. Can be: `GET` or `POST` and the default is `POST`. If an
+     *   `application_sid` parameter is present, this parameter is ignored.
+     * @param fallbackUrl The URL that we call using the `fallback_method` if an
+     *   error occurs when requesting or executing the TwiML at `url`. If an
+     *   `application_sid` parameter is present, this parameter is ignored.
+     * @param fallbackMethod The HTTP method that we should use to request the
+     *   `fallback_url`. Can be: `GET` or `POST` and the default is `POST`. If an
+     *   `application_sid` parameter is present, this parameter is ignored.
+     * @param statusCallback The URL we should call using the
+     *   `status_callback_method` to send status information to your application. If no
+     *   `status_callback_event` is specified, we will send the `completed` status. If
+     *   an `application_sid` parameter is present, this parameter is ignored. URLs
+     *   must contain a valid hostname (underscores are not permitted).
      * @param statusCallbackEvent The call progress events that we will send to the
-     *   `status_callback` URL. Can be: `initiated`, `ringing`, `answered`, and `completed`. If no
-     *   event is specified, we send the `completed` status. If you want to receive multiple events,
-     *   specify each one in a separate `status_callback_event` parameter. See the code sample for
-     *   monitoring call progress. If an `application_sid` is present, this parameter is ignored.
-     * @param statusCallbackMethod The HTTP method we should use when calling the `status_callback`
-     *   URL. Can be: `GET` or `POST` and the default is `POST`. If an `application_sid` parameter
-     *   is present, this parameter is ignored.
-     * @param sendDigits The string of keys to dial after connecting to the number, with a maximum
-     *   length of 32 digits. Valid digits in the string include any digit (`0`-`9`), '`A`', '`B`',
-     *   '`C`', '`D`', '`#`', and '`*`'. You can also use '`w`' to insert a half-second pause and
-     *   '`W`' to insert a one-second pause. For example, to pause for one second after connecting
-     *   and then dial extension 1234 followed by the # key, set this parameter to `W1234#`. Be sure
+     *   `status_callback` URL. Can be: `initiated`, `ringing`, `answered`, and
+     *   `completed`. If no event is specified, we send the `completed` status. If you
+     *   want to receive multiple events, specify each one in a separate
+     *   `status_callback_event` parameter. See the code sample for monitoring call
+     *   progress. If an `application_sid` is present, this parameter is ignored.
+     * @param statusCallbackMethod The HTTP method we should use when calling the
+     *   `status_callback` URL. Can be: `GET` or `POST` and the default is `POST`. If
+     *   an `application_sid` parameter is present, this parameter is ignored.
+     * @param sendDigits The string of keys to dial after connecting to the number,
+     *   with a maximum length of 32 digits. Valid digits in the string include any
+     *   digit (`0`-`9`), '`A`', '`B`', '`C`', '`D`', '`#`', and '`*`'. You can also
+     *   use '`w`' to insert a half-second pause and '`W`' to insert a one-second
+     *   pause. For example, to pause for one second after connecting and then dial
+     *   extension 1234 followed by the # key, set this parameter to `W1234#`. Be sure
      *   to URL-encode this string because the '`#`'…
-     * @param timeout The integer number of seconds that we should allow the phone to ring before
-     *   assuming there is no answer. The default is `60` seconds and the maximum is `600` seconds.
-     *   For some call flows, we will add a 5-second buffer to the timeout value you provide. For
-     *   this reason, a timeout value of 10 seconds could result in an actual timeout closer to 15
-     *   seconds. You can set this to a short time, such as `15` seconds, to hang up before reaching
-     *   an answering machine or voicemail.
-     * @param record Whether to record the call. Can be `true` to record the phone call, or `false`
-     *   to not. The default is `false`. The `recording_url` is sent to the `status_callback` URL.
-     * @param recordingChannels The number of channels in the final recording. Can be: `mono` or
-     *   `dual`. The default is `mono`. `mono` records both legs of the call in a single channel of
-     *   the recording file. `dual` records each leg to a separate channel of the recording file.
-     *   The first channel of a dual-channel recording contains the parent call and the second
-     *   channel contains the child call.
-     * @param recordingStatusCallback The URL that we call when the recording is available to be
-     *   accessed.
-     * @param recordingStatusCallbackMethod The HTTP method we should use when calling the
-     *   `recording_status_callback` URL. Can be: `GET` or `POST` and the default is `POST`.
-     * @param recordingConfigurationId The identifier of the configuration to be used when creating
-     *   and processing the recording
-     * @param sipAuthUsername The username used to authenticate the caller making a SIP call.
-     * @param sipAuthPassword The password required to authenticate the user account specified in
-     *   `sip_auth_username`.
-     * @param machineDetection Whether to detect if a human, answering machine, or fax has picked up
-     *   the call. Can be: `Enable` or `DetectMessageEnd`. Use `Enable` if you would like us to
-     *   return `AnsweredBy` as soon as the called party is identified. Use `DetectMessageEnd`, if
-     *   you would like to leave a message on an answering machine. If `send_digits` is provided,
-     *   this parameter is ignored. For more information, see Answering Machine Detection.
-     * @param machineDetectionTimeout The number of seconds that we should attempt to detect an
-     *   answering machine before timing out and sending a voice request with `AnsweredBy` of
-     *   `unknown`. The default timeout is 30 seconds.
-     * @param recordingStatusCallbackEvent The recording status events that will trigger calls to
-     *   the URL specified in `recording_status_callback`. Can be: `in-progress`, `completed` and
-     *   `absent`. Defaults to `completed`. Separate multiple values with a space.
-     * @param trim Whether to trim any leading and trailing silence from the recording. Can be:
-     *   `trim-silence` or `do-not-trim` and the default is `trim-silence`.
-     * @param callerId The phone number, SIP address, or Client identifier that made this call.
-     *   Phone numbers are in E.164 format (e.g., +16175551212). SIP addresses are formatted as
-     *   `name@company.com`.
-     * @param machineDetectionSpeechThreshold The number of milliseconds that is used as the
-     *   measuring stick for the length of the speech activity, where durations lower than this
-     *   value will be interpreted as a human and longer than this value as a machine. Possible
-     *   Values: 1000-6000. Default: 2400.
-     * @param machineDetectionSpeechEndThreshold The number of milliseconds of silence after speech
-     *   activity at which point the speech activity is considered complete. Possible Values:
-     *   500-5000. Default: 1200.
-     * @param machineDetectionSilenceTimeout The number of milliseconds of initial silence after
-     *   which an `unknown` AnsweredBy result will be returned. Possible Values: 2000-10000.
-     *   Default: 5000.
-     * @param asyncAmd Select whether to perform answering machine detection in the background.
-     *   Default, blocks the execution of the call until Answering Machine Detection is completed.
-     *   Can be: `true` or `false`.
+     * @param timeout The integer number of seconds that we should allow the phone to
+     *   ring before assuming there is no answer. The default is `60` seconds and the
+     *   maximum is `600` seconds. For some call flows, we will add a 5-second buffer
+     *   to the timeout value you provide. For this reason, a timeout value of 10
+     *   seconds could result in an actual timeout closer to 15 seconds. You can set
+     *   this to a short time, such as `15` seconds, to hang up before reaching an
+     *   answering machine or voicemail.
+     * @param record Whether to record the call. Can be `true` to record the phone
+     *   call, or `false` to not. The default is `false`. The `recording_url` is sent
+     *   to the `status_callback` URL.
+     * @param recordingChannels The number of channels in the final recording. Can
+     *   be: `mono` or `dual`. The default is `mono`. `mono` records both legs of the
+     *   call in a single channel of the recording file. `dual` records each leg to a
+     *   separate channel of the recording file. The first channel of a dual-channel
+     *   recording contains the parent call and the second channel contains the child
+     *   call.
+     * @param recordingStatusCallback The URL that we call when the recording is
+     *   available to be accessed.
+     * @param recordingStatusCallbackMethod The HTTP method we should use when
+     *   calling the `recording_status_callback` URL. Can be: `GET` or `POST` and the
+     *   default is `POST`.
+     * @param recordingConfigurationId The identifier of the configuration to be used
+     *   when creating and processing the recording
+     * @param sipAuthUsername The username used to authenticate the caller making a
+     *   SIP call.
+     * @param sipAuthPassword The password required to authenticate the user account
+     *   specified in `sip_auth_username`.
+     * @param machineDetection Whether to detect if a human, answering machine, or
+     *   fax has picked up the call. Can be: `Enable` or `DetectMessageEnd`. Use
+     *   `Enable` if you would like us to return `AnsweredBy` as soon as the called
+     *   party is identified. Use `DetectMessageEnd`, if you would like to leave a
+     *   message on an answering machine. If `send_digits` is provided, this parameter
+     *   is ignored. For more information, see Answering Machine Detection.
+     * @param machineDetectionTimeout The number of seconds that we should attempt to
+     *   detect an answering machine before timing out and sending a voice request with
+     *   `AnsweredBy` of `unknown`. The default timeout is 30 seconds.
+     * @param recordingStatusCallbackEvent The recording status events that will
+     *   trigger calls to the URL specified in `recording_status_callback`. Can be:
+     *   `in-progress`, `completed` and `absent`. Defaults to `completed`. Separate
+     *   multiple values with a space.
+     * @param trim Whether to trim any leading and trailing silence from the
+     *   recording. Can be: `trim-silence` or `do-not-trim` and the default is
+     *   `trim-silence`.
+     * @param callerId The phone number, SIP address, or Client identifier that made
+     *   this call. Phone numbers are in E.164 format (e.g., +16175551212). SIP
+     *   addresses are formatted as `name@company.com`.
+     * @param machineDetectionSpeechThreshold The number of milliseconds that is used
+     *   as the measuring stick for the length of the speech activity, where durations
+     *   lower than this value will be interpreted as a human and longer than this
+     *   value as a machine. Possible Values: 1000-6000. Default: 2400.
+     * @param machineDetectionSpeechEndThreshold The number of milliseconds of
+     *   silence after speech activity at which point the speech activity is considered
+     *   complete. Possible Values: 500-5000. Default: 1200.
+     * @param machineDetectionSilenceTimeout The number of milliseconds of initial
+     *   silence after which an `unknown` AnsweredBy result will be returned. Possible
+     *   Values: 2000-10000. Default: 5000.
+     * @param asyncAmd Select whether to perform answering machine detection in the
+     *   background. Default, blocks the execution of the call until Answering Machine
+     *   Detection is completed. Can be: `true` or `false`.
      * @param asyncAmdStatusCallback The URL that we should call using the
-     *   `async_amd_status_callback_method` to notify customer application whether the call was
-     *   answered by human, machine or fax.
-     * @param asyncAmdStatusCallbackMethod The HTTP method we should use when calling the
-     *   `async_amd_status_callback` URL. Can be: `GET` or `POST` and the default is `POST`.
-     * @param passports The STIR/SHAKEN passport for this call, provided as a base64 encoded string.
-     *   Multiple passports (at max 5) are comma separated and provided as base64 encoded string
-     * @param byoc The SID of a BYOC (Bring Your Own Carrier) trunk to route this call with. Note
-     *   that `byoc` is only meaningful when `to` is a phone number; it will otherwise be ignored.
-     *   (Beta)
-     * @param callReason The Reason for the outgoing call. Use it to specify the purpose of the call
-     *   that is presented on the called party's phone. (Branded Calls Beta)
-     * @param callToken A token string needed to invoke a forwarded call. A call_token is generated
-     *   when an incoming call is received on a Twilio number. Pass an incoming call's call_token
-     *   value to a forwarded call via the call_token parameter when creating a new call. A
-     *   forwarded call should bear the same CallerID of the original incoming call.
-     * @param recordingTrack The audio track to record for the call. Can be: `inbound`, `outbound`
-     *   or `both`. The default is `both`. `inbound` records the audio that is received by Twilio.
-     *   `outbound` records the audio that is generated from Twilio. `both` records the audio that
-     *   is received and generated by Twilio.
-     * @param timeLimit The maximum duration of the call in seconds. Constraints depend on account
-     *   and configuration.
-     * @param clientNotificationUrl The URL that we should use to deliver `push call notification`.
-     * @param url The absolute URL that returns the TwiML instructions for the call. We will call
-     *   this URL using the `method` when the call connects. For more information, see the Url
-     *   Parameter section in Making Calls.
-     * @param twiml TwiML instructions for the call Twilio will use without fetching Twiml from url
-     *   parameter. If both `twiml` and `url` are provided then `twiml` parameter will be ignored.
-     *   Max 4000 characters.
-     * @param applicationSid The SID of the Application resource that will handle the call, if the
-     *   call will be handled by an application.
+     *   `async_amd_status_callback_method` to notify customer application whether the
+     *   call was answered by human, machine or fax.
+     * @param asyncAmdStatusCallbackMethod The HTTP method we should use when calling
+     *   the `async_amd_status_callback` URL. Can be: `GET` or `POST` and the default
+     *   is `POST`.
+     * @param passports The STIR/SHAKEN passport for this call, provided as a base64
+     *   encoded string. Multiple passports (at max 5) are comma separated and provided
+     *   as base64 encoded string
+     * @param byoc The SID of a BYOC (Bring Your Own Carrier) trunk to route this
+     *   call with. Note that `byoc` is only meaningful when `to` is a phone number; it
+     *   will otherwise be ignored. (Beta)
+     * @param callReason The Reason for the outgoing call. Use it to specify the
+     *   purpose of the call that is presented on the called party's phone. (Branded
+     *   Calls Beta)
+     * @param callToken A token string needed to invoke a forwarded call. A
+     *   call_token is generated when an incoming call is received on a Twilio number.
+     *   Pass an incoming call's call_token value to a forwarded call via the
+     *   call_token parameter when creating a new call. A forwarded call should bear
+     *   the same CallerID of the original incoming call.
+     * @param recordingTrack The audio track to record for the call. Can be:
+     *   `inbound`, `outbound` or `both`. The default is `both`. `inbound` records the
+     *   audio that is received by Twilio. `outbound` records the audio that is
+     *   generated from Twilio. `both` records the audio that is received and generated
+     *   by Twilio.
+     * @param timeLimit The maximum duration of the call in seconds. Constraints
+     *   depend on account and configuration.
+     * @param clientNotificationUrl The URL that we should use to deliver `push call
+     *   notification`.
+     * @param url The absolute URL that returns the TwiML instructions for the call.
+     *   We will call this URL using the `method` when the call connects. For more
+     *   information, see the Url Parameter section in Making Calls.
+     * @param twiml TwiML instructions for the call Twilio will use without fetching
+     *   Twiml from url parameter. If both `twiml` and `url` are provided then `twiml`
+     *   parameter will be ignored. Max 4000 characters.
+     * @param applicationSid The SID of the Application resource that will handle the
+     *   call, if the call will be handled by an application.
      */
-    fun createCalls(
-        clientConfig: ClientConfig,
-        request: CreateCallsRequest,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountCall {
+    fun createCalls(clientConfig: ClientConfig, request: CreateCallsRequest, options: RequestOptions? = null): ApiV2010AccountCall {
         validateCreateCallsRequest(request)
 
-        return SdkClient.request<ApiV2010AccountCall>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Calls.json",
-                    config = clientConfig,
-                    body = buildCreateCallsBody(request),
-                    contentType = "application/x-www-form-urlencoded",
-                    operationId = "createCalls",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiV2010AccountCall>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Calls.json", config = clientConfig, body = buildCreateCallsBody(request), contentType = "application/x-www-form-urlencoded", operationId = "createCalls", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
+
 
     private fun validateCreateCallsRequest(request: CreateCallsRequest) {
         validateCreateCallsRequestPart1(request)
@@ -226,64 +227,51 @@ object Calls {
     }
 
     private fun validateCreateCallsRequestPart1(request: CreateCallsRequest) {
-        Validation.validateLength(
-            "AccountSid",
-            request.accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.fallbackUrl != null) {
             Validation.validateUri("FallbackUrl", request.fallbackUrl)
-        }
+}
 
         if (request.statusCallback != null) {
             Validation.validateUri("StatusCallback", request.statusCallback)
-        }
+}
 
         if (request.asyncAmdStatusCallback != null) {
             Validation.validateUri("AsyncAmdStatusCallback", request.asyncAmdStatusCallback)
-        }
+}
 
         if (request.byoc != null) {
-            Validation.validateLength(
-                "Byoc",
-                request.byoc,
-                Validation.LengthOpts(min = 34, max = 34),
-            )
+            Validation.validateLength("Byoc", request.byoc, Validation.LengthOpts(min = 34, max = 34))
             Validation.validatePattern("Byoc", request.byoc, "^BY[0-9a-fA-F]{32}$")
-        }
+}
     }
 
     private fun validateCreateCallsRequestPart2(request: CreateCallsRequest) {
         if (request.clientNotificationUrl != null) {
             Validation.validateUri("ClientNotificationUrl", request.clientNotificationUrl)
-        }
+}
 
         if (request.url != null) {
             Validation.validateUri("Url", request.url)
-        }
+}
 
         if (request.applicationSid != null) {
-            Validation.validateLength(
-                "ApplicationSid",
-                request.applicationSid,
-                Validation.LengthOpts(min = 34, max = 34),
-            )
-            Validation.validatePattern(
-                "ApplicationSid",
-                request.applicationSid,
-                "^AP[0-9a-fA-F]{32}$",
-            )
-        }
+            Validation.validateLength("ApplicationSid", request.applicationSid, Validation.LengthOpts(min = 34, max = 34))
+            Validation.validatePattern("ApplicationSid", request.applicationSid, "^AP[0-9a-fA-F]{32}$")
+}
     }
 
-    private fun buildCreateCallsBody(request: CreateCallsRequest): Map<String, Any?> = buildMap {
-        putAll(buildCreateCallsBodyPart1(request))
-        putAll(buildCreateCallsBodyPart2(request))
-        putAll(buildCreateCallsBodyPart3(request))
-        putAll(buildCreateCallsBodyPart4(request))
-    }
+
+
+    private fun buildCreateCallsBody(request: CreateCallsRequest): Map<String, Any?> =
+        buildMap {
+            putAll(buildCreateCallsBodyPart1(request))
+            putAll(buildCreateCallsBodyPart2(request))
+            putAll(buildCreateCallsBodyPart3(request))
+            putAll(buildCreateCallsBodyPart4(request))
+        }
 
     private fun buildCreateCallsBodyPart1(request: CreateCallsRequest): Map<String, Any?> =
         SdkClient.bodyMap(
@@ -291,59 +279,77 @@ object Calls {
             "From" to (request.from),
             "Method" to (SdkClient.omitIfNull(request.method)),
             "FallbackUrl" to (SdkClient.omitIfNull(request.fallbackUrl)),
-            "FallbackMethod" to (SdkClient.omitIfNull(request.fallbackMethod)),
-            "StatusCallback" to (SdkClient.omitIfNull(request.statusCallback)),
-            "StatusCallbackEvent" to (SdkClient.omitIfNull(request.statusCallbackEvent)),
-            "StatusCallbackMethod" to (SdkClient.omitIfNull(request.statusCallbackMethod)),
+            "FallbackMethod" to
+    (SdkClient.omitIfNull(request.fallbackMethod)),
+            "StatusCallback" to
+    (SdkClient.omitIfNull(request.statusCallback)),
+            "StatusCallbackEvent" to
+    (SdkClient.omitIfNull(request.statusCallbackEvent)),
+            "StatusCallbackMethod" to
+    (SdkClient.omitIfNull(request.statusCallbackMethod)),
             "SendDigits" to (SdkClient.omitIfNull(request.sendDigits)),
             "Timeout" to (SdkClient.omitIfNull(request.timeout)),
             "Record" to (SdkClient.omitIfNull(request.record)),
-            "RecordingChannels" to (SdkClient.omitIfNull(request.recordingChannels)),
+            "RecordingChannels" to
+    (SdkClient.omitIfNull(request.recordingChannels)),
         )
 
     private fun buildCreateCallsBodyPart2(request: CreateCallsRequest): Map<String, Any?> =
         SdkClient.bodyMap(
-            "RecordingStatusCallback" to (SdkClient.omitIfNull(request.recordingStatusCallback)),
+            "RecordingStatusCallback" to
+    (SdkClient.omitIfNull(request.recordingStatusCallback)),
             "RecordingStatusCallbackMethod" to
-                (SdkClient.omitIfNull(request.recordingStatusCallbackMethod)),
-            "RecordingConfigurationId" to (SdkClient.omitIfNull(request.recordingConfigurationId)),
-            "SipAuthUsername" to (SdkClient.omitIfNull(request.sipAuthUsername)),
-            "SipAuthPassword" to (SdkClient.omitIfNull(request.sipAuthPassword)),
-            "MachineDetection" to (SdkClient.omitIfNull(request.machineDetection)),
-            "MachineDetectionTimeout" to (SdkClient.omitIfNull(request.machineDetectionTimeout)),
+    (SdkClient.omitIfNull(request.recordingStatusCallbackMethod)),
+            "RecordingConfigurationId" to
+    (SdkClient.omitIfNull(request.recordingConfigurationId)),
+            "SipAuthUsername" to
+    (SdkClient.omitIfNull(request.sipAuthUsername)),
+            "SipAuthPassword" to
+    (SdkClient.omitIfNull(request.sipAuthPassword)),
+            "MachineDetection" to
+    (SdkClient.omitIfNull(request.machineDetection)),
+            "MachineDetectionTimeout" to
+    (SdkClient.omitIfNull(request.machineDetectionTimeout)),
             "RecordingStatusCallbackEvent" to
-                (SdkClient.omitIfNull(request.recordingStatusCallbackEvent)),
+    (SdkClient.omitIfNull(request.recordingStatusCallbackEvent)),
             "Trim" to (SdkClient.omitIfNull(request.trim)),
             "CallerId" to (SdkClient.omitIfNull(request.callerId)),
             "MachineDetectionSpeechThreshold" to
-                (SdkClient.omitIfNull(request.machineDetectionSpeechThreshold)),
+    (SdkClient.omitIfNull(request.machineDetectionSpeechThreshold)),
             "MachineDetectionSpeechEndThreshold" to
-                (SdkClient.omitIfNull(request.machineDetectionSpeechEndThreshold)),
+    (SdkClient.omitIfNull(request.machineDetectionSpeechEndThreshold)),
         )
 
     private fun buildCreateCallsBodyPart3(request: CreateCallsRequest): Map<String, Any?> =
         SdkClient.bodyMap(
             "MachineDetectionSilenceTimeout" to
-                (SdkClient.omitIfNull(request.machineDetectionSilenceTimeout)),
+    (SdkClient.omitIfNull(request.machineDetectionSilenceTimeout)),
             "AsyncAmd" to (SdkClient.omitIfNull(request.asyncAmd)),
-            "AsyncAmdStatusCallback" to (SdkClient.omitIfNull(request.asyncAmdStatusCallback)),
+            "AsyncAmdStatusCallback" to
+    (SdkClient.omitIfNull(request.asyncAmdStatusCallback)),
             "AsyncAmdStatusCallbackMethod" to
-                (SdkClient.omitIfNull(request.asyncAmdStatusCallbackMethod)),
+    (SdkClient.omitIfNull(request.asyncAmdStatusCallbackMethod)),
             "Passports" to (SdkClient.omitIfNull(request.passports)),
             "Byoc" to (SdkClient.omitIfNull(request.byoc)),
             "CallReason" to (SdkClient.omitIfNull(request.callReason)),
             "CallToken" to (SdkClient.omitIfNull(request.callToken)),
-            "RecordingTrack" to (SdkClient.omitIfNull(request.recordingTrack)),
+            "RecordingTrack" to
+    (SdkClient.omitIfNull(request.recordingTrack)),
             "TimeLimit" to (SdkClient.omitIfNull(request.timeLimit)),
-            "ClientNotificationUrl" to (SdkClient.omitIfNull(request.clientNotificationUrl)),
+            "ClientNotificationUrl" to
+    (SdkClient.omitIfNull(request.clientNotificationUrl)),
             "Url" to (SdkClient.omitIfNull(request.url)),
         )
 
     private fun buildCreateCallsBodyPart4(request: CreateCallsRequest): Map<String, Any?> =
         SdkClient.bodyMap(
             "Twiml" to (SdkClient.omitIfNull(request.twiml)),
-            "ApplicationSid" to (SdkClient.omitIfNull(request.applicationSid)),
+            "ApplicationSid" to
+    (SdkClient.omitIfNull(request.applicationSid)),
         )
+
+
+
 
     /** Parameters for [listCalls]. */
     data class ListCallsRequest(
@@ -360,65 +366,52 @@ object Calls {
         val endTime3: OffsetDateTime? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null,
+        val pageToken: String? = null
     )
 
     /**
-     * Lists calls made to and from a specified account. Filter the results by caller, recipient,
-     * parent call, status, or start and end times. Use the page parameters to navigate through the
-     * results.
+     * Lists calls made to and from a specified account. Filter the results by caller, recipient, parent call, status, or start and end times. Use the page parameters to navigate through the results.
      *
      * Retrieves a collection of calls made to and from your account
      *
-     * @param accountSid The SID of the Account that created the Call resource(s) to read.
-     * @param to Only show calls made to this phone number, SIP address, Client identifier or SIM
-     *   SID.
-     * @param from Only include calls from this phone number, SIP address, Client identifier or SIM
-     *   SID.
+     * @param accountSid The SID of the Account that created the Call resource(s) to
+     *   read.
+     * @param to Only show calls made to this phone number, SIP address, Client
+     *   identifier or SIM SID.
+     * @param from Only include calls from this phone number, SIP address, Client
+     *   identifier or SIM SID.
      * @param parentCallSid Only include calls spawned by calls with this SID.
-     * @param status The status of the calls to include. Can be: `queued`, `ringing`, `in-progress`,
-     *   `canceled`, `completed`, `failed`, `busy`, or `no-answer`.
-     * @param startTime Only include calls that started on this date. Specify a date as `YYYY-MM-DD`
-     *   in UTC, for example: `2009-07-06`, to read only calls that started on this date.
-     * @param startTime2 Only include calls that started before this date. Specify a date as
-     *   `YYYY-MM-DD` in UTC, for example: `2009-07-06`, to read only calls that started before this
-     *   date.
-     * @param startTime3 Only include calls that started on or after this date. Specify a date as
-     *   `YYYY-MM-DD` in UTC, for example: `2009-07-06`, to read only calls that started on or after
-     *   this date.
-     * @param endTime Only include calls that ended on this date. Specify a date as `YYYY-MM-DD` in
-     *   UTC, for example: `2009-07-06`, to read only calls that ended on this date.
-     * @param endTime2 Only include calls that ended before this date. Specify a date as
-     *   `YYYY-MM-DD` in UTC, for example: `2009-07-06`, to read only calls that ended before this
-     *   date.
-     * @param endTime3 Only include calls that ended on or after this date. Specify a date as
-     *   `YYYY-MM-DD` in UTC, for example: `2009-07-06`, to read only calls that ended on or after
-     *   this date.
-     * @param pageSize How many resources to return in each list page. The default is 50, and the
-     *   maximum is 1000.
+     * @param status The status of the calls to include. Can be: `queued`, `ringing`,
+     *   `in-progress`, `canceled`, `completed`, `failed`, `busy`, or `no-answer`.
+     * @param startTime Only include calls that started on this date. Specify a date
+     *   as `YYYY-MM-DD` in UTC, for example: `2009-07-06`, to read only calls that
+     *   started on this date.
+     * @param startTime2 Only include calls that started before this date. Specify a
+     *   date as `YYYY-MM-DD` in UTC, for example: `2009-07-06`, to read only calls
+     *   that started before this date.
+     * @param startTime3 Only include calls that started on or after this date.
+     *   Specify a date as `YYYY-MM-DD` in UTC, for example: `2009-07-06`, to read only
+     *   calls that started on or after this date.
+     * @param endTime Only include calls that ended on this date. Specify a date as
+     *   `YYYY-MM-DD` in UTC, for example: `2009-07-06`, to read only calls that ended
+     *   on this date.
+     * @param endTime2 Only include calls that ended before this date. Specify a date
+     *   as `YYYY-MM-DD` in UTC, for example: `2009-07-06`, to read only calls that
+     *   ended before this date.
+     * @param endTime3 Only include calls that ended on or after this date. Specify a
+     *   date as `YYYY-MM-DD` in UTC, for example: `2009-07-06`, to read only calls
+     *   that ended on or after this date.
+     * @param pageSize How many resources to return in each list page. The default is
+     *   50, and the maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listCalls(
-        clientConfig: ClientConfig,
-        request: ListCallsRequest,
-        options: RequestOptions? = null,
-    ): ListCallsResponse {
+    fun listCalls(clientConfig: ClientConfig, request: ListCallsRequest, options: RequestOptions? = null): ListCallsResponse {
         validateListCallsRequest(request)
 
-        return SdkClient.request<ListCallsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Calls.json",
-                    config = clientConfig,
-                    query = buildListCallsQuery(request),
-                    operationId = "listCalls",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ListCallsResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Calls.json", config = clientConfig, query = buildListCallsQuery(request), operationId = "listCalls", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
+
 
     private fun validateListCallsRequest(request: ListCallsRequest) {
         validateListCallsRequestPart1(request)
@@ -426,162 +419,139 @@ object Calls {
     }
 
     private fun validateListCallsRequestPart1(request: ListCallsRequest) {
-        Validation.validateLength(
-            "AccountSid",
-            request.accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.parentCallSid != null) {
-            Validation.validateLength(
-                "ParentCallSid",
-                request.parentCallSid,
-                Validation.LengthOpts(min = 34, max = 34),
-            )
-            Validation.validatePattern(
-                "ParentCallSid",
-                request.parentCallSid,
-                "^CA[0-9a-fA-F]{32}$",
-            )
-        }
+            Validation.validateLength("ParentCallSid", request.parentCallSid, Validation.LengthOpts(min = 34, max = 34))
+            Validation.validatePattern("ParentCallSid", request.parentCallSid, "^CA[0-9a-fA-F]{32}$")
+}
 
         if (request.startTime != null) {
             Validation.validateDateTime("StartTime", request.startTime)
-        }
+}
 
         if (request.startTime2 != null) {
             Validation.validateDateTime("StartTime<", request.startTime2)
-        }
+}
 
         if (request.startTime3 != null) {
             Validation.validateDateTime("StartTime>", request.startTime3)
-        }
+}
     }
 
     private fun validateListCallsRequestPart2(request: ListCallsRequest) {
         if (request.endTime != null) {
             Validation.validateDateTime("EndTime", request.endTime)
-        }
+}
 
         if (request.endTime2 != null) {
             Validation.validateDateTime("EndTime<", request.endTime2)
-        }
+}
 
         if (request.endTime3 != null) {
             Validation.validateDateTime("EndTime>", request.endTime3)
-        }
+}
 
         if (request.pageSize != null) {
-            Validation.validateRange(
-                "PageSize",
-                request.pageSize,
-                Validation.RangeOpts(min = 1.0, max = 1000.0),
-            )
-        }
+            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
+}
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-        }
+}
     }
 
-    private fun buildListCallsQuery(request: ListCallsRequest): Map<String, Any?> = buildMap {
-        putAll(buildListCallsQueryPart1(request))
-        putAll(buildListCallsQueryPart2(request))
-    }
+
+    private fun buildListCallsQuery(request: ListCallsRequest): Map<String, Any?> =
+        buildMap {
+            putAll(buildListCallsQueryPart1(request))
+            putAll(buildListCallsQueryPart2(request))
+        }
 
     private fun buildListCallsQueryPart1(request: ListCallsRequest): Map<String, Any?> =
         mapOf(
             "To" to SdkClient.queryValue(request.to, "form", true),
             "From" to SdkClient.queryValue(request.from, "form", true),
-            "ParentCallSid" to SdkClient.queryValue(request.parentCallSid, "form", true),
-            "Status" to SdkClient.queryValue(request.status, "form", true),
-            "StartTime" to SdkClient.queryValue(request.startTime, "form", true, "date-time"),
-            "StartTime<" to SdkClient.queryValue(request.startTime2, "form", true, "date-time"),
-            "StartTime>" to SdkClient.queryValue(request.startTime3, "form", true, "date-time"),
-            "EndTime" to SdkClient.queryValue(request.endTime, "form", true, "date-time"),
-            "EndTime<" to SdkClient.queryValue(request.endTime2, "form", true, "date-time"),
-            "EndTime>" to SdkClient.queryValue(request.endTime3, "form", true, "date-time"),
-            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
+            "ParentCallSid" to
+    SdkClient.queryValue(request.parentCallSid, "form", true),
+            "Status" to
+    SdkClient.queryValue(request.status, "form", true),
+            "StartTime" to
+    SdkClient.queryValue(request.startTime, "form", true, "date-time"),
+            "StartTime<" to
+    SdkClient.queryValue(request.startTime2, "form", true, "date-time"),
+            "StartTime>" to
+    SdkClient.queryValue(request.startTime3, "form", true, "date-time"),
+            "EndTime" to
+    SdkClient.queryValue(request.endTime, "form", true, "date-time"),
+            "EndTime<" to
+    SdkClient.queryValue(request.endTime2, "form", true, "date-time"),
+            "EndTime>" to
+    SdkClient.queryValue(request.endTime3, "form", true, "date-time"),
+            "PageSize" to
+    SdkClient.queryValue(request.pageSize, "form", true),
             "Page" to SdkClient.queryValue(request.page, "form", true),
         )
 
     private fun buildListCallsQueryPart2(request: ListCallsRequest): Map<String, Any?> =
-        mapOf("PageToken" to SdkClient.queryValue(request.pageToken, "form", true))
+        mapOf(
+            "PageToken" to
+    SdkClient.queryValue(request.pageToken, "form", true),
+        )
+
+
+
+
 
     /**
-     * Delete a Call record from your account. Once the record is deleted, it will no longer appear
-     * in the API and Account Portal logs.
+     * Delete a Call record from your account. Once the record is deleted, it will no longer appear in the API and Account Portal logs.
      *
-     * @param accountSid The SID of the Account that created the Call resource(s) to delete.
-     * @param sid The Twilio-provided Call SID that uniquely identifies the Call resource to delete
+     * @param accountSid The SID of the Account that created the Call resource(s) to
+     *   delete.
+     * @param sid The Twilio-provided Call SID that uniquely identifies the Call
+     *   resource to delete
      */
-    fun deleteCalls(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun deleteCalls(clientConfig: ClientConfig, accountSid: String, sid: String, options: RequestOptions? = null): Unit {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^CA[0-9a-fA-F]{32}$")
 
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Calls/${SdkClient.encodePathSegment(sid)}.json",
-                config = clientConfig,
-                operationId = "deleteCalls",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Calls/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "deleteCalls", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 
+
+
+
+
+
+
     /**
-     * Retrieves a specific call from an account. Provide the account SID and call SID to identify
-     * the call whose details you need. The response includes call status and timing information
-     * when available.
+     * Retrieves a specific call from an account. Provide the account SID and call SID to identify the call whose details you need. The response includes call status and timing information when available.
      *
      * Fetch the call specified by the provided Call SID
      *
-     * @param accountSid The SID of the Account that created the Call resource(s) to fetch.
+     * @param accountSid The SID of the Account that created the Call resource(s) to
+     *   fetch.
      * @param sid The SID of the Call resource to fetch.
      */
-    fun fetchCalls(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountCall {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun fetchCalls(clientConfig: ClientConfig, accountSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountCall {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^CA[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountCall>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Calls/${SdkClient.encodePathSegment(sid)}.json",
-                    config = clientConfig,
-                    operationId = "fetchCalls",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiV2010AccountCall>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Calls/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "fetchCalls", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
+
+
+
+
+
+
 
     /** Parameters for [updateCalls]. */
     data class UpdateCallsRequest(
@@ -595,83 +565,55 @@ object Calls {
         val statusCallback: String? = null,
         val statusCallbackMethod: UpdateCallsStatusCallbackMethodEnum? = null,
         val twiml: String? = null,
-        val timeLimit: Long? = null,
+        val timeLimit: Long? = null
     )
 
     /**
-     * Updates a call by redirecting it to new TwiML instructions or by terminating it. Provide
-     * either a `Url` to retrieve instructions from or `Twiml` instructions directly; these fields
-     * are mutually exclusive. Use `Status` to cancel or complete the call, or configure callback
-     * and request-method settings for a redirect.
+     * Updates a call by redirecting it to new TwiML instructions or by terminating it. Provide either a `Url` to retrieve instructions from or `Twiml` instructions directly; these fields are mutually exclusive. Use `Status` to cancel or complete the call, or configure callback and request-method settings for a redirect.
      *
      * Initiates a call redirect or terminates a call
      *
-     * @param accountSid The SID of the Account that created the Call resource(s) to update.
-     * @param sid The Twilio-provided string that uniquely identifies the Call resource to update
-     * @param url The absolute URL that returns the TwiML instructions for the call. We will call
-     *   this URL using the `method` when the call connects. For more information, see the Url
-     *   Parameter section in Making Calls.
-     * @param method The HTTP method we should use when calling the `url`. Can be: `GET` or `POST`
-     *   and the default is `POST`. If an `application_sid` parameter is present, this parameter is
-     *   ignored.
-     * @param fallbackUrl The URL that we call using the `fallback_method` if an error occurs when
-     *   requesting or executing the TwiML at `url`. If an `application_sid` parameter is present,
-     *   this parameter is ignored.
-     * @param fallbackMethod The HTTP method that we should use to request the `fallback_url`. Can
-     *   be: `GET` or `POST` and the default is `POST`. If an `application_sid` parameter is
-     *   present, this parameter is ignored.
-     * @param statusCallback The URL we should call using the `status_callback_method` to send
-     *   status information to your application. If no `status_callback_event` is specified, we will
-     *   send the `completed` status. If an `application_sid` parameter is present, this parameter
-     *   is ignored. URLs must contain a valid hostname (underscores are not permitted).
-     * @param statusCallbackMethod The HTTP method we should use when requesting the
-     *   `status_callback` URL. Can be: `GET` or `POST` and the default is `POST`. If an
+     * @param accountSid The SID of the Account that created the Call resource(s) to
+     *   update.
+     * @param sid The Twilio-provided string that uniquely identifies the Call
+     *   resource to update
+     * @param url The absolute URL that returns the TwiML instructions for the call.
+     *   We will call this URL using the `method` when the call connects. For more
+     *   information, see the Url Parameter section in Making Calls.
+     * @param method The HTTP method we should use when calling the `url`. Can be:
+     *   `GET` or `POST` and the default is `POST`. If an `application_sid` parameter
+     *   is present, this parameter is ignored.
+     * @param fallbackUrl The URL that we call using the `fallback_method` if an
+     *   error occurs when requesting or executing the TwiML at `url`. If an
      *   `application_sid` parameter is present, this parameter is ignored.
-     * @param twiml TwiML instructions for the call Twilio will use without fetching Twiml from url.
-     *   Twiml and url parameters are mutually exclusive
-     * @param timeLimit The maximum duration of the call in seconds. Constraints depend on account
-     *   and configuration.
+     * @param fallbackMethod The HTTP method that we should use to request the
+     *   `fallback_url`. Can be: `GET` or `POST` and the default is `POST`. If an
+     *   `application_sid` parameter is present, this parameter is ignored.
+     * @param statusCallback The URL we should call using the
+     *   `status_callback_method` to send status information to your application. If no
+     *   `status_callback_event` is specified, we will send the `completed` status. If
+     *   an `application_sid` parameter is present, this parameter is ignored. URLs
+     *   must contain a valid hostname (underscores are not permitted).
+     * @param statusCallbackMethod The HTTP method we should use when requesting the
+     *   `status_callback` URL. Can be: `GET` or `POST` and the default is `POST`. If
+     *   an `application_sid` parameter is present, this parameter is ignored.
+     * @param twiml TwiML instructions for the call Twilio will use without fetching
+     *   Twiml from url. Twiml and url parameters are mutually exclusive
+     * @param timeLimit The maximum duration of the call in seconds. Constraints
+     *   depend on account and configuration.
      */
-    fun updateCalls(
-        clientConfig: ClientConfig,
-        request: UpdateCallsRequest,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountCall {
+    fun updateCalls(clientConfig: ClientConfig, request: UpdateCallsRequest, options: RequestOptions? = null): ApiV2010AccountCall {
         validateUpdateCallsRequest(request)
 
-        return SdkClient.request<ApiV2010AccountCall>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Calls/${SdkClient.encodePathSegment(request.sid)}.json",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "Url" to (SdkClient.omitIfNull(request.url)),
-                            "Method" to (SdkClient.omitIfNull(request.method)),
-                            "Status" to (SdkClient.omitIfNull(request.status)),
-                            "FallbackUrl" to (SdkClient.omitIfNull(request.fallbackUrl)),
-                            "FallbackMethod" to (SdkClient.omitIfNull(request.fallbackMethod)),
-                            "StatusCallback" to (SdkClient.omitIfNull(request.statusCallback)),
-                            "StatusCallbackMethod" to
-                                (SdkClient.omitIfNull(request.statusCallbackMethod)),
-                            "Twiml" to (SdkClient.omitIfNull(request.twiml)),
-                            "TimeLimit" to (SdkClient.omitIfNull(request.timeLimit)),
-                        ),
-                    contentType = "application/x-www-form-urlencoded",
-                    operationId = "updateCalls",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiV2010AccountCall>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Calls/${SdkClient.encodePathSegment(request.sid)}.json", config = clientConfig, body = SdkClient.bodyMap("Url" to (SdkClient.omitIfNull(request.url)), "Method" to (SdkClient.omitIfNull(request.method)), "Status" to (SdkClient.omitIfNull(request.status)), "FallbackUrl" to (SdkClient.omitIfNull(request.fallbackUrl)), "FallbackMethod" to
+    (SdkClient.omitIfNull(request.fallbackMethod)), "StatusCallback" to
+    (SdkClient.omitIfNull(request.statusCallback)), "StatusCallbackMethod" to
+    (SdkClient.omitIfNull(request.statusCallbackMethod)), "Twiml" to (SdkClient.omitIfNull(request.twiml)), "TimeLimit" to (SdkClient.omitIfNull(request.timeLimit))), contentType = "application/x-www-form-urlencoded", operationId = "updateCalls", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
+
     private fun validateUpdateCallsRequest(request: UpdateCallsRequest) {
-        Validation.validateLength(
-            "AccountSid",
-            request.accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", request.sid, Validation.LengthOpts(min = 34, max = 34))
@@ -679,14 +621,20 @@ object Calls {
 
         if (request.url != null) {
             Validation.validateUri("Url", request.url)
-        }
+}
 
         if (request.fallbackUrl != null) {
             Validation.validateUri("FallbackUrl", request.fallbackUrl)
-        }
+}
 
         if (request.statusCallback != null) {
             Validation.validateUri("StatusCallback", request.statusCallback)
-        }
+}
     }
+
+
+
+
+
+
 }

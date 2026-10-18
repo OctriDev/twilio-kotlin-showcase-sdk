@@ -3,15 +3,20 @@
 
 package dev.octri.showcase.twilio.models
 
-/** Typed representation of the `ApiV2010AccountBalance` API schema. */
+/**
+ * Typed representation of the `ApiV2010AccountBalance` API schema.
+ */
 data class ApiV2010AccountBalance(
-    /** The unique SID identifier of the Account. */
+    /**
+     * The unique SID identifier of the Account.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
     /**
-     * The balance of the Account, in units specified by the unit parameter. Balance changes may not
-     * be reflected immediately. Child accounts do not contain balance information
+     * The balance of the Account, in units specified by the unit parameter. Balance changes may not be reflected immediately. Child accounts do not contain balance information
      */
     val balance: String? = null,
-    /** The units of currency for the account balance */
-    val currency: String? = null,
+    /**
+     * The units of currency for the account balance
+     */
+    val currency: String? = null
 )

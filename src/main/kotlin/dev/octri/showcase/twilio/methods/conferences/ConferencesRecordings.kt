@@ -13,20 +13,18 @@ import java.time.LocalDate
 
 object ConferencesRecordings {
 
-    data class ListConferencesRecordingsResponse(
-        val end: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
-        val firstPageUri: String? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
-        val nextPageUri: String? = null,
-        val page: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
-        val previousPageUri: String? = null,
-        val start: Long? = null,
-        val uri: String? = null,
-        val recordings: List<ApiV2010AccountConferenceConferenceRecording>? = null,
-    )
+data class ListConferencesRecordingsResponse(
+    val end: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
+    val page: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
+    val start: Long? = null,
+    val uri: String? = null,
+    val recordings: List<ApiV2010AccountConferenceConferenceRecording>? = null
+)
+
 
     /** Parameters for [listConferencesRecordings]. */
     data class ListConferencesRecordingsRequest(
@@ -37,281 +35,187 @@ object ConferencesRecordings {
         val dateCreated3: LocalDate? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null,
+        val pageToken: String? = null
     )
 
     /**
-     * Lists recordings associated with a conference. Use the date filter to narrow results and the
-     * page parameters to navigate through the conference's recordings.
+     * Lists recordings associated with a conference. Use the date filter to narrow results and the page parameters to navigate through the conference's recordings.
      *
      * Retrieve a list of recordings belonging to the call used to make the request
      *
-     * @param accountSid The SID of the Account that created the Conference Recording resources to
-     *   read.
-     * @param conferenceSid The Conference SID that identifies the conference associated with the
-     *   recording to read.
-     * @param dateCreated The `date_created` value, specified as `YYYY-MM-DD`, of the resources to
-     *   read. You can also specify inequality: `DateCreated<=YYYY-MM-DD` will return recordings
-     *   generated at or before midnight on a given date, and `DateCreated>=YYYY-MM-DD` returns
-     *   recordings generated at or after midnight on a date.
-     * @param dateCreated2 The `date_created` value, specified as `YYYY-MM-DD`, of the resources to
-     *   read. You can also specify inequality: `DateCreated<=YYYY-MM-DD` will return recordings
-     *   generated at or before midnight on a given date, and `DateCreated>=YYYY-MM-DD` returns
-     *   recordings generated at or after midnight on a date.
-     * @param dateCreated3 The `date_created` value, specified as `YYYY-MM-DD`, of the resources to
-     *   read. You can also specify inequality: `DateCreated<=YYYY-MM-DD` will return recordings
-     *   generated at or before midnight on a given date, and `DateCreated>=YYYY-MM-DD` returns
-     *   recordings generated at or after midnight on a date.
-     * @param pageSize How many resources to return in each list page. The default is 50, and the
-     *   maximum is 1000.
+     * @param accountSid The SID of the Account that created the Conference Recording
+     *   resources to read.
+     * @param conferenceSid The Conference SID that identifies the conference
+     *   associated with the recording to read.
+     * @param dateCreated The `date_created` value, specified as `YYYY-MM-DD`, of the
+     *   resources to read. You can also specify inequality: `DateCreated<=YYYY-MM-DD`
+     *   will return recordings generated at or before midnight on a given date, and
+     *   `DateCreated>=YYYY-MM-DD` returns recordings generated at or after midnight on
+     *   a date.
+     * @param dateCreated2 The `date_created` value, specified as `YYYY-MM-DD`, of
+     *   the resources to read. You can also specify inequality:
+     *   `DateCreated<=YYYY-MM-DD` will return recordings generated at or before
+     *   midnight on a given date, and `DateCreated>=YYYY-MM-DD` returns recordings
+     *   generated at or after midnight on a date.
+     * @param dateCreated3 The `date_created` value, specified as `YYYY-MM-DD`, of
+     *   the resources to read. You can also specify inequality:
+     *   `DateCreated<=YYYY-MM-DD` will return recordings generated at or before
+     *   midnight on a given date, and `DateCreated>=YYYY-MM-DD` returns recordings
+     *   generated at or after midnight on a date.
+     * @param pageSize How many resources to return in each list page. The default is
+     *   50, and the maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listConferencesRecordings(
-        clientConfig: ClientConfig,
-        request: ListConferencesRecordingsRequest,
-        options: RequestOptions? = null,
-    ): ListConferencesRecordingsResponse {
+    fun listConferencesRecordings(clientConfig: ClientConfig, request: ListConferencesRecordingsRequest, options: RequestOptions? = null): ListConferencesRecordingsResponse {
         validateListConferencesRecordingsRequest(request)
 
-        return SdkClient.request<ListConferencesRecordingsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Conferences/${SdkClient.encodePathSegment(request.conferenceSid)}/Recordings.json",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "DateCreated" to
-                                SdkClient.queryValue(request.dateCreated, "form", true, "date"),
-                            "DateCreated<" to
-                                SdkClient.queryValue(request.dateCreated2, "form", true, "date"),
-                            "DateCreated>" to
-                                SdkClient.queryValue(request.dateCreated3, "form", true, "date"),
-                            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
-                            "Page" to SdkClient.queryValue(request.page, "form", true),
-                            "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
-                        ),
-                    operationId = "listConferencesRecordings",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ListConferencesRecordingsResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Conferences/${SdkClient.encodePathSegment(request.conferenceSid)}/Recordings.json", config = clientConfig, query = mapOf("DateCreated" to
+    SdkClient.queryValue(request.dateCreated, "form", true, "date"), "DateCreated<" to
+    SdkClient.queryValue(request.dateCreated2, "form", true, "date"), "DateCreated>" to
+    SdkClient.queryValue(request.dateCreated3, "form", true, "date"), "PageSize" to
+    SdkClient.queryValue(request.pageSize, "form", true), "Page" to SdkClient.queryValue(request.page, "form", true), "PageToken" to
+    SdkClient.queryValue(request.pageToken, "form", true)), operationId = "listConferencesRecordings", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
-    private fun validateListConferencesRecordingsRequest(
-        request: ListConferencesRecordingsRequest
-    ) {
+
+    private fun validateListConferencesRecordingsRequest(request: ListConferencesRecordingsRequest) {
         validateListConferencesRecordingsRequestPart1(request)
         validateListConferencesRecordingsRequestPart2(request)
     }
 
-    private fun validateListConferencesRecordingsRequestPart1(
-        request: ListConferencesRecordingsRequest
-    ) {
-        Validation.validateLength(
-            "AccountSid",
-            request.accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    private fun validateListConferencesRecordingsRequestPart1(request: ListConferencesRecordingsRequest) {
+        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength(
-            "ConferenceSid",
-            request.conferenceSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("ConferenceSid", request.conferenceSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("ConferenceSid", request.conferenceSid, "^CF[0-9a-fA-F]{32}$")
 
         if (request.dateCreated != null) {
             Validation.validateDate("DateCreated", request.dateCreated)
-        }
+}
 
         if (request.dateCreated2 != null) {
             Validation.validateDate("DateCreated<", request.dateCreated2)
-        }
+}
 
         if (request.dateCreated3 != null) {
             Validation.validateDate("DateCreated>", request.dateCreated3)
-        }
+}
     }
 
-    private fun validateListConferencesRecordingsRequestPart2(
-        request: ListConferencesRecordingsRequest
-    ) {
+    private fun validateListConferencesRecordingsRequestPart2(request: ListConferencesRecordingsRequest) {
         if (request.pageSize != null) {
-            Validation.validateRange(
-                "PageSize",
-                request.pageSize,
-                Validation.RangeOpts(min = 1.0, max = 1000.0),
-            )
-        }
+            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
+}
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-        }
+}
     }
 
+
+
+
+
+
     /**
-     * Updates the status of a conference recording and, when pausing it, can control how the pause
-     * is recorded. Supply `Status` to select the recording state; use `Twilio.CURRENT` as `Sid` to
-     * target the active recording.
+     * Updates the status of a conference recording and, when pausing it, can control how the pause is recorded. Supply `Status` to select the recording state; use `Twilio.CURRENT` as `Sid` to target the active recording.
      *
-     * Changes the status of the recording to paused, stopped, or in-progress. Note: To use
-     * `Twilio.CURRENT`, pass it as recording sid.
+     * Changes the status of the recording to paused, stopped, or in-progress. Note: To use `Twilio.CURRENT`, pass it as recording sid.
      *
-     * @param accountSid The SID of the Account that created the Conference Recording resource to
-     *   update.
-     * @param conferenceSid The Conference SID that identifies the conference associated with the
-     *   recording to update.
-     * @param sid The Twilio-provided string that uniquely identifies the Conference Recording
-     *   resource to update. Use `Twilio.CURRENT` to reference the current active recording.
-     * @param status The status of the recording. Can be: `processing`, `completed` and `absent`.
-     *   For more detailed statuses on in-progress recordings, check out how to Update a Recording
-     *   Resource.
-     * @param pauseBehavior Whether to record during a pause. Can be: `skip` or `silence` and the
-     *   default is `silence`. `skip` does not record during the pause period, while `silence` will
-     *   replace the actual audio of the call with silence during the pause period. This parameter
-     *   only applies when setting `status` is set to `paused`.
+     * @param accountSid The SID of the Account that created the Conference Recording
+     *   resource to update.
+     * @param conferenceSid The Conference SID that identifies the conference
+     *   associated with the recording to update.
+     * @param sid The Twilio-provided string that uniquely identifies the Conference
+     *   Recording resource to update. Use `Twilio.CURRENT` to reference the current
+     *   active recording.
+     * @param status The status of the recording. Can be: `processing`, `completed`
+     *   and `absent`. For more detailed statuses on in-progress recordings, check out
+     *   how to Update a Recording Resource.
+     * @param pauseBehavior Whether to record during a pause. Can be: `skip` or
+     *   `silence` and the default is `silence`. `skip` does not record during the
+     *   pause period, while `silence` will replace the actual audio of the call with
+     *   silence during the pause period. This parameter only applies when setting
+     *   `status` is set to `paused`.
      */
-    fun updateConferencesRecordings(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        conferenceSid: String,
-        sid: String,
-        status: ConferenceRecordingEnumStatus,
-        pauseBehavior: String? = null,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountConferenceConferenceRecording {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun updateConferencesRecordings(clientConfig: ClientConfig, accountSid: String, conferenceSid: String, sid: String, status: ConferenceRecordingEnumStatus, pauseBehavior: String? = null, options: RequestOptions? = null): ApiV2010AccountConferenceConferenceRecording {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength(
-            "ConferenceSid",
-            conferenceSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("ConferenceSid", conferenceSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("ConferenceSid", conferenceSid, "^CF[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountConferenceConferenceRecording>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Conferences/${SdkClient.encodePathSegment(conferenceSid)}/Recordings/${SdkClient.encodePathSegment(sid)}.json",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "Status" to (status),
-                            "PauseBehavior" to (SdkClient.omitIfNull(pauseBehavior)),
-                        ),
-                    contentType = "application/x-www-form-urlencoded",
-                    operationId = "updateConferencesRecordings",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiV2010AccountConferenceConferenceRecording>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Conferences/${SdkClient.encodePathSegment(conferenceSid)}/Recordings/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, body = SdkClient.bodyMap("Status" to (status), "PauseBehavior" to (SdkClient.omitIfNull(pauseBehavior))), contentType = "application/x-www-form-urlencoded", operationId = "updateConferencesRecordings", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
+
+
+
+
+
+
     /**
-     * Retrieves a specific recording associated with a conference. Provide the account, conference,
-     * and recording identifiers to identify the recording resource.
+     * Retrieves a specific recording associated with a conference. Provide the account, conference, and recording identifiers to identify the recording resource.
      *
      * Fetch an instance of a recording for a call
      *
-     * @param accountSid The SID of the Account that created the Conference Recording resource to
-     *   fetch.
-     * @param conferenceSid The Conference SID that identifies the conference associated with the
-     *   recording to fetch.
-     * @param sid The Twilio-provided string that uniquely identifies the Conference Recording
+     * @param accountSid The SID of the Account that created the Conference Recording
      *   resource to fetch.
+     * @param conferenceSid The Conference SID that identifies the conference
+     *   associated with the recording to fetch.
+     * @param sid The Twilio-provided string that uniquely identifies the Conference
+     *   Recording resource to fetch.
      */
-    fun fetchConferencesRecordings(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        conferenceSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountConferenceConferenceRecording {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun fetchConferencesRecordings(clientConfig: ClientConfig, accountSid: String, conferenceSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountConferenceConferenceRecording {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength(
-            "ConferenceSid",
-            conferenceSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("ConferenceSid", conferenceSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("ConferenceSid", conferenceSid, "^CF[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^RE[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountConferenceConferenceRecording>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Conferences/${SdkClient.encodePathSegment(conferenceSid)}/Recordings/${SdkClient.encodePathSegment(sid)}.json",
-                    config = clientConfig,
-                    operationId = "fetchConferencesRecordings",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiV2010AccountConferenceConferenceRecording>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Conferences/${SdkClient.encodePathSegment(conferenceSid)}/Recordings/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "fetchConferencesRecordings", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
+
+
+
+
+
+
     /**
-     * Deletes a recording associated with a conference from the account. Provide the account,
-     * conference, and recording identifiers to specify the resource to remove.
+     * Deletes a recording associated with a conference from the account. Provide the account, conference, and recording identifiers to specify the resource to remove.
      *
      * Delete a recording from your account
      *
-     * @param accountSid The SID of the Account that created the Conference Recording resources to
-     *   delete.
-     * @param conferenceSid The Conference SID that identifies the conference associated with the
-     *   recording to delete.
-     * @param sid The Twilio-provided string that uniquely identifies the Conference Recording
-     *   resource to delete.
+     * @param accountSid The SID of the Account that created the Conference Recording
+     *   resources to delete.
+     * @param conferenceSid The Conference SID that identifies the conference
+     *   associated with the recording to delete.
+     * @param sid The Twilio-provided string that uniquely identifies the Conference
+     *   Recording resource to delete.
      */
-    fun deleteConferencesRecordings(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        conferenceSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun deleteConferencesRecordings(clientConfig: ClientConfig, accountSid: String, conferenceSid: String, sid: String, options: RequestOptions? = null): Unit {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength(
-            "ConferenceSid",
-            conferenceSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("ConferenceSid", conferenceSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("ConferenceSid", conferenceSid, "^CF[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^RE[0-9a-fA-F]{32}$")
 
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Conferences/${SdkClient.encodePathSegment(conferenceSid)}/Recordings/${SdkClient.encodePathSegment(sid)}.json",
-                config = clientConfig,
-                operationId = "deleteConferencesRecordings",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Conferences/${SdkClient.encodePathSegment(conferenceSid)}/Recordings/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "deleteConferencesRecordings", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
+
+
+
+
+
+
+
 }

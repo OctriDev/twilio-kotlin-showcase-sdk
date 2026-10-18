@@ -3,24 +3,28 @@
 
 package dev.octri.showcase.twilio.models
 
-/** Typed representation of the `ApiV2010AccountValidationRequest` API schema. */
+/**
+ * Typed representation of the `ApiV2010AccountValidationRequest` API schema.
+ */
 data class ApiV2010AccountValidationRequest(
-    /** The SID of the Account responsible for the Caller ID. */
-    @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
-    /** The SID of the Call the Caller ID is associated with. */
-    @com.fasterxml.jackson.annotation.JsonProperty("call_sid") val callSid: String? = null,
-    /** The string that you assigned to describe the resource. */
-    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name")
-    val friendlyName: String? = null,
     /**
-     * The phone number to verify in E.164 format, which consists of a + followed by the country
-     * code and subscriber number.
+     * The SID of the Account responsible for the Caller ID.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
+    /**
+     * The SID of the Call the Caller ID is associated with.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("call_sid") val callSid: String? = null,
+    /**
+     * The string that you assigned to describe the resource.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name") val friendlyName: String? = null,
+    /**
+     * The phone number to verify in E.164 format, which consists of a + followed by the country code and subscriber number.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("phone_number") val phoneNumber: String? = null,
     /**
-     * The 6 digit validation code that someone must enter to validate the Caller ID when
-     * `phone_number` is called.
+     * The 6 digit validation code that someone must enter to validate the Caller ID when `phone_number` is called.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("validation_code")
-    val validationCode: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("validation_code") val validationCode: String? = null
 )

@@ -3,79 +3,42 @@
 
 package dev.octri.showcase.twilio
 
+
 class ConferencesRecordingsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists recordings associated with a conference. Use the date filter to narrow results and the
-     * page parameters to navigate through the conference's recordings.
+     * Lists recordings associated with a conference. Use the date filter to narrow results and the page parameters to navigate through the conference's recordings.
      *
      * Retrieve a list of recordings belonging to the call used to make the request
      */
-    fun list(
-        request:
-            dev.octri.showcase.twilio.methods.conferences.ConferencesRecordings.ListConferencesRecordingsRequest,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.twilio.methods.conferences.ConferencesRecordings.ListConferencesRecordingsResponse {
-        return dev.octri.showcase.twilio.methods.conferences.ConferencesRecordings
-            .listConferencesRecordings(clientConfig, request, options)
+    fun list(request: dev.octri.showcase.twilio.methods.conferences.ConferencesRecordings.ListConferencesRecordingsRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.conferences.ConferencesRecordings.ListConferencesRecordingsResponse {
+        return dev.octri.showcase.twilio.methods.conferences.ConferencesRecordings.listConferencesRecordings(clientConfig, request, options)
     }
 
     /**
-     * Updates the status of a conference recording and, when pausing it, can control how the pause
-     * is recorded. Supply `Status` to select the recording state; use `Twilio.CURRENT` as `Sid` to
-     * target the active recording.
+     * Updates the status of a conference recording and, when pausing it, can control how the pause is recorded. Supply `Status` to select the recording state; use `Twilio.CURRENT` as `Sid` to target the active recording.
      *
-     * Changes the status of the recording to paused, stopped, or in-progress. Note: To use
-     * `Twilio.CURRENT`, pass it as recording sid.
+     * Changes the status of the recording to paused, stopped, or in-progress. Note: To use `Twilio.CURRENT`, pass it as recording sid.
      */
-    fun update(
-        accountSid: String,
-        conferenceSid: String,
-        sid: String,
-        status: ConferenceRecordingEnumStatus,
-        pauseBehavior: String? = null,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountConferenceConferenceRecording {
-        return dev.octri.showcase.twilio.methods.conferences.ConferencesRecordings
-            .updateConferencesRecordings(
-                clientConfig,
-                accountSid,
-                conferenceSid,
-                sid,
-                status,
-                pauseBehavior,
-                options,
-            )
+    fun update(accountSid: String, conferenceSid: String, sid: String, status: ConferenceRecordingEnumStatus, pauseBehavior: String? = null, options: RequestOptions? = null): ApiV2010AccountConferenceConferenceRecording {
+        return dev.octri.showcase.twilio.methods.conferences.ConferencesRecordings.updateConferencesRecordings(clientConfig, accountSid, conferenceSid, sid, status, pauseBehavior, options)
     }
 
     /**
-     * Retrieves a specific recording associated with a conference. Provide the account, conference,
-     * and recording identifiers to identify the recording resource.
+     * Retrieves a specific recording associated with a conference. Provide the account, conference, and recording identifiers to identify the recording resource.
      *
      * Fetch an instance of a recording for a call
      */
-    fun fetch(
-        accountSid: String,
-        conferenceSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountConferenceConferenceRecording {
-        return dev.octri.showcase.twilio.methods.conferences.ConferencesRecordings
-            .fetchConferencesRecordings(clientConfig, accountSid, conferenceSid, sid, options)
+    fun fetch(accountSid: String, conferenceSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountConferenceConferenceRecording {
+        return dev.octri.showcase.twilio.methods.conferences.ConferencesRecordings.fetchConferencesRecordings(clientConfig, accountSid, conferenceSid, sid, options)
     }
 
     /**
-     * Deletes a recording associated with a conference from the account. Provide the account,
-     * conference, and recording identifiers to specify the resource to remove.
+     * Deletes a recording associated with a conference from the account. Provide the account, conference, and recording identifiers to specify the resource to remove.
      *
      * Delete a recording from your account
      */
-    fun delete(
-        accountSid: String,
-        conferenceSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.twilio.methods.conferences.ConferencesRecordings
-            .deleteConferencesRecordings(clientConfig, accountSid, conferenceSid, sid, options)
+    fun delete(accountSid: String, conferenceSid: String, sid: String, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.twilio.methods.conferences.ConferencesRecordings.deleteConferencesRecordings(clientConfig, accountSid, conferenceSid, sid, options)
     }
+
 }

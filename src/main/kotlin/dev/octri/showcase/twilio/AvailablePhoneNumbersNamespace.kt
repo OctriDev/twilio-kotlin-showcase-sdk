@@ -3,139 +3,69 @@
 
 package dev.octri.showcase.twilio
 
+
 class AvailablePhoneNumbersNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists the countries for which phone numbers are available to an account. Use the returned
-     * country codes to retrieve country details or browse available numbers for a specific country.
+     * Lists the countries for which phone numbers are available to an account. Use the returned country codes to retrieve country details or browse available numbers for a specific country.
      */
-    fun list(
-        accountSid: String,
-        pageSize: Long? = null,
-        page: Long? = null,
-        pageToken: String? = null,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersResponse {
-        return dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.listAvailablePhoneNumbers(
-            clientConfig,
-            accountSid,
-            pageSize,
-            page,
-            pageToken,
-            options,
-        )
+    fun list(accountSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersResponse {
+        return dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.listAvailablePhoneNumbers(clientConfig, accountSid, pageSize, page, pageToken, options)
     }
 
     /**
-     * Retrieves available phone number information for a specific country. Supply the account SID
-     * and an ISO 3166-1 country code to get the country name, beta status, and related
-     * available-number resources.
+     * Retrieves available phone number information for a specific country. Supply the account SID and an ISO 3166-1 country code to get the country name, beta status, and related available-number resources.
      */
-    fun fetch(
-        accountSid: String,
-        countryCode: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountAvailablePhoneNumberCountry {
-        return dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.fetchAvailablePhoneNumbers(
-            clientConfig,
-            accountSid,
-            countryCode,
-            options,
-        )
+    fun fetch(accountSid: String, countryCode: String, options: RequestOptions? = null): ApiV2010AccountAvailablePhoneNumberCountry {
+        return dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.fetchAvailablePhoneNumbers(clientConfig, accountSid, countryCode, options)
     }
 
     /**
-     * Lists available local phone numbers in a specified country. Filter results by capabilities,
-     * area code, location, or a matching number pattern, and use pagination parameters to browse
-     * the results.
+     * Lists available local phone numbers in a specified country. Filter results by capabilities, area code, location, or a matching number pattern, and use pagination parameters to browse the results.
      */
-    fun listLocal(
-        request:
-            dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersLocalRequest,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersLocalResponse {
-        return dev.octri.showcase.twilio.methods.AvailablePhoneNumbers
-            .listAvailablePhoneNumbersLocal(clientConfig, request, options)
+    fun listLocal(request: dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersLocalRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersLocalResponse {
+        return dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.listAvailablePhoneNumbersLocal(clientConfig, request, options)
     }
 
     /**
-     * Lists available machine-to-machine phone numbers in a specified country. Filter results by
-     * capabilities, area code, location, or a matching number pattern, and use pagination
-     * parameters to browse the results.
+     * Lists available machine-to-machine phone numbers in a specified country. Filter results by capabilities, area code, location, or a matching number pattern, and use pagination parameters to browse the results.
      */
-    fun listMachineToMachine(
-        request:
-            dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersMachineToMachineRequest,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersMachineToMachineResponse {
-        return dev.octri.showcase.twilio.methods.AvailablePhoneNumbers
-            .listAvailablePhoneNumbersMachineToMachine(clientConfig, request, options)
+    fun listMachineToMachine(request: dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersMachineToMachineRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersMachineToMachineResponse {
+        return dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.listAvailablePhoneNumbersMachineToMachine(clientConfig, request, options)
     }
 
     /**
-     * Lists available mobile phone numbers in a specified country. Filter results by capabilities,
-     * number pattern, or geographic details to find numbers that meet your requirements.
+     * Lists available mobile phone numbers in a specified country. Filter results by capabilities, number pattern, or geographic details to find numbers that meet your requirements.
      */
-    fun listMobile(
-        request:
-            dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersMobileRequest,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersMobileResponse {
-        return dev.octri.showcase.twilio.methods.AvailablePhoneNumbers
-            .listAvailablePhoneNumbersMobile(clientConfig, request, options)
+    fun listMobile(request: dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersMobileRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersMobileResponse {
+        return dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.listAvailablePhoneNumbersMobile(clientConfig, request, options)
     }
 
     /**
-     * Lists available national phone numbers in a specified country. Filter results by
-     * capabilities, number pattern, or geographic details to find numbers that meet your
-     * requirements.
+     * Lists available national phone numbers in a specified country. Filter results by capabilities, number pattern, or geographic details to find numbers that meet your requirements.
      */
-    fun listNational(
-        request:
-            dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersNationalRequest,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersNationalResponse {
-        return dev.octri.showcase.twilio.methods.AvailablePhoneNumbers
-            .listAvailablePhoneNumbersNational(clientConfig, request, options)
+    fun listNational(request: dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersNationalRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersNationalResponse {
+        return dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.listAvailablePhoneNumbersNational(clientConfig, request, options)
     }
 
     /**
-     * Lists available shared-cost phone numbers in a specified country. Filter results by
-     * capabilities, number pattern, or geographic details to find numbers that meet your
-     * requirements.
+     * Lists available shared-cost phone numbers in a specified country. Filter results by capabilities, number pattern, or geographic details to find numbers that meet your requirements.
      */
-    fun listSharedCost(
-        request:
-            dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersSharedCostRequest,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersSharedCostResponse {
-        return dev.octri.showcase.twilio.methods.AvailablePhoneNumbers
-            .listAvailablePhoneNumbersSharedCost(clientConfig, request, options)
+    fun listSharedCost(request: dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersSharedCostRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersSharedCostResponse {
+        return dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.listAvailablePhoneNumbersSharedCost(clientConfig, request, options)
     }
 
     /**
-     * Lists available toll-free phone numbers in a specified country. Filter results by
-     * capabilities, number pattern, or geographic details to find numbers that meet your
-     * requirements.
+     * Lists available toll-free phone numbers in a specified country. Filter results by capabilities, number pattern, or geographic details to find numbers that meet your requirements.
      */
-    fun listTollFree(
-        request:
-            dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersTollFreeRequest,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersTollFreeResponse {
-        return dev.octri.showcase.twilio.methods.AvailablePhoneNumbers
-            .listAvailablePhoneNumbersTollFree(clientConfig, request, options)
+    fun listTollFree(request: dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersTollFreeRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersTollFreeResponse {
+        return dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.listAvailablePhoneNumbersTollFree(clientConfig, request, options)
     }
 
     /**
-     * Lists available VoIP phone numbers in a specified country. Filter results by capabilities,
-     * number pattern, or geographic details to find numbers that meet your requirements.
+     * Lists available VoIP phone numbers in a specified country. Filter results by capabilities, number pattern, or geographic details to find numbers that meet your requirements.
      */
-    fun listVoip(
-        request:
-            dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersVoipRequest,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersVoipResponse {
-        return dev.octri.showcase.twilio.methods.AvailablePhoneNumbers
-            .listAvailablePhoneNumbersVoip(clientConfig, request, options)
+    fun listVoip(request: dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersVoipRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.ListAvailablePhoneNumbersVoipResponse {
+        return dev.octri.showcase.twilio.methods.AvailablePhoneNumbers.listAvailablePhoneNumbersVoip(clientConfig, request, options)
     }
+
 }

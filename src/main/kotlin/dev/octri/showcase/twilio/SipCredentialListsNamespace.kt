@@ -3,113 +3,55 @@
 
 package dev.octri.showcase.twilio
 
+
 class SipCredentialListsNamespace(private val clientConfig: ClientConfig) {
     val credentials: SipCredentialListsCredentialsNamespace
-
     init {
         credentials = SipCredentialListsCredentialsNamespace(clientConfig)
     }
-
     /**
-     * Lists SIP credential lists for the specified account. Use `PageSize` to control the number of
-     * resources on a page and `PageToken` to request a page identified by a token from the API. The
-     * response includes page metadata and a `credential_lists` array.
+     * Lists SIP credential lists for the specified account. Use `PageSize` to control the number of resources on a page and `PageToken` to request a page identified by a token from the API. The response includes page metadata and a `credential_lists` array.
      *
      * Get All Credential Lists
      */
-    fun list(
-        accountSid: String,
-        pageSize: Long? = null,
-        page: Long? = null,
-        pageToken: String? = null,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.twilio.methods.sip.SipCredentialLists.ListSipCredentialListsResponse {
-        return dev.octri.showcase.twilio.methods.sip.SipCredentialLists.listSipCredentialLists(
-            clientConfig,
-            accountSid,
-            pageSize,
-            page,
-            pageToken,
-            options,
-        )
+    fun list(accountSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.sip.SipCredentialLists.ListSipCredentialListsResponse {
+        return dev.octri.showcase.twilio.methods.sip.SipCredentialLists.listSipCredentialLists(clientConfig, accountSid, pageSize, page, pageToken, options)
     }
 
     /**
-     * Creates a SIP credential list for the specified account. Provide a `FriendlyName` to describe
-     * the list; the schema requires this field and the documented description limits it to 64
-     * characters. The response includes the created list's identifier and resource metadata.
+     * Creates a SIP credential list for the specified account. Provide a `FriendlyName` to describe the list; the schema requires this field and the documented description limits it to 64 characters. The response includes the created list's identifier and resource metadata.
      *
      * Create a Credential List
      */
-    fun create(
-        accountSid: String,
-        friendlyName: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountSipSipCredentialList {
-        return dev.octri.showcase.twilio.methods.sip.SipCredentialLists.createSipCredentialLists(
-            clientConfig,
-            accountSid,
-            friendlyName,
-            options,
-        )
+    fun create(accountSid: String, friendlyName: String, options: RequestOptions? = null): ApiV2010AccountSipSipCredentialList {
+        return dev.octri.showcase.twilio.methods.sip.SipCredentialLists.createSipCredentialLists(clientConfig, accountSid, friendlyName, options)
     }
 
     /**
-     * Retrieves a SIP credential list for the specified account. Provide the account identifier and
-     * credential list identifier to select the resource. The response includes the list's friendly
-     * name, subresource URIs, and other resource metadata.
+     * Retrieves a SIP credential list for the specified account. Provide the account identifier and credential list identifier to select the resource. The response includes the list's friendly name, subresource URIs, and other resource metadata.
      *
      * Get a Credential List
      */
-    fun fetch(
-        accountSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountSipSipCredentialList {
-        return dev.octri.showcase.twilio.methods.sip.SipCredentialLists.fetchSipCredentialLists(
-            clientConfig,
-            accountSid,
-            sid,
-            options,
-        )
+    fun fetch(accountSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountSipSipCredentialList {
+        return dev.octri.showcase.twilio.methods.sip.SipCredentialLists.fetchSipCredentialLists(clientConfig, accountSid, sid, options)
     }
 
     /**
-     * Updates the friendly name of a SIP credential list for the specified account. Supply
-     * `FriendlyName` in the request body; the schema requires this field and the documented
-     * description limits it to 64 characters. The response contains the updated list and its
-     * resource metadata.
+     * Updates the friendly name of a SIP credential list for the specified account. Supply `FriendlyName` in the request body; the schema requires this field and the documented description limits it to 64 characters. The response contains the updated list and its resource metadata.
      *
      * Update a Credential List
      */
-    fun update(
-        accountSid: String,
-        sid: String,
-        friendlyName: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountSipSipCredentialList {
-        return dev.octri.showcase.twilio.methods.sip.SipCredentialLists.updateSipCredentialLists(
-            clientConfig,
-            accountSid,
-            sid,
-            friendlyName,
-            options,
-        )
+    fun update(accountSid: String, sid: String, friendlyName: String, options: RequestOptions? = null): ApiV2010AccountSipSipCredentialList {
+        return dev.octri.showcase.twilio.methods.sip.SipCredentialLists.updateSipCredentialLists(clientConfig, accountSid, sid, friendlyName, options)
     }
 
     /**
-     * Deletes a SIP credential list for the specified account. Provide the account identifier and
-     * credential list identifier to select the resource to remove. The response confirms deletion
-     * and contains no resource representation.
+     * Deletes a SIP credential list for the specified account. Provide the account identifier and credential list identifier to select the resource to remove. The response confirms deletion and contains no resource representation.
      *
      * Delete a Credential List
      */
     fun delete(accountSid: String, sid: String, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.twilio.methods.sip.SipCredentialLists.deleteSipCredentialLists(
-            clientConfig,
-            accountSid,
-            sid,
-            options,
-        )
+        return dev.octri.showcase.twilio.methods.sip.SipCredentialLists.deleteSipCredentialLists(clientConfig, accountSid, sid, options)
     }
+
 }
