@@ -155,6 +155,33 @@ private fun isPiiKey(key: Any?): Boolean {
     return PII_SEGMENTS.any { segment -> padded.contains(segment) }
 }
 
+/**
+ * The first of [types] that decodes [node] and keeps every key it carries, else the first that
+ * decodes at all: an untagged union prefers the branch that drops nothing.
+ */
+internal fun <T : Any> sdkObjectBranch(
+    mapper: com.fasterxml.jackson.databind.ObjectMapper,
+    node: com.fasterxml.jackson.databind.JsonNode,
+    types: List<Class<out T>>,
+): T? {
+    val decoded = types.asSequence().mapNotNull { type -> sdkDecodeOrNull(mapper, node, type) }
+    return decoded.firstOrNull { branch ->
+        val kept = mapper.valueToTree<com.fasterxml.jackson.databind.JsonNode>(branch)
+        node.fieldNames().asSequence().all { kept.has(it) }
+    } ?: decoded.firstOrNull()
+}
+
+private fun <T : Any> sdkDecodeOrNull(
+    mapper: com.fasterxml.jackson.databind.ObjectMapper,
+    node: com.fasterxml.jackson.databind.JsonNode,
+    type: Class<out T>,
+): T? =
+    try {
+        mapper.convertValue(node, type)
+    } catch (ignored: IllegalArgumentException) {
+        null
+    }
+
 /** Recursively redacts common credential and direct-identifier fields. */
 internal fun sanitizeTelemetry(value: Any?, enabled: Boolean): Any? {
     if (!enabled || value == null) return value
