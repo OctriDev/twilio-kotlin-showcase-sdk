@@ -3,40 +3,30 @@
 
 package dev.octri.showcase.twilio.models
 
-/**
- * Typed representation of the `ApiV2010AccountAuthorizedConnectApp` API schema.
- */
+/** Typed representation of the `ApiV2010AccountAuthorizedConnectApp` API schema. */
 data class ApiV2010AccountAuthorizedConnectApp(
-    /**
-     * The SID of the Account that created the AuthorizedConnectApp resource.
-     */
+    /** The SID of the Account that created the AuthorizedConnectApp resource. */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
+    /** The company name set for the Connect App. */
+    @com.fasterxml.jackson.annotation.JsonProperty("connect_app_company_name")
+    val connectAppCompanyName: String? = null,
+    /** A detailed description of the Connect App. */
+    @com.fasterxml.jackson.annotation.JsonProperty("connect_app_description")
+    val connectAppDescription: String? = null,
+    /** The name of the Connect App. */
+    @com.fasterxml.jackson.annotation.JsonProperty("connect_app_friendly_name")
+    val connectAppFriendlyName: String? = null,
+    /** The public URL for the Connect App. */
+    @com.fasterxml.jackson.annotation.JsonProperty("connect_app_homepage_url")
+    val connectAppHomepageUrl: String? = null,
+    /** The SID that we assigned to the Connect App. */
+    @com.fasterxml.jackson.annotation.JsonProperty("connect_app_sid")
+    val connectAppSid: String? = null,
     /**
-     * The company name set for the Connect App.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("connect_app_company_name") val connectAppCompanyName: String? = null,
-    /**
-     * A detailed description of the Connect App.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("connect_app_description") val connectAppDescription: String? = null,
-    /**
-     * The name of the Connect App.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("connect_app_friendly_name") val connectAppFriendlyName: String? = null,
-    /**
-     * The public URL for the Connect App.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("connect_app_homepage_url") val connectAppHomepageUrl: String? = null,
-    /**
-     * The SID that we assigned to the Connect App.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("connect_app_sid") val connectAppSid: String? = null,
-    /**
-     * The set of permissions that you authorized for the Connect App. Can be: `get-all` or `post-all`.
+     * The set of permissions that you authorized for the Connect App. Can be: `get-all` or
+     * `post-all`.
      */
     val permissions: List<AuthorizedConnectAppEnumPermission>? = null,
-    /**
-     * The URI of the resource, relative to `api.twilio.com`.
-     */
-    val uri: String? = null
+    /** The URI of the resource, relative to `api.twilio.com`. */
+    val uri: String? = null,
 )

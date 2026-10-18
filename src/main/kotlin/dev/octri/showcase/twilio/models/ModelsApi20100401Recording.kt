@@ -3,84 +3,69 @@
 
 package dev.octri.showcase.twilio.models
 
-/**
- * Typed representation of the `ApiV2010AccountRecording` API schema.
- */
+/** Typed representation of the `ApiV2010AccountRecording` API schema. */
 data class ApiV2010AccountRecording(
-    /**
-     * The SID of the Account that created the Recording resource.
-     */
+    /** The SID of the Account that created the Recording resource. */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
-    /**
-     * The API version used during the recording.
-     */
+    /** The API version used during the recording. */
     @com.fasterxml.jackson.annotation.JsonProperty("api_version") val apiVersion: String? = null,
     /**
-     * The SID of the Call the Recording resource is associated with. This will always refer to the parent leg of a two-leg call.
+     * The SID of the Call the Recording resource is associated with. This will always refer to the
+     * parent leg of a two-leg call.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("call_sid") val callSid: String? = null,
     /**
-     * The Conference SID that identifies the conference associated with the recording, if a conference recording.
+     * The Conference SID that identifies the conference associated with the recording, if a
+     * conference recording.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("conference_sid") val conferenceSid: String? = null,
-    /**
-     * The date and time in GMT that the resource was created specified in RFC 2822 format.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("conference_sid")
+    val conferenceSid: String? = null,
+    /** The date and time in GMT that the resource was created specified in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
-    /**
-     * The date and time in GMT that the resource was last updated specified in RFC 2822 format.
-     */
+    /** The date and time in GMT that the resource was last updated specified in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
-    /**
-     * The start time of the recording in GMT and in RFC 2822 format.
-     */
+    /** The start time of the recording in GMT and in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("start_time") val startTime: String? = null,
-    /**
-     * The length of the recording in seconds.
-     */
+    /** The length of the recording in seconds. */
     val duration: String? = null,
-    /**
-     * The unique string that that we created to identify the Recording resource.
-     */
+    /** The unique string that that we created to identify the Recording resource. */
     val sid: String? = null,
-    /**
-     * The one-time cost of creating the recording in the `price_unit` currency.
-     */
+    /** The one-time cost of creating the recording in the `price_unit` currency. */
     val price: String? = null,
-    /**
-     * The currency used in the `price` property. Example: `USD`.
-     */
+    /** The currency used in the `price` property. Example: `USD`. */
     @com.fasterxml.jackson.annotation.JsonProperty("price_unit") val priceUnit: String? = null,
     /**
-     * The status of the recording. Can be: `processing`, `completed`, `absent` or `deleted`. For information about more detailed statuses on in-progress recordings, check out how to Update a Recording Resource.
+     * The status of the recording. Can be: `processing`, `completed`, `absent` or `deleted`. For
+     * information about more detailed statuses on in-progress recordings, check out how to Update a
+     * Recording Resource.
      */
     val status: RecordingEnumStatus? = null,
     /**
-     * The number of channels in the recording resource. For information on specifying the number of channels in the downloaded recording file, check out Fetch a Recording’s media file.
+     * The number of channels in the recording resource. For information on specifying the number of
+     * channels in the downloaded recording file, check out Fetch a Recording’s media file.
      */
     val channels: Long? = null,
     /**
-     * How the recording was created. Can be: `DialVerb`, `Conference`, `OutboundAPI`, `Trunking`, `RecordVerb`, `StartCallRecordingAPI`, and `StartConferenceRecordingAPI`.
+     * How the recording was created. Can be: `DialVerb`, `Conference`, `OutboundAPI`, `Trunking`,
+     * `RecordVerb`, `StartCallRecordingAPI`, and `StartConferenceRecordingAPI`.
      */
     val source: RecordingEnumSource? = null,
     /**
-     * The error code that describes why the recording is `absent`. The error code is described in our Error Dictionary. This value is null if the recording `status` is not `absent`.
+     * The error code that describes why the recording is `absent`. The error code is described in
+     * our Error Dictionary. This value is null if the recording `status` is not `absent`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("error_code") val errorCode: Long? = null,
-    /**
-     * The URI of the resource, relative to `api.twilio.com`.
-     */
+    /** The URI of the resource, relative to `api.twilio.com`. */
     val uri: String? = null,
+    /** How to decrypt the recording if it was encrypted using Call Recording Encryption feature. */
+    @com.fasterxml.jackson.annotation.JsonProperty("encryption_details")
+    val encryptionDetails: Any? = null,
+    /** A list of related resources identified by their relative URIs. */
+    @com.fasterxml.jackson.annotation.JsonProperty("subresource_uris")
+    val subresourceUris: Map<String, Any>? = null,
     /**
-     * How to decrypt the recording if it was encrypted using Call Recording Encryption feature.
+     * The URL of the media file associated with this recording resource. When stored externally,
+     * this is the full URL location of the media file.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("encryption_details") val encryptionDetails: Any? = null,
-    /**
-     * A list of related resources identified by their relative URIs.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("subresource_uris") val subresourceUris: Map<String, Any>? = null,
-    /**
-     * The URL of the media file associated with this recording resource. When stored externally, this is the full URL location of the media file.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("media_url") val mediaUrl: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("media_url") val mediaUrl: String? = null,
 )

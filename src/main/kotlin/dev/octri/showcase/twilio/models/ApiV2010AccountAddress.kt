@@ -3,72 +3,55 @@
 
 package dev.octri.showcase.twilio.models
 
-/**
- * Typed representation of the `ApiV2010AccountAddress` API schema.
- */
+/** Typed representation of the `ApiV2010AccountAddress` API schema. */
 data class ApiV2010AccountAddress(
-    /**
-     * The SID of the Account that is responsible for the Address resource.
-     */
+    /** The SID of the Account that is responsible for the Address resource. */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
-    /**
-     * The city in which the address is located.
-     */
+    /** The city in which the address is located. */
     val city: String? = null,
     /**
-     * The name associated with the address.This property has a maximum length of 16 4-byte characters, or 21 3-byte characters.
+     * The name associated with the address.This property has a maximum length of 16 4-byte
+     * characters, or 21 3-byte characters.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("customer_name") val customerName: String? = null,
-    /**
-     * The date and time in GMT that the resource was created specified in RFC 2822 format.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("customer_name")
+    val customerName: String? = null,
+    /** The date and time in GMT that the resource was created specified in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
-    /**
-     * The date and time in GMT that the resource was last updated specified in RFC 2822 format.
-     */
+    /** The date and time in GMT that the resource was last updated specified in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
-    /**
-     * The string that you assigned to describe the resource.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name") val friendlyName: String? = null,
-    /**
-     * The ISO country code of the address.
-     */
+    /** The string that you assigned to describe the resource. */
+    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name")
+    val friendlyName: String? = null,
+    /** The ISO country code of the address. */
     @com.fasterxml.jackson.annotation.JsonProperty("iso_country") val isoCountry: String? = null,
-    /**
-     * The postal code of the address.
-     */
+    /** The postal code of the address. */
     @com.fasterxml.jackson.annotation.JsonProperty("postal_code") val postalCode: String? = null,
-    /**
-     * The state or region of the address.
-     */
+    /** The state or region of the address. */
     val region: String? = null,
-    /**
-     * The unique string that that we created to identify the Address resource.
-     */
+    /** The unique string that that we created to identify the Address resource. */
     val sid: String? = null,
-    /**
-     * The number and street address of the address.
-     */
+    /** The number and street address of the address. */
     val street: String? = null,
-    /**
-     * The URI of the resource, relative to `api.twilio.com`.
-     */
+    /** The URI of the resource, relative to `api.twilio.com`. */
     val uri: String? = null,
+    /** Whether emergency calling has been enabled on this number. */
+    @com.fasterxml.jackson.annotation.JsonProperty("emergency_enabled")
+    val emergencyEnabled: Boolean? = null,
     /**
-     * Whether emergency calling has been enabled on this number.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("emergency_enabled") val emergencyEnabled: Boolean? = null,
-    /**
-     * Whether the address has been validated to comply with local regulation. In countries that require valid addresses, an invalid address will not be accepted. `true` indicates the Address has been validated. `false` indicate the country doesn't require validation or the Address is not valid.
+     * Whether the address has been validated to comply with local regulation. In countries that
+     * require valid addresses, an invalid address will not be accepted. `true` indicates the
+     * Address has been validated. `false` indicate the country doesn't require validation or the
+     * Address is not valid.
      */
     val validated: Boolean? = null,
     /**
-     * Whether the address has been verified to comply with regulation. In countries that require valid addresses, an invalid address will not be accepted. `true` indicates the Address has been verified. `false` indicate the country doesn't require verified or the Address is not valid.
+     * Whether the address has been verified to comply with regulation. In countries that require
+     * valid addresses, an invalid address will not be accepted. `true` indicates the Address has
+     * been verified. `false` indicate the country doesn't require verified or the Address is not
+     * valid.
      */
     val verified: Boolean? = null,
-    /**
-     * The additional number and street address of the address.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("street_secondary") val streetSecondary: String? = null
+    /** The additional number and street address of the address. */
+    @com.fasterxml.jackson.annotation.JsonProperty("street_secondary")
+    val streetSecondary: String? = null,
 )

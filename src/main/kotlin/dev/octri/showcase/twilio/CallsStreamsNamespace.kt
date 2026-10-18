@@ -3,24 +3,45 @@
 
 package dev.octri.showcase.twilio
 
-
 class CallsStreamsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Creates a media Stream associated with a call. Provide the required `Url` for the WebSocket connection and optionally configure audio tracks, a status callback, and callback parameters.
+     * Creates a media Stream associated with a call. Provide the required `Url` for the WebSocket
+     * connection and optionally configure audio tracks, a status callback, and callback parameters.
      *
      * Create a Stream
      */
-    fun create(request: dev.octri.showcase.twilio.methods.calls.CallsStreams.CreateCallsStreamsRequest, options: RequestOptions? = null): ApiV2010AccountCallStream {
-        return dev.octri.showcase.twilio.methods.calls.CallsStreams.createCallsStreams(clientConfig, request, options)
+    fun create(
+        request: dev.octri.showcase.twilio.methods.calls.CallsStreams.CreateCallsStreamsRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountCallStream {
+        return dev.octri.showcase.twilio.methods.calls.CallsStreams.createCallsStreams(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Stops a Stream associated with a call. Set `Status` to `stopped`, and identify the Stream by its SID or the name used when it was created.
+     * Stops a Stream associated with a call. Set `Status` to `stopped`, and identify the Stream by
+     * its SID or the name used when it was created.
      *
-     * Stop a Stream using either the SID of the Stream resource or the `name` used when creating the resource
+     * Stop a Stream using either the SID of the Stream resource or the `name` used when creating
+     * the resource
      */
-    fun update(accountSid: String, callSid: String, sid: String, status: StreamEnumUpdateStatus, options: RequestOptions? = null): ApiV2010AccountCallStream {
-        return dev.octri.showcase.twilio.methods.calls.CallsStreams.updateCallsStreams(clientConfig, accountSid, callSid, sid, status, options)
+    fun update(
+        accountSid: String,
+        callSid: String,
+        sid: String,
+        status: StreamEnumUpdateStatus,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountCallStream {
+        return dev.octri.showcase.twilio.methods.calls.CallsStreams.updateCallsStreams(
+            clientConfig,
+            accountSid,
+            callSid,
+            sid,
+            status,
+            options,
+        )
     }
-
 }

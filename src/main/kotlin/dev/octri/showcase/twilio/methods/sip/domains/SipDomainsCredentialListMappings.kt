@@ -11,97 +11,161 @@ import dev.octri.showcase.twilio.Validation
 
 object SipDomainsCredentialListMappings {
 
-data class ListSipDomainsCredentialListMappingsResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("credential_list_mappings") val credentialListMappings: List<ApiV2010AccountSipSipDomainSipCredentialListMapping>? = null
-)
-
+    data class ListSipDomainsCredentialListMappingsResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("credential_list_mappings")
+        val credentialListMappings: List<ApiV2010AccountSipSipDomainSipCredentialListMapping>? =
+            null,
+    )
 
     /**
      * Create a CredentialListMapping resource for an account.
      *
      * @param accountSid The unique id of the Account responsible for this resource.
-     * @param domainSid A 34 character string that uniquely identifies the SIP Domain
-     *   for which the CredentialList resource will be mapped.
-     * @param credentialListSid A 34 character string that uniquely identifies the
-     *   CredentialList resource to map to the SIP domain.
+     * @param domainSid A 34 character string that uniquely identifies the SIP Domain for which the
+     *   CredentialList resource will be mapped.
+     * @param credentialListSid A 34 character string that uniquely identifies the CredentialList
+     *   resource to map to the SIP domain.
      */
-    fun createSipDomainsCredentialListMappings(clientConfig: ClientConfig, accountSid: String, domainSid: String, credentialListSid: String, options: RequestOptions? = null): ApiV2010AccountSipSipDomainSipCredentialListMapping {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun createSipDomainsCredentialListMappings(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        domainSid: String,
+        credentialListSid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountSipSipDomainSipCredentialListMapping {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("DomainSid", domainSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("DomainSid", domainSid, "^SD[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("CredentialListSid", credentialListSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "CredentialListSid",
+            credentialListSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("CredentialListSid", credentialListSid, "^CL[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountSipSipDomainSipCredentialListMapping>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(domainSid)}/CredentialListMappings.json", config = clientConfig, body = SdkClient.bodyMap("CredentialListSid" to (credentialListSid)), contentType = "application/x-www-form-urlencoded", operationId = "createSipDomainsCredentialListMappings", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountSipSipDomainSipCredentialListMapping>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(domainSid)}/CredentialListMappings.json",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("CredentialListSid" to (credentialListSid)),
+                    contentType = "application/x-www-form-urlencoded",
+                    operationId = "createSipDomainsCredentialListMappings",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists credential list mappings for a specified SIP domain and account. Use `PageSize` to control the number of resources on a page and `PageToken` to request a page identified by a token from the API. The response includes page metadata and a `credential_list_mappings` array.
+     * Lists credential list mappings for a specified SIP domain and account. Use `PageSize` to
+     * control the number of resources on a page and `PageToken` to request a page identified by a
+     * token from the API. The response includes page metadata and a `credential_list_mappings`
+     * array.
      *
      * Read multiple CredentialListMapping resources from an account.
      *
      * @param accountSid The unique id of the Account responsible for this resource.
-     * @param domainSid A 34 character string that uniquely identifies the SIP Domain
-     *   that includes the resource to read.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param domainSid A 34 character string that uniquely identifies the SIP Domain that includes
+     *   the resource to read.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listSipDomainsCredentialListMappings(clientConfig: ClientConfig, accountSid: String, domainSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): ListSipDomainsCredentialListMappingsResponse {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun listSipDomainsCredentialListMappings(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        domainSid: String,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): ListSipDomainsCredentialListMappingsResponse {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("DomainSid", domainSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("DomainSid", domainSid, "^SD[0-9a-fA-F]{32}$")
 
         if (pageSize != null) {
-            Validation.validateRange("PageSize", pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (page != null) {
             Validation.validateRange("Page", page, Validation.RangeOpts(min = 0.0))
-}
+        }
 
-        return SdkClient.request<ListSipDomainsCredentialListMappingsResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(domainSid)}/CredentialListMappings.json", config = clientConfig, query = mapOf("PageSize" to SdkClient.queryValue(pageSize, "form", true), "Page" to SdkClient.queryValue(page, "form", true), "PageToken" to SdkClient.queryValue(pageToken, "form", true)), operationId = "listSipDomainsCredentialListMappings", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ListSipDomainsCredentialListMappingsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(domainSid)}/CredentialListMappings.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "PageSize" to SdkClient.queryValue(pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(page, "form", true),
+                            "PageToken" to SdkClient.queryValue(pageToken, "form", true),
+                        ),
+                    operationId = "listSipDomainsCredentialListMappings",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Retrieves a credential list mapping for a SIP domain in an account. Use the account, domain, and mapping identifiers to select the resource; each identifier has a required 34-character format.
+     * Retrieves a credential list mapping for a SIP domain in an account. Use the account, domain,
+     * and mapping identifiers to select the resource; each identifier has a required 34-character
+     * format.
      *
      * Fetch a single CredentialListMapping resource from an account.
      *
      * @param accountSid The unique id of the Account responsible for this resource.
-     * @param domainSid A 34 character string that uniquely identifies the SIP Domain
-     *   that includes the resource to fetch.
-     * @param sid A 34 character string that uniquely identifies the resource to
-     *   fetch.
+     * @param domainSid A 34 character string that uniquely identifies the SIP Domain that includes
+     *   the resource to fetch.
+     * @param sid A 34 character string that uniquely identifies the resource to fetch.
      */
-    fun fetchSipDomainsCredentialListMappings(clientConfig: ClientConfig, accountSid: String, domainSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountSipSipDomainSipCredentialListMapping {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun fetchSipDomainsCredentialListMappings(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        domainSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountSipSipDomainSipCredentialListMapping {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("DomainSid", domainSid, Validation.LengthOpts(min = 34, max = 34))
@@ -110,26 +174,39 @@ data class ListSipDomainsCredentialListMappingsResponse(
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^CL[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountSipSipDomainSipCredentialListMapping>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(domainSid)}/CredentialListMappings/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "fetchSipDomainsCredentialListMappings", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountSipSipDomainSipCredentialListMapping>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(domainSid)}/CredentialListMappings/${SdkClient.encodePathSegment(sid)}.json",
+                    config = clientConfig,
+                    operationId = "fetchSipDomainsCredentialListMappings",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /**
      * Delete a CredentialListMapping resource from an account.
      *
      * @param accountSid The unique id of the Account responsible for this resource.
-     * @param domainSid A 34 character string that uniquely identifies the SIP Domain
-     *   that includes the resource to delete.
-     * @param sid A 34 character string that uniquely identifies the resource to
-     *   delete.
+     * @param domainSid A 34 character string that uniquely identifies the SIP Domain that includes
+     *   the resource to delete.
+     * @param sid A 34 character string that uniquely identifies the resource to delete.
      */
-    fun deleteSipDomainsCredentialListMappings(clientConfig: ClientConfig, accountSid: String, domainSid: String, sid: String, options: RequestOptions? = null): Unit {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun deleteSipDomainsCredentialListMappings(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        domainSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("DomainSid", domainSid, Validation.LengthOpts(min = 34, max = 34))
@@ -138,13 +215,15 @@ data class ListSipDomainsCredentialListMappingsResponse(
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^CL[0-9a-fA-F]{32}$")
 
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(domainSid)}/CredentialListMappings/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "deleteSipDomainsCredentialListMappings", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(domainSid)}/CredentialListMappings/${SdkClient.encodePathSegment(sid)}.json",
+                config = clientConfig,
+                operationId = "deleteSipDomainsCredentialListMappings",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
-
-
-
-
-
-
-
 }

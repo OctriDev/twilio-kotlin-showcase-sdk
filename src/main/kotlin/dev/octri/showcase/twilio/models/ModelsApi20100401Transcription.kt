@@ -3,60 +3,37 @@
 
 package dev.octri.showcase.twilio.models
 
-/**
- * Typed representation of the `ApiV2010AccountTranscription` API schema.
- */
+/** Typed representation of the `ApiV2010AccountTranscription` API schema. */
 data class ApiV2010AccountTranscription(
-    /**
-     * The SID of the Account that created the Transcription resource.
-     */
+    /** The SID of the Account that created the Transcription resource. */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
-    /**
-     * The API version used to create the transcription.
-     */
+    /** The API version used to create the transcription. */
     @com.fasterxml.jackson.annotation.JsonProperty("api_version") val apiVersion: String? = null,
-    /**
-     * The date and time in GMT that the resource was created specified in RFC 2822 format.
-     */
+    /** The date and time in GMT that the resource was created specified in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
-    /**
-     * The date and time in GMT that the resource was last updated specified in RFC 2822 format.
-     */
+    /** The date and time in GMT that the resource was last updated specified in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
-    /**
-     * The duration of the transcribed audio in seconds.
-     */
+    /** The duration of the transcribed audio in seconds. */
     val duration: String? = null,
     /**
-     * The charge for the transcript in the currency associated with the account. This value is populated after the transcript is complete so it may not be available immediately.
+     * The charge for the transcript in the currency associated with the account. This value is
+     * populated after the transcript is complete so it may not be available immediately.
      */
     val price: Double? = null,
-    /**
-     * The currency in which `price` is measured, in ISO 4127 format (e.g. `usd`, `eur`, `jpy`).
-     */
+    /** The currency in which `price` is measured, in ISO 4127 format (e.g. `usd`, `eur`, `jpy`). */
     @com.fasterxml.jackson.annotation.JsonProperty("price_unit") val priceUnit: String? = null,
-    /**
-     * The SID of the Recording from which the transcription was created.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("recording_sid") val recordingSid: String? = null,
-    /**
-     * The unique string that that we created to identify the Transcription resource.
-     */
+    /** The SID of the Recording from which the transcription was created. */
+    @com.fasterxml.jackson.annotation.JsonProperty("recording_sid")
+    val recordingSid: String? = null,
+    /** The unique string that that we created to identify the Transcription resource. */
     val sid: String? = null,
-    /**
-     * The status of the transcription. Can be: `in-progress`, `completed`, `failed`.
-     */
+    /** The status of the transcription. Can be: `in-progress`, `completed`, `failed`. */
     val status: TranscriptionEnumStatus? = null,
-    /**
-     * The text content of the transcription.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("transcription_text") val transcriptionText: String? = null,
-    /**
-     * The transcription type. Can only be: `fast`.
-     */
+    /** The text content of the transcription. */
+    @com.fasterxml.jackson.annotation.JsonProperty("transcription_text")
+    val transcriptionText: String? = null,
+    /** The transcription type. Can only be: `fast`. */
     val type: String? = null,
-    /**
-     * The URI of the resource, relative to `api.twilio.com`.
-     */
-    val uri: String? = null
+    /** The URI of the resource, relative to `api.twilio.com`. */
+    val uri: String? = null,
 )

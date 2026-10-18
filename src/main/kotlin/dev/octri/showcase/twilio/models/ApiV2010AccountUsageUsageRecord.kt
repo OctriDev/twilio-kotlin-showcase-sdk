@@ -5,68 +5,57 @@ package dev.octri.showcase.twilio.models
 
 import java.time.LocalDate
 
-/**
- * Typed representation of the `ApiV2010AccountUsageUsageRecord` API schema.
- */
+/** Typed representation of the `ApiV2010AccountUsageUsageRecord` API schema. */
 data class ApiV2010AccountUsageUsageRecord(
-    /**
-     * The SID of the Account that accrued the usage.
-     */
+    /** The SID of the Account that accrued the usage. */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
-    /**
-     * The API version used to create the resource.
-     */
+    /** The API version used to create the resource. */
     @com.fasterxml.jackson.annotation.JsonProperty("api_version") val apiVersion: String? = null,
     /**
-     * Usage records up to date as of this timestamp, formatted as YYYY-MM-DDTHH:MM:SS+00:00. All timestamps are in GMT
+     * Usage records up to date as of this timestamp, formatted as YYYY-MM-DDTHH:MM:SS+00:00. All
+     * timestamps are in GMT
      */
     @com.fasterxml.jackson.annotation.JsonProperty("as_of") val asOf: String? = null,
-    /**
-     * The category of usage. For more information, see Usage Categories.
-     */
+    /** The category of usage. For more information, see Usage Categories. */
     val category: String? = null,
-    /**
-     * The number of usage events, such as the number of calls.
-     */
+    /** The number of usage events, such as the number of calls. */
     val count: String? = null,
-    /**
-     * The units in which `count` is measured, such as `calls` for calls or `messages` for SMS.
-     */
+    /** The units in which `count` is measured, such as `calls` for calls or `messages` for SMS. */
     @com.fasterxml.jackson.annotation.JsonProperty("count_unit") val countUnit: String? = null,
-    /**
-     * A plain-language description of the usage category.
-     */
+    /** A plain-language description of the usage category. */
     val description: String? = null,
     /**
-     * The last date for which usage is included in the UsageRecord. The date is specified in GMT and formatted as `YYYY-MM-DD`.
+     * The last date for which usage is included in the UsageRecord. The date is specified in GMT
+     * and formatted as `YYYY-MM-DD`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("end_date") val endDate: LocalDate? = null,
     /**
-     * The total price of the usage in the currency specified in `price_unit` and associated with the account.
+     * The total price of the usage in the currency specified in `price_unit` and associated with
+     * the account.
      */
     val price: Double? = null,
     /**
-     * The currency in which `price` is measured, in ISO 4127 format, such as `usd`, `eur`, and `jpy`.
+     * The currency in which `price` is measured, in ISO 4127 format, such as `usd`, `eur`, and
+     * `jpy`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("price_unit") val priceUnit: String? = null,
     /**
-     * The first date for which usage is included in this UsageRecord. The date is specified in GMT and formatted as `YYYY-MM-DD`.
+     * The first date for which usage is included in this UsageRecord. The date is specified in GMT
+     * and formatted as `YYYY-MM-DD`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("start_date") val startDate: LocalDate? = null,
     /**
-     * A list of related resources identified by their URIs. For more information, see List Subresources.
+     * A list of related resources identified by their URIs. For more information, see List
+     * Subresources.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("subresource_uris") val subresourceUris: Map<String, Any>? = null,
-    /**
-     * The URI of the resource, relative to `api.twilio.com`.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("subresource_uris")
+    val subresourceUris: Map<String, Any>? = null,
+    /** The URI of the resource, relative to `api.twilio.com`. */
     val uri: String? = null,
-    /**
-     * The amount used to bill usage and measured in units described in `usage_unit`.
-     */
+    /** The amount used to bill usage and measured in units described in `usage_unit`. */
     val usage: String? = null,
     /**
      * The units in which `usage` is measured, such as `minutes` for calls or `messages` for SMS.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("usage_unit") val usageUnit: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("usage_unit") val usageUnit: String? = null,
 )

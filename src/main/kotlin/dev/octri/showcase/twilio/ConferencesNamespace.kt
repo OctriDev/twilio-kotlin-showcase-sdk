@@ -3,37 +3,72 @@
 
 package dev.octri.showcase.twilio
 
-
 class ConferencesNamespace(private val clientConfig: ClientConfig) {
     val recordings: ConferencesRecordingsNamespace
     val participants: ConferencesParticipantsNamespace
+
     init {
         recordings = ConferencesRecordingsNamespace(clientConfig)
         participants = ConferencesParticipantsNamespace(clientConfig)
     }
+
     /**
-     * Retrieves a specific conference for an account. Use the conference SID to identify it and inspect its status, region, and reason for ending.
+     * Retrieves a specific conference for an account. Use the conference SID to identify it and
+     * inspect its status, region, and reason for ending.
      *
      * Fetch an instance of a conference
      */
-    fun fetch(accountSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountConference {
-        return dev.octri.showcase.twilio.methods.Conferences.fetchConferences(clientConfig, accountSid, sid, options)
+    fun fetch(
+        accountSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountConference {
+        return dev.octri.showcase.twilio.methods.Conferences.fetchConferences(
+            clientConfig,
+            accountSid,
+            sid,
+            options,
+        )
     }
 
     /**
-     * Updates a conference's status or announcement configuration. Set `Status` to `completed` to end the conference, or provide an announcement URL and its HTTP method. The response contains the updated conference resource.
+     * Updates a conference's status or announcement configuration. Set `Status` to `completed` to
+     * end the conference, or provide an announcement URL and its HTTP method. The response contains
+     * the updated conference resource.
      */
-    fun update(accountSid: String, sid: String, status: ConferenceEnumUpdateStatus? = null, announceUrl: String? = null, announceMethod: UpdateConferencesAnnounceMethodEnum? = null, options: RequestOptions? = null): ApiV2010AccountConference {
-        return dev.octri.showcase.twilio.methods.Conferences.updateConferences(clientConfig, accountSid, sid, status, announceUrl, announceMethod, options)
+    fun update(
+        accountSid: String,
+        sid: String,
+        status: ConferenceEnumUpdateStatus? = null,
+        announceUrl: String? = null,
+        announceMethod: UpdateConferencesAnnounceMethodEnum? = null,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountConference {
+        return dev.octri.showcase.twilio.methods.Conferences.updateConferences(
+            clientConfig,
+            accountSid,
+            sid,
+            status,
+            announceUrl,
+            announceMethod,
+            options,
+        )
     }
 
     /**
-     * Lists conferences belonging to the specified account. Filter results by creation or update date, friendly name, or status, and use the page parameters to navigate the results.
+     * Lists conferences belonging to the specified account. Filter results by creation or update
+     * date, friendly name, or status, and use the page parameters to navigate the results.
      *
      * Retrieve a list of conferences belonging to the account used to make the request
      */
-    fun list(request: dev.octri.showcase.twilio.methods.Conferences.ListConferencesRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.Conferences.ListConferencesResponse {
-        return dev.octri.showcase.twilio.methods.Conferences.listConferences(clientConfig, request, options)
+    fun list(
+        request: dev.octri.showcase.twilio.methods.Conferences.ListConferencesRequest,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.Conferences.ListConferencesResponse {
+        return dev.octri.showcase.twilio.methods.Conferences.listConferences(
+            clientConfig,
+            request,
+            options,
+        )
     }
-
 }
