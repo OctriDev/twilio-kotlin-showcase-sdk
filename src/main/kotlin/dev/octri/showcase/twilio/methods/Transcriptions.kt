@@ -11,100 +11,151 @@ import dev.octri.showcase.twilio.Validation
 
 object Transcriptions {
 
-data class ListTranscriptionsResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    val transcriptions: List<ApiV2010AccountTranscription>? = null
-)
-
+    data class ListTranscriptionsResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        val transcriptions: List<ApiV2010AccountTranscription>? = null,
+    )
 
     /**
-     * Retrieves a transcription resource belonging to an account. Use the account and transcription SIDs to identify the resource and review its status, transcript text, and associated recording.
+     * Retrieves a transcription resource belonging to an account. Use the account and transcription
+     * SIDs to identify the resource and review its status, transcript text, and associated
+     * recording.
      *
      * Fetch an instance of a Transcription
      *
-     * @param accountSid The SID of the Account that created the Transcription
-     *   resource to fetch.
-     * @param sid The Twilio-provided string that uniquely identifies the
-     *   Transcription resource to fetch.
+     * @param accountSid The SID of the Account that created the Transcription resource to fetch.
+     * @param sid The Twilio-provided string that uniquely identifies the Transcription resource to
+     *   fetch.
      */
-    fun fetchTranscriptions(clientConfig: ClientConfig, accountSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountTranscription {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun fetchTranscriptions(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountTranscription {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^TR[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountTranscription>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Transcriptions/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "fetchTranscriptions", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountTranscription>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Transcriptions/${SdkClient.encodePathSegment(sid)}.json",
+                    config = clientConfig,
+                    operationId = "fetchTranscriptions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /**
      * Delete a transcription from the account used to make the request
      *
-     * @param accountSid The SID of the Account that created the Transcription
-     *   resources to delete.
-     * @param sid The Twilio-provided string that uniquely identifies the
-     *   Transcription resource to delete.
+     * @param accountSid The SID of the Account that created the Transcription resources to delete.
+     * @param sid The Twilio-provided string that uniquely identifies the Transcription resource to
+     *   delete.
      */
-    fun deleteTranscriptions(clientConfig: ClientConfig, accountSid: String, sid: String, options: RequestOptions? = null): Unit {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun deleteTranscriptions(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^TR[0-9a-fA-F]{32}$")
 
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Transcriptions/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "deleteTranscriptions", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Transcriptions/${SdkClient.encodePathSegment(sid)}.json",
+                config = clientConfig,
+                operationId = "deleteTranscriptions",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Lists transcription resources belonging to an account. Use the page parameters to retrieve results in pages, with `PageSize` controlling the number of resources returned per page.
+     * Lists transcription resources belonging to an account. Use the page parameters to retrieve
+     * results in pages, with `PageSize` controlling the number of resources returned per page.
      *
      * Retrieve a list of transcriptions belonging to the account used to make the request
      *
-     * @param accountSid The SID of the Account that created the Transcription
-     *   resources to read.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param accountSid The SID of the Account that created the Transcription resources to read.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listTranscriptions(clientConfig: ClientConfig, accountSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): ListTranscriptionsResponse {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun listTranscriptions(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): ListTranscriptionsResponse {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (pageSize != null) {
-            Validation.validateRange("PageSize", pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (page != null) {
             Validation.validateRange("Page", page, Validation.RangeOpts(min = 0.0))
-}
+        }
 
-        return SdkClient.request<ListTranscriptionsResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Transcriptions.json", config = clientConfig, query = mapOf("PageSize" to SdkClient.queryValue(pageSize, "form", true), "Page" to SdkClient.queryValue(page, "form", true), "PageToken" to SdkClient.queryValue(pageToken, "form", true)), operationId = "listTranscriptions", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ListTranscriptionsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Transcriptions.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "PageSize" to SdkClient.queryValue(pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(page, "form", true),
+                            "PageToken" to SdkClient.queryValue(pageToken, "form", true),
+                        ),
+                    operationId = "listTranscriptions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

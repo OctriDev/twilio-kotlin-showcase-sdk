@@ -4,169 +4,163 @@
 package dev.octri.showcase.twilio.models
 
 /**
- * The set of Boolean properties that indicate whether a phone number can receive calls or messages. Capabilities are `Voice`, `SMS`, and `MMS` and each capability can be: `true` or `false`.
+ * The set of Boolean properties that indicate whether a phone number can receive calls or messages.
+ * Capabilities are `Voice`, `SMS`, and `MMS` and each capability can be: `true` or `false`.
  */
 data class ApiV2010AccountIncomingPhoneNumberCapabilities(
-    /**
-     * Optional `boolean` value serialized in the `mms` wire field.
-     */
+    /** Optional `boolean` value serialized in the `mms` wire field. */
     val mms: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `sms` wire field.
-     */
+    /** Optional `boolean` value serialized in the `sms` wire field. */
     val sms: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `voice` wire field.
-     */
+    /** Optional `boolean` value serialized in the `voice` wire field. */
     val voice: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `fax` wire field.
-     */
-    val fax: Boolean? = null
+    /** Optional `boolean` value serialized in the `fax` wire field. */
+    val fax: Boolean? = null,
 )
 
-/**
- * Typed representation of the `ApiV2010AccountIncomingPhoneNumber` API schema.
- */
+/** Typed representation of the `ApiV2010AccountIncomingPhoneNumber` API schema. */
 class ApiV2010AccountIncomingPhoneNumber(
-    /**
-     * The SID of the Account that created this IncomingPhoneNumber resource.
-     */
+    /** The SID of the Account that created this IncomingPhoneNumber resource. */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
-    /**
-     * The SID of the Address resource associated with the phone number.
-     */
+    /** The SID of the Address resource associated with the phone number. */
     @com.fasterxml.jackson.annotation.JsonProperty("address_sid") val addressSid: String? = null,
     /**
-     * Whether the phone number requires an Address registered with Twilio. Can be: `none`, `any`, `local`, or `foreign`.
+     * Whether the phone number requires an Address registered with Twilio. Can be: `none`, `any`,
+     * `local`, or `foreign`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("address_requirements") val addressRequirements: IncomingPhoneNumberEnumAddressRequirement? = null,
-    /**
-     * The API version used to start a new TwiML session.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("address_requirements")
+    val addressRequirements: IncomingPhoneNumberEnumAddressRequirement? = null,
+    /** The API version used to start a new TwiML session. */
     @com.fasterxml.jackson.annotation.JsonProperty("api_version") val apiVersion: String? = null,
-    /**
-     * Whether the phone number is new to the Twilio platform. Can be: `true` or `false`.
-     */
+    /** Whether the phone number is new to the Twilio platform. Can be: `true` or `false`. */
     val beta: Boolean? = null,
     /**
-     * The set of Boolean properties that indicate whether a phone number can receive calls or messages. Capabilities are `Voice`, `SMS`, and `MMS` and each capability can be: `true` or `false`.
+     * The set of Boolean properties that indicate whether a phone number can receive calls or
+     * messages. Capabilities are `Voice`, `SMS`, and `MMS` and each capability can be: `true` or
+     * `false`.
      */
     val capabilities: ApiV2010AccountIncomingPhoneNumberCapabilities? = null,
-    /**
-     * The date and time in GMT that the resource was created specified in RFC 2822 format.
-     */
+    /** The date and time in GMT that the resource was created specified in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
-    /**
-     * The date and time in GMT that the resource was last updated specified in RFC 2822 format.
-     */
+    /** The date and time in GMT that the resource was last updated specified in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
+    /** The string that you assigned to describe the resource. */
+    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name")
+    val friendlyName: String? = null,
     /**
-     * The string that you assigned to describe the resource.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name") val friendlyName: String? = null,
-    /**
-     * The SID of the Identity resource that we associate with the phone number. Some regions require an Identity to meet local regulations.
+     * The SID of the Identity resource that we associate with the phone number. Some regions
+     * require an Identity to meet local regulations.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("identity_sid") val identitySid: String? = null,
     /**
-     * The phone number in E.164 format, which consists of a + followed by the country code and subscriber number.
+     * The phone number in E.164 format, which consists of a + followed by the country code and
+     * subscriber number.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("phone_number") val phoneNumber: String? = null,
     /**
-     * The phone number's origin. `twilio` identifies Twilio-owned phone numbers and `hosted` identifies hosted phone numbers.
+     * The phone number's origin. `twilio` identifies Twilio-owned phone numbers and `hosted`
+     * identifies hosted phone numbers.
      */
     val origin: String? = null,
-    /**
-     * The unique string that that we created to identify this IncomingPhoneNumber resource.
-     */
+    /** The unique string that that we created to identify this IncomingPhoneNumber resource. */
     val sid: String? = null,
     /**
-     * The SID of the application that handles SMS messages sent to the phone number. If an `sms_application_sid` is present, we ignore all `sms_*_url` values and use those of the application.
+     * The SID of the application that handles SMS messages sent to the phone number. If an
+     * `sms_application_sid` is present, we ignore all `sms_*_url` values and use those of the
+     * application.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("sms_application_sid") val smsApplicationSid: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("sms_application_sid")
+    val smsApplicationSid: String? = null,
+    /** The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("sms_fallback_method")
+    val smsFallbackMethod: ApiV2010AccountIncomingPhoneNumberSmsFallbackMethodEnum? = null,
     /**
-     * The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`.
+     * The URL that we call when an error occurs while retrieving or executing the TwiML from
+     * `sms_url`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("sms_fallback_method") val smsFallbackMethod: ApiV2010AccountIncomingPhoneNumberSmsFallbackMethodEnum? = null,
-    /**
-     * The URL that we call when an error occurs while retrieving or executing the TwiML from `sms_url`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("sms_fallback_url") val smsFallbackUrl: String? = null,
-    /**
-     * The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("sms_method") val smsMethod: ApiV2010AccountIncomingPhoneNumberSmsMethodEnum? = null,
-    /**
-     * The URL we call when the phone number receives an incoming SMS message.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("sms_fallback_url")
+    val smsFallbackUrl: String? = null,
+    /** The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("sms_method")
+    val smsMethod: ApiV2010AccountIncomingPhoneNumberSmsMethodEnum? = null,
+    /** The URL we call when the phone number receives an incoming SMS message. */
     @com.fasterxml.jackson.annotation.JsonProperty("sms_url") val smsUrl: String? = null,
     /**
-     * The URL we call using the `status_callback_method` to send status information to your application.
+     * The URL we call using the `status_callback_method` to send status information to your
+     * application.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("status_callback") val statusCallback: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("status_callback")
+    val statusCallback: String? = null,
+    /** The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("status_callback_method")
+    val statusCallbackMethod: ApiV2010AccountIncomingPhoneNumberStatusCallbackMethodEnum? = null,
     /**
-     * The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("status_callback_method") val statusCallbackMethod: ApiV2010AccountIncomingPhoneNumberStatusCallbackMethodEnum? = null,
-    /**
-     * The SID of the Trunk that handles calls to the phone number. If a `trunk_sid` is present, we ignore all of the voice urls and voice applications and use those set on the Trunk. Setting a `trunk_sid` will automatically delete your `voice_application_sid` and vice versa.
+     * The SID of the Trunk that handles calls to the phone number. If a `trunk_sid` is present, we
+     * ignore all of the voice urls and voice applications and use those set on the Trunk. Setting a
+     * `trunk_sid` will automatically delete your `voice_application_sid` and vice versa.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("trunk_sid") val trunkSid: String? = null,
-    /**
-     * The URI of the resource, relative to `api.twilio.com`.
-     */
+    /** The URI of the resource, relative to `api.twilio.com`. */
     val uri: String? = null,
+    /** Optional enumerated value serialized in the `voice_receive_mode` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("voice_receive_mode")
+    val voiceReceiveMode: IncomingPhoneNumberEnumVoiceReceiveMode? = null,
     /**
-     * Optional enumerated value serialized in the `voice_receive_mode` wire field.
+     * The SID of the application that handles calls to the phone number. If a
+     * `voice_application_sid` is present, we ignore all of the voice urls and use those set on the
+     * application. Setting a `voice_application_sid` will automatically delete your `trunk_sid` and
+     * vice versa.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("voice_receive_mode") val voiceReceiveMode: IncomingPhoneNumberEnumVoiceReceiveMode? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("voice_application_sid")
+    val voiceApplicationSid: String? = null,
     /**
-     * The SID of the application that handles calls to the phone number. If a `voice_application_sid` is present, we ignore all of the voice urls and use those set on the application. Setting a `voice_application_sid` will automatically delete your `trunk_sid` and vice versa.
+     * Whether we look up the caller's caller-ID name from the CNAM database ($0.01 per look up).
+     * Can be: `true` or `false`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("voice_application_sid") val voiceApplicationSid: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("voice_caller_id_lookup")
+    val voiceCallerIdLookup: Boolean? = null,
+    /** The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("voice_fallback_method")
+    val voiceFallbackMethod: ApiV2010AccountIncomingPhoneNumberVoiceFallbackMethodEnum? = null,
     /**
-     * Whether we look up the caller's caller-ID name from the CNAM database ($0.01 per look up). Can be: `true` or `false`.
+     * The URL that we call when an error occurs retrieving or executing the TwiML requested by
+     * `url`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("voice_caller_id_lookup") val voiceCallerIdLookup: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("voice_fallback_url")
+    val voiceFallbackUrl: String? = null,
+    /** The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("voice_method")
+    val voiceMethod: ApiV2010AccountIncomingPhoneNumberVoiceMethodEnum? = null,
     /**
-     * The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("voice_fallback_method") val voiceFallbackMethod: ApiV2010AccountIncomingPhoneNumberVoiceFallbackMethodEnum? = null,
-    /**
-     * The URL that we call when an error occurs retrieving or executing the TwiML requested by `url`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("voice_fallback_url") val voiceFallbackUrl: String? = null,
-    /**
-     * The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("voice_method") val voiceMethod: ApiV2010AccountIncomingPhoneNumberVoiceMethodEnum? = null,
-    /**
-     * The URL we call when the phone number receives a call. The `voice_url` will not be used if a `voice_application_sid` or a `trunk_sid` is set.
+     * The URL we call when the phone number receives a call. The `voice_url` will not be used if a
+     * `voice_application_sid` or a `trunk_sid` is set.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("voice_url") val voiceUrl: String? = null,
     /**
-     * The parameter displays if emergency calling is enabled for this number. Active numbers may place emergency calls by dialing valid emergency numbers for the country.
+     * The parameter displays if emergency calling is enabled for this number. Active numbers may
+     * place emergency calls by dialing valid emergency numbers for the country.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("emergency_status") val emergencyStatus: IncomingPhoneNumberEnumEmergencyStatus? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("emergency_status")
+    val emergencyStatus: IncomingPhoneNumberEnumEmergencyStatus? = null,
     /**
-     * The SID of the emergency address configuration that we use for emergency calling from this phone number.
+     * The SID of the emergency address configuration that we use for emergency calling from this
+     * phone number.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("emergency_address_sid") val emergencyAddressSid: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("emergency_address_sid")
+    val emergencyAddressSid: String? = null,
     /**
-     * The status of address registration with emergency services. A registered emergency address will be used during handling of emergency calls from this number.
+     * The status of address registration with emergency services. A registered emergency address
+     * will be used during handling of emergency calls from this number.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("emergency_address_status") val emergencyAddressStatus: IncomingPhoneNumberEnumEmergencyAddressStatus? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("emergency_address_status")
+    val emergencyAddressStatus: IncomingPhoneNumberEnumEmergencyAddressStatus? = null,
     /**
-     * The SID of the Bundle resource that you associate with the phone number. Some regions require a Bundle to meet local Regulations.
+     * The SID of the Bundle resource that you associate with the phone number. Some regions require
+     * a Bundle to meet local Regulations.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("bundle_sid") val bundleSid: String? = null,
-    /**
-     * Optional `string` value serialized in the `status` wire field.
-     */
+    /** Optional `string` value serialized in the `status` wire field. */
     val status: String? = null,
-    /**
-     * The phone number type.
-     */
-    val type: String? = null
+    /** The phone number type. */
+    val type: String? = null,
 )

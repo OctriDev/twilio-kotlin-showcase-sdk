@@ -3,26 +3,45 @@
 
 package dev.octri.showcase.twilio
 
-
 class AccountsNamespace(private val clientConfig: ClientConfig) {
-    /**
-     * Create a new Twilio Subaccount from the account making the request
-     */
+    /** Create a new Twilio Subaccount from the account making the request */
     fun create(friendlyName: String? = null, options: RequestOptions? = null): ApiV2010Account {
-        return dev.octri.showcase.twilio.methods.Accounts.createAccounts(clientConfig, friendlyName, options)
+        return dev.octri.showcase.twilio.methods.Accounts.createAccounts(
+            clientConfig,
+            friendlyName,
+            options,
+        )
     }
 
     /**
-     * Lists account resources associated with the account used to make the request. Filter by exact `FriendlyName` or by `Status`, and use `PageSize`, `Page`, and `PageToken` to control pagination.
+     * Lists account resources associated with the account used to make the request. Filter by exact
+     * `FriendlyName` or by `Status`, and use `PageSize`, `Page`, and `PageToken` to control
+     * pagination.
      *
      * Retrieves a collection of Accounts belonging to the account used to make the request
      */
-    fun list(friendlyName: String? = null, status: AccountEnumStatus? = null, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.Accounts.ListAccountsResponse {
-        return dev.octri.showcase.twilio.methods.Accounts.listAccounts(clientConfig, friendlyName, status, pageSize, page, pageToken, options)
+    fun list(
+        friendlyName: String? = null,
+        status: AccountEnumStatus? = null,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.Accounts.ListAccountsResponse {
+        return dev.octri.showcase.twilio.methods.Accounts.listAccounts(
+            clientConfig,
+            friendlyName,
+            status,
+            pageSize,
+            page,
+            pageToken,
+            options,
+        )
     }
 
     /**
-     * Retrieves a specific account by its Account SID. Supply `Sid` as a 34-character account identifier beginning with `AC` followed by 32 hexadecimal characters.
+     * Retrieves a specific account by its Account SID. Supply `Sid` as a 34-character account
+     * identifier beginning with `AC` followed by 32 hexadecimal characters.
      *
      * Fetch the account specified by the provided Account Sid
      */
@@ -31,12 +50,23 @@ class AccountsNamespace(private val clientConfig: ClientConfig) {
     }
 
     /**
-     * Updates properties of a specific account. Supply `FriendlyName`, `Status`, or both to change the account; a 409 response indicates that another request modified the account concurrently.
+     * Updates properties of a specific account. Supply `FriendlyName`, `Status`, or both to change
+     * the account; a 409 response indicates that another request modified the account concurrently.
      *
      * Modify the properties of a given Account
      */
-    fun update(sid: String, friendlyName: String? = null, status: AccountEnumStatus? = null, options: RequestOptions? = null): ApiV2010Account {
-        return dev.octri.showcase.twilio.methods.Accounts.updateAccounts(clientConfig, sid, friendlyName, status, options)
+    fun update(
+        sid: String,
+        friendlyName: String? = null,
+        status: AccountEnumStatus? = null,
+        options: RequestOptions? = null,
+    ): ApiV2010Account {
+        return dev.octri.showcase.twilio.methods.Accounts.updateAccounts(
+            clientConfig,
+            sid,
+            friendlyName,
+            status,
+            options,
+        )
     }
-
 }

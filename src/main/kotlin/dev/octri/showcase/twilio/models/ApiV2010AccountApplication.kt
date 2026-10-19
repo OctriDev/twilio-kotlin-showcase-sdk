@@ -3,92 +3,81 @@
 
 package dev.octri.showcase.twilio.models
 
-/**
- * Typed representation of the `ApiV2010AccountApplication` API schema.
- */
+/** Typed representation of the `ApiV2010AccountApplication` API schema. */
 data class ApiV2010AccountApplication(
-    /**
-     * The SID of the Account that created the Application resource.
-     */
+    /** The SID of the Account that created the Application resource. */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
-    /**
-     * The API version used to start a new TwiML session.
-     */
+    /** The API version used to start a new TwiML session. */
     @com.fasterxml.jackson.annotation.JsonProperty("api_version") val apiVersion: String? = null,
-    /**
-     * The date and time in GMT that the resource was created specified in RFC 2822 format.
-     */
+    /** The date and time in GMT that the resource was created specified in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
-    /**
-     * The date and time in GMT that the resource was last updated specified in RFC 2822 format.
-     */
+    /** The date and time in GMT that the resource was last updated specified in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
-    /**
-     * The string that you assigned to describe the resource.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name") val friendlyName: String? = null,
+    /** The string that you assigned to describe the resource. */
+    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name")
+    val friendlyName: String? = null,
     /**
      * The URL we call using a POST method to send message status information to your application.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("message_status_callback") val messageStatusCallback: String? = null,
-    /**
-     * The unique string that that we created to identify the Application resource.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("message_status_callback")
+    val messageStatusCallback: String? = null,
+    /** The unique string that that we created to identify the Application resource. */
     val sid: String? = null,
+    /** The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("sms_fallback_method")
+    val smsFallbackMethod: ApiV2010AccountApplicationSmsFallbackMethodEnum? = null,
     /**
-     * The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`.
+     * The URL that we call when an error occurs while retrieving or executing the TwiML from
+     * `sms_url`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("sms_fallback_method") val smsFallbackMethod: ApiV2010AccountApplicationSmsFallbackMethodEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("sms_fallback_url")
+    val smsFallbackUrl: String? = null,
+    /** The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("sms_method")
+    val smsMethod: ApiV2010AccountApplicationSmsMethodEnum? = null,
     /**
-     * The URL that we call when an error occurs while retrieving or executing the TwiML from `sms_url`.
+     * The URL we call using a POST method to send status information to your application about SMS
+     * messages that refer to the application.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("sms_fallback_url") val smsFallbackUrl: String? = null,
-    /**
-     * The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("sms_method") val smsMethod: ApiV2010AccountApplicationSmsMethodEnum? = null,
-    /**
-     * The URL we call using a POST method to send status information to your application about SMS messages that refer to the application.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("sms_status_callback") val smsStatusCallback: String? = null,
-    /**
-     * The URL we call when the phone number receives an incoming SMS message.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("sms_status_callback")
+    val smsStatusCallback: String? = null,
+    /** The URL we call when the phone number receives an incoming SMS message. */
     @com.fasterxml.jackson.annotation.JsonProperty("sms_url") val smsUrl: String? = null,
     /**
-     * The URL we call using the `status_callback_method` to send status information to your application.
+     * The URL we call using the `status_callback_method` to send status information to your
+     * application.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("status_callback") val statusCallback: String? = null,
-    /**
-     * The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("status_callback_method") val statusCallbackMethod: ApiV2010AccountApplicationStatusCallbackMethodEnum? = null,
-    /**
-     * The URI of the resource, relative to `api.twilio.com`.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("status_callback")
+    val statusCallback: String? = null,
+    /** The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("status_callback_method")
+    val statusCallbackMethod: ApiV2010AccountApplicationStatusCallbackMethodEnum? = null,
+    /** The URI of the resource, relative to `api.twilio.com`. */
     val uri: String? = null,
     /**
-     * Whether we look up the caller's caller-ID name from the CNAM database (additional charges apply). Can be: `true` or `false`.
+     * Whether we look up the caller's caller-ID name from the CNAM database (additional charges
+     * apply). Can be: `true` or `false`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("voice_caller_id_lookup") val voiceCallerIdLookup: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("voice_caller_id_lookup")
+    val voiceCallerIdLookup: Boolean? = null,
+    /** The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("voice_fallback_method")
+    val voiceFallbackMethod: ApiV2010AccountApplicationVoiceFallbackMethodEnum? = null,
     /**
-     * The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`.
+     * The URL that we call when an error occurs retrieving or executing the TwiML requested by
+     * `url`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("voice_fallback_method") val voiceFallbackMethod: ApiV2010AccountApplicationVoiceFallbackMethodEnum? = null,
-    /**
-     * The URL that we call when an error occurs retrieving or executing the TwiML requested by `url`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("voice_fallback_url") val voiceFallbackUrl: String? = null,
-    /**
-     * The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("voice_method") val voiceMethod: ApiV2010AccountApplicationVoiceMethodEnum? = null,
-    /**
-     * The URL we call when the phone number assigned to this application receives a call.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("voice_fallback_url")
+    val voiceFallbackUrl: String? = null,
+    /** The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("voice_method")
+    val voiceMethod: ApiV2010AccountApplicationVoiceMethodEnum? = null,
+    /** The URL we call when the phone number assigned to this application receives a call. */
     @com.fasterxml.jackson.annotation.JsonProperty("voice_url") val voiceUrl: String? = null,
     /**
-     * Whether to allow other Twilio accounts to dial this applicaton using Dial verb. Can be: `true` or `false`.
+     * Whether to allow other Twilio accounts to dial this applicaton using Dial verb. Can be:
+     * `true` or `false`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("public_application_connect_enabled") val publicApplicationConnectEnabled: Boolean? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("public_application_connect_enabled")
+    val publicApplicationConnectEnabled: Boolean? = null,
 )

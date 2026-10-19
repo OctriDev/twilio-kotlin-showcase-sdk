@@ -3,14 +3,14 @@
 
 package dev.octri.showcase.twilio.models
 
-/**
- * The HTTP method we should use to call `voice_fallback_url`. Can be: `GET` or `POST`.
- */
-class CreateApplicationsVoiceFallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateApplicationsVoiceFallbackMethodEnum && value == other.value
+/** The HTTP method we should use to call `voice_fallback_url`. Can be: `GET` or `POST`. */
+class CreateApplicationsVoiceFallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateApplicationsVoiceFallbackMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -18,19 +18,22 @@ class CreateApplicationsVoiceFallbackMethodEnum private constructor(
         @JvmField val GET = CreateApplicationsVoiceFallbackMethodEnum("GET")
         @JvmField val POST = CreateApplicationsVoiceFallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateApplicationsVoiceFallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CreateApplicationsVoiceFallbackMethodEnum(value)
     }
 }
 
-/**
- * The HTTP method we should use to call `voice_url`. Can be: `GET` or `POST`.
- */
-class CreateApplicationsVoiceMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateApplicationsVoiceMethodEnum && value == other.value
+/** The HTTP method we should use to call `voice_url`. Can be: `GET` or `POST`. */
+class CreateApplicationsVoiceMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateApplicationsVoiceMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -38,19 +41,22 @@ class CreateApplicationsVoiceMethodEnum private constructor(
         @JvmField val GET = CreateApplicationsVoiceMethodEnum("GET")
         @JvmField val POST = CreateApplicationsVoiceMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateApplicationsVoiceMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CreateApplicationsVoiceMethodEnum(value)
     }
 }
 
-/**
- * The HTTP method we should use to call `sms_fallback_url`. Can be: `GET` or `POST`.
- */
-class UpdateApplicationsSmsFallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is UpdateApplicationsSmsFallbackMethodEnum && value == other.value
+/** The HTTP method we should use to call `sms_fallback_url`. Can be: `GET` or `POST`. */
+class UpdateApplicationsSmsFallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is UpdateApplicationsSmsFallbackMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -58,19 +64,22 @@ class UpdateApplicationsSmsFallbackMethodEnum private constructor(
         @JvmField val GET = UpdateApplicationsSmsFallbackMethodEnum("GET")
         @JvmField val POST = UpdateApplicationsSmsFallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = UpdateApplicationsSmsFallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = UpdateApplicationsSmsFallbackMethodEnum(value)
     }
 }
 
-/**
- * The HTTP method we should use to call `sms_url`. Can be: `GET` or `POST`.
- */
-class UpdateApplicationsSmsMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is UpdateApplicationsSmsMethodEnum && value == other.value
+/** The HTTP method we should use to call `sms_url`. Can be: `GET` or `POST`. */
+class UpdateApplicationsSmsMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is UpdateApplicationsSmsMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -78,19 +87,22 @@ class UpdateApplicationsSmsMethodEnum private constructor(
         @JvmField val GET = UpdateApplicationsSmsMethodEnum("GET")
         @JvmField val POST = UpdateApplicationsSmsMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = UpdateApplicationsSmsMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = UpdateApplicationsSmsMethodEnum(value)
     }
 }
 
-/**
- * The HTTP method we should use to call `status_callback`. Can be: `GET` or `POST`.
- */
-class UpdateApplicationsStatusCallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is UpdateApplicationsStatusCallbackMethodEnum && value == other.value
+/** The HTTP method we should use to call `status_callback`. Can be: `GET` or `POST`. */
+class UpdateApplicationsStatusCallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is UpdateApplicationsStatusCallbackMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -98,19 +110,22 @@ class UpdateApplicationsStatusCallbackMethodEnum private constructor(
         @JvmField val GET = UpdateApplicationsStatusCallbackMethodEnum("GET")
         @JvmField val POST = UpdateApplicationsStatusCallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = UpdateApplicationsStatusCallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = UpdateApplicationsStatusCallbackMethodEnum(value)
     }
 }
 
-/**
- * The HTTP method we should use to call `voice_fallback_url`. Can be: `GET` or `POST`.
- */
-class UpdateApplicationsVoiceFallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is UpdateApplicationsVoiceFallbackMethodEnum && value == other.value
+/** The HTTP method we should use to call `voice_fallback_url`. Can be: `GET` or `POST`. */
+class UpdateApplicationsVoiceFallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is UpdateApplicationsVoiceFallbackMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -118,19 +133,22 @@ class UpdateApplicationsVoiceFallbackMethodEnum private constructor(
         @JvmField val GET = UpdateApplicationsVoiceFallbackMethodEnum("GET")
         @JvmField val POST = UpdateApplicationsVoiceFallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = UpdateApplicationsVoiceFallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = UpdateApplicationsVoiceFallbackMethodEnum(value)
     }
 }
 
-/**
- * The HTTP method we should use to call `voice_url`. Can be: `GET` or `POST`.
- */
-class UpdateApplicationsVoiceMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is UpdateApplicationsVoiceMethodEnum && value == other.value
+/** The HTTP method we should use to call `voice_url`. Can be: `GET` or `POST`. */
+class UpdateApplicationsVoiceMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is UpdateApplicationsVoiceMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -138,19 +156,25 @@ class UpdateApplicationsVoiceMethodEnum private constructor(
         @JvmField val GET = UpdateApplicationsVoiceMethodEnum("GET")
         @JvmField val POST = UpdateApplicationsVoiceMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = UpdateApplicationsVoiceMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = UpdateApplicationsVoiceMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method we should use when calling the `async_amd_status_callback` URL. Can be: `GET` or `POST` and the default is `POST`.
+ * The HTTP method we should use when calling the `async_amd_status_callback` URL. Can be: `GET` or
+ * `POST` and the default is `POST`.
  */
-class CreateCallsAsyncAmdStatusCallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateCallsAsyncAmdStatusCallbackMethodEnum && value == other.value
+class CreateCallsAsyncAmdStatusCallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateCallsAsyncAmdStatusCallbackMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -158,19 +182,25 @@ class CreateCallsAsyncAmdStatusCallbackMethodEnum private constructor(
         @JvmField val GET = CreateCallsAsyncAmdStatusCallbackMethodEnum("GET")
         @JvmField val POST = CreateCallsAsyncAmdStatusCallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateCallsAsyncAmdStatusCallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CreateCallsAsyncAmdStatusCallbackMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method that we should use to request the `fallback_url`. Can be: `GET` or `POST` and the default is `POST`. If an `application_sid` parameter is present, this parameter is ignored.
+ * The HTTP method that we should use to request the `fallback_url`. Can be: `GET` or `POST` and the
+ * default is `POST`. If an `application_sid` parameter is present, this parameter is ignored.
  */
-class CreateCallsFallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateCallsFallbackMethodEnum && value == other.value
+class CreateCallsFallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateCallsFallbackMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -178,19 +208,26 @@ class CreateCallsFallbackMethodEnum private constructor(
         @JvmField val GET = CreateCallsFallbackMethodEnum("GET")
         @JvmField val POST = CreateCallsFallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateCallsFallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CreateCallsFallbackMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method we should use when calling the `url` parameter's value. Can be: `GET` or `POST` and the default is `POST`. If an `application_sid` parameter is present, this parameter is ignored.
+ * The HTTP method we should use when calling the `url` parameter's value. Can be: `GET` or `POST`
+ * and the default is `POST`. If an `application_sid` parameter is present, this parameter is
+ * ignored.
  */
-class CreateCallsMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateCallsMethodEnum && value == other.value
+class CreateCallsMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateCallsMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -198,19 +235,25 @@ class CreateCallsMethodEnum private constructor(
         @JvmField val GET = CreateCallsMethodEnum("GET")
         @JvmField val POST = CreateCallsMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateCallsMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CreateCallsMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method we should use when calling the `recording_status_callback` URL. Can be: `GET` or `POST` and the default is `POST`.
+ * The HTTP method we should use when calling the `recording_status_callback` URL. Can be: `GET` or
+ * `POST` and the default is `POST`.
  */
-class CreateCallsRecordingStatusCallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateCallsRecordingStatusCallbackMethodEnum && value == other.value
+class CreateCallsRecordingStatusCallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateCallsRecordingStatusCallbackMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -218,19 +261,25 @@ class CreateCallsRecordingStatusCallbackMethodEnum private constructor(
         @JvmField val GET = CreateCallsRecordingStatusCallbackMethodEnum("GET")
         @JvmField val POST = CreateCallsRecordingStatusCallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateCallsRecordingStatusCallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CreateCallsRecordingStatusCallbackMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method we should use when calling the `status_callback` URL. Can be: `GET` or `POST` and the default is `POST`. If an `application_sid` parameter is present, this parameter is ignored.
+ * The HTTP method we should use when calling the `status_callback` URL. Can be: `GET` or `POST` and
+ * the default is `POST`. If an `application_sid` parameter is present, this parameter is ignored.
  */
-class CreateCallsStatusCallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateCallsStatusCallbackMethodEnum && value == other.value
+class CreateCallsStatusCallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateCallsStatusCallbackMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -238,19 +287,26 @@ class CreateCallsStatusCallbackMethodEnum private constructor(
         @JvmField val GET = CreateCallsStatusCallbackMethodEnum("GET")
         @JvmField val POST = CreateCallsStatusCallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateCallsStatusCallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CreateCallsStatusCallbackMethodEnum(value)
     }
 }
 
 /**
- * Whether to prompt the caller to confirm their payment information before submitting to the payment gateway. If `true`, the caller will hear the last 4 digits of their card or account number and must press 1 to confirm or 2 to cancel. Default is `false`.
+ * Whether to prompt the caller to confirm their payment information before submitting to the
+ * payment gateway. If `true`, the caller will hear the last 4 digits of their card or account
+ * number and must press 1 to confirm or 2 to cancel. Default is `false`.
  */
-class CreateCallsPaymentsConfirmationEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateCallsPaymentsConfirmationEnum && value == other.value
+class CreateCallsPaymentsConfirmationEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateCallsPaymentsConfirmationEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -258,19 +314,25 @@ class CreateCallsPaymentsConfirmationEnum private constructor(
         @JvmField val TRUE = CreateCallsPaymentsConfirmationEnum("true")
         @JvmField val FALSE = CreateCallsPaymentsConfirmationEnum("false")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateCallsPaymentsConfirmationEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CreateCallsPaymentsConfirmationEnum(value)
     }
 }
 
 /**
- * The HTTP method we should use to call `recording_status_callback`. Can be: `GET` or `POST` and the default is `POST`.
+ * The HTTP method we should use to call `recording_status_callback`. Can be: `GET` or `POST` and
+ * the default is `POST`.
  */
-class CreateCallsRecordingsRecordingStatusCallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateCallsRecordingsRecordingStatusCallbackMethodEnum && value == other.value
+class CreateCallsRecordingsRecordingStatusCallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateCallsRecordingsRecordingStatusCallbackMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -278,19 +340,22 @@ class CreateCallsRecordingsRecordingStatusCallbackMethodEnum private constructor
         @JvmField val GET = CreateCallsRecordingsRecordingStatusCallbackMethodEnum("GET")
         @JvmField val POST = CreateCallsRecordingsRecordingStatusCallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateCallsRecordingsRecordingStatusCallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CreateCallsRecordingsRecordingStatusCallbackMethodEnum(value)
     }
 }
 
-/**
- * The http method for the status_callback (one of GET, POST).
- */
-class CreateCallsSiprecStatusCallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateCallsSiprecStatusCallbackMethodEnum && value == other.value
+/** The http method for the status_callback (one of GET, POST). */
+class CreateCallsSiprecStatusCallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateCallsSiprecStatusCallbackMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -298,19 +363,25 @@ class CreateCallsSiprecStatusCallbackMethodEnum private constructor(
         @JvmField val GET = CreateCallsSiprecStatusCallbackMethodEnum("GET")
         @JvmField val POST = CreateCallsSiprecStatusCallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateCallsSiprecStatusCallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CreateCallsSiprecStatusCallbackMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method Twilio uses when sending `status_callback` requests. Possible values are `GET` and `POST`. Default is `POST`.
+ * The HTTP method Twilio uses when sending `status_callback` requests. Possible values are `GET`
+ * and `POST`. Default is `POST`.
  */
-class CreateCallsStreamsStatusCallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateCallsStreamsStatusCallbackMethodEnum && value == other.value
+class CreateCallsStreamsStatusCallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateCallsStreamsStatusCallbackMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -318,19 +389,22 @@ class CreateCallsStreamsStatusCallbackMethodEnum private constructor(
         @JvmField val GET = CreateCallsStreamsStatusCallbackMethodEnum("GET")
         @JvmField val POST = CreateCallsStreamsStatusCallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateCallsStreamsStatusCallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CreateCallsStreamsStatusCallbackMethodEnum(value)
     }
 }
 
-/**
- * The http method for the status_callback (one of GET, POST).
- */
-class CreateCallsTranscriptionsStatusCallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateCallsTranscriptionsStatusCallbackMethodEnum && value == other.value
+/** The http method for the status_callback (one of GET, POST). */
+class CreateCallsTranscriptionsStatusCallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateCallsTranscriptionsStatusCallbackMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -338,19 +412,25 @@ class CreateCallsTranscriptionsStatusCallbackMethodEnum private constructor(
         @JvmField val GET = CreateCallsTranscriptionsStatusCallbackMethodEnum("GET")
         @JvmField val POST = CreateCallsTranscriptionsStatusCallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateCallsTranscriptionsStatusCallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CreateCallsTranscriptionsStatusCallbackMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method Twilio will use when requesting the above `Url`. Either `GET` or `POST`. Default is `POST`.
+ * The HTTP method Twilio will use when requesting the above `Url`. Either `GET` or `POST`. Default
+ * is `POST`.
  */
-class CreateCallsUserDefinedMessageSubscriptionsMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateCallsUserDefinedMessageSubscriptionsMethodEnum && value == other.value
+class CreateCallsUserDefinedMessageSubscriptionsMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateCallsUserDefinedMessageSubscriptionsMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -358,19 +438,25 @@ class CreateCallsUserDefinedMessageSubscriptionsMethodEnum private constructor(
         @JvmField val GET = CreateCallsUserDefinedMessageSubscriptionsMethodEnum("GET")
         @JvmField val POST = CreateCallsUserDefinedMessageSubscriptionsMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateCallsUserDefinedMessageSubscriptionsMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CreateCallsUserDefinedMessageSubscriptionsMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method that we should use to request the `fallback_url`. Can be: `GET` or `POST` and the default is `POST`. If an `application_sid` parameter is present, this parameter is ignored.
+ * The HTTP method that we should use to request the `fallback_url`. Can be: `GET` or `POST` and the
+ * default is `POST`. If an `application_sid` parameter is present, this parameter is ignored.
  */
-class UpdateCallsFallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is UpdateCallsFallbackMethodEnum && value == other.value
+class UpdateCallsFallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is UpdateCallsFallbackMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -378,19 +464,25 @@ class UpdateCallsFallbackMethodEnum private constructor(
         @JvmField val GET = UpdateCallsFallbackMethodEnum("GET")
         @JvmField val POST = UpdateCallsFallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = UpdateCallsFallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = UpdateCallsFallbackMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method we should use when calling the `url`. Can be: `GET` or `POST` and the default is `POST`. If an `application_sid` parameter is present, this parameter is ignored.
+ * The HTTP method we should use when calling the `url`. Can be: `GET` or `POST` and the default is
+ * `POST`. If an `application_sid` parameter is present, this parameter is ignored.
  */
-class UpdateCallsMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is UpdateCallsMethodEnum && value == other.value
+class UpdateCallsMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is UpdateCallsMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -398,19 +490,26 @@ class UpdateCallsMethodEnum private constructor(
         @JvmField val GET = UpdateCallsMethodEnum("GET")
         @JvmField val POST = UpdateCallsMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = UpdateCallsMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = UpdateCallsMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method we should use when requesting the `status_callback` URL. Can be: `GET` or `POST` and the default is `POST`. If an `application_sid` parameter is present, this parameter is ignored.
+ * The HTTP method we should use when requesting the `status_callback` URL. Can be: `GET` or `POST`
+ * and the default is `POST`. If an `application_sid` parameter is present, this parameter is
+ * ignored.
  */
-class UpdateCallsStatusCallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is UpdateCallsStatusCallbackMethodEnum && value == other.value
+class UpdateCallsStatusCallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is UpdateCallsStatusCallbackMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -418,19 +517,25 @@ class UpdateCallsStatusCallbackMethodEnum private constructor(
         @JvmField val GET = UpdateCallsStatusCallbackMethodEnum("GET")
         @JvmField val POST = UpdateCallsStatusCallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = UpdateCallsStatusCallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = UpdateCallsStatusCallbackMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method we should use when calling the `amd_status_callback` URL. Can be: `GET` or `POST` and the default is `POST`.
+ * The HTTP method we should use when calling the `amd_status_callback` URL. Can be: `GET` or `POST`
+ * and the default is `POST`.
  */
-class CreateConferencesParticipantsAmdStatusCallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateConferencesParticipantsAmdStatusCallbackMethodEnum && value == other.value
+class CreateConferencesParticipantsAmdStatusCallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateConferencesParticipantsAmdStatusCallbackMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -438,39 +543,57 @@ class CreateConferencesParticipantsAmdStatusCallbackMethodEnum private construct
         @JvmField val GET = CreateConferencesParticipantsAmdStatusCallbackMethodEnum("GET")
         @JvmField val POST = CreateConferencesParticipantsAmdStatusCallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateConferencesParticipantsAmdStatusCallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            CreateConferencesParticipantsAmdStatusCallbackMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method we should use to call `conference_recording_status_callback`. Can be: `GET` or `POST` and defaults to `POST`.
+ * The HTTP method we should use to call `conference_recording_status_callback`. Can be: `GET` or
+ * `POST` and defaults to `POST`.
  */
-class CreateConferencesParticipantsConferenceRecordingStatusCallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateConferencesParticipantsConferenceRecordingStatusCallbackMethodEnum && value == other.value
+class CreateConferencesParticipantsConferenceRecordingStatusCallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateConferencesParticipantsConferenceRecordingStatusCallbackMethodEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val GET = CreateConferencesParticipantsConferenceRecordingStatusCallbackMethodEnum("GET")
-        @JvmField val POST = CreateConferencesParticipantsConferenceRecordingStatusCallbackMethodEnum("POST")
+        @JvmField
+        val GET = CreateConferencesParticipantsConferenceRecordingStatusCallbackMethodEnum("GET")
+        @JvmField
+        val POST = CreateConferencesParticipantsConferenceRecordingStatusCallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateConferencesParticipantsConferenceRecordingStatusCallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            CreateConferencesParticipantsConferenceRecordingStatusCallbackMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method we should use to call `conference_status_callback`. Can be: `GET` or `POST` and defaults to `POST`.
+ * The HTTP method we should use to call `conference_status_callback`. Can be: `GET` or `POST` and
+ * defaults to `POST`.
  */
-class CreateConferencesParticipantsConferenceStatusCallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateConferencesParticipantsConferenceStatusCallbackMethodEnum && value == other.value
+class CreateConferencesParticipantsConferenceStatusCallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateConferencesParticipantsConferenceStatusCallbackMethodEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -478,19 +601,27 @@ class CreateConferencesParticipantsConferenceStatusCallbackMethodEnum private co
         @JvmField val GET = CreateConferencesParticipantsConferenceStatusCallbackMethodEnum("GET")
         @JvmField val POST = CreateConferencesParticipantsConferenceStatusCallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateConferencesParticipantsConferenceStatusCallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            CreateConferencesParticipantsConferenceStatusCallbackMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method we should use when we call `recording_status_callback`. Can be: `GET` or `POST` and defaults to `POST`.
+ * The HTTP method we should use when we call `recording_status_callback`. Can be: `GET` or `POST`
+ * and defaults to `POST`.
  */
-class CreateConferencesParticipantsRecordingStatusCallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateConferencesParticipantsRecordingStatusCallbackMethodEnum && value == other.value
+class CreateConferencesParticipantsRecordingStatusCallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateConferencesParticipantsRecordingStatusCallbackMethodEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -498,19 +629,26 @@ class CreateConferencesParticipantsRecordingStatusCallbackMethodEnum private con
         @JvmField val GET = CreateConferencesParticipantsRecordingStatusCallbackMethodEnum("GET")
         @JvmField val POST = CreateConferencesParticipantsRecordingStatusCallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateConferencesParticipantsRecordingStatusCallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            CreateConferencesParticipantsRecordingStatusCallbackMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method we should use to call `status_callback`. Can be: `GET` and `POST` and defaults to `POST`.
+ * The HTTP method we should use to call `status_callback`. Can be: `GET` and `POST` and defaults to
+ * `POST`.
  */
-class CreateConferencesParticipantsStatusCallbackMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateConferencesParticipantsStatusCallbackMethodEnum && value == other.value
+class CreateConferencesParticipantsStatusCallbackMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateConferencesParticipantsStatusCallbackMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -518,19 +656,25 @@ class CreateConferencesParticipantsStatusCallbackMethodEnum private constructor(
         @JvmField val GET = CreateConferencesParticipantsStatusCallbackMethodEnum("GET")
         @JvmField val POST = CreateConferencesParticipantsStatusCallbackMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateConferencesParticipantsStatusCallbackMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CreateConferencesParticipantsStatusCallbackMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method we should use to call `wait_url`. Can be `GET` or `POST` and the default is `POST`. When using a static audio file, this should be `GET` so that we can cache the file.
+ * The HTTP method we should use to call `wait_url`. Can be `GET` or `POST` and the default is
+ * `POST`. When using a static audio file, this should be `GET` so that we can cache the file.
  */
-class CreateConferencesParticipantsWaitMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CreateConferencesParticipantsWaitMethodEnum && value == other.value
+class CreateConferencesParticipantsWaitMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CreateConferencesParticipantsWaitMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -538,19 +682,25 @@ class CreateConferencesParticipantsWaitMethodEnum private constructor(
         @JvmField val GET = CreateConferencesParticipantsWaitMethodEnum("GET")
         @JvmField val POST = CreateConferencesParticipantsWaitMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateConferencesParticipantsWaitMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CreateConferencesParticipantsWaitMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method we should use to call `announce_url`. Can be: `GET` or `POST` and defaults to `POST`.
+ * The HTTP method we should use to call `announce_url`. Can be: `GET` or `POST` and defaults to
+ * `POST`.
  */
-class UpdateConferencesParticipantsAnnounceMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is UpdateConferencesParticipantsAnnounceMethodEnum && value == other.value
+class UpdateConferencesParticipantsAnnounceMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is UpdateConferencesParticipantsAnnounceMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -558,19 +708,25 @@ class UpdateConferencesParticipantsAnnounceMethodEnum private constructor(
         @JvmField val GET = UpdateConferencesParticipantsAnnounceMethodEnum("GET")
         @JvmField val POST = UpdateConferencesParticipantsAnnounceMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = UpdateConferencesParticipantsAnnounceMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = UpdateConferencesParticipantsAnnounceMethodEnum(value)
     }
 }
 
 /**
- * The HTTP method we should use to call `hold_url`. Can be: `GET` or `POST` and the default is `GET`.
+ * The HTTP method we should use to call `hold_url`. Can be: `GET` or `POST` and the default is
+ * `GET`.
  */
-class UpdateConferencesParticipantsHoldMethodEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is UpdateConferencesParticipantsHoldMethodEnum && value == other.value
+class UpdateConferencesParticipantsHoldMethodEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is UpdateConferencesParticipantsHoldMethodEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -578,7 +734,10 @@ class UpdateConferencesParticipantsHoldMethodEnum private constructor(
         @JvmField val GET = UpdateConferencesParticipantsHoldMethodEnum("GET")
         @JvmField val POST = UpdateConferencesParticipantsHoldMethodEnum("POST")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = UpdateConferencesParticipantsHoldMethodEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = UpdateConferencesParticipantsHoldMethodEnum(value)
     }
 }

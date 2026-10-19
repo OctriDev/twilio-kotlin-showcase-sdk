@@ -3,88 +3,91 @@
 
 package dev.octri.showcase.twilio.models
 
-/**
- * Typed representation of the `ApiV2010AccountMessage` API schema.
- */
+/** Typed representation of the `ApiV2010AccountMessage` API schema. */
 data class ApiV2010AccountMessage(
-    /**
-     * The text content of the message
-     */
+    /** The text content of the message */
     val body: String? = null,
     /**
-     * The number of segments that make up the complete message. SMS message bodies that exceed the character limit are segmented and charged as multiple messages. Note: For messages sent via a Messaging Service, `num_segments` is initially `0`, since a sender hasn't yet been assigned.
+     * The number of segments that make up the complete message. SMS message bodies that exceed the
+     * character limit are segmented and charged as multiple messages. Note: For messages sent via a
+     * Messaging Service, `num_segments` is initially `0`, since a sender hasn't yet been assigned.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("num_segments") val numSegments: String? = null,
     /**
-     * The direction of the message. Can be: `inbound` for incoming messages, `outbound-api` for messages created by the REST API, `outbound-call` for messages created during a call, or `outbound-reply` for messages created in response to an incoming message.
+     * The direction of the message. Can be: `inbound` for incoming messages, `outbound-api` for
+     * messages created by the REST API, `outbound-call` for messages created during a call, or
+     * `outbound-reply` for messages created in response to an incoming message.
      */
     val direction: MessageEnumDirection? = null,
     /**
-     * The sender's phone number (in E.164 format), alphanumeric sender ID, Wireless SIM, short code, or channel address (e.g., `whatsapp:+15554449999`). For incoming messages, this is the number or channel address of the sender. For outgoing messages, this value is a Twilio phone number, alphanumeric sender ID, short code, or channel address from which the message is sent.
+     * The sender's phone number (in E.164 format), alphanumeric sender ID, Wireless SIM, short
+     * code, or channel address (e.g., `whatsapp:+15554449999`). For incoming messages, this is the
+     * number or channel address of the sender. For outgoing messages, this value is a Twilio phone
+     * number, alphanumeric sender ID, short code, or channel address from which the message is
+     * sent.
      */
     val from: String? = null,
     /**
-     * The recipient's phone number (in E.164 format) or channel address (e.g. `whatsapp:+15552229999`)
+     * The recipient's phone number (in E.164 format) or channel address (e.g.
+     * `whatsapp:+15552229999`)
      */
     val to: String? = null,
-    /**
-     * The RFC 2822 timestamp (in GMT) of when the Message resource was last updated
-     */
+    /** The RFC 2822 timestamp (in GMT) of when the Message resource was last updated */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
     /**
-     * The amount billed for the message in the currency specified by `price_unit`. The `price` is populated after the message has been sent/received, and may not be immediately availalble. View the Pricing page for more details.
+     * The amount billed for the message in the currency specified by `price_unit`. The `price` is
+     * populated after the message has been sent/received, and may not be immediately availalble.
+     * View the Pricing page for more details.
      */
     val price: String? = null,
     /**
-     * The description of the `error_code` if the Message `status` is `failed` or `undelivered`. If no error was encountered, the value is `null`. The value returned in this field for a specific error cause is subject to change as Twilio improves errors. Users should not use the `error_code` and `error_message` fields programmatically.
+     * The description of the `error_code` if the Message `status` is `failed` or `undelivered`. If
+     * no error was encountered, the value is `null`. The value returned in this field for a
+     * specific error cause is subject to change as Twilio improves errors. Users should not use the
+     * `error_code` and `error_message` fields programmatically.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("error_message") val errorMessage: String? = null,
-    /**
-     * The URI of the Message resource, relative to `api.twilio.com`.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("error_message")
+    val errorMessage: String? = null,
+    /** The URI of the Message resource, relative to `api.twilio.com`. */
     val uri: String? = null,
-    /**
-     * The SID of the Account associated with the Message resource
-     */
+    /** The SID of the Account associated with the Message resource */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
-    /**
-     * The number of media files associated with the Message resource.
-     */
+    /** The number of media files associated with the Message resource. */
     @com.fasterxml.jackson.annotation.JsonProperty("num_media") val numMedia: String? = null,
     /**
-     * The status of the Message. Possible values: `accepted`, `scheduled`, `canceled`, `queued`, `sending`, `sent`, `failed`, `delivered`, `undelivered`, `receiving`, `received`, or `read` (WhatsApp only). For more information, See detailed descriptions.
+     * The status of the Message. Possible values: `accepted`, `scheduled`, `canceled`, `queued`,
+     * `sending`, `sent`, `failed`, `delivered`, `undelivered`, `receiving`, `received`, or `read`
+     * (WhatsApp only). For more information, See detailed descriptions.
      */
     val status: MessageEnumStatus? = null,
     /**
-     * The SID of the Messaging Service associated with the Message resource. A unique default value is assigned if a Messaging Service is not used.
+     * The SID of the Messaging Service associated with the Message resource. A unique default value
+     * is assigned if a Messaging Service is not used.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("messaging_service_sid") val messagingServiceSid: String? = null,
-    /**
-     * The unique, Twilio-provided string that identifies the Message resource.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("messaging_service_sid")
+    val messagingServiceSid: String? = null,
+    /** The unique, Twilio-provided string that identifies the Message resource. */
     val sid: String? = null,
     /**
-     * The RFC 2822 timestamp (in GMT) of when the Message was sent. For an outgoing message, this is when Twilio sent the message. For an incoming message, this is when Twilio sent the HTTP request to your incoming message webhook URL.
+     * The RFC 2822 timestamp (in GMT) of when the Message was sent. For an outgoing message, this
+     * is when Twilio sent the message. For an incoming message, this is when Twilio sent the HTTP
+     * request to your incoming message webhook URL.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("date_sent") val dateSent: String? = null,
-    /**
-     * The RFC 2822 timestamp (in GMT) of when the Message resource was created
-     */
+    /** The RFC 2822 timestamp (in GMT) of when the Message resource was created */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
     /**
-     * The error code returned if the Message `status` is `failed` or `undelivered`. If no error was encountered, the value is `null`. The value returned in this field for a specific error cause is subject to change as Twilio improves errors. Users should not use the `error_code` and `error_message` fields programmatically.
+     * The error code returned if the Message `status` is `failed` or `undelivered`. If no error was
+     * encountered, the value is `null`. The value returned in this field for a specific error cause
+     * is subject to change as Twilio improves errors. Users should not use the `error_code` and
+     * `error_message` fields programmatically.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("error_code") val errorCode: Long? = null,
-    /**
-     * The currency in which `price` is measured, in ISO 4127 format (e.g. `usd`, `eur`, `jpy`).
-     */
+    /** The currency in which `price` is measured, in ISO 4127 format (e.g. `usd`, `eur`, `jpy`). */
     @com.fasterxml.jackson.annotation.JsonProperty("price_unit") val priceUnit: String? = null,
-    /**
-     * The API version used to process the Message
-     */
+    /** The API version used to process the Message */
     @com.fasterxml.jackson.annotation.JsonProperty("api_version") val apiVersion: String? = null,
-    /**
-     * A list of related resources identified by their URIs relative to `api.twilio.com`
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("subresource_uris") val subresourceUris: Map<String, Any>? = null
+    /** A list of related resources identified by their URIs relative to `api.twilio.com` */
+    @com.fasterxml.jackson.annotation.JsonProperty("subresource_uris")
+    val subresourceUris: Map<String, Any>? = null,
 )
