@@ -3,27 +3,57 @@
 
 package dev.octri.showcase.twilio
 
-
 class RecordingsTranscriptionsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Retrieves a transcription created from a recording. Use the account, recording, and transcription SIDs to identify it, then inspect its status and transcription text when available.
+     * Retrieves a transcription created from a recording. Use the account, recording, and
+     * transcription SIDs to identify it, then inspect its status and transcription text when
+     * available.
      */
-    fun fetch(accountSid: String, recordingSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountRecordingRecordingTranscription {
-        return dev.octri.showcase.twilio.methods.recordings.RecordingsTranscriptions.fetchRecordingsTranscriptions(clientConfig, accountSid, recordingSid, sid, options)
+    fun fetch(
+        accountSid: String,
+        recordingSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountRecordingRecordingTranscription {
+        return dev.octri.showcase.twilio.methods.recordings.RecordingsTranscriptions
+            .fetchRecordingsTranscriptions(clientConfig, accountSid, recordingSid, sid, options)
     }
 
     /**
-     * Deletes a transcription created from a recording. Identify the transcription using the account, recording, and transcription SIDs.
+     * Deletes a transcription created from a recording. Identify the transcription using the
+     * account, recording, and transcription SIDs.
      */
-    fun delete(accountSid: String, recordingSid: String, sid: String, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.twilio.methods.recordings.RecordingsTranscriptions.deleteRecordingsTranscriptions(clientConfig, accountSid, recordingSid, sid, options)
+    fun delete(
+        accountSid: String,
+        recordingSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        return dev.octri.showcase.twilio.methods.recordings.RecordingsTranscriptions
+            .deleteRecordingsTranscriptions(clientConfig, accountSid, recordingSid, sid, options)
     }
 
     /**
-     * Lists transcriptions associated with a specific recording. Use `PageSize`, `Page`, and `PageToken` to control pagination; `PageSize` defaults to 50 when omitted.
+     * Lists transcriptions associated with a specific recording. Use `PageSize`, `Page`, and
+     * `PageToken` to control pagination; `PageSize` defaults to 50 when omitted.
      */
-    fun list(accountSid: String, recordingSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.recordings.RecordingsTranscriptions.ListRecordingsTranscriptionsResponse {
-        return dev.octri.showcase.twilio.methods.recordings.RecordingsTranscriptions.listRecordingsTranscriptions(clientConfig, accountSid, recordingSid, pageSize, page, pageToken, options)
+    fun list(
+        accountSid: String,
+        recordingSid: String,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.recordings.RecordingsTranscriptions.ListRecordingsTranscriptionsResponse {
+        return dev.octri.showcase.twilio.methods.recordings.RecordingsTranscriptions
+            .listRecordingsTranscriptions(
+                clientConfig,
+                accountSid,
+                recordingSid,
+                pageSize,
+                page,
+                pageToken,
+                options,
+            )
     }
-
 }

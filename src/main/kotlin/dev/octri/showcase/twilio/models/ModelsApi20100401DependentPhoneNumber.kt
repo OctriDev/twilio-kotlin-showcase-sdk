@@ -3,112 +3,116 @@
 
 package dev.octri.showcase.twilio.models
 
-/**
- * Typed representation of the `ApiV2010AccountAddressDependentPhoneNumber` API schema.
- */
+/** Typed representation of the `ApiV2010AccountAddressDependentPhoneNumber` API schema. */
 data class ApiV2010AccountAddressDependentPhoneNumber(
-    /**
-     * The unique string that that we created to identify the DependentPhoneNumber resource.
-     */
+    /** The unique string that that we created to identify the DependentPhoneNumber resource. */
     val sid: String? = null,
-    /**
-     * The SID of the Account that created the DependentPhoneNumber resource.
-     */
+    /** The SID of the Account that created the DependentPhoneNumber resource. */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
+    /** The string that you assigned to describe the resource. */
+    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name")
+    val friendlyName: String? = null,
     /**
-     * The string that you assigned to describe the resource.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name") val friendlyName: String? = null,
-    /**
-     * The phone number in E.164 format, which consists of a + followed by the country code and subscriber number.
+     * The phone number in E.164 format, which consists of a + followed by the country code and
+     * subscriber number.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("phone_number") val phoneNumber: String? = null,
     /**
-     * The URL we call when the phone number receives a call. The `voice_url` will not be used if a `voice_application_sid` or a `trunk_sid` is set.
+     * The URL we call when the phone number receives a call. The `voice_url` will not be used if a
+     * `voice_application_sid` or a `trunk_sid` is set.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("voice_url") val voiceUrl: String? = null,
+    /** The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("voice_method")
+    val voiceMethod: ApiV2010AccountAddressDependentPhoneNumberVoiceMethodEnum? = null,
+    /** The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("voice_fallback_method")
+    val voiceFallbackMethod: ApiV2010AccountAddressDependentPhoneNumberVoiceFallbackMethodEnum? =
+        null,
     /**
-     * The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`.
+     * The URL that we call when an error occurs retrieving or executing the TwiML requested by
+     * `url`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("voice_method") val voiceMethod: ApiV2010AccountAddressDependentPhoneNumberVoiceMethodEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("voice_fallback_url")
+    val voiceFallbackUrl: String? = null,
     /**
-     * The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`.
+     * Whether we look up the caller's caller-ID name from the CNAM database. Can be: `true` or
+     * `false`. Caller ID lookups can cost $0.01 each.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("voice_fallback_method") val voiceFallbackMethod: ApiV2010AccountAddressDependentPhoneNumberVoiceFallbackMethodEnum? = null,
-    /**
-     * The URL that we call when an error occurs retrieving or executing the TwiML requested by `url`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("voice_fallback_url") val voiceFallbackUrl: String? = null,
-    /**
-     * Whether we look up the caller's caller-ID name from the CNAM database. Can be: `true` or `false`. Caller ID lookups can cost $0.01 each.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("voice_caller_id_lookup") val voiceCallerIdLookup: Boolean? = null,
-    /**
-     * The date and time in GMT that the resource was created specified in RFC 2822 format.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("voice_caller_id_lookup")
+    val voiceCallerIdLookup: Boolean? = null,
+    /** The date and time in GMT that the resource was created specified in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
-    /**
-     * The date and time in GMT that the resource was last updated specified in RFC 2822 format.
-     */
+    /** The date and time in GMT that the resource was last updated specified in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
+    /** The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("sms_fallback_method")
+    val smsFallbackMethod: ApiV2010AccountAddressDependentPhoneNumberSmsFallbackMethodEnum? = null,
     /**
-     * The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`.
+     * The URL that we call when an error occurs while retrieving or executing the TwiML from
+     * `sms_url`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("sms_fallback_method") val smsFallbackMethod: ApiV2010AccountAddressDependentPhoneNumberSmsFallbackMethodEnum? = null,
-    /**
-     * The URL that we call when an error occurs while retrieving or executing the TwiML from `sms_url`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("sms_fallback_url") val smsFallbackUrl: String? = null,
-    /**
-     * The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("sms_method") val smsMethod: ApiV2010AccountAddressDependentPhoneNumberSmsMethodEnum? = null,
-    /**
-     * The URL we call when the phone number receives an incoming SMS message.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("sms_fallback_url")
+    val smsFallbackUrl: String? = null,
+    /** The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("sms_method")
+    val smsMethod: ApiV2010AccountAddressDependentPhoneNumberSmsMethodEnum? = null,
+    /** The URL we call when the phone number receives an incoming SMS message. */
     @com.fasterxml.jackson.annotation.JsonProperty("sms_url") val smsUrl: String? = null,
     /**
-     * Whether the phone number requires an Address registered with Twilio. Can be: `none`, `any`, `local`, or `foreign`.
+     * Whether the phone number requires an Address registered with Twilio. Can be: `none`, `any`,
+     * `local`, or `foreign`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("address_requirements") val addressRequirements: DependentPhoneNumberEnumAddressRequirement? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("address_requirements")
+    val addressRequirements: DependentPhoneNumberEnumAddressRequirement? = null,
     /**
-     * The set of Boolean properties that indicates whether a phone number can receive calls or messages. Capabilities are `Voice`, `SMS`, and `MMS` and each capability can be: `true` or `false`.
+     * The set of Boolean properties that indicates whether a phone number can receive calls or
+     * messages. Capabilities are `Voice`, `SMS`, and `MMS` and each capability can be: `true` or
+     * `false`.
      */
     val capabilities: Any? = null,
     /**
-     * The URL we call using the `status_callback_method` to send status information to your application.
+     * The URL we call using the `status_callback_method` to send status information to your
+     * application.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("status_callback") val statusCallback: String? = null,
-    /**
-     * The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("status_callback_method") val statusCallbackMethod: ApiV2010AccountAddressDependentPhoneNumberStatusCallbackMethodEnum? = null,
-    /**
-     * The API version used to start a new TwiML session.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("status_callback")
+    val statusCallback: String? = null,
+    /** The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("status_callback_method")
+    val statusCallbackMethod: ApiV2010AccountAddressDependentPhoneNumberStatusCallbackMethodEnum? =
+        null,
+    /** The API version used to start a new TwiML session. */
     @com.fasterxml.jackson.annotation.JsonProperty("api_version") val apiVersion: String? = null,
     /**
-     * The SID of the application that handles SMS messages sent to the phone number. If an `sms_application_sid` is present, we ignore all `sms_*_url` values and use those of the application.
+     * The SID of the application that handles SMS messages sent to the phone number. If an
+     * `sms_application_sid` is present, we ignore all `sms_*_url` values and use those of the
+     * application.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("sms_application_sid") val smsApplicationSid: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("sms_application_sid")
+    val smsApplicationSid: String? = null,
     /**
-     * The SID of the application that handles calls to the phone number. If a `voice_application_sid` is present, we ignore all of the voice urls and use those set on the application. Setting a `voice_application_sid` will automatically delete your `trunk_sid` and vice versa.
+     * The SID of the application that handles calls to the phone number. If a
+     * `voice_application_sid` is present, we ignore all of the voice urls and use those set on the
+     * application. Setting a `voice_application_sid` will automatically delete your `trunk_sid` and
+     * vice versa.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("voice_application_sid") val voiceApplicationSid: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("voice_application_sid")
+    val voiceApplicationSid: String? = null,
     /**
-     * The SID of the Trunk that handles calls to the phone number. If a `trunk_sid` is present, we ignore all of the voice urls and voice applications and use those set on the Trunk. Setting a `trunk_sid` will automatically delete your `voice_application_sid` and vice versa.
+     * The SID of the Trunk that handles calls to the phone number. If a `trunk_sid` is present, we
+     * ignore all of the voice urls and voice applications and use those set on the Trunk. Setting a
+     * `trunk_sid` will automatically delete your `voice_application_sid` and vice versa.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("trunk_sid") val trunkSid: String? = null,
+    /** Whether the phone number is enabled for emergency calling. */
+    @com.fasterxml.jackson.annotation.JsonProperty("emergency_status")
+    val emergencyStatus: DependentPhoneNumberEnumEmergencyStatus? = null,
     /**
-     * Whether the phone number is enabled for emergency calling.
+     * The SID of the emergency address configuration that we use for emergency calling from the
+     * phone number.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("emergency_status") val emergencyStatus: DependentPhoneNumberEnumEmergencyStatus? = null,
-    /**
-     * The SID of the emergency address configuration that we use for emergency calling from the phone number.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("emergency_address_sid") val emergencyAddressSid: String? = null,
-    /**
-     * The URI of the resource, relative to `api.twilio.com`.
-     */
-    val uri: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("emergency_address_sid")
+    val emergencyAddressSid: String? = null,
+    /** The URI of the resource, relative to `api.twilio.com`. */
+    val uri: String? = null,
 )

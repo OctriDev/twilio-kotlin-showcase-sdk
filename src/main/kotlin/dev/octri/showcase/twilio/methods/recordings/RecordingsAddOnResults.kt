@@ -11,117 +11,184 @@ import dev.octri.showcase.twilio.Validation
 
 object RecordingsAddOnResults {
 
-data class ListRecordingsAddOnResultsResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("add_on_results") val addOnResults: List<ApiV2010AccountRecordingRecordingAddOnResult>? = null
-)
-
+    data class ListRecordingsAddOnResultsResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("add_on_results")
+        val addOnResults: List<ApiV2010AccountRecordingRecordingAddOnResult>? = null,
+    )
 
     /**
-     * Retrieves an AddOnResult belonging to a recording. Use the account, recording, and result SIDs to identify the resource and inspect its status, timestamps, and related resource URIs.
+     * Retrieves an AddOnResult belonging to a recording. Use the account, recording, and result
+     * SIDs to identify the resource and inspect its status, timestamps, and related resource URIs.
      *
      * Fetch an instance of an AddOnResult
      *
-     * @param accountSid The SID of the Account that created the Recording
-     *   AddOnResult resource to fetch.
-     * @param referenceSid The SID of the recording to which the result to fetch
-     *   belongs.
-     * @param sid The Twilio-provided string that uniquely identifies the Recording
-     *   AddOnResult resource to fetch.
+     * @param accountSid The SID of the Account that created the Recording AddOnResult resource to
+     *   fetch.
+     * @param referenceSid The SID of the recording to which the result to fetch belongs.
+     * @param sid The Twilio-provided string that uniquely identifies the Recording AddOnResult
+     *   resource to fetch.
      */
-    fun fetchRecordingsAddOnResults(clientConfig: ClientConfig, accountSid: String, referenceSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountRecordingRecordingAddOnResult {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun fetchRecordingsAddOnResults(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        referenceSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountRecordingRecordingAddOnResult {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("ReferenceSid", referenceSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "ReferenceSid",
+            referenceSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("ReferenceSid", referenceSid, "^RE[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^XR[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountRecordingRecordingAddOnResult>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Recordings/${SdkClient.encodePathSegment(referenceSid)}/AddOnResults/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "fetchRecordingsAddOnResults", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountRecordingRecordingAddOnResult>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Recordings/${SdkClient.encodePathSegment(referenceSid)}/AddOnResults/${SdkClient.encodePathSegment(sid)}.json",
+                    config = clientConfig,
+                    operationId = "fetchRecordingsAddOnResults",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Deletes an AddOnResult associated with a recording and purges all payloads belonging to that result. Identify the resource with its account, recording, and result SIDs before deletion.
+     * Deletes an AddOnResult associated with a recording and purges all payloads belonging to that
+     * result. Identify the resource with its account, recording, and result SIDs before deletion.
      *
      * Delete a result and purge all associated Payloads
      *
-     * @param accountSid The SID of the Account that created the Recording
-     *   AddOnResult resources to delete.
-     * @param referenceSid The SID of the recording to which the result to delete
-     *   belongs.
-     * @param sid The Twilio-provided string that uniquely identifies the Recording
-     *   AddOnResult resource to delete.
+     * @param accountSid The SID of the Account that created the Recording AddOnResult resources to
+     *   delete.
+     * @param referenceSid The SID of the recording to which the result to delete belongs.
+     * @param sid The Twilio-provided string that uniquely identifies the Recording AddOnResult
+     *   resource to delete.
      */
-    fun deleteRecordingsAddOnResults(clientConfig: ClientConfig, accountSid: String, referenceSid: String, sid: String, options: RequestOptions? = null): Unit {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun deleteRecordingsAddOnResults(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        referenceSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("ReferenceSid", referenceSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "ReferenceSid",
+            referenceSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("ReferenceSid", referenceSid, "^RE[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^XR[0-9a-fA-F]{32}$")
 
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Recordings/${SdkClient.encodePathSegment(referenceSid)}/AddOnResults/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "deleteRecordingsAddOnResults", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Recordings/${SdkClient.encodePathSegment(referenceSid)}/AddOnResults/${SdkClient.encodePathSegment(sid)}.json",
+                config = clientConfig,
+                operationId = "deleteRecordingsAddOnResults",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Lists AddOnResults belonging to a recording. Use `PageSize` and `PageToken` to control which results are returned and to navigate the paginated response.
+     * Lists AddOnResults belonging to a recording. Use `PageSize` and `PageToken` to control which
+     * results are returned and to navigate the paginated response.
      *
      * Retrieve a list of results belonging to the recording
      *
-     * @param accountSid The SID of the Account that created the Recording
-     *   AddOnResult resources to read.
-     * @param referenceSid The SID of the recording to which the result to read
-     *   belongs.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param accountSid The SID of the Account that created the Recording AddOnResult resources to
+     *   read.
+     * @param referenceSid The SID of the recording to which the result to read belongs.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listRecordingsAddOnResults(clientConfig: ClientConfig, accountSid: String, referenceSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): ListRecordingsAddOnResultsResponse {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun listRecordingsAddOnResults(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        referenceSid: String,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): ListRecordingsAddOnResultsResponse {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("ReferenceSid", referenceSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "ReferenceSid",
+            referenceSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("ReferenceSid", referenceSid, "^RE[0-9a-fA-F]{32}$")
 
         if (pageSize != null) {
-            Validation.validateRange("PageSize", pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (page != null) {
             Validation.validateRange("Page", page, Validation.RangeOpts(min = 0.0))
-}
+        }
 
-        return SdkClient.request<ListRecordingsAddOnResultsResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Recordings/${SdkClient.encodePathSegment(referenceSid)}/AddOnResults.json", config = clientConfig, query = mapOf("PageSize" to SdkClient.queryValue(pageSize, "form", true), "Page" to SdkClient.queryValue(page, "form", true), "PageToken" to SdkClient.queryValue(pageToken, "form", true)), operationId = "listRecordingsAddOnResults", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ListRecordingsAddOnResultsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Recordings/${SdkClient.encodePathSegment(referenceSid)}/AddOnResults.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "PageSize" to SdkClient.queryValue(pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(page, "form", true),
+                            "PageToken" to SdkClient.queryValue(pageToken, "form", true),
+                        ),
+                    operationId = "listRecordingsAddOnResults",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

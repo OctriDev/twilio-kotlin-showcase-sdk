@@ -11,25 +11,38 @@ import dev.octri.showcase.twilio.Validation
 
 object Balance {
 
-
     /**
-     * Retrieves the balance for a specified account. Use the account SID to identify the account whose balance and currency you need. Balance changes may not appear immediately, and child accounts do not include balance information.
+     * Retrieves the balance for a specified account. Use the account SID to identify the account
+     * whose balance and currency you need. Balance changes may not appear immediately, and child
+     * accounts do not include balance information.
      *
-     * Fetch the balance for an Account based on Account Sid. Balance changes may not be reflected immediately. Child accounts do not contain balance information
+     * Fetch the balance for an Account based on Account Sid. Balance changes may not be reflected
+     * immediately. Child accounts do not contain balance information
      *
      * @param accountSid The unique SID identifier of the Account.
      */
-    fun fetchBalance(clientConfig: ClientConfig, accountSid: String, options: RequestOptions? = null): ApiV2010AccountBalance {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun fetchBalance(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountBalance {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountBalance>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Balance.json", config = clientConfig, operationId = "fetchBalance", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountBalance>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Balance.json",
+                    config = clientConfig,
+                    operationId = "fetchBalance",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

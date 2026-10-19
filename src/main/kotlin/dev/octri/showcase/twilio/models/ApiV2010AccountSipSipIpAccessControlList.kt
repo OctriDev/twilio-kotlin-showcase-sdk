@@ -3,36 +3,22 @@
 
 package dev.octri.showcase.twilio.models
 
-/**
- * Typed representation of the `ApiV2010AccountSipSipIpAccessControlList` API schema.
- */
+/** Typed representation of the `ApiV2010AccountSipSipIpAccessControlList` API schema. */
 data class ApiV2010AccountSipSipIpAccessControlList(
-    /**
-     * A 34 character string that uniquely identifies this resource.
-     */
+    /** A 34 character string that uniquely identifies this resource. */
     val sid: String? = null,
-    /**
-     * The unique id of the Account that owns this resource.
-     */
+    /** The unique id of the Account that owns this resource. */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
-    /**
-     * A human readable descriptive text, up to 255 characters long.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name") val friendlyName: String? = null,
-    /**
-     * The date that this resource was created, given as GMT in RFC 2822 format.
-     */
+    /** A human readable descriptive text, up to 255 characters long. */
+    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name")
+    val friendlyName: String? = null,
+    /** The date that this resource was created, given as GMT in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
-    /**
-     * The date that this resource was last updated, given as GMT in RFC 2822 format.
-     */
+    /** The date that this resource was last updated, given as GMT in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
-    /**
-     * A list of the IpAddress resources associated with this IP access control list resource.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("subresource_uris") val subresourceUris: Map<String, Any>? = null,
-    /**
-     * The URI for this resource, relative to `api.twilio.com`
-     */
-    val uri: String? = null
+    /** A list of the IpAddress resources associated with this IP access control list resource. */
+    @com.fasterxml.jackson.annotation.JsonProperty("subresource_uris")
+    val subresourceUris: Map<String, Any>? = null,
+    /** The URI for this resource, relative to `api.twilio.com` */
+    val uri: String? = null,
 )

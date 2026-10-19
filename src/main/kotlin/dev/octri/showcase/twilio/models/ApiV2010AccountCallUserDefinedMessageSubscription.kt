@@ -3,28 +3,21 @@
 
 package dev.octri.showcase.twilio.models
 
-/**
- * Typed representation of the `ApiV2010AccountCallUserDefinedMessageSubscription` API schema.
- */
+/** Typed representation of the `ApiV2010AccountCallUserDefinedMessageSubscription` API schema. */
 data class ApiV2010AccountCallUserDefinedMessageSubscription(
-    /**
-     * The SID of the Account that subscribed to the User Defined Messages.
-     */
+    /** The SID of the Account that subscribed to the User Defined Messages. */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
     /**
-     * The SID of the Call the User Defined Message Subscription is associated with. This refers to the Call SID that is producing the User Defined Messages.
+     * The SID of the Call the User Defined Message Subscription is associated with. This refers to
+     * the Call SID that is producing the User Defined Messages.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("call_sid") val callSid: String? = null,
-    /**
-     * The SID that uniquely identifies this User Defined Message Subscription.
-     */
+    /** The SID that uniquely identifies this User Defined Message Subscription. */
     val sid: String? = null,
     /**
      * The date that this User Defined Message Subscription was created, given in RFC 2822 format.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
-    /**
-     * The URI of the User Defined Message Subscription Resource, relative to `api.twilio.com`.
-     */
-    val uri: String? = null
+    /** The URI of the User Defined Message Subscription Resource, relative to `api.twilio.com`. */
+    val uri: String? = null,
 )

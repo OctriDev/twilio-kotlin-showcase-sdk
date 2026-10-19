@@ -3,71 +3,150 @@
 
 package dev.octri.showcase.twilio
 
-
 class UsageRecordsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`,
+     * and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from
+     * subaccounts is included.
      *
      * Retrieve a list of usage-records belonging to the account used to make the request
      */
-    fun list(request: dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsResponse {
-        return dev.octri.showcase.twilio.methods.UsageRecords.listUsageRecords(clientConfig, request, options)
+    fun list(
+        request: dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsRequest,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsResponse {
+        return dev.octri.showcase.twilio.methods.UsageRecords.listUsageRecords(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Lists all-time usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists all-time usage records for the account identified by `AccountSid`. Use `Category`,
+     * `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether
+     * usage from subaccounts is included.
      */
-    fun listAllTime(request: dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsAllTimeRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsAllTimeResponse {
-        return dev.octri.showcase.twilio.methods.UsageRecords.listUsageRecordsAllTime(clientConfig, request, options)
+    fun listAllTime(
+        request: dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsAllTimeRequest,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsAllTimeResponse {
+        return dev.octri.showcase.twilio.methods.UsageRecords.listUsageRecordsAllTime(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Lists daily usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists daily usage records for the account identified by `AccountSid`. Use `Category`,
+     * `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether
+     * usage from subaccounts is included.
      */
-    fun listDaily(request: dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsDailyRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsDailyResponse {
-        return dev.octri.showcase.twilio.methods.UsageRecords.listUsageRecordsDaily(clientConfig, request, options)
+    fun listDaily(
+        request: dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsDailyRequest,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsDailyResponse {
+        return dev.octri.showcase.twilio.methods.UsageRecords.listUsageRecordsDaily(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Lists usage records for the previous month for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the previous month for the account identified by `AccountSid`. Use
+     * `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to
+     * control whether usage from subaccounts is included.
      */
-    fun listLastMonth(request: dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsLastMonthRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsLastMonthResponse {
-        return dev.octri.showcase.twilio.methods.UsageRecords.listUsageRecordsLastMonth(clientConfig, request, options)
+    fun listLastMonth(
+        request: dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsLastMonthRequest,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsLastMonthResponse {
+        return dev.octri.showcase.twilio.methods.UsageRecords.listUsageRecordsLastMonth(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Lists monthly usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists monthly usage records for the account identified by `AccountSid`. Use `Category`,
+     * `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether
+     * usage from subaccounts is included.
      */
-    fun listMonthly(request: dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsMonthlyRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsMonthlyResponse {
-        return dev.octri.showcase.twilio.methods.UsageRecords.listUsageRecordsMonthly(clientConfig, request, options)
+    fun listMonthly(
+        request: dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsMonthlyRequest,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsMonthlyResponse {
+        return dev.octri.showcase.twilio.methods.UsageRecords.listUsageRecordsMonthly(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Lists usage records for the current month for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the current month for the account identified by `AccountSid`. Use
+     * `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to
+     * control whether usage from subaccounts is included.
      */
-    fun listThisMonth(request: dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsThisMonthRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsThisMonthResponse {
-        return dev.octri.showcase.twilio.methods.UsageRecords.listUsageRecordsThisMonth(clientConfig, request, options)
+    fun listThisMonth(
+        request: dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsThisMonthRequest,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsThisMonthResponse {
+        return dev.octri.showcase.twilio.methods.UsageRecords.listUsageRecordsThisMonth(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Lists usage records for the current day for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the current day for the account identified by `AccountSid`. Use
+     * `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to
+     * control whether usage from subaccounts is included.
      */
-    fun listToday(request: dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsTodayRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsTodayResponse {
-        return dev.octri.showcase.twilio.methods.UsageRecords.listUsageRecordsToday(clientConfig, request, options)
+    fun listToday(
+        request: dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsTodayRequest,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsTodayResponse {
+        return dev.octri.showcase.twilio.methods.UsageRecords.listUsageRecordsToday(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Lists yearly usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists yearly usage records for the account identified by `AccountSid`. Use `Category`,
+     * `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether
+     * usage from subaccounts is included.
      */
-    fun listYearly(request: dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsYearlyRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsYearlyResponse {
-        return dev.octri.showcase.twilio.methods.UsageRecords.listUsageRecordsYearly(clientConfig, request, options)
+    fun listYearly(
+        request: dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsYearlyRequest,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsYearlyResponse {
+        return dev.octri.showcase.twilio.methods.UsageRecords.listUsageRecordsYearly(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Lists usage records for the previous day for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the previous day for the account identified by `AccountSid`. Use
+     * `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to
+     * control whether usage from subaccounts is included.
      */
-    fun listYesterday(request: dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsYesterdayRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsYesterdayResponse {
-        return dev.octri.showcase.twilio.methods.UsageRecords.listUsageRecordsYesterday(clientConfig, request, options)
+    fun listYesterday(
+        request: dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsYesterdayRequest,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.UsageRecords.ListUsageRecordsYesterdayResponse {
+        return dev.octri.showcase.twilio.methods.UsageRecords.listUsageRecordsYesterday(
+            clientConfig,
+            request,
+            options,
+        )
     }
-
 }

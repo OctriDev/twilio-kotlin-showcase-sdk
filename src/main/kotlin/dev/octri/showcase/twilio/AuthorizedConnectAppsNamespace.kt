@@ -3,24 +3,46 @@
 
 package dev.octri.showcase.twilio
 
-
 class AuthorizedConnectAppsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Retrieves an authorized Connect App for an account. Use the account SID and Connect App SID to identify the authorization and review the app details and permissions granted to it.
+     * Retrieves an authorized Connect App for an account. Use the account SID and Connect App SID
+     * to identify the authorization and review the app details and permissions granted to it.
      *
      * Fetch an instance of an authorized-connect-app
      */
-    fun fetch(accountSid: String, connectAppSid: String, options: RequestOptions? = null): ApiV2010AccountAuthorizedConnectApp {
-        return dev.octri.showcase.twilio.methods.AuthorizedConnectApps.fetchAuthorizedConnectApps(clientConfig, accountSid, connectAppSid, options)
+    fun fetch(
+        accountSid: String,
+        connectAppSid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountAuthorizedConnectApp {
+        return dev.octri.showcase.twilio.methods.AuthorizedConnectApps.fetchAuthorizedConnectApps(
+            clientConfig,
+            accountSid,
+            connectAppSid,
+            options,
+        )
     }
 
     /**
-     * Lists the Connect Apps authorized for an account. Use the pagination parameters to browse the account's authorized apps and their granted permissions.
+     * Lists the Connect Apps authorized for an account. Use the pagination parameters to browse the
+     * account's authorized apps and their granted permissions.
      *
      * Retrieve a list of authorized-connect-apps belonging to the account used to make the request
      */
-    fun list(accountSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.AuthorizedConnectApps.ListAuthorizedConnectAppsResponse {
-        return dev.octri.showcase.twilio.methods.AuthorizedConnectApps.listAuthorizedConnectApps(clientConfig, accountSid, pageSize, page, pageToken, options)
+    fun list(
+        accountSid: String,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.AuthorizedConnectApps.ListAuthorizedConnectAppsResponse {
+        return dev.octri.showcase.twilio.methods.AuthorizedConnectApps.listAuthorizedConnectApps(
+            clientConfig,
+            accountSid,
+            pageSize,
+            page,
+            pageToken,
+            options,
+        )
     }
-
 }

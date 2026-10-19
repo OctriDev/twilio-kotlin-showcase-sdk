@@ -3,24 +3,42 @@
 
 package dev.octri.showcase.twilio
 
-
 class NotificationsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Retrieves a notification belonging to an account. Supply the account SID and notification SID to identify the resource. The response includes notification details such as the message, error information, and originating request data.
+     * Retrieves a notification belonging to an account. Supply the account SID and notification SID
+     * to identify the resource. The response includes notification details such as the message,
+     * error information, and originating request data.
      *
      * Fetch a notification belonging to the account used to make the request
      */
-    fun fetch(accountSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountNotificationInstance {
-        return dev.octri.showcase.twilio.methods.Notifications.fetchNotifications(clientConfig, accountSid, sid, options)
+    fun fetch(
+        accountSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountNotificationInstance {
+        return dev.octri.showcase.twilio.methods.Notifications.fetchNotifications(
+            clientConfig,
+            accountSid,
+            sid,
+            options,
+        )
     }
 
     /**
-     * Lists notifications belonging to an account. Filter results by log level or message date, and use the paging parameters to navigate the results. The response contains notification records and page metadata.
+     * Lists notifications belonging to an account. Filter results by log level or message date, and
+     * use the paging parameters to navigate the results. The response contains notification records
+     * and page metadata.
      *
      * Retrieve a list of notifications belonging to the account used to make the request
      */
-    fun list(request: dev.octri.showcase.twilio.methods.Notifications.ListNotificationsRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.Notifications.ListNotificationsResponse {
-        return dev.octri.showcase.twilio.methods.Notifications.listNotifications(clientConfig, request, options)
+    fun list(
+        request: dev.octri.showcase.twilio.methods.Notifications.ListNotificationsRequest,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.Notifications.ListNotificationsResponse {
+        return dev.octri.showcase.twilio.methods.Notifications.listNotifications(
+            clientConfig,
+            request,
+            options,
+        )
     }
-
 }
