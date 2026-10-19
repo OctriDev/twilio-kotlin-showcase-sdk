@@ -15,91 +15,63 @@ import dev.octri.showcase.twilio.Validation
 
 object UsageTriggers {
 
-    data class ListUsageTriggersResponse(
-        val end: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
-        val firstPageUri: String? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
-        val nextPageUri: String? = null,
-        val page: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
-        val previousPageUri: String? = null,
-        val start: Long? = null,
-        val uri: String? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("usage_triggers")
-        val usageTriggers: List<ApiV2010AccountUsageUsageTrigger>? = null,
-    )
+data class ListUsageTriggersResponse(
+    val end: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
+    val page: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
+    val start: Long? = null,
+    val uri: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("usage_triggers") val usageTriggers: List<ApiV2010AccountUsageUsageTrigger>? = null
+)
+
 
     /**
-     * Retrieves a specific usage trigger for the account identified by `AccountSid`. Use the `Sid`
-     * value to select the trigger whose configuration and current state you need to inspect.
+     * Retrieves a specific usage trigger for the account identified by `AccountSid`. Use the `Sid` value to select the trigger whose configuration and current state you need to inspect.
      *
      * Fetch and instance of a usage-trigger
      *
-     * @param accountSid The SID of the Account that created the UsageTrigger resource to fetch.
-     * @param sid The Twilio-provided string that uniquely identifies the UsageTrigger resource to
-     *   fetch.
+     * @param accountSid The SID of the Account that created the UsageTrigger
+     *   resource to fetch.
+     * @param sid The Twilio-provided string that uniquely identifies the
+     *   UsageTrigger resource to fetch.
      */
-    fun fetchUsageTriggers(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountUsageUsageTrigger {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun fetchUsageTriggers(clientConfig: ClientConfig, accountSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountUsageUsageTrigger {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^UT[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountUsageUsageTrigger>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Usage/Triggers/${SdkClient.encodePathSegment(sid)}.json",
-                    config = clientConfig,
-                    operationId = "fetchUsageTriggers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiV2010AccountUsageUsageTrigger>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Usage/Triggers/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "fetchUsageTriggers", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
+
+
+
+
+
+
     /**
-     * Updates an existing usage trigger for an account. Supply the trigger fields you want to
-     * change, such as `CallbackUrl`, `CallbackMethod`, or `FriendlyName`; the request body is
-     * optional. The callback URL is used when the trigger fires.
+     * Updates an existing usage trigger for an account. Supply the trigger fields you want to change, such as `CallbackUrl`, `CallbackMethod`, or `FriendlyName`; the request body is optional. The callback URL is used when the trigger fires.
      *
      * Update an instance of a usage trigger
      *
-     * @param accountSid The SID of the Account that created the UsageTrigger resources to update.
-     * @param sid The Twilio-provided string that uniquely identifies the UsageTrigger resource to
-     *   update.
-     * @param callbackMethod The HTTP method we should use to call `callback_url`. Can be: `GET` or
-     *   `POST` and the default is `POST`.
-     * @param callbackUrl The URL we should call using `callback_method` when the trigger fires.
-     * @param friendlyName A descriptive string that you create to describe the resource. It can be
-     *   up to 64 characters long.
+     * @param accountSid The SID of the Account that created the UsageTrigger
+     *   resources to update.
+     * @param sid The Twilio-provided string that uniquely identifies the
+     *   UsageTrigger resource to update.
+     * @param callbackMethod The HTTP method we should use to call `callback_url`.
+     *   Can be: `GET` or `POST` and the default is `POST`.
+     * @param callbackUrl The URL we should call using `callback_method` when the
+     *   trigger fires.
+     * @param friendlyName A descriptive string that you create to describe the
+     *   resource. It can be up to 64 characters long.
      */
-    fun updateUsageTriggers(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        sid: String,
-        callbackMethod: UpdateUsageTriggersCallbackMethodEnum? = null,
-        callbackUrl: String? = null,
-        friendlyName: String? = null,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountUsageUsageTrigger {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun updateUsageTriggers(clientConfig: ClientConfig, accountSid: String, sid: String, callbackMethod: UpdateUsageTriggersCallbackMethodEnum? = null, callbackUrl: String? = null, friendlyName: String? = null, options: RequestOptions? = null): ApiV2010AccountUsageUsageTrigger {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
@@ -107,63 +79,40 @@ object UsageTriggers {
 
         if (callbackUrl != null) {
             Validation.validateUri("CallbackUrl", callbackUrl)
-        }
+}
 
-        return SdkClient.request<ApiV2010AccountUsageUsageTrigger>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Usage/Triggers/${SdkClient.encodePathSegment(sid)}.json",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "CallbackMethod" to (SdkClient.omitIfNull(callbackMethod)),
-                            "CallbackUrl" to (SdkClient.omitIfNull(callbackUrl)),
-                            "FriendlyName" to (SdkClient.omitIfNull(friendlyName)),
-                        ),
-                    contentType = "application/x-www-form-urlencoded",
-                    operationId = "updateUsageTriggers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiV2010AccountUsageUsageTrigger>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Usage/Triggers/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, body = SdkClient.bodyMap("CallbackMethod" to (SdkClient.omitIfNull(callbackMethod)), "CallbackUrl" to (SdkClient.omitIfNull(callbackUrl)), "FriendlyName" to (SdkClient.omitIfNull(friendlyName))), contentType = "application/x-www-form-urlencoded", operationId = "updateUsageTriggers", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
+
+
+
+
+
+
     /**
-     * Deletes a specific usage trigger from an account. Use the account and trigger SIDs to
-     * identify the resource to remove. The deletion response has no content.
+     * Deletes a specific usage trigger from an account. Use the account and trigger SIDs to identify the resource to remove. The deletion response has no content.
      *
-     * @param accountSid The SID of the Account that created the UsageTrigger resources to delete.
-     * @param sid The Twilio-provided string that uniquely identifies the UsageTrigger resource to
-     *   delete.
+     * @param accountSid The SID of the Account that created the UsageTrigger
+     *   resources to delete.
+     * @param sid The Twilio-provided string that uniquely identifies the
+     *   UsageTrigger resource to delete.
      */
-    fun deleteUsageTriggers(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun deleteUsageTriggers(clientConfig: ClientConfig, accountSid: String, sid: String, options: RequestOptions? = null): Unit {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^UT[0-9a-fA-F]{32}$")
 
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Usage/Triggers/${SdkClient.encodePathSegment(sid)}.json",
-                config = clientConfig,
-                operationId = "deleteUsageTriggers",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Usage/Triggers/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "deleteUsageTriggers", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
+
+
+
+
+
+
 
     /** Parameters for [createUsageTriggers]. */
     data class CreateUsageTriggersRequest(
@@ -174,75 +123,55 @@ object UsageTriggers {
         val callbackMethod: CreateUsageTriggersCallbackMethodEnum? = null,
         val friendlyName: String? = null,
         val recurring: UsageTriggerEnumRecurring? = null,
-        val triggerBy: UsageTriggerEnumTriggerField? = null,
+        val triggerBy: UsageTriggerEnumTriggerField? = null
     )
 
     /**
-     * Creates a usage trigger for an account to monitor a usage category and value. Supply
-     * `CallbackUrl`, `TriggerValue`, and `UsageCategory`; choose `TriggerBy` and `Recurring` to
-     * configure what the trigger monitors and how often it can fire. The callback method defaults
-     * to `POST` when omitted.
+     * Creates a usage trigger for an account to monitor a usage category and value. Supply `CallbackUrl`, `TriggerValue`, and `UsageCategory`; choose `TriggerBy` and `Recurring` to configure what the trigger monitors and how often it can fire. The callback method defaults to `POST` when omitted.
      *
      * Create a new UsageTrigger
      *
      * @param accountSid The SID of the Account that will create the resource.
-     * @param callbackUrl The URL we should call using `callback_method` when the trigger fires.
-     * @param triggerValue The usage value at which the trigger should fire. For convenience, you
-     *   can use an offset value such as `+30` to specify a trigger_value that is 30 units more than
-     *   the current usage value. Be sure to urlencode a `+` as `%2B`.
-     * @param usageCategory The usage category that the trigger should watch. Use one of the
-     *   supported usage categories for this value.
-     * @param callbackMethod The HTTP method we should use to call `callback_url`. Can be: `GET` or
-     *   `POST` and the default is `POST`.
-     * @param friendlyName A descriptive string that you create to describe the resource. It can be
-     *   up to 64 characters long.
-     * @param recurring The frequency of a recurring UsageTrigger. Can be: `daily`, `monthly`, or
-     *   `yearly` for recurring triggers or empty for non-recurring triggers. A trigger will only
-     *   fire once during each period. Recurring times are in GMT.
-     * @param triggerBy The field in the UsageRecord resource that fires the trigger. Can be:
-     *   `count`, `usage`, or `price`, as described in the UsageRecords documentation.
+     * @param callbackUrl The URL we should call using `callback_method` when the
+     *   trigger fires.
+     * @param triggerValue The usage value at which the trigger should fire. For
+     *   convenience, you can use an offset value such as `+30` to specify a
+     *   trigger_value that is 30 units more than the current usage value. Be sure to
+     *   urlencode a `+` as `%2B`.
+     * @param usageCategory The usage category that the trigger should watch. Use one
+     *   of the supported usage categories for this value.
+     * @param callbackMethod The HTTP method we should use to call `callback_url`.
+     *   Can be: `GET` or `POST` and the default is `POST`.
+     * @param friendlyName A descriptive string that you create to describe the
+     *   resource. It can be up to 64 characters long.
+     * @param recurring The frequency of a recurring UsageTrigger. Can be: `daily`,
+     *   `monthly`, or `yearly` for recurring triggers or empty for non-recurring
+     *   triggers. A trigger will only fire once during each period. Recurring times
+     *   are in GMT.
+     * @param triggerBy The field in the UsageRecord resource that fires the trigger.
+     *   Can be: `count`, `usage`, or `price`, as described in the UsageRecords
+     *   documentation.
      */
-    fun createUsageTriggers(
-        clientConfig: ClientConfig,
-        request: CreateUsageTriggersRequest,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountUsageUsageTrigger {
+    fun createUsageTriggers(clientConfig: ClientConfig, request: CreateUsageTriggersRequest, options: RequestOptions? = null): ApiV2010AccountUsageUsageTrigger {
         validateCreateUsageTriggersRequest(request)
 
-        return SdkClient.request<ApiV2010AccountUsageUsageTrigger>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Triggers.json",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "CallbackUrl" to (request.callbackUrl),
-                            "TriggerValue" to (request.triggerValue),
-                            "UsageCategory" to (request.usageCategory),
-                            "CallbackMethod" to (SdkClient.omitIfNull(request.callbackMethod)),
-                            "FriendlyName" to (SdkClient.omitIfNull(request.friendlyName)),
-                            "Recurring" to (SdkClient.omitIfNull(request.recurring)),
-                            "TriggerBy" to (SdkClient.omitIfNull(request.triggerBy)),
-                        ),
-                    contentType = "application/x-www-form-urlencoded",
-                    operationId = "createUsageTriggers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiV2010AccountUsageUsageTrigger>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Triggers.json", config = clientConfig, body = SdkClient.bodyMap("CallbackUrl" to (request.callbackUrl), "TriggerValue" to (request.triggerValue), "UsageCategory" to (request.usageCategory), "CallbackMethod" to
+    (SdkClient.omitIfNull(request.callbackMethod)), "FriendlyName" to
+    (SdkClient.omitIfNull(request.friendlyName)), "Recurring" to (SdkClient.omitIfNull(request.recurring)), "TriggerBy" to (SdkClient.omitIfNull(request.triggerBy))), contentType = "application/x-www-form-urlencoded", operationId = "createUsageTriggers", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
+
     private fun validateCreateUsageTriggersRequest(request: CreateUsageTriggersRequest) {
-        Validation.validateLength(
-            "AccountSid",
-            request.accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateUri("CallbackUrl", request.callbackUrl)
     }
+
+
+
+
+
 
     /** Parameters for [listUsageTriggers]. */
     data class ListUsageTriggersRequest(
@@ -252,77 +181,56 @@ object UsageTriggers {
         val usageCategory: String? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null,
+        val pageToken: String? = null
     )
 
     /**
-     * Lists usage triggers belonging to an account. Filter the results by recurrence, trigger
-     * field, or usage category, and use the page parameters to navigate the results. The response
-     * includes pagination metadata and the matching usage triggers.
+     * Lists usage triggers belonging to an account. Filter the results by recurrence, trigger field, or usage category, and use the page parameters to navigate the results. The response includes pagination metadata and the matching usage triggers.
      *
      * Retrieve a list of usage-triggers belonging to the account used to make the request
      *
-     * @param accountSid The SID of the Account that created the UsageTrigger resources to read.
-     * @param recurring The frequency of recurring UsageTriggers to read. Can be: `daily`,
-     *   `monthly`, or `yearly` to read recurring UsageTriggers. An empty value or a value of
-     *   `alltime` reads non-recurring UsageTriggers.
-     * @param triggerBy The trigger field of the UsageTriggers to read. Can be: `count`, `usage`, or
-     *   `price` as described in the UsageRecords documentation.
-     * @param usageCategory The usage category of the UsageTriggers to read. Must be a supported
-     *   usage categories.
-     * @param pageSize How many resources to return in each list page. The default is 50, and the
-     *   maximum is 1000.
+     * @param accountSid The SID of the Account that created the UsageTrigger
+     *   resources to read.
+     * @param recurring The frequency of recurring UsageTriggers to read. Can be:
+     *   `daily`, `monthly`, or `yearly` to read recurring UsageTriggers. An empty
+     *   value or a value of `alltime` reads non-recurring UsageTriggers.
+     * @param triggerBy The trigger field of the UsageTriggers to read. Can be:
+     *   `count`, `usage`, or `price` as described in the UsageRecords documentation.
+     * @param usageCategory The usage category of the UsageTriggers to read. Must be
+     *   a supported usage categories.
+     * @param pageSize How many resources to return in each list page. The default is
+     *   50, and the maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listUsageTriggers(
-        clientConfig: ClientConfig,
-        request: ListUsageTriggersRequest,
-        options: RequestOptions? = null,
-    ): ListUsageTriggersResponse {
+    fun listUsageTriggers(clientConfig: ClientConfig, request: ListUsageTriggersRequest, options: RequestOptions? = null): ListUsageTriggersResponse {
         validateListUsageTriggersRequest(request)
 
-        return SdkClient.request<ListUsageTriggersResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Triggers.json",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "Recurring" to SdkClient.queryValue(request.recurring, "form", true),
-                            "TriggerBy" to SdkClient.queryValue(request.triggerBy, "form", true),
-                            "UsageCategory" to
-                                SdkClient.queryValue(request.usageCategory, "form", true),
-                            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
-                            "Page" to SdkClient.queryValue(request.page, "form", true),
-                            "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
-                        ),
-                    operationId = "listUsageTriggers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ListUsageTriggersResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Usage/Triggers.json", config = clientConfig, query = mapOf("Recurring" to
+    SdkClient.queryValue(request.recurring, "form", true), "TriggerBy" to
+    SdkClient.queryValue(request.triggerBy, "form", true), "UsageCategory" to
+    SdkClient.queryValue(request.usageCategory, "form", true), "PageSize" to
+    SdkClient.queryValue(request.pageSize, "form", true), "Page" to SdkClient.queryValue(request.page, "form", true), "PageToken" to
+    SdkClient.queryValue(request.pageToken, "form", true)), operationId = "listUsageTriggers", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
+
     private fun validateListUsageTriggersRequest(request: ListUsageTriggersRequest) {
-        Validation.validateLength(
-            "AccountSid",
-            request.accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.pageSize != null) {
-            Validation.validateRange(
-                "PageSize",
-                request.pageSize,
-                Validation.RangeOpts(min = 1.0, max = 1000.0),
-            )
-        }
+            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
+}
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-        }
+}
     }
+
+
+
+
+
+
 }

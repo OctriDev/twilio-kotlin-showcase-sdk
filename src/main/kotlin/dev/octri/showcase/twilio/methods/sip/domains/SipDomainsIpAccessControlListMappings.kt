@@ -11,47 +11,33 @@ import dev.octri.showcase.twilio.Validation
 
 object SipDomainsIpAccessControlListMappings {
 
-    data class ListSipDomainsIpAccessControlListMappingsResponse(
-        val end: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
-        val firstPageUri: String? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
-        val nextPageUri: String? = null,
-        val page: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
-        val previousPageUri: String? = null,
-        val start: Long? = null,
-        val uri: String? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("ip_access_control_list_mappings")
-        val ipAccessControlListMappings:
-            List<ApiV2010AccountSipSipDomainSipIpAccessControlListMapping>? =
-            null,
-    )
+data class ListSipDomainsIpAccessControlListMappingsResponse(
+    val end: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
+    val page: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
+    val start: Long? = null,
+    val uri: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("ip_access_control_list_mappings") val ipAccessControlListMappings: List<ApiV2010AccountSipSipDomainSipIpAccessControlListMapping>? = null
+)
+
 
     /**
-     * Retrieves an IP access control list mapping for a SIP domain. Use `AccountSid`, `DomainSid`,
-     * and `Sid` to identify the account, SIP domain, and mapping. Each identifier must match the
-     * 34-character format for its resource.
+     * Retrieves an IP access control list mapping for a SIP domain. Use `AccountSid`, `DomainSid`, and `Sid` to identify the account, SIP domain, and mapping. Each identifier must match the 34-character format for its resource.
      *
      * Fetch an IpAccessControlListMapping resource.
      *
-     * @param accountSid The unique id of the Account that is responsible for this resource.
-     * @param domainSid A 34 character string that uniquely identifies the SIP domain.
-     * @param sid A 34 character string that uniquely identifies the resource to fetch.
+     * @param accountSid The unique id of the Account that is responsible for this
+     *   resource.
+     * @param domainSid A 34 character string that uniquely identifies the SIP
+     *   domain.
+     * @param sid A 34 character string that uniquely identifies the resource to
+     *   fetch.
      */
-    fun fetchSipDomainsIpAccessControlListMappings(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        domainSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountSipSipDomainSipIpAccessControlListMapping {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun fetchSipDomainsIpAccessControlListMappings(clientConfig: ClientConfig, accountSid: String, domainSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountSipSipDomainSipIpAccessControlListMapping {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("DomainSid", domainSid, Validation.LengthOpts(min = 34, max = 34))
@@ -60,41 +46,29 @@ object SipDomainsIpAccessControlListMappings {
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^AL[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountSipSipDomainSipIpAccessControlListMapping>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(domainSid)}/IpAccessControlListMappings/${SdkClient.encodePathSegment(sid)}.json",
-                    config = clientConfig,
-                    operationId = "fetchSipDomainsIpAccessControlListMappings",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiV2010AccountSipSipDomainSipIpAccessControlListMapping>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(domainSid)}/IpAccessControlListMappings/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "fetchSipDomainsIpAccessControlListMappings", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
+
+
+
+
+
+
     /**
-     * Deletes an IP access control list mapping from a SIP domain. Provide the account, domain, and
-     * mapping identifiers to select the mapping to remove. The response has no body.
+     * Deletes an IP access control list mapping from a SIP domain. Provide the account, domain, and mapping identifiers to select the mapping to remove. The response has no body.
      *
      * Delete an IpAccessControlListMapping resource.
      *
-     * @param accountSid The unique id of the Account that is responsible for this resource.
-     * @param domainSid A 34 character string that uniquely identifies the SIP domain.
-     * @param sid A 34 character string that uniquely identifies the resource to delete.
+     * @param accountSid The unique id of the Account that is responsible for this
+     *   resource.
+     * @param domainSid A 34 character string that uniquely identifies the SIP
+     *   domain.
+     * @param sid A 34 character string that uniquely identifies the resource to
+     *   delete.
      */
-    fun deleteSipDomainsIpAccessControlListMappings(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        domainSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun deleteSipDomainsIpAccessControlListMappings(clientConfig: ClientConfig, accountSid: String, domainSid: String, sid: String, options: RequestOptions? = null): Unit {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("DomainSid", domainSid, Validation.LengthOpts(min = 34, max = 34))
@@ -103,134 +77,82 @@ object SipDomainsIpAccessControlListMappings {
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^AL[0-9a-fA-F]{32}$")
 
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(domainSid)}/IpAccessControlListMappings/${SdkClient.encodePathSegment(sid)}.json",
-                config = clientConfig,
-                operationId = "deleteSipDomainsIpAccessControlListMappings",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(domainSid)}/IpAccessControlListMappings/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "deleteSipDomainsIpAccessControlListMappings", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 
+
+
+
+
+
+
     /**
-     * Creates a mapping between an IP access control list and a SIP domain. Submit
-     * `IpAccessControlListSid` to identify the list to associate with the domain. The response
-     * includes the created mapping and its identifiers.
+     * Creates a mapping between an IP access control list and a SIP domain. Submit `IpAccessControlListSid` to identify the list to associate with the domain. The response includes the created mapping and its identifiers.
      *
      * Create a new IpAccessControlListMapping resource.
      *
-     * @param accountSid The unique id of the Account that is responsible for this resource.
-     * @param domainSid A 34 character string that uniquely identifies the SIP domain.
-     * @param ipAccessControlListSid The unique id of the IP access control list to map to the SIP
+     * @param accountSid The unique id of the Account that is responsible for this
+     *   resource.
+     * @param domainSid A 34 character string that uniquely identifies the SIP
      *   domain.
+     * @param ipAccessControlListSid The unique id of the IP access control list to
+     *   map to the SIP domain.
      */
-    fun createSipDomainsIpAccessControlListMappings(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        domainSid: String,
-        ipAccessControlListSid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountSipSipDomainSipIpAccessControlListMapping {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun createSipDomainsIpAccessControlListMappings(clientConfig: ClientConfig, accountSid: String, domainSid: String, ipAccessControlListSid: String, options: RequestOptions? = null): ApiV2010AccountSipSipDomainSipIpAccessControlListMapping {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("DomainSid", domainSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("DomainSid", domainSid, "^SD[0-9a-fA-F]{32}$")
 
-        Validation.validateLength(
-            "IpAccessControlListSid",
-            ipAccessControlListSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
-        Validation.validatePattern(
-            "IpAccessControlListSid",
-            ipAccessControlListSid,
-            "^AL[0-9a-fA-F]{32}$",
-        )
+        Validation.validateLength("IpAccessControlListSid", ipAccessControlListSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validatePattern("IpAccessControlListSid", ipAccessControlListSid, "^AL[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountSipSipDomainSipIpAccessControlListMapping>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(domainSid)}/IpAccessControlListMappings.json",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("IpAccessControlListSid" to (ipAccessControlListSid)),
-                    contentType = "application/x-www-form-urlencoded",
-                    operationId = "createSipDomainsIpAccessControlListMappings",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiV2010AccountSipSipDomainSipIpAccessControlListMapping>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(domainSid)}/IpAccessControlListMappings.json", config = clientConfig, body = SdkClient.bodyMap("IpAccessControlListSid" to (ipAccessControlListSid)), contentType = "application/x-www-form-urlencoded", operationId = "createSipDomainsIpAccessControlListMappings", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
+
+
+
+
+
+
     /**
-     * Lists IP access control list mappings for a SIP domain. Use the pagination parameters to
-     * control the page size and track the requested page. The response includes mapping resources
-     * and pagination metadata.
+     * Lists IP access control list mappings for a SIP domain. Use the pagination parameters to control the page size and track the requested page. The response includes mapping resources and pagination metadata.
      *
      * Retrieve a list of IpAccessControlListMapping resources.
      *
-     * @param accountSid The unique id of the Account that is responsible for this resource.
-     * @param domainSid A 34 character string that uniquely identifies the SIP domain.
-     * @param pageSize How many resources to return in each list page. The default is 50, and the
-     *   maximum is 1000.
+     * @param accountSid The unique id of the Account that is responsible for this
+     *   resource.
+     * @param domainSid A 34 character string that uniquely identifies the SIP
+     *   domain.
+     * @param pageSize How many resources to return in each list page. The default is
+     *   50, and the maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listSipDomainsIpAccessControlListMappings(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        domainSid: String,
-        pageSize: Long? = null,
-        page: Long? = null,
-        pageToken: String? = null,
-        options: RequestOptions? = null,
-    ): ListSipDomainsIpAccessControlListMappingsResponse {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun listSipDomainsIpAccessControlListMappings(clientConfig: ClientConfig, accountSid: String, domainSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): ListSipDomainsIpAccessControlListMappingsResponse {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("DomainSid", domainSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("DomainSid", domainSid, "^SD[0-9a-fA-F]{32}$")
 
         if (pageSize != null) {
-            Validation.validateRange(
-                "PageSize",
-                pageSize,
-                Validation.RangeOpts(min = 1.0, max = 1000.0),
-            )
-        }
+            Validation.validateRange("PageSize", pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
+}
 
         if (page != null) {
             Validation.validateRange("Page", page, Validation.RangeOpts(min = 0.0))
-        }
+}
 
-        return SdkClient.request<ListSipDomainsIpAccessControlListMappingsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(domainSid)}/IpAccessControlListMappings.json",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "PageSize" to SdkClient.queryValue(pageSize, "form", true),
-                            "Page" to SdkClient.queryValue(page, "form", true),
-                            "PageToken" to SdkClient.queryValue(pageToken, "form", true),
-                        ),
-                    operationId = "listSipDomainsIpAccessControlListMappings",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ListSipDomainsIpAccessControlListMappingsResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/SIP/Domains/${SdkClient.encodePathSegment(domainSid)}/IpAccessControlListMappings.json", config = clientConfig, query = mapOf("PageSize" to SdkClient.queryValue(pageSize, "form", true), "Page" to SdkClient.queryValue(page, "form", true), "PageToken" to SdkClient.queryValue(pageToken, "form", true)), operationId = "listSipDomainsIpAccessControlListMappings", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
+
+
+
+
+
+
+
 }

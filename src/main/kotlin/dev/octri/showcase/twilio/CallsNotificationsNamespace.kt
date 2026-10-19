@@ -3,40 +3,20 @@
 
 package dev.octri.showcase.twilio
 
+
 class CallsNotificationsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Retrieves a notification associated with a specific call. Use the account, call, and
-     * notification SIDs to identify the resource and inspect its error details, request, and
-     * response information.
+     * Retrieves a notification associated with a specific call. Use the account, call, and notification SIDs to identify the resource and inspect its error details, request, and response information.
      */
-    fun fetch(
-        accountSid: String,
-        callSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountCallCallNotificationInstance {
-        return dev.octri.showcase.twilio.methods.calls.CallsNotifications.fetchCallsNotifications(
-            clientConfig,
-            accountSid,
-            callSid,
-            sid,
-            options,
-        )
+    fun fetch(accountSid: String, callSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountCallCallNotificationInstance {
+        return dev.octri.showcase.twilio.methods.calls.CallsNotifications.fetchCallsNotifications(clientConfig, accountSid, callSid, sid, options)
     }
 
     /**
-     * Lists notifications associated with a specific call. Filter by log level or message date, and
-     * use the page parameters to navigate the results.
+     * Lists notifications associated with a specific call. Filter by log level or message date, and use the page parameters to navigate the results.
      */
-    fun list(
-        request:
-            dev.octri.showcase.twilio.methods.calls.CallsNotifications.ListCallsNotificationsRequest,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.twilio.methods.calls.CallsNotifications.ListCallsNotificationsResponse {
-        return dev.octri.showcase.twilio.methods.calls.CallsNotifications.listCallsNotifications(
-            clientConfig,
-            request,
-            options,
-        )
+    fun list(request: dev.octri.showcase.twilio.methods.calls.CallsNotifications.ListCallsNotificationsRequest, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.calls.CallsNotifications.ListCallsNotificationsResponse {
+        return dev.octri.showcase.twilio.methods.calls.CallsNotifications.listCallsNotifications(clientConfig, request, options)
     }
+
 }

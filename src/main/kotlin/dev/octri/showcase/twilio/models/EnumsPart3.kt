@@ -4,16 +4,13 @@
 package dev.octri.showcase.twilio.models
 
 /**
- * Whether the phone number requires an Address registered with Twilio. Can be: `none`, `any`,
- * `local`, or `foreign`.
+ * Whether the phone number requires an Address registered with Twilio. Can be: `none`, `any`, `local`, or `foreign`.
  */
-class IncomingPhoneNumberEnumAddressRequirement
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IncomingPhoneNumberEnumAddressRequirement && value == other.value
-
+class IncomingPhoneNumberEnumAddressRequirement private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IncomingPhoneNumberEnumAddressRequirement && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -23,63 +20,43 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val LOCAL = IncomingPhoneNumberEnumAddressRequirement("local")
         @JvmField val FOREIGN = IncomingPhoneNumberEnumAddressRequirement("foreign")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IncomingPhoneNumberEnumAddressRequirement(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IncomingPhoneNumberEnumAddressRequirement(value)
     }
 }
 
 /**
- * The status of address registration with emergency services. A registered emergency address will
- * be used during handling of emergency calls from this number.
+ * The status of address registration with emergency services. A registered emergency address will be used during handling of emergency calls from this number.
  */
-class IncomingPhoneNumberEnumEmergencyAddressStatus
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IncomingPhoneNumberEnumEmergencyAddressStatus && value == other.value
-
+class IncomingPhoneNumberEnumEmergencyAddressStatus private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IncomingPhoneNumberEnumEmergencyAddressStatus && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val REGISTERED = IncomingPhoneNumberEnumEmergencyAddressStatus("registered")
         @JvmField val UNREGISTERED = IncomingPhoneNumberEnumEmergencyAddressStatus("unregistered")
-        @JvmField
-        val PENDING_REGISTRATION =
-            IncomingPhoneNumberEnumEmergencyAddressStatus("pending-registration")
-        @JvmField
-        val REGISTRATION_FAILURE =
-            IncomingPhoneNumberEnumEmergencyAddressStatus("registration-failure")
-        @JvmField
-        val PENDING_UNREGISTRATION =
-            IncomingPhoneNumberEnumEmergencyAddressStatus("pending-unregistration")
-        @JvmField
-        val UNREGISTRATION_FAILURE =
-            IncomingPhoneNumberEnumEmergencyAddressStatus("unregistration-failure")
+        @JvmField val PENDING_REGISTRATION = IncomingPhoneNumberEnumEmergencyAddressStatus("pending-registration")
+        @JvmField val REGISTRATION_FAILURE = IncomingPhoneNumberEnumEmergencyAddressStatus("registration-failure")
+        @JvmField val PENDING_UNREGISTRATION = IncomingPhoneNumberEnumEmergencyAddressStatus("pending-unregistration")
+        @JvmField val UNREGISTRATION_FAILURE = IncomingPhoneNumberEnumEmergencyAddressStatus("unregistration-failure")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IncomingPhoneNumberEnumEmergencyAddressStatus(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IncomingPhoneNumberEnumEmergencyAddressStatus(value)
     }
 }
 
 /**
- * The parameter displays if emergency calling is enabled for this number. Active numbers may place
- * emergency calls by dialing valid emergency numbers for the country.
+ * The parameter displays if emergency calling is enabled for this number. Active numbers may place emergency calls by dialing valid emergency numbers for the country.
  */
-class IncomingPhoneNumberEnumEmergencyStatus
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IncomingPhoneNumberEnumEmergencyStatus && value == other.value
-
+class IncomingPhoneNumberEnumEmergencyStatus private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IncomingPhoneNumberEnumEmergencyStatus && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -87,22 +64,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val ACTIVE = IncomingPhoneNumberEnumEmergencyStatus("Active")
         @JvmField val INACTIVE = IncomingPhoneNumberEnumEmergencyStatus("Inactive")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IncomingPhoneNumberEnumEmergencyStatus(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IncomingPhoneNumberEnumEmergencyStatus(value)
     }
 }
 
-/** Typed representation of the `IncomingPhoneNumberEnumVoiceReceiveMode` API schema. */
-class IncomingPhoneNumberEnumVoiceReceiveMode
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IncomingPhoneNumberEnumVoiceReceiveMode && value == other.value
-
+/**
+ * Typed representation of the `IncomingPhoneNumberEnumVoiceReceiveMode` API schema.
+ */
+class IncomingPhoneNumberEnumVoiceReceiveMode private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IncomingPhoneNumberEnumVoiceReceiveMode && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -110,25 +84,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val VOICE = IncomingPhoneNumberEnumVoiceReceiveMode("voice")
         @JvmField val FAX = IncomingPhoneNumberEnumVoiceReceiveMode("fax")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IncomingPhoneNumberEnumVoiceReceiveMode(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IncomingPhoneNumberEnumVoiceReceiveMode(value)
     }
 }
 
 /**
- * Whether the phone number requires an Address registered with Twilio. Can be: `none`, `any`,
- * `local`, or `foreign`.
+ * Whether the phone number requires an Address registered with Twilio. Can be: `none`, `any`, `local`, or `foreign`.
  */
-class IncomingPhoneNumberLocalEnumAddressRequirement
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IncomingPhoneNumberLocalEnumAddressRequirement && value == other.value
-
+class IncomingPhoneNumberLocalEnumAddressRequirement private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IncomingPhoneNumberLocalEnumAddressRequirement && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -138,64 +106,43 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val LOCAL = IncomingPhoneNumberLocalEnumAddressRequirement("local")
         @JvmField val FOREIGN = IncomingPhoneNumberLocalEnumAddressRequirement("foreign")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IncomingPhoneNumberLocalEnumAddressRequirement(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IncomingPhoneNumberLocalEnumAddressRequirement(value)
     }
 }
 
 /**
- * The status of address registration with emergency services. A registered emergency address will
- * be used during handling of emergency calls from this number.
+ * The status of address registration with emergency services. A registered emergency address will be used during handling of emergency calls from this number.
  */
-class IncomingPhoneNumberLocalEnumEmergencyAddressStatus
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IncomingPhoneNumberLocalEnumEmergencyAddressStatus && value == other.value
-
+class IncomingPhoneNumberLocalEnumEmergencyAddressStatus private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IncomingPhoneNumberLocalEnumEmergencyAddressStatus && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val REGISTERED = IncomingPhoneNumberLocalEnumEmergencyAddressStatus("registered")
-        @JvmField
-        val UNREGISTERED = IncomingPhoneNumberLocalEnumEmergencyAddressStatus("unregistered")
-        @JvmField
-        val PENDING_REGISTRATION =
-            IncomingPhoneNumberLocalEnumEmergencyAddressStatus("pending-registration")
-        @JvmField
-        val REGISTRATION_FAILURE =
-            IncomingPhoneNumberLocalEnumEmergencyAddressStatus("registration-failure")
-        @JvmField
-        val PENDING_UNREGISTRATION =
-            IncomingPhoneNumberLocalEnumEmergencyAddressStatus("pending-unregistration")
-        @JvmField
-        val UNREGISTRATION_FAILURE =
-            IncomingPhoneNumberLocalEnumEmergencyAddressStatus("unregistration-failure")
+        @JvmField val UNREGISTERED = IncomingPhoneNumberLocalEnumEmergencyAddressStatus("unregistered")
+        @JvmField val PENDING_REGISTRATION = IncomingPhoneNumberLocalEnumEmergencyAddressStatus("pending-registration")
+        @JvmField val REGISTRATION_FAILURE = IncomingPhoneNumberLocalEnumEmergencyAddressStatus("registration-failure")
+        @JvmField val PENDING_UNREGISTRATION = IncomingPhoneNumberLocalEnumEmergencyAddressStatus("pending-unregistration")
+        @JvmField val UNREGISTRATION_FAILURE = IncomingPhoneNumberLocalEnumEmergencyAddressStatus("unregistration-failure")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IncomingPhoneNumberLocalEnumEmergencyAddressStatus(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IncomingPhoneNumberLocalEnumEmergencyAddressStatus(value)
     }
 }
 
 /**
- * The parameter displays if emergency calling is enabled for this number. Active numbers may place
- * emergency calls by dialing valid emergency numbers for the country.
+ * The parameter displays if emergency calling is enabled for this number. Active numbers may place emergency calls by dialing valid emergency numbers for the country.
  */
-class IncomingPhoneNumberLocalEnumEmergencyStatus
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IncomingPhoneNumberLocalEnumEmergencyStatus && value == other.value
-
+class IncomingPhoneNumberLocalEnumEmergencyStatus private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IncomingPhoneNumberLocalEnumEmergencyStatus && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -203,22 +150,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val ACTIVE = IncomingPhoneNumberLocalEnumEmergencyStatus("Active")
         @JvmField val INACTIVE = IncomingPhoneNumberLocalEnumEmergencyStatus("Inactive")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IncomingPhoneNumberLocalEnumEmergencyStatus(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IncomingPhoneNumberLocalEnumEmergencyStatus(value)
     }
 }
 
-/** Typed representation of the `IncomingPhoneNumberLocalEnumVoiceReceiveMode` API schema. */
-class IncomingPhoneNumberLocalEnumVoiceReceiveMode
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IncomingPhoneNumberLocalEnumVoiceReceiveMode && value == other.value
-
+/**
+ * Typed representation of the `IncomingPhoneNumberLocalEnumVoiceReceiveMode` API schema.
+ */
+class IncomingPhoneNumberLocalEnumVoiceReceiveMode private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IncomingPhoneNumberLocalEnumVoiceReceiveMode && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -226,25 +170,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val VOICE = IncomingPhoneNumberLocalEnumVoiceReceiveMode("voice")
         @JvmField val FAX = IncomingPhoneNumberLocalEnumVoiceReceiveMode("fax")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IncomingPhoneNumberLocalEnumVoiceReceiveMode(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IncomingPhoneNumberLocalEnumVoiceReceiveMode(value)
     }
 }
 
 /**
- * Whether the phone number requires an Address registered with Twilio. Can be: `none`, `any`,
- * `local`, or `foreign`.
+ * Whether the phone number requires an Address registered with Twilio. Can be: `none`, `any`, `local`, or `foreign`.
  */
-class IncomingPhoneNumberMobileEnumAddressRequirement
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IncomingPhoneNumberMobileEnumAddressRequirement && value == other.value
-
+class IncomingPhoneNumberMobileEnumAddressRequirement private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IncomingPhoneNumberMobileEnumAddressRequirement && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -254,64 +192,43 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val LOCAL = IncomingPhoneNumberMobileEnumAddressRequirement("local")
         @JvmField val FOREIGN = IncomingPhoneNumberMobileEnumAddressRequirement("foreign")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IncomingPhoneNumberMobileEnumAddressRequirement(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IncomingPhoneNumberMobileEnumAddressRequirement(value)
     }
 }
 
 /**
- * The status of address registration with emergency services. A registered emergency address will
- * be used during handling of emergency calls from this number.
+ * The status of address registration with emergency services. A registered emergency address will be used during handling of emergency calls from this number.
  */
-class IncomingPhoneNumberMobileEnumEmergencyAddressStatus
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IncomingPhoneNumberMobileEnumEmergencyAddressStatus && value == other.value
-
+class IncomingPhoneNumberMobileEnumEmergencyAddressStatus private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IncomingPhoneNumberMobileEnumEmergencyAddressStatus && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val REGISTERED = IncomingPhoneNumberMobileEnumEmergencyAddressStatus("registered")
-        @JvmField
-        val UNREGISTERED = IncomingPhoneNumberMobileEnumEmergencyAddressStatus("unregistered")
-        @JvmField
-        val PENDING_REGISTRATION =
-            IncomingPhoneNumberMobileEnumEmergencyAddressStatus("pending-registration")
-        @JvmField
-        val REGISTRATION_FAILURE =
-            IncomingPhoneNumberMobileEnumEmergencyAddressStatus("registration-failure")
-        @JvmField
-        val PENDING_UNREGISTRATION =
-            IncomingPhoneNumberMobileEnumEmergencyAddressStatus("pending-unregistration")
-        @JvmField
-        val UNREGISTRATION_FAILURE =
-            IncomingPhoneNumberMobileEnumEmergencyAddressStatus("unregistration-failure")
+        @JvmField val UNREGISTERED = IncomingPhoneNumberMobileEnumEmergencyAddressStatus("unregistered")
+        @JvmField val PENDING_REGISTRATION = IncomingPhoneNumberMobileEnumEmergencyAddressStatus("pending-registration")
+        @JvmField val REGISTRATION_FAILURE = IncomingPhoneNumberMobileEnumEmergencyAddressStatus("registration-failure")
+        @JvmField val PENDING_UNREGISTRATION = IncomingPhoneNumberMobileEnumEmergencyAddressStatus("pending-unregistration")
+        @JvmField val UNREGISTRATION_FAILURE = IncomingPhoneNumberMobileEnumEmergencyAddressStatus("unregistration-failure")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IncomingPhoneNumberMobileEnumEmergencyAddressStatus(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IncomingPhoneNumberMobileEnumEmergencyAddressStatus(value)
     }
 }
 
 /**
- * The parameter displays if emergency calling is enabled for this number. Active numbers may place
- * emergency calls by dialing valid emergency numbers for the country.
+ * The parameter displays if emergency calling is enabled for this number. Active numbers may place emergency calls by dialing valid emergency numbers for the country.
  */
-class IncomingPhoneNumberMobileEnumEmergencyStatus
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IncomingPhoneNumberMobileEnumEmergencyStatus && value == other.value
-
+class IncomingPhoneNumberMobileEnumEmergencyStatus private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IncomingPhoneNumberMobileEnumEmergencyStatus && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -319,22 +236,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val ACTIVE = IncomingPhoneNumberMobileEnumEmergencyStatus("Active")
         @JvmField val INACTIVE = IncomingPhoneNumberMobileEnumEmergencyStatus("Inactive")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IncomingPhoneNumberMobileEnumEmergencyStatus(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IncomingPhoneNumberMobileEnumEmergencyStatus(value)
     }
 }
 
-/** Typed representation of the `IncomingPhoneNumberMobileEnumVoiceReceiveMode` API schema. */
-class IncomingPhoneNumberMobileEnumVoiceReceiveMode
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IncomingPhoneNumberMobileEnumVoiceReceiveMode && value == other.value
-
+/**
+ * Typed representation of the `IncomingPhoneNumberMobileEnumVoiceReceiveMode` API schema.
+ */
+class IncomingPhoneNumberMobileEnumVoiceReceiveMode private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IncomingPhoneNumberMobileEnumVoiceReceiveMode && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -342,25 +256,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val VOICE = IncomingPhoneNumberMobileEnumVoiceReceiveMode("voice")
         @JvmField val FAX = IncomingPhoneNumberMobileEnumVoiceReceiveMode("fax")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IncomingPhoneNumberMobileEnumVoiceReceiveMode(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IncomingPhoneNumberMobileEnumVoiceReceiveMode(value)
     }
 }
 
 /**
- * Whether the phone number requires an Address registered with Twilio. Can be: `none`, `any`,
- * `local`, or `foreign`.
+ * Whether the phone number requires an Address registered with Twilio. Can be: `none`, `any`, `local`, or `foreign`.
  */
-class IncomingPhoneNumberTollFreeEnumAddressRequirement
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IncomingPhoneNumberTollFreeEnumAddressRequirement && value == other.value
-
+class IncomingPhoneNumberTollFreeEnumAddressRequirement private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IncomingPhoneNumberTollFreeEnumAddressRequirement && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -370,65 +278,43 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val LOCAL = IncomingPhoneNumberTollFreeEnumAddressRequirement("local")
         @JvmField val FOREIGN = IncomingPhoneNumberTollFreeEnumAddressRequirement("foreign")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IncomingPhoneNumberTollFreeEnumAddressRequirement(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IncomingPhoneNumberTollFreeEnumAddressRequirement(value)
     }
 }
 
 /**
- * The status of address registration with emergency services. A registered emergency address will
- * be used during handling of emergency calls from this number.
+ * The status of address registration with emergency services. A registered emergency address will be used during handling of emergency calls from this number.
  */
-class IncomingPhoneNumberTollFreeEnumEmergencyAddressStatus
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IncomingPhoneNumberTollFreeEnumEmergencyAddressStatus && value == other.value
-
+class IncomingPhoneNumberTollFreeEnumEmergencyAddressStatus private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IncomingPhoneNumberTollFreeEnumEmergencyAddressStatus && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val REGISTERED = IncomingPhoneNumberTollFreeEnumEmergencyAddressStatus("registered")
-        @JvmField
-        val UNREGISTERED = IncomingPhoneNumberTollFreeEnumEmergencyAddressStatus("unregistered")
-        @JvmField
-        val PENDING_REGISTRATION =
-            IncomingPhoneNumberTollFreeEnumEmergencyAddressStatus("pending-registration")
-        @JvmField
-        val REGISTRATION_FAILURE =
-            IncomingPhoneNumberTollFreeEnumEmergencyAddressStatus("registration-failure")
-        @JvmField
-        val PENDING_UNREGISTRATION =
-            IncomingPhoneNumberTollFreeEnumEmergencyAddressStatus("pending-unregistration")
-        @JvmField
-        val UNREGISTRATION_FAILURE =
-            IncomingPhoneNumberTollFreeEnumEmergencyAddressStatus("unregistration-failure")
+        @JvmField val REGISTERED = IncomingPhoneNumberTollFreeEnumEmergencyAddressStatus("registered")
+        @JvmField val UNREGISTERED = IncomingPhoneNumberTollFreeEnumEmergencyAddressStatus("unregistered")
+        @JvmField val PENDING_REGISTRATION = IncomingPhoneNumberTollFreeEnumEmergencyAddressStatus("pending-registration")
+        @JvmField val REGISTRATION_FAILURE = IncomingPhoneNumberTollFreeEnumEmergencyAddressStatus("registration-failure")
+        @JvmField val PENDING_UNREGISTRATION = IncomingPhoneNumberTollFreeEnumEmergencyAddressStatus("pending-unregistration")
+        @JvmField val UNREGISTRATION_FAILURE = IncomingPhoneNumberTollFreeEnumEmergencyAddressStatus("unregistration-failure")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IncomingPhoneNumberTollFreeEnumEmergencyAddressStatus(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IncomingPhoneNumberTollFreeEnumEmergencyAddressStatus(value)
     }
 }
 
 /**
- * The parameter displays if emergency calling is enabled for this number. Active numbers may place
- * emergency calls by dialing valid emergency numbers for the country.
+ * The parameter displays if emergency calling is enabled for this number. Active numbers may place emergency calls by dialing valid emergency numbers for the country.
  */
-class IncomingPhoneNumberTollFreeEnumEmergencyStatus
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IncomingPhoneNumberTollFreeEnumEmergencyStatus && value == other.value
-
+class IncomingPhoneNumberTollFreeEnumEmergencyStatus private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IncomingPhoneNumberTollFreeEnumEmergencyStatus && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -436,22 +322,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val ACTIVE = IncomingPhoneNumberTollFreeEnumEmergencyStatus("Active")
         @JvmField val INACTIVE = IncomingPhoneNumberTollFreeEnumEmergencyStatus("Inactive")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IncomingPhoneNumberTollFreeEnumEmergencyStatus(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IncomingPhoneNumberTollFreeEnumEmergencyStatus(value)
     }
 }
 
-/** Typed representation of the `IncomingPhoneNumberTollFreeEnumVoiceReceiveMode` API schema. */
-class IncomingPhoneNumberTollFreeEnumVoiceReceiveMode
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IncomingPhoneNumberTollFreeEnumVoiceReceiveMode && value == other.value
-
+/**
+ * Typed representation of the `IncomingPhoneNumberTollFreeEnumVoiceReceiveMode` API schema.
+ */
+class IncomingPhoneNumberTollFreeEnumVoiceReceiveMode private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IncomingPhoneNumberTollFreeEnumVoiceReceiveMode && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -459,22 +342,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val VOICE = IncomingPhoneNumberTollFreeEnumVoiceReceiveMode("voice")
         @JvmField val FAX = IncomingPhoneNumberTollFreeEnumVoiceReceiveMode("fax")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IncomingPhoneNumberTollFreeEnumVoiceReceiveMode(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IncomingPhoneNumberTollFreeEnumVoiceReceiveMode(value)
     }
 }
 
-/** Determines if the address can be stored or obfuscated based on privacy settings */
-class MessageEnumAddressRetention
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is MessageEnumAddressRetention && value == other.value
-
+/**
+ * Determines if the address can be stored or obfuscated based on privacy settings
+ */
+class MessageEnumAddressRetention private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is MessageEnumAddressRetention && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -482,22 +362,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val RETAIN = MessageEnumAddressRetention("retain")
         @JvmField val OBFUSCATE = MessageEnumAddressRetention("obfuscate")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = MessageEnumAddressRetention(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = MessageEnumAddressRetention(value)
     }
 }
 
-/** Determines if the message content can be stored or redacted based on privacy settings */
-class MessageEnumContentRetention
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is MessageEnumContentRetention && value == other.value
-
+/**
+ * Determines if the message content can be stored or redacted based on privacy settings
+ */
+class MessageEnumContentRetention private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is MessageEnumContentRetention && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -505,26 +382,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val RETAIN = MessageEnumContentRetention("retain")
         @JvmField val DISCARD = MessageEnumContentRetention("discard")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = MessageEnumContentRetention(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = MessageEnumContentRetention(value)
     }
 }
 
 /**
- * The direction of the message. Can be: `inbound` for incoming messages, `outbound-api` for
- * messages created by the REST API, `outbound-call` for messages created during a call, or
- * `outbound-reply` for messages created in response to an incoming message.
+ * The direction of the message. Can be: `inbound` for incoming messages, `outbound-api` for messages created by the REST API, `outbound-call` for messages created during a call, or `outbound-reply` for messages created in response to an incoming message.
  */
-class MessageEnumDirection
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is MessageEnumDirection && value == other.value
-
+class MessageEnumDirection private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is MessageEnumDirection && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -534,25 +404,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val OUTBOUND_CALL = MessageEnumDirection("outbound-call")
         @JvmField val OUTBOUND_REPLY = MessageEnumDirection("outbound-reply")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = MessageEnumDirection(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = MessageEnumDirection(value)
     }
 }
 
 /**
- * Include this parameter with a value of `disable` to skip any kind of risk check on the respective
- * message request.
+ * Include this parameter with a value of `disable` to skip any kind of risk check on the respective message request.
  */
-class MessageEnumRiskCheck
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is MessageEnumRiskCheck && value == other.value
-
+class MessageEnumRiskCheck private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is MessageEnumRiskCheck && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -560,50 +424,38 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val ENABLE = MessageEnumRiskCheck("enable")
         @JvmField val DISABLE = MessageEnumRiskCheck("disable")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = MessageEnumRiskCheck(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = MessageEnumRiskCheck(value)
     }
 }
 
 /**
- * For Messaging Services only: Include this parameter with a value of `fixed` in conjuction with
- * the `send_time` parameter in order to schedule a Message.
+ * For Messaging Services only: Include this parameter with a value of `fixed` in conjuction with the `send_time` parameter in order to schedule a Message.
  */
-class MessageEnumScheduleType
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is MessageEnumScheduleType && value == other.value
-
+class MessageEnumScheduleType private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is MessageEnumScheduleType && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val FIXED = MessageEnumScheduleType("fixed")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = MessageEnumScheduleType(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = MessageEnumScheduleType(value)
     }
 }
 
 /**
- * The status of the Message. Possible values: `accepted`, `scheduled`, `canceled`, `queued`,
- * `sending`, `sent`, `failed`, `delivered`, `undelivered`, `receiving`, `received`, or `read`
- * (WhatsApp only). For more information, See detailed descriptions.
+ * The status of the Message. Possible values: `accepted`, `scheduled`, `canceled`, `queued`, `sending`, `sent`, `failed`, `delivered`, `undelivered`, `receiving`, `received`, or `read` (WhatsApp only). For more information, See detailed descriptions.
  */
-class MessageEnumStatus
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+class MessageEnumStatus private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
     override fun equals(other: Any?): Boolean = other is MessageEnumStatus && value == other.value
-
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -622,70 +474,57 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val PARTIALLY_DELIVERED = MessageEnumStatus("partially_delivered")
         @JvmField val CANCELED = MessageEnumStatus("canceled")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = MessageEnumStatus(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = MessageEnumStatus(value)
     }
 }
 
-/** Typed representation of the `MessageEnumTrafficType` API schema. */
-class MessageEnumTrafficType
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is MessageEnumTrafficType && value == other.value
-
+/**
+ * Typed representation of the `MessageEnumTrafficType` API schema.
+ */
+class MessageEnumTrafficType private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is MessageEnumTrafficType && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val FREE = MessageEnumTrafficType("free")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = MessageEnumTrafficType(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = MessageEnumTrafficType(value)
     }
 }
 
-/** Typed representation of the `MessageEnumUpdateStatus` API schema. */
-class MessageEnumUpdateStatus
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is MessageEnumUpdateStatus && value == other.value
-
+/**
+ * Typed representation of the `MessageEnumUpdateStatus` API schema.
+ */
+class MessageEnumUpdateStatus private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is MessageEnumUpdateStatus && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val CANCELED = MessageEnumUpdateStatus("canceled")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = MessageEnumUpdateStatus(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = MessageEnumUpdateStatus(value)
     }
 }
 
 /**
- * Reported outcome indicating whether there is confirmation that the Message recipient performed a
- * tracked user action. Can be: `unconfirmed` or `confirmed`. For more details see How to Optimize
- * Message Deliverability with Message Feedback.
+ * Reported outcome indicating whether there is confirmation that the Message recipient performed a tracked user action. Can be: `unconfirmed` or `confirmed`. For more details see How to Optimize Message Deliverability with Message Feedback.
  */
-class MessageFeedbackEnumOutcome
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is MessageFeedbackEnumOutcome && value == other.value
-
+class MessageFeedbackEnumOutcome private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is MessageFeedbackEnumOutcome && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -693,25 +532,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val CONFIRMED = MessageFeedbackEnumOutcome("confirmed")
         @JvmField val UNCONFIRMED = MessageFeedbackEnumOutcome("unconfirmed")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = MessageFeedbackEnumOutcome(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = MessageFeedbackEnumOutcome(value)
     }
 }
 
 /**
- * The status of the participant's call in a session. Can be: `queued`, `connecting`, `ringing`,
- * `connected`, `complete`, or `failed`.
+ * The status of the participant's call in a session. Can be: `queued`, `connecting`, `ringing`, `connected`, `complete`, or `failed`.
  */
-class ParticipantEnumStatus
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ParticipantEnumStatus && value == other.value
-
+class ParticipantEnumStatus private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ParticipantEnumStatus && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -723,25 +556,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val COMPLETE = ParticipantEnumStatus("complete")
         @JvmField val FAILED = ParticipantEnumStatus("failed")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = ParticipantEnumStatus(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ParticipantEnumStatus(value)
     }
 }
 
 /**
- * Type of bank account if payment source is ACH. One of `consumer-checking`, `consumer-savings`, or
- * `commercial-checking`. The default value is `consumer-checking`.
+ * Type of bank account if payment source is ACH. One of `consumer-checking`, `consumer-savings`, or `commercial-checking`. The default value is `consumer-checking`.
  */
-class PaymentsEnumBankAccountType
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is PaymentsEnumBankAccountType && value == other.value
-
+class PaymentsEnumBankAccountType private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is PaymentsEnumBankAccountType && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -750,10 +577,7 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val CONSUMER_SAVINGS = PaymentsEnumBankAccountType("consumer-savings")
         @JvmField val COMMERCIAL_CHECKING = PaymentsEnumBankAccountType("commercial-checking")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = PaymentsEnumBankAccountType(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = PaymentsEnumBankAccountType(value)
     }
 }

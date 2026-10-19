@@ -4,79 +4,81 @@
 package dev.octri.showcase.twilio.models
 
 /**
- * The set of Boolean properties that indicate whether a phone number can receive calls or messages.
- * Capabilities are: `Voice`, `SMS`, and `MMS` and each capability can be: `true` or `false`.
+ * The set of Boolean properties that indicate whether a phone number can receive calls or messages. Capabilities are: `Voice`, `SMS`, and `MMS` and each capability can be: `true` or `false`.
  */
 data class ApiV2010AccountAvailablePhoneNumberCountryAvailablePhoneNumbeX2fe4797ab9(
-    /** Optional `boolean` value serialized in the `mms` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `mms` wire field.
+     */
     val mms: Boolean? = null,
-    /** Optional `boolean` value serialized in the `sms` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `sms` wire field.
+     */
     val sms: Boolean? = null,
-    /** Optional `boolean` value serialized in the `voice` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `voice` wire field.
+     */
     val voice: Boolean? = null,
-    /** Optional `boolean` value serialized in the `fax` wire field. */
-    val fax: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `fax` wire field.
+     */
+    val fax: Boolean? = null
 )
 
 /**
- * Typed representation of the
- * `ApiV2010AccountAvailablePhoneNumberCountryAvailablePhoneNumberMobile` API schema.
+ * Typed representation of the `ApiV2010AccountAvailablePhoneNumberCountryAvailablePhoneNumberMobile` API schema.
  */
 data class ApiV2010AccountAvailablePhoneNumberCountryAvailablePhoneNumberMobile(
-    /** A formatted version of the phone number. */
-    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name")
-    val friendlyName: String? = null,
     /**
-     * The phone number in E.164 format, which consists of a + followed by the country code and
-     * subscriber number.
+     * A formatted version of the phone number.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name") val friendlyName: String? = null,
+    /**
+     * The phone number in E.164 format, which consists of a + followed by the country code and subscriber number.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("phone_number") val phoneNumber: String? = null,
-    /** The LATA of this phone number. Available for only phone numbers from the US and Canada. */
+    /**
+     * The LATA of this phone number. Available for only phone numbers from the US and Canada.
+     */
     val lata: String? = null,
-    /** The locality or city of this phone number's location. */
+    /**
+     * The locality or city of this phone number's location.
+     */
     val locality: String? = null,
     /**
-     * The rate center of this phone number. Available for only phone numbers from the US and
-     * Canada.
+     * The rate center of this phone number. Available for only phone numbers from the US and Canada.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("rate_center") val rateCenter: String? = null,
     /**
-     * The latitude of this phone number's location. Available for only phone numbers from the US
-     * and Canada.
+     * The latitude of this phone number's location. Available for only phone numbers from the US and Canada.
      */
     val latitude: Double? = null,
     /**
-     * The longitude of this phone number's location. Available for only phone numbers from the US
-     * and Canada.
+     * The longitude of this phone number's location. Available for only phone numbers from the US and Canada.
      */
     val longitude: Double? = null,
     /**
-     * The two-letter state or province abbreviation of this phone number's location. Available for
-     * only phone numbers from the US and Canada.
+     * The two-letter state or province abbreviation of this phone number's location. Available for only phone numbers from the US and Canada.
      */
     val region: String? = null,
     /**
-     * The postal or ZIP code of this phone number's location. Available for only phone numbers from
-     * the US and Canada.
+     * The postal or ZIP code of this phone number's location. Available for only phone numbers from the US and Canada.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("postal_code") val postalCode: String? = null,
-    /** The ISO country code of this phone number. */
+    /**
+     * The ISO country code of this phone number.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("iso_country") val isoCountry: String? = null,
     /**
-     * The type of Address resource the phone number requires. Can be: `none`, `any`, `local`, or
-     * `foreign`. `none` means no address is required. `any` means an address is required, but it
-     * can be anywhere in the world. `local` means an address in the phone number's country is
-     * required. `foreign` means an address outside of the phone number's country is required.
+     * The type of Address resource the phone number requires. Can be: `none`, `any`, `local`, or `foreign`. `none` means no address is required. `any` means an address is required, but it can be anywhere in the world. `local` means an address in the phone number's country is required. `foreign` means an address outside of the phone number's country is required.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("address_requirements")
-    val addressRequirements: String? = null,
-    /** Whether the phone number is new to the Twilio platform. Can be: `true` or `false`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("address_requirements") val addressRequirements: String? = null,
+    /**
+     * Whether the phone number is new to the Twilio platform. Can be: `true` or `false`.
+     */
     val beta: Boolean? = null,
     /**
-     * The set of Boolean properties that indicate whether a phone number can receive calls or
-     * messages. Capabilities are: `Voice`, `SMS`, and `MMS` and each capability can be: `true` or
-     * `false`.
+     * The set of Boolean properties that indicate whether a phone number can receive calls or messages. Capabilities are: `Voice`, `SMS`, and `MMS` and each capability can be: `true` or `false`.
      */
-    val capabilities: ApiV2010AccountAvailablePhoneNumberCountryAvailablePhoneNumbeX2fe4797ab9? =
-        null,
+    val capabilities: ApiV2010AccountAvailablePhoneNumberCountryAvailablePhoneNumbeX2fe4797ab9? = null
 )

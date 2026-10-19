@@ -3,33 +3,58 @@
 
 package dev.octri.showcase.twilio.models
 
-/** Required object value serialized in the `ice_servers[]` wire field. */
+/**
+ * Required object value serialized in the `ice_servers[]` wire field.
+ */
 data class ApiV2010AccountTokenIceServersItem(
-    /** Optional `string` value serialized in the `credential` wire field. */
+    /**
+     * Optional `string` value serialized in the `credential` wire field.
+     */
     val credential: String? = null,
-    /** Optional `string` value serialized in the `username` wire field. */
+    /**
+     * Optional `string` value serialized in the `username` wire field.
+     */
     val username: String? = null,
-    /** Optional `string` value serialized in the `url` wire field. */
+    /**
+     * Optional `string` value serialized in the `url` wire field.
+     */
     val url: String? = null,
-    /** Optional `string` value serialized in the `urls` wire field. */
-    val urls: String? = null,
+    /**
+     * Optional `string` value serialized in the `urls` wire field.
+     */
+    val urls: String? = null
 )
 
-/** Typed representation of the `ApiV2010AccountToken` API schema. */
+/**
+ * Typed representation of the `ApiV2010AccountToken` API schema.
+ */
 data class ApiV2010AccountToken(
-    /** The SID of the Account that created the Token resource. */
+    /**
+     * The SID of the Account that created the Token resource.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
-    /** The date and time in GMT that the resource was created specified in RFC 2822 format. */
+    /**
+     * The date and time in GMT that the resource was created specified in RFC 2822 format.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
-    /** The date and time in GMT that the resource was last updated specified in RFC 2822 format. */
+    /**
+     * The date and time in GMT that the resource was last updated specified in RFC 2822 format.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
-    /** An array representing the ephemeral credentials and the STUN and TURN server URIs. */
-    @com.fasterxml.jackson.annotation.JsonProperty("ice_servers")
-    val iceServers: List<ApiV2010AccountTokenIceServersItem>? = null,
-    /** The temporary password that the username will use when authenticating with Twilio. */
+    /**
+     * An array representing the ephemeral credentials and the STUN and TURN server URIs.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("ice_servers") val iceServers: List<ApiV2010AccountTokenIceServersItem>? = null,
+    /**
+     * The temporary password that the username will use when authenticating with Twilio.
+     */
     val password: String? = null,
-    /** The duration in seconds for which the username and password are valid. */
+    /**
+     * The duration in seconds for which the username and password are valid.
+     */
     val ttl: String? = null,
-    /** The temporary username that uniquely identifies a Token. */
-    val username: String? = null,
+    /**
+     * The temporary username that uniquely identifies a Token.
+     */
+    val username: String? = null
 )

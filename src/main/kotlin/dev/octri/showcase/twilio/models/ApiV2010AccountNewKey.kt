@@ -3,26 +3,28 @@
 
 package dev.octri.showcase.twilio.models
 
-/** Typed representation of the `ApiV2010AccountNewKey` API schema. */
+/**
+ * Typed representation of the `ApiV2010AccountNewKey` API schema.
+ */
 data class ApiV2010AccountNewKey(
     /**
-     * The unique string that that we created to identify the NewKey resource. You will use this as
-     * the basic-auth `user` when authenticating to the API.
+     * The unique string that that we created to identify the NewKey resource. You will use this as the basic-auth `user` when authenticating to the API.
      */
     val sid: String? = null,
-    /** The string that you assigned to describe the resource. */
-    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name")
-    val friendlyName: String? = null,
-    /** The date and time in GMT that the API Key was created specified in RFC 2822 format. */
+    /**
+     * The string that you assigned to describe the resource.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name") val friendlyName: String? = null,
+    /**
+     * The date and time in GMT that the API Key was created specified in RFC 2822 format.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
     /**
      * The date and time in GMT that the new API Key was last updated specified in RFC 2822 format.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
     /**
-     * The secret your application uses to sign Access Tokens and to authenticate to the REST API
-     * (you will use this as the basic-auth `password`). **Note that for security reasons, this
-     * field is ONLY returned when the API Key is first created.**
+     * The secret your application uses to sign Access Tokens and to authenticate to the REST API (you will use this as the basic-auth `password`). **Note that for security reasons, this field is ONLY returned when the API Key is first created.**
      */
-    val secret: String? = null,
+    val secret: String? = null
 )

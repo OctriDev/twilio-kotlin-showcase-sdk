@@ -3,27 +3,15 @@
 
 package dev.octri.showcase.twilio
 
+
 class MessagesFeedbackNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Creates Message Feedback to record whether the recipient performed a tracked action
-     * associated with a message. Identify the account and message, then optionally provide the
-     * reported `Outcome`. The response contains the created feedback resource.
+     * Creates Message Feedback to record whether the recipient performed a tracked action associated with a message. Identify the account and message, then optionally provide the reported `Outcome`. The response contains the created feedback resource.
      *
-     * Create Message Feedback to confirm a tracked user action was performed by the recipient of
-     * the associated Message
+     * Create Message Feedback to confirm a tracked user action was performed by the recipient of the associated Message
      */
-    fun create(
-        accountSid: String,
-        messageSid: String,
-        outcome: MessageFeedbackEnumOutcome? = null,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountMessageMessageFeedback {
-        return dev.octri.showcase.twilio.methods.messages.MessagesFeedback.createMessagesFeedback(
-            clientConfig,
-            accountSid,
-            messageSid,
-            outcome,
-            options,
-        )
+    fun create(accountSid: String, messageSid: String, outcome: MessageFeedbackEnumOutcome? = null, options: RequestOptions? = null): ApiV2010AccountMessageMessageFeedback {
+        return dev.octri.showcase.twilio.methods.messages.MessagesFeedback.createMessagesFeedback(clientConfig, accountSid, messageSid, outcome, options)
     }
+
 }

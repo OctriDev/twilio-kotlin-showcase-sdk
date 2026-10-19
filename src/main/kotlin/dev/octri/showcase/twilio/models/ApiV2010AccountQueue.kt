@@ -3,34 +3,44 @@
 
 package dev.octri.showcase.twilio.models
 
-/** Typed representation of the `ApiV2010AccountQueue` API schema. */
+/**
+ * Typed representation of the `ApiV2010AccountQueue` API schema.
+ */
 data class ApiV2010AccountQueue(
     /**
      * The date and time in GMT that this resource was last updated, specified in RFC 2822 format.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
-    /** The number of calls currently in the queue. */
+    /**
+     * The number of calls currently in the queue.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("current_size") val currentSize: Long? = null,
-    /** A string that you assigned to describe this resource. */
-    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name")
-    val friendlyName: String? = null,
-    /** The URI of this resource, relative to `api.twilio.com`. */
+    /**
+     * A string that you assigned to describe this resource.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name") val friendlyName: String? = null,
+    /**
+     * The URI of this resource, relative to `api.twilio.com`.
+     */
     val uri: String? = null,
-    /** The SID of the Account that created this Queue resource. */
+    /**
+     * The SID of the Account that created this Queue resource.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
     /**
-     * The average wait time in seconds of the members in this queue. This is calculated at the time
-     * of the request.
+     * The average wait time in seconds of the members in this queue. This is calculated at the time of the request.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("average_wait_time")
-    val averageWaitTime: Long? = null,
-    /** The unique string that that we created to identify this Queue resource. */
+    @com.fasterxml.jackson.annotation.JsonProperty("average_wait_time") val averageWaitTime: Long? = null,
+    /**
+     * The unique string that that we created to identify this Queue resource.
+     */
     val sid: String? = null,
-    /** The date and time in GMT that this resource was created specified in RFC 2822 format. */
+    /**
+     * The date and time in GMT that this resource was created specified in RFC 2822 format.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
     /**
-     * The maximum number of calls that can be in the queue. The default is 1000 and the maximum
-     * is 5000.
+     * The maximum number of calls that can be in the queue. The default is 1000 and the maximum is 5000.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_size") val maxSize: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("max_size") val maxSize: Long? = null
 )

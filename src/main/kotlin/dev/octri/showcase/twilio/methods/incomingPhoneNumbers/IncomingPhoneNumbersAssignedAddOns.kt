@@ -11,182 +11,113 @@ import dev.octri.showcase.twilio.Validation
 
 object IncomingPhoneNumbersAssignedAddOns {
 
-    data class ListIncomingPhoneNumbersAssignedAddOnsResponse(
-        val end: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
-        val firstPageUri: String? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
-        val nextPageUri: String? = null,
-        val page: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
-        val previousPageUri: String? = null,
-        val start: Long? = null,
-        val uri: String? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("assigned_add_ons")
-        val assignedAddOns:
-            List<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberAssignedAddOn>? =
-            null,
-    )
+data class ListIncomingPhoneNumbersAssignedAddOnsResponse(
+    val end: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
+    val page: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
+    val start: Long? = null,
+    val uri: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("assigned_add_ons") val assignedAddOns: List<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberAssignedAddOn>? = null
+)
+
 
     /**
-     * Retrieves an add-on installation assigned to an incoming phone number. Use the account SID,
-     * phone number SID, and add-on installation SID to identify the resource.
+     * Retrieves an add-on installation assigned to an incoming phone number. Use the account SID, phone number SID, and add-on installation SID to identify the resource.
      *
      * Fetch an instance of an Add-on installation currently assigned to this Number.
      *
      * @param accountSid The SID of the Account that created the resource to fetch.
-     * @param resourceSid The SID of the Phone Number to which the Add-on is assigned.
-     * @param sid The Twilio-provided string that uniquely identifies the resource to fetch.
+     * @param resourceSid The SID of the Phone Number to which the Add-on is
+     *   assigned.
+     * @param sid The Twilio-provided string that uniquely identifies the resource to
+     *   fetch.
      */
-    fun fetchIncomingPhoneNumbersAssignedAddOns(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        resourceSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberAssignedAddOn {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun fetchIncomingPhoneNumbersAssignedAddOns(clientConfig: ClientConfig, accountSid: String, resourceSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberAssignedAddOn {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength(
-            "ResourceSid",
-            resourceSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("ResourceSid", resourceSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("ResourceSid", resourceSid, "^PN[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^XE[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<
-                ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberAssignedAddOn
-            >(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/IncomingPhoneNumbers/${SdkClient.encodePathSegment(resourceSid)}/AssignedAddOns/${SdkClient.encodePathSegment(sid)}.json",
-                    config = clientConfig,
-                    operationId = "fetchIncomingPhoneNumbersAssignedAddOns",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberAssignedAddOn>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/IncomingPhoneNumbers/${SdkClient.encodePathSegment(resourceSid)}/AssignedAddOns/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "fetchIncomingPhoneNumbersAssignedAddOns", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
+
+
+
+
+
+
 
     /**
      * Remove the assignment of an Add-on installation from the Number specified.
      *
      * @param accountSid The SID of the Account that created the resources to delete.
-     * @param resourceSid The SID of the Phone Number to which the Add-on is assigned.
-     * @param sid The Twilio-provided string that uniquely identifies the resource to delete.
+     * @param resourceSid The SID of the Phone Number to which the Add-on is
+     *   assigned.
+     * @param sid The Twilio-provided string that uniquely identifies the resource to
+     *   delete.
      */
-    fun deleteIncomingPhoneNumbersAssignedAddOns(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        resourceSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun deleteIncomingPhoneNumbersAssignedAddOns(clientConfig: ClientConfig, accountSid: String, resourceSid: String, sid: String, options: RequestOptions? = null): Unit {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength(
-            "ResourceSid",
-            resourceSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("ResourceSid", resourceSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("ResourceSid", resourceSid, "^PN[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^XE[0-9a-fA-F]{32}$")
 
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/IncomingPhoneNumbers/${SdkClient.encodePathSegment(resourceSid)}/AssignedAddOns/${SdkClient.encodePathSegment(sid)}.json",
-                config = clientConfig,
-                operationId = "deleteIncomingPhoneNumbersAssignedAddOns",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/IncomingPhoneNumbers/${SdkClient.encodePathSegment(resourceSid)}/AssignedAddOns/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "deleteIncomingPhoneNumbersAssignedAddOns", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 
+
+
+
+
+
+
     /**
-     * Lists add-on installations assigned to an incoming phone number. Use the account SID and
-     * phone number SID to scope the results, and use the page parameters to navigate the list.
+     * Lists add-on installations assigned to an incoming phone number. Use the account SID and phone number SID to scope the results, and use the page parameters to navigate the list.
      *
      * Retrieve a list of Add-on installations currently assigned to this Number.
      *
      * @param accountSid The SID of the Account that created the resources to read.
-     * @param resourceSid The SID of the Phone Number to which the Add-on is assigned.
-     * @param pageSize How many resources to return in each list page. The default is 50, and the
-     *   maximum is 1000.
+     * @param resourceSid The SID of the Phone Number to which the Add-on is
+     *   assigned.
+     * @param pageSize How many resources to return in each list page. The default is
+     *   50, and the maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listIncomingPhoneNumbersAssignedAddOns(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        resourceSid: String,
-        pageSize: Long? = null,
-        page: Long? = null,
-        pageToken: String? = null,
-        options: RequestOptions? = null,
-    ): ListIncomingPhoneNumbersAssignedAddOnsResponse {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun listIncomingPhoneNumbersAssignedAddOns(clientConfig: ClientConfig, accountSid: String, resourceSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): ListIncomingPhoneNumbersAssignedAddOnsResponse {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength(
-            "ResourceSid",
-            resourceSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("ResourceSid", resourceSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("ResourceSid", resourceSid, "^PN[0-9a-fA-F]{32}$")
 
         if (pageSize != null) {
-            Validation.validateRange(
-                "PageSize",
-                pageSize,
-                Validation.RangeOpts(min = 1.0, max = 1000.0),
-            )
-        }
+            Validation.validateRange("PageSize", pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
+}
 
         if (page != null) {
             Validation.validateRange("Page", page, Validation.RangeOpts(min = 0.0))
-        }
+}
 
-        return SdkClient.request<ListIncomingPhoneNumbersAssignedAddOnsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/IncomingPhoneNumbers/${SdkClient.encodePathSegment(resourceSid)}/AssignedAddOns.json",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "PageSize" to SdkClient.queryValue(pageSize, "form", true),
-                            "Page" to SdkClient.queryValue(page, "form", true),
-                            "PageToken" to SdkClient.queryValue(pageToken, "form", true),
-                        ),
-                    operationId = "listIncomingPhoneNumbersAssignedAddOns",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ListIncomingPhoneNumbersAssignedAddOnsResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/IncomingPhoneNumbers/${SdkClient.encodePathSegment(resourceSid)}/AssignedAddOns.json", config = clientConfig, query = mapOf("PageSize" to SdkClient.queryValue(pageSize, "form", true), "Page" to SdkClient.queryValue(page, "form", true), "PageToken" to SdkClient.queryValue(pageToken, "form", true)), operationId = "listIncomingPhoneNumbersAssignedAddOns", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
+
+
+
+
+
+
 
     /**
      * Assign an Add-on installation to the Number specified.
@@ -195,48 +126,23 @@ object IncomingPhoneNumbersAssignedAddOns {
      * @param resourceSid The SID of the Phone Number to assign the Add-on.
      * @param installedAddOnSid The SID that identifies the Add-on installation.
      */
-    fun createIncomingPhoneNumbersAssignedAddOns(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        resourceSid: String,
-        installedAddOnSid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberAssignedAddOn {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun createIncomingPhoneNumbersAssignedAddOns(clientConfig: ClientConfig, accountSid: String, resourceSid: String, installedAddOnSid: String, options: RequestOptions? = null): ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberAssignedAddOn {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength(
-            "ResourceSid",
-            resourceSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("ResourceSid", resourceSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("ResourceSid", resourceSid, "^PN[0-9a-fA-F]{32}$")
 
-        Validation.validateLength(
-            "InstalledAddOnSid",
-            installedAddOnSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("InstalledAddOnSid", installedAddOnSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("InstalledAddOnSid", installedAddOnSid, "^XE[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<
-                ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberAssignedAddOn
-            >(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/IncomingPhoneNumbers/${SdkClient.encodePathSegment(resourceSid)}/AssignedAddOns.json",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("InstalledAddOnSid" to (installedAddOnSid)),
-                    contentType = "application/x-www-form-urlencoded",
-                    operationId = "createIncomingPhoneNumbersAssignedAddOns",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberAssignedAddOn>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/IncomingPhoneNumbers/${SdkClient.encodePathSegment(resourceSid)}/AssignedAddOns.json", config = clientConfig, body = SdkClient.bodyMap("InstalledAddOnSid" to (installedAddOnSid)), contentType = "application/x-www-form-urlencoded", operationId = "createIncomingPhoneNumbersAssignedAddOns", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
+
+
+
+
+
+
+
 }
