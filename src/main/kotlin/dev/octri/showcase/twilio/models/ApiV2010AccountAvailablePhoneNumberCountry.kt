@@ -3,28 +3,23 @@
 
 package dev.octri.showcase.twilio.models
 
-/**
- * Typed representation of the `ApiV2010AccountAvailablePhoneNumberCountry` API schema.
- */
+/** Typed representation of the `ApiV2010AccountAvailablePhoneNumberCountry` API schema. */
 data class ApiV2010AccountAvailablePhoneNumberCountry(
-    /**
-     * The ISO-3166-1 country code of the country.
-     */
+    /** The ISO-3166-1 country code of the country. */
     @com.fasterxml.jackson.annotation.JsonProperty("country_code") val countryCode: String? = null,
-    /**
-     * The name of the country.
-     */
+    /** The name of the country. */
     val country: String? = null,
-    /**
-     * The URI of the Country resource, relative to `api.twilio.com`.
-     */
+    /** The URI of the Country resource, relative to `api.twilio.com`. */
     val uri: String? = null,
     /**
-     * Whether all phone numbers available in the country are new to the Twilio platform. `true` if they are and `false` if all numbers are not in the Twilio Phone Number Beta program.
+     * Whether all phone numbers available in the country are new to the Twilio platform. `true` if
+     * they are and `false` if all numbers are not in the Twilio Phone Number Beta program.
      */
     val beta: Boolean? = null,
     /**
-     * A list of related AvailablePhoneNumber resources identified by their URIs relative to `api.twilio.com`.
+     * A list of related AvailablePhoneNumber resources identified by their URIs relative to
+     * `api.twilio.com`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("subresource_uris") val subresourceUris: Map<String, Any>? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("subresource_uris")
+    val subresourceUris: Map<String, Any>? = null,
 )

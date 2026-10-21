@@ -11,205 +11,260 @@ import dev.octri.showcase.twilio.Validation
 
 internal object IncomingPhoneNumbersUpdateIncomingPhoneNumbersOperation {
     /**
-     * Updates the configuration of an incoming phone number. Supply only the settings you want to change, such as the SMS or voice handlers and their callback methods. An application SID takes precedence over the corresponding URL settings.
+     * Updates the configuration of an incoming phone number. Supply only the settings you want to
+     * change, such as the SMS or voice handlers and their callback methods. An application SID
+     * takes precedence over the corresponding URL settings.
      *
      * Update an incoming-phone-number instance.
      *
-     * @param accountSid The SID of the Account that created the IncomingPhoneNumber
-     *   resource to update. For more information, see Exchanging Numbers Between
-     *   Subaccounts.
-     * @param sid The Twilio-provided string that uniquely identifies the
-     *   IncomingPhoneNumber resource to update.
-     * @param accountSid2 The SID of the Account that created the IncomingPhoneNumber
-     *   resource to update. For more information, see Exchanging Numbers Between
-     *   Subaccounts.
-     * @param apiVersion The API version to use for incoming calls made to the phone
-     *   number. The default is `2010-04-01`.
-     * @param friendlyName A descriptive string that you created to describe this
-     *   phone number. It can be up to 64 characters long. By default, this is a
-     *   formatted version of the phone number.
-     * @param smsApplicationSid The SID of the application that should handle SMS
-     *   messages sent to the number. If an `sms_application_sid` is present, we ignore
-     *   all of the `sms_*_url` urls and use those set on the application.
-     * @param smsFallbackMethod The HTTP method that we should use to call
-     *   `sms_fallback_url`. Can be: `GET` or `POST` and defaults to `POST`.
-     * @param smsFallbackUrl The URL that we should call when an error occurs while
-     *   requesting or executing the TwiML defined by `sms_url`.
-     * @param smsMethod The HTTP method that we should use to call `sms_url`. Can be:
-     *   `GET` or `POST` and defaults to `POST`.
-     * @param smsUrl The URL we should call when the phone number receives an
-     *   incoming SMS message.
-     * @param statusCallback The URL we should call using the
-     *   `status_callback_method` to send status information to your application.
-     * @param statusCallbackMethod The HTTP method we should use to call
-     *   `status_callback`. Can be: `GET` or `POST` and defaults to `POST`.
-     * @param voiceApplicationSid The SID of the application we should use to handle
-     *   phone calls to the phone number. If a `voice_application_sid` is present, we
-     *   ignore all of the voice urls and use only those set on the application.
-     *   Setting a `voice_application_sid` will automatically delete your `trunk_sid`
-     *   and vice versa.
-     * @param voiceCallerIdLookup Whether to lookup the caller's name from the CNAM
-     *   database and post it to your app. Can be: `true` or `false` and defaults to
-     *   `false`.
-     * @param voiceFallbackMethod The HTTP method that we should use to call
-     *   `voice_fallback_url`. Can be: `GET` or `POST` and defaults to `POST`.
-     * @param voiceFallbackUrl The URL that we should call when an error occurs
-     *   retrieving or executing the TwiML requested by `url`.
-     * @param voiceMethod The HTTP method that we should use to call `voice_url`. Can
+     * @param accountSid The SID of the Account that created the IncomingPhoneNumber resource to
+     *   update. For more information, see Exchanging Numbers Between Subaccounts.
+     * @param sid The Twilio-provided string that uniquely identifies the IncomingPhoneNumber
+     *   resource to update.
+     * @param accountSid2 The SID of the Account that created the IncomingPhoneNumber resource to
+     *   update. For more information, see Exchanging Numbers Between Subaccounts.
+     * @param apiVersion The API version to use for incoming calls made to the phone number. The
+     *   default is `2010-04-01`.
+     * @param friendlyName A descriptive string that you created to describe this phone number. It
+     *   can be up to 64 characters long. By default, this is a formatted version of the phone
+     *   number.
+     * @param smsApplicationSid The SID of the application that should handle SMS messages sent to
+     *   the number. If an `sms_application_sid` is present, we ignore all of the `sms_*_url` urls
+     *   and use those set on the application.
+     * @param smsFallbackMethod The HTTP method that we should use to call `sms_fallback_url`. Can
      *   be: `GET` or `POST` and defaults to `POST`.
-     * @param voiceUrl The URL that we should call to answer a call to the phone
-     *   number. The `voice_url` will not be called if a `voice_application_sid` or a
-     *   `trunk_sid` is set.
-     * @param emergencyStatus The parameter displays if emergency calling is enabled
-     *   for this number. Active numbers may place emergency calls by dialing valid
-     *   emergency numbers for the country.
-     * @param emergencyAddressSid The SID of the emergency address configuration to
-     *   use for emergency calling from this phone number.
-     * @param trunkSid The SID of the Trunk we should use to handle phone calls to
-     *   the phone number. If a `trunk_sid` is present, we ignore all of the voice urls
-     *   and voice applications and use only those set on the Trunk. Setting a
-     *   `trunk_sid` will automatically delete your `voice_application_sid` and vice
-     *   versa.
-     * @param identitySid The SID of the Identity resource that we should associate
-     *   with the phone number. Some regions require an identity to meet local
-     *   regulations.
-     * @param addressSid The SID of the Address resource we should associate with the
-     *   phone number. Some regions require addresses to meet local regulations.
-     * @param bundleSid The SID of the Bundle resource that you associate with the
-     *   phone number. Some regions require a Bundle to meet local Regulations.
+     * @param smsFallbackUrl The URL that we should call when an error occurs while requesting or
+     *   executing the TwiML defined by `sms_url`.
+     * @param smsMethod The HTTP method that we should use to call `sms_url`. Can be: `GET` or
+     *   `POST` and defaults to `POST`.
+     * @param smsUrl The URL we should call when the phone number receives an incoming SMS message.
+     * @param statusCallback The URL we should call using the `status_callback_method` to send
+     *   status information to your application.
+     * @param statusCallbackMethod The HTTP method we should use to call `status_callback`. Can be:
+     *   `GET` or `POST` and defaults to `POST`.
+     * @param voiceApplicationSid The SID of the application we should use to handle phone calls to
+     *   the phone number. If a `voice_application_sid` is present, we ignore all of the voice urls
+     *   and use only those set on the application. Setting a `voice_application_sid` will
+     *   automatically delete your `trunk_sid` and vice versa.
+     * @param voiceCallerIdLookup Whether to lookup the caller's name from the CNAM database and
+     *   post it to your app. Can be: `true` or `false` and defaults to `false`.
+     * @param voiceFallbackMethod The HTTP method that we should use to call `voice_fallback_url`.
+     *   Can be: `GET` or `POST` and defaults to `POST`.
+     * @param voiceFallbackUrl The URL that we should call when an error occurs retrieving or
+     *   executing the TwiML requested by `url`.
+     * @param voiceMethod The HTTP method that we should use to call `voice_url`. Can be: `GET` or
+     *   `POST` and defaults to `POST`.
+     * @param voiceUrl The URL that we should call to answer a call to the phone number. The
+     *   `voice_url` will not be called if a `voice_application_sid` or a `trunk_sid` is set.
+     * @param emergencyStatus The parameter displays if emergency calling is enabled for this
+     *   number. Active numbers may place emergency calls by dialing valid emergency numbers for the
+     *   country.
+     * @param emergencyAddressSid The SID of the emergency address configuration to use for
+     *   emergency calling from this phone number.
+     * @param trunkSid The SID of the Trunk we should use to handle phone calls to the phone number.
+     *   If a `trunk_sid` is present, we ignore all of the voice urls and voice applications and use
+     *   only those set on the Trunk. Setting a `trunk_sid` will automatically delete your
+     *   `voice_application_sid` and vice versa.
+     * @param identitySid The SID of the Identity resource that we should associate with the phone
+     *   number. Some regions require an identity to meet local regulations.
+     * @param addressSid The SID of the Address resource we should associate with the phone number.
+     *   Some regions require addresses to meet local regulations.
+     * @param bundleSid The SID of the Bundle resource that you associate with the phone number.
+     *   Some regions require a Bundle to meet local Regulations.
      */
-    fun updateIncomingPhoneNumbers(clientConfig: ClientConfig, request: IncomingPhoneNumbers.UpdateIncomingPhoneNumbersRequest, options: RequestOptions? = null): ApiV2010AccountIncomingPhoneNumber {
+    fun updateIncomingPhoneNumbers(
+        clientConfig: ClientConfig,
+        request: IncomingPhoneNumbers.UpdateIncomingPhoneNumbersRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountIncomingPhoneNumber {
         validateUpdateIncomingPhoneNumbersRequest(request)
 
-        return SdkClient.request<ApiV2010AccountIncomingPhoneNumber>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/IncomingPhoneNumbers/${SdkClient.encodePathSegment(request.sid)}.json", config = clientConfig, body = buildUpdateIncomingPhoneNumbersBody(request), contentType = "application/x-www-form-urlencoded", operationId = "updateIncomingPhoneNumbers", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountIncomingPhoneNumber>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/IncomingPhoneNumbers/${SdkClient.encodePathSegment(request.sid)}.json",
+                    config = clientConfig,
+                    body = buildUpdateIncomingPhoneNumbersBody(request),
+                    contentType = "application/x-www-form-urlencoded",
+                    operationId = "updateIncomingPhoneNumbers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-    private fun validateUpdateIncomingPhoneNumbersRequest(request: IncomingPhoneNumbers.UpdateIncomingPhoneNumbersRequest) {
+    private fun validateUpdateIncomingPhoneNumbersRequest(
+        request: IncomingPhoneNumbers.UpdateIncomingPhoneNumbersRequest
+    ) {
         validateUpdateIncomingPhoneNumbersRequestPart1(request)
         validateUpdateIncomingPhoneNumbersRequestPart2(request)
         validateUpdateIncomingPhoneNumbersRequestPart3(request)
     }
 
-    private fun validateUpdateIncomingPhoneNumbersRequestPart1(request: IncomingPhoneNumbers.UpdateIncomingPhoneNumbersRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+    private fun validateUpdateIncomingPhoneNumbersRequestPart1(
+        request: IncomingPhoneNumbers.UpdateIncomingPhoneNumbersRequest
+    ) {
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", request.sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", request.sid, "^PN[0-9a-fA-F]{32}$")
 
         if (request.accountSid2 != null) {
-            Validation.validateLength("AccountSid", request.accountSid2, Validation.LengthOpts(min = 34, max = 34))
+            Validation.validateLength(
+                "AccountSid",
+                request.accountSid2,
+                Validation.LengthOpts(min = 34, max = 34),
+            )
             Validation.validatePattern("AccountSid", request.accountSid2, "^AC[0-9a-fA-F]{32}$")
-}
+        }
 
         if (request.smsApplicationSid != null) {
-            Validation.validateLength("SmsApplicationSid", request.smsApplicationSid, Validation.LengthOpts(min = 34, max = 34))
-            Validation.validatePattern("SmsApplicationSid", request.smsApplicationSid, "^AP[0-9a-fA-F]{32}$")
-}
+            Validation.validateLength(
+                "SmsApplicationSid",
+                request.smsApplicationSid,
+                Validation.LengthOpts(min = 34, max = 34),
+            )
+            Validation.validatePattern(
+                "SmsApplicationSid",
+                request.smsApplicationSid,
+                "^AP[0-9a-fA-F]{32}$",
+            )
+        }
 
         if (request.smsFallbackUrl != null) {
             Validation.validateUri("SmsFallbackUrl", request.smsFallbackUrl)
-}
+        }
     }
 
-    private fun validateUpdateIncomingPhoneNumbersRequestPart2(request: IncomingPhoneNumbers.UpdateIncomingPhoneNumbersRequest) {
+    private fun validateUpdateIncomingPhoneNumbersRequestPart2(
+        request: IncomingPhoneNumbers.UpdateIncomingPhoneNumbersRequest
+    ) {
         if (request.smsUrl != null) {
             Validation.validateUri("SmsUrl", request.smsUrl)
-}
+        }
 
         if (request.statusCallback != null) {
             Validation.validateUri("StatusCallback", request.statusCallback)
-}
+        }
 
         if (request.voiceApplicationSid != null) {
-            Validation.validateLength("VoiceApplicationSid", request.voiceApplicationSid, Validation.LengthOpts(min = 34, max = 34))
-            Validation.validatePattern("VoiceApplicationSid", request.voiceApplicationSid, "^AP[0-9a-fA-F]{32}$")
-}
+            Validation.validateLength(
+                "VoiceApplicationSid",
+                request.voiceApplicationSid,
+                Validation.LengthOpts(min = 34, max = 34),
+            )
+            Validation.validatePattern(
+                "VoiceApplicationSid",
+                request.voiceApplicationSid,
+                "^AP[0-9a-fA-F]{32}$",
+            )
+        }
 
         if (request.voiceFallbackUrl != null) {
             Validation.validateUri("VoiceFallbackUrl", request.voiceFallbackUrl)
-}
+        }
 
         if (request.voiceUrl != null) {
             Validation.validateUri("VoiceUrl", request.voiceUrl)
-}
+        }
     }
 
-    private fun validateUpdateIncomingPhoneNumbersRequestPart3(request: IncomingPhoneNumbers.UpdateIncomingPhoneNumbersRequest) {
+    private fun validateUpdateIncomingPhoneNumbersRequestPart3(
+        request: IncomingPhoneNumbers.UpdateIncomingPhoneNumbersRequest
+    ) {
         if (request.emergencyAddressSid != null) {
-            Validation.validateLength("EmergencyAddressSid", request.emergencyAddressSid, Validation.LengthOpts(min = 34, max = 34))
-            Validation.validatePattern("EmergencyAddressSid", request.emergencyAddressSid, "^AD[0-9a-fA-F]{32}$")
-}
-
-        if (request.trunkSid != null) {
-            Validation.validateLength("TrunkSid", request.trunkSid, Validation.LengthOpts(min = 34, max = 34))
-            Validation.validatePattern("TrunkSid", request.trunkSid, "^TK[0-9a-fA-F]{32}$")
-}
-
-        if (request.identitySid != null) {
-            Validation.validateLength("IdentitySid", request.identitySid, Validation.LengthOpts(min = 34, max = 34))
-            Validation.validatePattern("IdentitySid", request.identitySid, "^RI[0-9a-fA-F]{32}$")
-}
-
-        if (request.addressSid != null) {
-            Validation.validateLength("AddressSid", request.addressSid, Validation.LengthOpts(min = 34, max = 34))
-            Validation.validatePattern("AddressSid", request.addressSid, "^AD[0-9a-fA-F]{32}$")
-}
-
-        if (request.bundleSid != null) {
-            Validation.validateLength("BundleSid", request.bundleSid, Validation.LengthOpts(min = 34, max = 34))
-            Validation.validatePattern("BundleSid", request.bundleSid, "^BU[0-9a-fA-F]{32}$")
-}
-    }
-
-
-
-    private fun buildUpdateIncomingPhoneNumbersBody(request: IncomingPhoneNumbers.UpdateIncomingPhoneNumbersRequest): Map<String, Any?> =
-        buildMap {
-            putAll(buildUpdateIncomingPhoneNumbersBodyPart1(request))
-            putAll(buildUpdateIncomingPhoneNumbersBodyPart2(request))
+            Validation.validateLength(
+                "EmergencyAddressSid",
+                request.emergencyAddressSid,
+                Validation.LengthOpts(min = 34, max = 34),
+            )
+            Validation.validatePattern(
+                "EmergencyAddressSid",
+                request.emergencyAddressSid,
+                "^AD[0-9a-fA-F]{32}$",
+            )
         }
 
-    private fun buildUpdateIncomingPhoneNumbersBodyPart1(request: IncomingPhoneNumbers.UpdateIncomingPhoneNumbersRequest): Map<String, Any?> =
+        if (request.trunkSid != null) {
+            Validation.validateLength(
+                "TrunkSid",
+                request.trunkSid,
+                Validation.LengthOpts(min = 34, max = 34),
+            )
+            Validation.validatePattern("TrunkSid", request.trunkSid, "^TK[0-9a-fA-F]{32}$")
+        }
+
+        if (request.identitySid != null) {
+            Validation.validateLength(
+                "IdentitySid",
+                request.identitySid,
+                Validation.LengthOpts(min = 34, max = 34),
+            )
+            Validation.validatePattern("IdentitySid", request.identitySid, "^RI[0-9a-fA-F]{32}$")
+        }
+
+        if (request.addressSid != null) {
+            Validation.validateLength(
+                "AddressSid",
+                request.addressSid,
+                Validation.LengthOpts(min = 34, max = 34),
+            )
+            Validation.validatePattern("AddressSid", request.addressSid, "^AD[0-9a-fA-F]{32}$")
+        }
+
+        if (request.bundleSid != null) {
+            Validation.validateLength(
+                "BundleSid",
+                request.bundleSid,
+                Validation.LengthOpts(min = 34, max = 34),
+            )
+            Validation.validatePattern("BundleSid", request.bundleSid, "^BU[0-9a-fA-F]{32}$")
+        }
+    }
+
+    private fun buildUpdateIncomingPhoneNumbersBody(
+        request: IncomingPhoneNumbers.UpdateIncomingPhoneNumbersRequest
+    ): Map<String, Any?> = buildMap {
+        putAll(buildUpdateIncomingPhoneNumbersBodyPart1(request))
+        putAll(buildUpdateIncomingPhoneNumbersBodyPart2(request))
+    }
+
+    private fun buildUpdateIncomingPhoneNumbersBodyPart1(
+        request: IncomingPhoneNumbers.UpdateIncomingPhoneNumbersRequest
+    ): Map<String, Any?> =
         SdkClient.bodyMap(
             "AccountSid" to (SdkClient.omitIfNull(request.accountSid2)),
             "ApiVersion" to (SdkClient.omitIfNull(request.apiVersion)),
-            "FriendlyName" to
-    (SdkClient.omitIfNull(request.friendlyName)),
-            "SmsApplicationSid" to
-    (SdkClient.omitIfNull(request.smsApplicationSid)),
-            "SmsFallbackMethod" to
-    (SdkClient.omitIfNull(request.smsFallbackMethod)),
-            "SmsFallbackUrl" to
-    (SdkClient.omitIfNull(request.smsFallbackUrl)),
+            "FriendlyName" to (SdkClient.omitIfNull(request.friendlyName)),
+            "SmsApplicationSid" to (SdkClient.omitIfNull(request.smsApplicationSid)),
+            "SmsFallbackMethod" to (SdkClient.omitIfNull(request.smsFallbackMethod)),
+            "SmsFallbackUrl" to (SdkClient.omitIfNull(request.smsFallbackUrl)),
             "SmsMethod" to (SdkClient.omitIfNull(request.smsMethod)),
             "SmsUrl" to (SdkClient.omitIfNull(request.smsUrl)),
-            "StatusCallback" to
-    (SdkClient.omitIfNull(request.statusCallback)),
-            "StatusCallbackMethod" to
-    (SdkClient.omitIfNull(request.statusCallbackMethod)),
-            "VoiceApplicationSid" to
-    (SdkClient.omitIfNull(request.voiceApplicationSid)),
-            "VoiceCallerIdLookup" to
-    (SdkClient.omitIfNull(request.voiceCallerIdLookup)),
+            "StatusCallback" to (SdkClient.omitIfNull(request.statusCallback)),
+            "StatusCallbackMethod" to (SdkClient.omitIfNull(request.statusCallbackMethod)),
+            "VoiceApplicationSid" to (SdkClient.omitIfNull(request.voiceApplicationSid)),
+            "VoiceCallerIdLookup" to (SdkClient.omitIfNull(request.voiceCallerIdLookup)),
         )
 
-    private fun buildUpdateIncomingPhoneNumbersBodyPart2(request: IncomingPhoneNumbers.UpdateIncomingPhoneNumbersRequest): Map<String, Any?> =
+    private fun buildUpdateIncomingPhoneNumbersBodyPart2(
+        request: IncomingPhoneNumbers.UpdateIncomingPhoneNumbersRequest
+    ): Map<String, Any?> =
         SdkClient.bodyMap(
-            "VoiceFallbackMethod" to
-    (SdkClient.omitIfNull(request.voiceFallbackMethod)),
-            "VoiceFallbackUrl" to
-    (SdkClient.omitIfNull(request.voiceFallbackUrl)),
+            "VoiceFallbackMethod" to (SdkClient.omitIfNull(request.voiceFallbackMethod)),
+            "VoiceFallbackUrl" to (SdkClient.omitIfNull(request.voiceFallbackUrl)),
             "VoiceMethod" to (SdkClient.omitIfNull(request.voiceMethod)),
             "VoiceUrl" to (SdkClient.omitIfNull(request.voiceUrl)),
-            "EmergencyStatus" to
-    (SdkClient.omitIfNull(request.emergencyStatus)),
-            "EmergencyAddressSid" to
-    (SdkClient.omitIfNull(request.emergencyAddressSid)),
+            "EmergencyStatus" to (SdkClient.omitIfNull(request.emergencyStatus)),
+            "EmergencyAddressSid" to (SdkClient.omitIfNull(request.emergencyAddressSid)),
             "TrunkSid" to (SdkClient.omitIfNull(request.trunkSid)),
-            "VoiceReceiveMode" to
-    (SdkClient.omitIfNull(request.voiceReceiveMode)),
+            "VoiceReceiveMode" to (SdkClient.omitIfNull(request.voiceReceiveMode)),
             "IdentitySid" to (SdkClient.omitIfNull(request.identitySid)),
             "AddressSid" to (SdkClient.omitIfNull(request.addressSid)),
             "BundleSid" to (SdkClient.omitIfNull(request.bundleSid)),
@@ -218,23 +273,43 @@ internal object IncomingPhoneNumbersUpdateIncomingPhoneNumbersOperation {
 
 internal object IncomingPhoneNumbersFetchIncomingPhoneNumbersOperation {
     /**
-     * Retrieves an incoming phone number belonging to an account. Use the account SID and the phone number's SID to identify the resource.
+     * Retrieves an incoming phone number belonging to an account. Use the account SID and the phone
+     * number's SID to identify the resource.
      *
      * Fetch an incoming-phone-number belonging to the account used to make the request.
      *
-     * @param accountSid The SID of the Account that created the IncomingPhoneNumber
+     * @param accountSid The SID of the Account that created the IncomingPhoneNumber resource to
+     *   fetch.
+     * @param sid The Twilio-provided string that uniquely identifies the IncomingPhoneNumber
      *   resource to fetch.
-     * @param sid The Twilio-provided string that uniquely identifies the
-     *   IncomingPhoneNumber resource to fetch.
      */
-    fun fetchIncomingPhoneNumbers(clientConfig: ClientConfig, accountSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountIncomingPhoneNumber {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun fetchIncomingPhoneNumbers(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountIncomingPhoneNumber {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^PN[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountIncomingPhoneNumber>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/IncomingPhoneNumbers/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "fetchIncomingPhoneNumbers", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountIncomingPhoneNumber>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/IncomingPhoneNumbers/${SdkClient.encodePathSegment(sid)}.json",
+                    config = clientConfig,
+                    operationId = "fetchIncomingPhoneNumbers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
@@ -242,18 +317,36 @@ internal object IncomingPhoneNumbersDeleteIncomingPhoneNumbersOperation {
     /**
      * Delete a phone-numbers belonging to the account used to make the request.
      *
-     * @param accountSid The SID of the Account that created the IncomingPhoneNumber
-     *   resources to delete.
-     * @param sid The Twilio-provided string that uniquely identifies the
-     *   IncomingPhoneNumber resource to delete.
+     * @param accountSid The SID of the Account that created the IncomingPhoneNumber resources to
+     *   delete.
+     * @param sid The Twilio-provided string that uniquely identifies the IncomingPhoneNumber
+     *   resource to delete.
      */
-    fun deleteIncomingPhoneNumbers(clientConfig: ClientConfig, accountSid: String, sid: String, options: RequestOptions? = null): Unit {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun deleteIncomingPhoneNumbers(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^PN[0-9a-fA-F]{32}$")
 
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/IncomingPhoneNumbers/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "deleteIncomingPhoneNumbers", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/IncomingPhoneNumbers/${SdkClient.encodePathSegment(sid)}.json",
+                config = clientConfig,
+                operationId = "deleteIncomingPhoneNumbers",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }

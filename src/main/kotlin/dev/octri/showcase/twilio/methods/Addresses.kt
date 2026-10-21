@@ -11,18 +11,20 @@ import dev.octri.showcase.twilio.Validation
 
 object Addresses {
 
-data class ListAddressesResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    val addresses: List<ApiV2010AccountAddress>? = null
-)
-
+    data class ListAddressesResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        val addresses: List<ApiV2010AccountAddress>? = null,
+    )
 
     /** Parameters for [createAddresses]. */
     data class CreateAddressesRequest(
@@ -36,52 +38,75 @@ data class ListAddressesResponse(
         val friendlyName: String? = null,
         val emergencyEnabled: Boolean? = null,
         val autoCorrectAddress: Boolean? = null,
-        val streetSecondary: String? = null
+        val streetSecondary: String? = null,
     )
 
     /**
-     * Creates an address resource for a specific account. Provide `CustomerName`, `Street`, `City`, `Region`, `PostalCode`, and `IsoCountry`; `AutoCorrectAddress` defaults to true when omitted. A 201 response returns the created address.
+     * Creates an address resource for a specific account. Provide `CustomerName`, `Street`, `City`,
+     * `Region`, `PostalCode`, and `IsoCountry`; `AutoCorrectAddress` defaults to true when omitted.
+     * A 201 response returns the created address.
      *
-     * @param accountSid The SID of the Account that will be responsible for the new
-     *   Address resource.
+     * @param accountSid The SID of the Account that will be responsible for the new Address
+     *   resource.
      * @param customerName The name to associate with the new address.
      * @param street The number and street address of the new address.
      * @param city The city of the new address.
      * @param region The state or region of the new address.
      * @param postalCode The postal code of the new address.
      * @param isoCountry The ISO country code of the new address.
-     * @param friendlyName A descriptive string that you create to describe the new
-     *   address. It can be up to 64 characters long for Regulatory Compliance
-     *   addresses and 32 characters long for Emergency addresses.
-     * @param emergencyEnabled Whether to enable emergency calling on the new
-     *   address. Can be: `true` or `false`.
-     * @param autoCorrectAddress Whether we should automatically correct the address.
-     *   Can be: `true` or `false` and the default is `true`. If empty or `true`, we
-     *   will correct the address you provide if necessary. If `false`, we won't alter
-     *   the address you provide.
-     * @param streetSecondary The additional number and street address of the
-     *   address.
+     * @param friendlyName A descriptive string that you create to describe the new address. It can
+     *   be up to 64 characters long for Regulatory Compliance addresses and 32 characters long for
+     *   Emergency addresses.
+     * @param emergencyEnabled Whether to enable emergency calling on the new address. Can be:
+     *   `true` or `false`.
+     * @param autoCorrectAddress Whether we should automatically correct the address. Can be: `true`
+     *   or `false` and the default is `true`. If empty or `true`, we will correct the address you
+     *   provide if necessary. If `false`, we won't alter the address you provide.
+     * @param streetSecondary The additional number and street address of the address.
      */
-    fun createAddresses(clientConfig: ClientConfig, request: CreateAddressesRequest, options: RequestOptions? = null): ApiV2010AccountAddress {
+    fun createAddresses(
+        clientConfig: ClientConfig,
+        request: CreateAddressesRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountAddress {
         validateCreateAddressesRequest(request)
 
-        return SdkClient.request<ApiV2010AccountAddress>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Addresses.json", config = clientConfig, body = SdkClient.bodyMap("CustomerName" to (request.customerName), "Street" to (request.street), "City" to (request.city), "Region" to (request.region), "PostalCode" to (request.postalCode), "IsoCountry" to (request.isoCountry), "FriendlyName" to
-    (SdkClient.omitIfNull(request.friendlyName)), "EmergencyEnabled" to
-    (SdkClient.omitIfNull(request.emergencyEnabled)), "AutoCorrectAddress" to
-    (SdkClient.omitIfNull(request.autoCorrectAddress)), "StreetSecondary" to
-    (SdkClient.omitIfNull(request.streetSecondary))), contentType = "application/x-www-form-urlencoded", operationId = "createAddresses", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountAddress>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Addresses.json",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "CustomerName" to (request.customerName),
+                            "Street" to (request.street),
+                            "City" to (request.city),
+                            "Region" to (request.region),
+                            "PostalCode" to (request.postalCode),
+                            "IsoCountry" to (request.isoCountry),
+                            "FriendlyName" to (SdkClient.omitIfNull(request.friendlyName)),
+                            "EmergencyEnabled" to (SdkClient.omitIfNull(request.emergencyEnabled)),
+                            "AutoCorrectAddress" to
+                                (SdkClient.omitIfNull(request.autoCorrectAddress)),
+                            "StreetSecondary" to (SdkClient.omitIfNull(request.streetSecondary)),
+                        ),
+                    contentType = "application/x-www-form-urlencoded",
+                    operationId = "createAddresses",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
 
     private fun validateCreateAddressesRequest(request: CreateAddressesRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
     }
-
-
-
-
-
 
     /** Parameters for [listAddresses]. */
     data class ListAddressesRequest(
@@ -92,102 +117,153 @@ data class ListAddressesResponse(
         val isoCountry: String? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null
+        val pageToken: String? = null,
     )
 
     /**
-     * Lists address resources associated with a specific account. Filter the results by customer name, friendly name, emergency-calling status, or ISO country code, and use the pagination parameters to navigate the results.
+     * Lists address resources associated with a specific account. Filter the results by customer
+     * name, friendly name, emergency-calling status, or ISO country code, and use the pagination
+     * parameters to navigate the results.
      *
-     * @param accountSid The SID of the Account that is responsible for the Address
-     *   resource to read.
+     * @param accountSid The SID of the Account that is responsible for the Address resource to
+     *   read.
      * @param customerName The `customer_name` of the Address resources to read.
      * @param friendlyName The string that identifies the Address resources to read.
-     * @param emergencyEnabled Whether the address can be associated to a number for
-     *   emergency calling.
+     * @param emergencyEnabled Whether the address can be associated to a number for emergency
+     *   calling.
      * @param isoCountry The ISO country code of the Address resources to read.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listAddresses(clientConfig: ClientConfig, request: ListAddressesRequest, options: RequestOptions? = null): ListAddressesResponse {
+    fun listAddresses(
+        clientConfig: ClientConfig,
+        request: ListAddressesRequest,
+        options: RequestOptions? = null,
+    ): ListAddressesResponse {
         validateListAddressesRequest(request)
 
-        return SdkClient.request<ListAddressesResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Addresses.json", config = clientConfig, query = mapOf("CustomerName" to
-    SdkClient.queryValue(request.customerName, "form", true), "FriendlyName" to
-    SdkClient.queryValue(request.friendlyName, "form", true), "EmergencyEnabled" to
-    SdkClient.queryValue(request.emergencyEnabled, "form", true), "IsoCountry" to
-    SdkClient.queryValue(request.isoCountry, "form", true), "PageSize" to
-    SdkClient.queryValue(request.pageSize, "form", true), "Page" to SdkClient.queryValue(request.page, "form", true), "PageToken" to
-    SdkClient.queryValue(request.pageToken, "form", true)), operationId = "listAddresses", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ListAddressesResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Addresses.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "CustomerName" to
+                                SdkClient.queryValue(request.customerName, "form", true),
+                            "FriendlyName" to
+                                SdkClient.queryValue(request.friendlyName, "form", true),
+                            "EmergencyEnabled" to
+                                SdkClient.queryValue(request.emergencyEnabled, "form", true),
+                            "IsoCountry" to SdkClient.queryValue(request.isoCountry, "form", true),
+                            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(request.page, "form", true),
+                            "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
+                        ),
+                    operationId = "listAddresses",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
     private fun validateListAddressesRequest(request: ListAddressesRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.pageSize != null) {
-            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                request.pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-}
+        }
     }
 
-
-
-
-
-
     /**
-     * Deletes a specific address resource associated with an account. Supply the account SID and address SID to identify the address to remove.
+     * Deletes a specific address resource associated with an account. Supply the account SID and
+     * address SID to identify the address to remove.
      *
-     * @param accountSid The SID of the Account that is responsible for the Address
-     *   resource to delete.
-     * @param sid The Twilio-provided string that uniquely identifies the Address
-     *   resource to delete.
+     * @param accountSid The SID of the Account that is responsible for the Address resource to
+     *   delete.
+     * @param sid The Twilio-provided string that uniquely identifies the Address resource to
+     *   delete.
      */
-    fun deleteAddresses(clientConfig: ClientConfig, accountSid: String, sid: String, options: RequestOptions? = null): Unit {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun deleteAddresses(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^AD[0-9a-fA-F]{32}$")
 
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Addresses/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "deleteAddresses", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Addresses/${SdkClient.encodePathSegment(sid)}.json",
+                config = clientConfig,
+                operationId = "deleteAddresses",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Retrieves a specific address resource associated with an account. Supply the account SID and address SID to identify the resource.
+     * Retrieves a specific address resource associated with an account. Supply the account SID and
+     * address SID to identify the resource.
      *
-     * @param accountSid The SID of the Account that is responsible for the Address
-     *   resource to fetch.
-     * @param sid The Twilio-provided string that uniquely identifies the Address
-     *   resource to fetch.
+     * @param accountSid The SID of the Account that is responsible for the Address resource to
+     *   fetch.
+     * @param sid The Twilio-provided string that uniquely identifies the Address resource to fetch.
      */
-    fun fetchAddresses(clientConfig: ClientConfig, accountSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountAddress {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun fetchAddresses(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountAddress {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^AD[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountAddress>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Addresses/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "fetchAddresses", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountAddress>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Addresses/${SdkClient.encodePathSegment(sid)}.json",
+                    config = clientConfig,
+                    operationId = "fetchAddresses",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /** Parameters for [updateAddresses]. */
     data class UpdateAddressesRequest(
@@ -201,56 +277,75 @@ data class ListAddressesResponse(
         val postalCode: String? = null,
         val emergencyEnabled: Boolean? = null,
         val autoCorrectAddress: Boolean? = null,
-        val streetSecondary: String? = null
+        val streetSecondary: String? = null,
     )
 
     /**
-     * Updates properties of a specific address resource. Submit only the address fields you want to change; `AutoCorrectAddress` defaults to true when omitted.
+     * Updates properties of a specific address resource. Submit only the address fields you want to
+     * change; `AutoCorrectAddress` defaults to true when omitted.
      *
-     * @param accountSid The SID of the Account that is responsible for the Address
-     *   resource to update.
-     * @param sid The Twilio-provided string that uniquely identifies the Address
-     *   resource to update.
-     * @param friendlyName A descriptive string that you create to describe the new
-     *   address. It can be up to 64 characters long for Regulatory Compliance
-     *   addresses and 32 characters long for Emergency addresses.
+     * @param accountSid The SID of the Account that is responsible for the Address resource to
+     *   update.
+     * @param sid The Twilio-provided string that uniquely identifies the Address resource to
+     *   update.
+     * @param friendlyName A descriptive string that you create to describe the new address. It can
+     *   be up to 64 characters long for Regulatory Compliance addresses and 32 characters long for
+     *   Emergency addresses.
      * @param customerName The name to associate with the address.
      * @param street The number and street address of the address.
      * @param city The city of the address.
      * @param region The state or region of the address.
      * @param postalCode The postal code of the address.
-     * @param emergencyEnabled Whether to enable emergency calling on the address.
-     *   Can be: `true` or `false`.
-     * @param autoCorrectAddress Whether we should automatically correct the address.
-     *   Can be: `true` or `false` and the default is `true`. If empty or `true`, we
-     *   will correct the address you provide if necessary. If `false`, we won't alter
-     *   the address you provide.
-     * @param streetSecondary The additional number and street address of the
-     *   address.
+     * @param emergencyEnabled Whether to enable emergency calling on the address. Can be: `true` or
+     *   `false`.
+     * @param autoCorrectAddress Whether we should automatically correct the address. Can be: `true`
+     *   or `false` and the default is `true`. If empty or `true`, we will correct the address you
+     *   provide if necessary. If `false`, we won't alter the address you provide.
+     * @param streetSecondary The additional number and street address of the address.
      */
-    fun updateAddresses(clientConfig: ClientConfig, request: UpdateAddressesRequest, options: RequestOptions? = null): ApiV2010AccountAddress {
+    fun updateAddresses(
+        clientConfig: ClientConfig,
+        request: UpdateAddressesRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountAddress {
         validateUpdateAddressesRequest(request)
 
-        return SdkClient.request<ApiV2010AccountAddress>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Addresses/${SdkClient.encodePathSegment(request.sid)}.json", config = clientConfig, body = SdkClient.bodyMap("FriendlyName" to
-    (SdkClient.omitIfNull(request.friendlyName)), "CustomerName" to
-    (SdkClient.omitIfNull(request.customerName)), "Street" to (SdkClient.omitIfNull(request.street)), "City" to (SdkClient.omitIfNull(request.city)), "Region" to (SdkClient.omitIfNull(request.region)), "PostalCode" to (SdkClient.omitIfNull(request.postalCode)), "EmergencyEnabled" to
-    (SdkClient.omitIfNull(request.emergencyEnabled)), "AutoCorrectAddress" to
-    (SdkClient.omitIfNull(request.autoCorrectAddress)), "StreetSecondary" to
-    (SdkClient.omitIfNull(request.streetSecondary))), contentType = "application/x-www-form-urlencoded", operationId = "updateAddresses", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountAddress>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Addresses/${SdkClient.encodePathSegment(request.sid)}.json",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "FriendlyName" to (SdkClient.omitIfNull(request.friendlyName)),
+                            "CustomerName" to (SdkClient.omitIfNull(request.customerName)),
+                            "Street" to (SdkClient.omitIfNull(request.street)),
+                            "City" to (SdkClient.omitIfNull(request.city)),
+                            "Region" to (SdkClient.omitIfNull(request.region)),
+                            "PostalCode" to (SdkClient.omitIfNull(request.postalCode)),
+                            "EmergencyEnabled" to (SdkClient.omitIfNull(request.emergencyEnabled)),
+                            "AutoCorrectAddress" to
+                                (SdkClient.omitIfNull(request.autoCorrectAddress)),
+                            "StreetSecondary" to (SdkClient.omitIfNull(request.streetSecondary)),
+                        ),
+                    contentType = "application/x-www-form-urlencoded",
+                    operationId = "updateAddresses",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
     private fun validateUpdateAddressesRequest(request: UpdateAddressesRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", request.sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", request.sid, "^AD[0-9a-fA-F]{32}$")
     }
-
-
-
-
-
-
 }

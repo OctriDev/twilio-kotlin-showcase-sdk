@@ -10,27 +10,59 @@ import dev.octri.showcase.twilio.Validation
 
 internal object AvailablePhoneNumbersListAvailablePhoneNumbersOperation {
     /**
-     * Lists the countries for which phone numbers are available to an account. Use the returned country codes to retrieve country details or browse available numbers for a specific country.
+     * Lists the countries for which phone numbers are available to an account. Use the returned
+     * country codes to retrieve country details or browse available numbers for a specific country.
      *
-     * @param accountSid The SID of the Account requesting the available phone number
-     *   Country resources.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param accountSid The SID of the Account requesting the available phone number Country
+     *   resources.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listAvailablePhoneNumbers(clientConfig: ClientConfig, accountSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): AvailablePhoneNumbers.ListAvailablePhoneNumbersResponse {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun listAvailablePhoneNumbers(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): AvailablePhoneNumbers.ListAvailablePhoneNumbersResponse {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (pageSize != null) {
-            Validation.validateRange("PageSize", pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (page != null) {
             Validation.validateRange("Page", page, Validation.RangeOpts(min = 0.0))
-}
+        }
 
-        return SdkClient.request<AvailablePhoneNumbers.ListAvailablePhoneNumbersResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/AvailablePhoneNumbers.json", config = clientConfig, query = mapOf("PageSize" to SdkClient.queryValue(pageSize, "form", true), "Page" to SdkClient.queryValue(page, "form", true), "PageToken" to SdkClient.queryValue(pageToken, "form", true)), operationId = "listAvailablePhoneNumbers", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<AvailablePhoneNumbers.ListAvailablePhoneNumbersResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/AvailablePhoneNumbers.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "PageSize" to SdkClient.queryValue(pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(page, "form", true),
+                            "PageToken" to SdkClient.queryValue(pageToken, "form", true),
+                        ),
+                    operationId = "listAvailablePhoneNumbers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }

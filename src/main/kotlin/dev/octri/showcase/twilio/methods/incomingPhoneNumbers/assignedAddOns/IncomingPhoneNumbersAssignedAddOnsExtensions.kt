@@ -11,53 +11,80 @@ import dev.octri.showcase.twilio.Validation
 
 object IncomingPhoneNumbersAssignedAddOnsExtensions {
 
-data class ListIncomingPhoneNumbersAssignedAddOnsExtensionsResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    val extensions: List<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberAssignedX1fcf5f2168>? = null
-)
-
+    data class ListIncomingPhoneNumbersAssignedAddOnsExtensionsResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        val extensions:
+            List<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberAssignedX1fcf5f2168>? =
+            null,
+    )
 
     /**
-     * Retrieves an Extension for an assigned Add-on on an incoming phone number. Use the account, phone number, assigned Add-on, and Extension SIDs to identify the resource.
+     * Retrieves an Extension for an assigned Add-on on an incoming phone number. Use the account,
+     * phone number, assigned Add-on, and Extension SIDs to identify the resource.
      *
      * Fetch an instance of an Extension for the Assigned Add-on.
      *
      * @param accountSid The SID of the Account that created the resource to fetch.
-     * @param resourceSid The SID of the Phone Number to which the Add-on is
-     *   assigned.
-     * @param assignedAddOnSid The SID that uniquely identifies the assigned Add-on
-     *   installation.
-     * @param sid The Twilio-provided string that uniquely identifies the resource to
-     *   fetch.
+     * @param resourceSid The SID of the Phone Number to which the Add-on is assigned.
+     * @param assignedAddOnSid The SID that uniquely identifies the assigned Add-on installation.
+     * @param sid The Twilio-provided string that uniquely identifies the resource to fetch.
      */
-    fun fetchIncomingPhoneNumbersAssignedAddOnsExtensions(clientConfig: ClientConfig, accountSid: String, resourceSid: String, assignedAddOnSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberAssignedX1fcf5f2168 {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun fetchIncomingPhoneNumbersAssignedAddOnsExtensions(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        resourceSid: String,
+        assignedAddOnSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberAssignedX1fcf5f2168 {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("ResourceSid", resourceSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "ResourceSid",
+            resourceSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("ResourceSid", resourceSid, "^PN[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("AssignedAddOnSid", assignedAddOnSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "AssignedAddOnSid",
+            assignedAddOnSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AssignedAddOnSid", assignedAddOnSid, "^XE[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^XF[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberAssignedX1fcf5f2168>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/IncomingPhoneNumbers/${SdkClient.encodePathSegment(resourceSid)}/AssignedAddOns/${SdkClient.encodePathSegment(assignedAddOnSid)}/Extensions/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "fetchIncomingPhoneNumbersAssignedAddOnsExtensions", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<
+                ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberAssignedX1fcf5f2168
+            >(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/IncomingPhoneNumbers/${SdkClient.encodePathSegment(resourceSid)}/AssignedAddOns/${SdkClient.encodePathSegment(assignedAddOnSid)}/Extensions/${SdkClient.encodePathSegment(sid)}.json",
+                    config = clientConfig,
+                    operationId = "fetchIncomingPhoneNumbersAssignedAddOnsExtensions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /** Parameters for [listIncomingPhoneNumbersAssignedAddOnsExtensions]. */
     data class ListIncomingPhoneNumbersAssignedAddOnsExtensionsRequest(
@@ -66,55 +93,88 @@ data class ListIncomingPhoneNumbersAssignedAddOnsExtensionsResponse(
         val assignedAddOnSid: String,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null
+        val pageToken: String? = null,
     )
 
     /**
-     * Lists Extensions for an assigned Add-on on an incoming phone number. Use the account, phone number, and assigned Add-on SIDs to scope the list, and the paging parameters to select a page of results.
+     * Lists Extensions for an assigned Add-on on an incoming phone number. Use the account, phone
+     * number, and assigned Add-on SIDs to scope the list, and the paging parameters to select a
+     * page of results.
      *
      * Retrieve a list of Extensions for the Assigned Add-on.
      *
      * @param accountSid The SID of the Account that created the resources to read.
-     * @param resourceSid The SID of the Phone Number to which the Add-on is
-     *   assigned.
-     * @param assignedAddOnSid The SID that uniquely identifies the assigned Add-on
-     *   installation.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param resourceSid The SID of the Phone Number to which the Add-on is assigned.
+     * @param assignedAddOnSid The SID that uniquely identifies the assigned Add-on installation.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listIncomingPhoneNumbersAssignedAddOnsExtensions(clientConfig: ClientConfig, request: ListIncomingPhoneNumbersAssignedAddOnsExtensionsRequest, options: RequestOptions? = null): ListIncomingPhoneNumbersAssignedAddOnsExtensionsResponse {
+    fun listIncomingPhoneNumbersAssignedAddOnsExtensions(
+        clientConfig: ClientConfig,
+        request: ListIncomingPhoneNumbersAssignedAddOnsExtensionsRequest,
+        options: RequestOptions? = null,
+    ): ListIncomingPhoneNumbersAssignedAddOnsExtensionsResponse {
         validateListIncomingPhoneNumbersAssignedAddOnsExtensionsRequest(request)
 
-        return SdkClient.request<ListIncomingPhoneNumbersAssignedAddOnsExtensionsResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/IncomingPhoneNumbers/${SdkClient.encodePathSegment(request.resourceSid)}/AssignedAddOns/${SdkClient.encodePathSegment(request.assignedAddOnSid)}/Extensions.json", config = clientConfig, query = mapOf("PageSize" to
-    SdkClient.queryValue(request.pageSize, "form", true), "Page" to SdkClient.queryValue(request.page, "form", true), "PageToken" to
-    SdkClient.queryValue(request.pageToken, "form", true)), operationId = "listIncomingPhoneNumbersAssignedAddOnsExtensions", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ListIncomingPhoneNumbersAssignedAddOnsExtensionsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/IncomingPhoneNumbers/${SdkClient.encodePathSegment(request.resourceSid)}/AssignedAddOns/${SdkClient.encodePathSegment(request.assignedAddOnSid)}/Extensions.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(request.page, "form", true),
+                            "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
+                        ),
+                    operationId = "listIncomingPhoneNumbersAssignedAddOnsExtensions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-    private fun validateListIncomingPhoneNumbersAssignedAddOnsExtensionsRequest(request: ListIncomingPhoneNumbersAssignedAddOnsExtensionsRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+    private fun validateListIncomingPhoneNumbersAssignedAddOnsExtensionsRequest(
+        request: ListIncomingPhoneNumbersAssignedAddOnsExtensionsRequest
+    ) {
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("ResourceSid", request.resourceSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "ResourceSid",
+            request.resourceSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("ResourceSid", request.resourceSid, "^PN[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("AssignedAddOnSid", request.assignedAddOnSid, Validation.LengthOpts(min = 34, max = 34))
-        Validation.validatePattern("AssignedAddOnSid", request.assignedAddOnSid, "^XE[0-9a-fA-F]{32}$")
+        Validation.validateLength(
+            "AssignedAddOnSid",
+            request.assignedAddOnSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
+        Validation.validatePattern(
+            "AssignedAddOnSid",
+            request.assignedAddOnSid,
+            "^XE[0-9a-fA-F]{32}$",
+        )
 
         if (request.pageSize != null) {
-            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                request.pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-}
+        }
     }
-
-
-
-
-
-
 }

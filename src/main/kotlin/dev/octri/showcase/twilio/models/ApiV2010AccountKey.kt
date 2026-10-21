@@ -3,24 +3,15 @@
 
 package dev.octri.showcase.twilio.models
 
-/**
- * Typed representation of the `ApiV2010AccountKey` API schema.
- */
+/** Typed representation of the `ApiV2010AccountKey` API schema. */
 data class ApiV2010AccountKey(
-    /**
-     * The unique string that that we created to identify the Key resource.
-     */
+    /** The unique string that that we created to identify the Key resource. */
     val sid: String? = null,
-    /**
-     * The string that you assigned to describe the resource.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name") val friendlyName: String? = null,
-    /**
-     * The date and time in GMT that the resource was created specified in RFC 2822 format.
-     */
+    /** The string that you assigned to describe the resource. */
+    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name")
+    val friendlyName: String? = null,
+    /** The date and time in GMT that the resource was created specified in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
-    /**
-     * The date and time in GMT that the resource was last updated specified in RFC 2822 format.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null
+    /** The date and time in GMT that the resource was last updated specified in RFC 2822 format. */
+    @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
 )

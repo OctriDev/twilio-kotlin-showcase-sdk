@@ -3,20 +3,42 @@
 
 package dev.octri.showcase.twilio
 
-
 class CallsUserDefinedMessageSubscriptionsNamespace(private val clientConfig: ClientConfig) {
-    /**
-     * Subscribe to User Defined Messages for a given Call SID.
-     */
-    fun create(accountSid: String, callSid: String, callback: String, idempotencyKey: String? = null, method: CreateCallUserDefinedMessageSubscriptionMethodEnum? = null, options: RequestOptions? = null): ApiV2010AccountCallUserDefinedMessageSubscription {
-        return dev.octri.showcase.twilio.methods.calls.CallsUserDefinedMessageSubscriptions.createCallUserDefinedMessageSubscription(clientConfig, accountSid, callSid, callback, idempotencyKey, method, options)
+    /** Subscribe to User Defined Messages for a given Call SID. */
+    fun create(
+        accountSid: String,
+        callSid: String,
+        callback: String,
+        idempotencyKey: String? = null,
+        method: CreateCallUserDefinedMessageSubscriptionMethodEnum? = null,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountCallUserDefinedMessageSubscription {
+        return dev.octri.showcase.twilio.methods.calls.CallsUserDefinedMessageSubscriptions
+            .createCallUserDefinedMessageSubscription(
+                clientConfig,
+                accountSid,
+                callSid,
+                callback,
+                idempotencyKey,
+                method,
+                options,
+            )
     }
 
-    /**
-     * Delete a specific User Defined Message Subscription.
-     */
-    fun delete(accountSid: String, callSid: String, sid: String, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.twilio.methods.calls.CallsUserDefinedMessageSubscriptions.deleteCallsUserDefinedMessageSubscriptions(clientConfig, accountSid, callSid, sid, options)
+    /** Delete a specific User Defined Message Subscription. */
+    fun delete(
+        accountSid: String,
+        callSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        return dev.octri.showcase.twilio.methods.calls.CallsUserDefinedMessageSubscriptions
+            .deleteCallsUserDefinedMessageSubscriptions(
+                clientConfig,
+                accountSid,
+                callSid,
+                sid,
+                options,
+            )
     }
-
 }
