@@ -3,112 +3,129 @@
 
 package dev.octri.showcase.twilio.models
 
-/**
- * Typed representation of the `ApiV2010AccountCall` API schema.
- */
+/** Typed representation of the `ApiV2010AccountCall` API schema. */
 data class ApiV2010AccountCall(
-    /**
-     * The unique string that we created to identify this Call resource.
-     */
+    /** The unique string that we created to identify this Call resource. */
     val sid: String? = null,
-    /**
-     * The date and time in UTC that this resource was created specified in RFC 2822 format.
-     */
+    /** The date and time in UTC that this resource was created specified in RFC 2822 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
     /**
      * The date and time in UTC that this resource was last updated, specified in RFC 2822 format.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
-    /**
-     * The SID that identifies the call that created this leg.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("parent_call_sid") val parentCallSid: String? = null,
-    /**
-     * The SID of the Account that created this Call resource.
-     */
+    /** The SID that identifies the call that created this leg. */
+    @com.fasterxml.jackson.annotation.JsonProperty("parent_call_sid")
+    val parentCallSid: String? = null,
+    /** The SID of the Account that created this Call resource. */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
     /**
-     * The phone number, SIP address, Client identifier or SIM SID that received this call. Phone numbers are in E.164 format (e.g., +16175551212). SIP addresses are formatted as `name@company.com`. Client identifiers are formatted `client:name`. SIM SIDs are formatted as `sim:sid`.
+     * The phone number, SIP address, Client identifier or SIM SID that received this call. Phone
+     * numbers are in E.164 format (e.g., +16175551212). SIP addresses are formatted as
+     * `name@company.com`. Client identifiers are formatted `client:name`. SIM SIDs are formatted as
+     * `sim:sid`.
      */
     val to: String? = null,
     /**
-     * The phone number, SIP address or Client identifier that received this call. Formatted for display. Non-North American phone numbers are in E.164 format (e.g., +442071838750).
+     * The phone number, SIP address or Client identifier that received this call. Formatted for
+     * display. Non-North American phone numbers are in E.164 format (e.g., +442071838750).
      */
     @com.fasterxml.jackson.annotation.JsonProperty("to_formatted") val toFormatted: String? = null,
     /**
-     * The phone number, SIP address, Client identifier or SIM SID that made this call. Phone numbers are in E.164 format (e.g., +16175551212). SIP addresses are formatted as `name@company.com`. Client identifiers are formatted `client:name`. SIM SIDs are formatted as `sim:sid`.
+     * The phone number, SIP address, Client identifier or SIM SID that made this call. Phone
+     * numbers are in E.164 format (e.g., +16175551212). SIP addresses are formatted as
+     * `name@company.com`. Client identifiers are formatted `client:name`. SIM SIDs are formatted as
+     * `sim:sid`.
      */
     val from: String? = null,
     /**
-     * The calling phone number, SIP address, or Client identifier formatted for display. Non-North American phone numbers are in E.164 format (e.g., +442071838750).
+     * The calling phone number, SIP address, or Client identifier formatted for display. Non-North
+     * American phone numbers are in E.164 format (e.g., +442071838750).
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("from_formatted") val fromFormatted: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("from_formatted")
+    val fromFormatted: String? = null,
     /**
-     * If the call was inbound, this is the SID of the IncomingPhoneNumber resource that received the call. If the call was outbound, it is the SID of the OutgoingCallerId resource from which the call was placed.
+     * If the call was inbound, this is the SID of the IncomingPhoneNumber resource that received
+     * the call. If the call was outbound, it is the SID of the OutgoingCallerId resource from which
+     * the call was placed.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("phone_number_sid") val phoneNumberSid: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("phone_number_sid")
+    val phoneNumberSid: String? = null,
     /**
-     * The status of this call. Can be: `queued`, `ringing`, `in-progress`, `canceled`, `completed`, `failed`, `busy` or `no-answer`. See Call Status Values below for more information.
+     * The status of this call. Can be: `queued`, `ringing`, `in-progress`, `canceled`, `completed`,
+     * `failed`, `busy` or `no-answer`. See Call Status Values below for more information.
      */
     val status: CallEnumStatus? = null,
     /**
-     * The start time of the call, given as UTC in RFC 2822 format. Empty if the call has not yet been dialed.
+     * The start time of the call, given as UTC in RFC 2822 format. Empty if the call has not yet
+     * been dialed.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("start_time") val startTime: String? = null,
     /**
-     * The time the call ended, given as UTC in RFC 2822 format. Empty if the call did not complete successfully.
+     * The time the call ended, given as UTC in RFC 2822 format. Empty if the call did not complete
+     * successfully.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("end_time") val endTime: String? = null,
     /**
-     * The length of the call in seconds. This value is empty for busy, failed, unanswered, or ongoing calls.
+     * The length of the call in seconds. This value is empty for busy, failed, unanswered, or
+     * ongoing calls.
      */
     val duration: String? = null,
     /**
-     * The charge for this call, in the currency associated with the account. Populated after the call is completed. May not be immediately available. The price associated with a call only reflects the charge for connectivity. Charges for other call-related features such as Answering Machine Detection, Text-To-Speech, and SIP REFER are not included in this value.
+     * The charge for this call, in the currency associated with the account. Populated after the
+     * call is completed. May not be immediately available. The price associated with a call only
+     * reflects the charge for connectivity. Charges for other call-related features such as
+     * Answering Machine Detection, Text-To-Speech, and SIP REFER are not included in this value.
      */
     val price: String? = null,
     /**
-     * The currency in which `Price` is measured, in ISO 4127 format (e.g., `USD`, `EUR`, `JPY`). Always capitalized for calls.
+     * The currency in which `Price` is measured, in ISO 4127 format (e.g., `USD`, `EUR`, `JPY`).
+     * Always capitalized for calls.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("price_unit") val priceUnit: String? = null,
     /**
-     * A string describing the direction of the call. Can be: `inbound` for inbound calls, `outbound-api` for calls initiated via the REST API or `outbound-dial` for calls initiated by a `<Dial>` verb. Using Elastic SIP Trunking, the values can be `trunking-terminating` for outgoing calls from your communications infrastructure to the PSTN or `trunking-originating` for incoming calls to your communications infrastructure from the PSTN.
+     * A string describing the direction of the call. Can be: `inbound` for inbound calls,
+     * `outbound-api` for calls initiated via the REST API or `outbound-dial` for calls initiated by
+     * a `<Dial>` verb. Using Elastic SIP Trunking, the values can be `trunking-terminating` for
+     * outgoing calls from your communications infrastructure to the PSTN or `trunking-originating`
+     * for incoming calls to your communications infrastructure from the PSTN.
      */
     val direction: String? = null,
     /**
-     * Either `human` or `machine` if this call was initiated with answering machine detection. Empty otherwise.
+     * Either `human` or `machine` if this call was initiated with answering machine detection.
+     * Empty otherwise.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("answered_by") val answeredBy: String? = null,
-    /**
-     * The API version used to create the call.
-     */
+    /** The API version used to create the call. */
     @com.fasterxml.jackson.annotation.JsonProperty("api_version") val apiVersion: String? = null,
     /**
-     * The forwarding phone number if this call was an incoming call forwarded from another number (depends on carrier supporting forwarding). Otherwise, empty.
+     * The forwarding phone number if this call was an incoming call forwarded from another number
+     * (depends on carrier supporting forwarding). Otherwise, empty.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("forwarded_from") val forwardedFrom: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("forwarded_from")
+    val forwardedFrom: String? = null,
     /**
-     * The Group SID associated with this call. If no Group is associated with the call, the field is empty.
+     * The Group SID associated with this call. If no Group is associated with the call, the field
+     * is empty.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("group_sid") val groupSid: String? = null,
     /**
-     * The caller's name if this call was an incoming call to a phone number with caller ID Lookup enabled. Otherwise, empty.
+     * The caller's name if this call was an incoming call to a phone number with caller ID Lookup
+     * enabled. Otherwise, empty.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("caller_name") val callerName: String? = null,
-    /**
-     * The wait time in milliseconds before the call is placed.
-     */
+    /** The wait time in milliseconds before the call is placed. */
     @com.fasterxml.jackson.annotation.JsonProperty("queue_time") val queueTime: String? = null,
     /**
-     * The unique identifier of the trunk resource that was used for this call. The field is empty if the call was not made using a SIP trunk or if the call is not terminated.
+     * The unique identifier of the trunk resource that was used for this call. The field is empty
+     * if the call was not made using a SIP trunk or if the call is not terminated.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("trunk_sid") val trunkSid: String? = null,
-    /**
-     * The URI of this resource, relative to `api.twilio.com`.
-     */
+    /** The URI of this resource, relative to `api.twilio.com`. */
     val uri: String? = null,
     /**
-     * A list of subresources available to this call, identified by their URIs relative to `api.twilio.com`.
+     * A list of subresources available to this call, identified by their URIs relative to
+     * `api.twilio.com`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("subresource_uris") val subresourceUris: Map<String, Any>? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("subresource_uris")
+    val subresourceUris: Map<String, Any>? = null,
 )

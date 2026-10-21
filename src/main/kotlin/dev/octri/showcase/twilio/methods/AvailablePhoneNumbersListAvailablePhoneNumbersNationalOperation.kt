@@ -10,138 +10,144 @@ import dev.octri.showcase.twilio.Validation
 
 internal object AvailablePhoneNumbersListAvailablePhoneNumbersNationalOperation {
     /**
-     * Lists available national phone numbers in a specified country. Filter results by capabilities, number pattern, or geographic details to find numbers that meet your requirements.
+     * Lists available national phone numbers in a specified country. Filter results by
+     * capabilities, number pattern, or geographic details to find numbers that meet your
+     * requirements.
      *
-     * @param accountSid The SID of the Account requesting the AvailablePhoneNumber
-     *   resources.
-     * @param countryCode The ISO-3166-1 country code of the country from which to
-     *   read phone numbers.
-     * @param areaCode The area code of the phone numbers to read. Applies to only
-     *   phone numbers in the US and Canada.
-     * @param contains Matching pattern to identify phone numbers. This pattern can
-     *   be between 2 and 16 characters long and allows all digits (0-9) and all
-     *   non-diacritic latin alphabet letters (a-z, A-Z). It accepts four
-     *   meta-characters: `*`, `%`, `+`, `$`. The `*` and `%` meta-characters can
-     *   appear multiple times in the pattern. To match wildcards at the beginning or
-     *   end of the pattern, use `*` to match any single character or `%` to match a
+     * @param accountSid The SID of the Account requesting the AvailablePhoneNumber resources.
+     * @param countryCode The ISO-3166-1 country code of the country from which to read phone
+     *   numbers.
+     * @param areaCode The area code of the phone numbers to read. Applies to only phone numbers in
+     *   the US and Canada.
+     * @param contains Matching pattern to identify phone numbers. This pattern can be between 2 and
+     *   16 characters long and allows all digits (0-9) and all non-diacritic latin alphabet letters
+     *   (a-z, A-Z). It accepts four meta-characters: `*`, `%`, `+`, `$`. The `*` and `%`
+     *   meta-characters can appear multiple times in the pattern. To match wildcards at the
+     *   beginning or end of the pattern, use `*` to match any single character or `%` to match a
      *   sequence of characters. If you use the wildcard…
-     * @param smsEnabled Whether the phone numbers can receive text messages. Can be:
-     *   `true` or `false`.
-     * @param mmsEnabled Whether the phone numbers can receive MMS messages. Can be:
-     *   `true` or `false`.
-     * @param voiceEnabled Whether the phone numbers can receive calls. Can be:
-     *   `true` or `false`.
-     * @param excludeAllAddressRequired Whether to exclude phone numbers that require
-     *   an Address. Can be: `true` or `false` and the default is `false`.
-     * @param excludeLocalAddressRequired Whether to exclude phone numbers that
-     *   require a local Address. Can be: `true` or `false` and the default is `false`.
-     * @param excludeForeignAddressRequired Whether to exclude phone numbers that
-     *   require a foreign Address. Can be: `true` or `false` and the default is
+     * @param smsEnabled Whether the phone numbers can receive text messages. Can be: `true` or
      *   `false`.
-     * @param beta Whether to read phone numbers that are new to the Twilio platform.
-     *   Can be: `true` or `false` and the default is `true`.
-     * @param nearNumber Given a phone number, find a geographically close number
-     *   within `distance` miles. Distance defaults to 25 miles. Applies to only phone
-     *   numbers in the US and Canada.
-     * @param nearLatLong Given a latitude/longitude pair `lat,long` find
-     *   geographically close numbers within `distance` miles. Applies to only phone
-     *   numbers in the US and Canada.
-     * @param distance The search radius, in miles, for a `near_` query. Can be up to
-     *   `500` and the default is `25`. Applies to only phone numbers in the US and
+     * @param mmsEnabled Whether the phone numbers can receive MMS messages. Can be: `true` or
+     *   `false`.
+     * @param voiceEnabled Whether the phone numbers can receive calls. Can be: `true` or `false`.
+     * @param excludeAllAddressRequired Whether to exclude phone numbers that require an Address.
+     *   Can be: `true` or `false` and the default is `false`.
+     * @param excludeLocalAddressRequired Whether to exclude phone numbers that require a local
+     *   Address. Can be: `true` or `false` and the default is `false`.
+     * @param excludeForeignAddressRequired Whether to exclude phone numbers that require a foreign
+     *   Address. Can be: `true` or `false` and the default is `false`.
+     * @param beta Whether to read phone numbers that are new to the Twilio platform. Can be: `true`
+     *   or `false` and the default is `true`.
+     * @param nearNumber Given a phone number, find a geographically close number within `distance`
+     *   miles. Distance defaults to 25 miles. Applies to only phone numbers in the US and Canada.
+     * @param nearLatLong Given a latitude/longitude pair `lat,long` find geographically close
+     *   numbers within `distance` miles. Applies to only phone numbers in the US and Canada.
+     * @param distance The search radius, in miles, for a `near_` query. Can be up to `500` and the
+     *   default is `25`. Applies to only phone numbers in the US and Canada.
+     * @param inPostalCode Limit results to a particular postal code. Given a phone number, search
+     *   within the same postal code as that number. Applies to only phone numbers in the US and
      *   Canada.
-     * @param inPostalCode Limit results to a particular postal code. Given a phone
-     *   number, search within the same postal code as that number. Applies to only
-     *   phone numbers in the US and Canada.
-     * @param inRegion Limit results to a particular region, state, or province.
-     *   Given a phone number, search within the same region as that number. Applies to
-     *   only phone numbers in the US and Canada.
-     * @param inRateCenter Limit results to a specific rate center, or given a phone
-     *   number search within the same rate center as that number. Requires `in_lata`
-     *   to be set as well. Applies to only phone numbers in the US and Canada.
-     * @param inLata Limit results to a specific local access and transport area
-     *   (LATA). Given a phone number, search within the same LATA as that number.
-     *   Applies to only phone numbers in the US and Canada.
-     * @param inLocality Limit results to a particular locality or city. Given a
-     *   phone number, search within the same Locality as that number.
-     * @param faxEnabled Whether the phone numbers can receive faxes. Can be: `true`
-     *   or `false`.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param inRegion Limit results to a particular region, state, or province. Given a phone
+     *   number, search within the same region as that number. Applies to only phone numbers in the
+     *   US and Canada.
+     * @param inRateCenter Limit results to a specific rate center, or given a phone number search
+     *   within the same rate center as that number. Requires `in_lata` to be set as well. Applies
+     *   to only phone numbers in the US and Canada.
+     * @param inLata Limit results to a specific local access and transport area (LATA). Given a
+     *   phone number, search within the same LATA as that number. Applies to only phone numbers in
+     *   the US and Canada.
+     * @param inLocality Limit results to a particular locality or city. Given a phone number,
+     *   search within the same Locality as that number.
+     * @param faxEnabled Whether the phone numbers can receive faxes. Can be: `true` or `false`.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listAvailablePhoneNumbersNational(clientConfig: ClientConfig, request: AvailablePhoneNumbers.ListAvailablePhoneNumbersNationalRequest, options: RequestOptions? = null): AvailablePhoneNumbers.ListAvailablePhoneNumbersNationalResponse {
+    fun listAvailablePhoneNumbersNational(
+        clientConfig: ClientConfig,
+        request: AvailablePhoneNumbers.ListAvailablePhoneNumbersNationalRequest,
+        options: RequestOptions? = null,
+    ): AvailablePhoneNumbers.ListAvailablePhoneNumbersNationalResponse {
         validateListAvailablePhoneNumbersNationalRequest(request)
 
-        return SdkClient.request<AvailablePhoneNumbers.ListAvailablePhoneNumbersNationalResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/AvailablePhoneNumbers/${SdkClient.encodePathSegment(request.countryCode)}/National.json", config = clientConfig, query = buildListAvailablePhoneNumbersNationalQuery(request), operationId = "listAvailablePhoneNumbersNational", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<AvailablePhoneNumbers.ListAvailablePhoneNumbersNationalResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/AvailablePhoneNumbers/${SdkClient.encodePathSegment(request.countryCode)}/National.json",
+                    config = clientConfig,
+                    query = buildListAvailablePhoneNumbersNationalQuery(request),
+                    operationId = "listAvailablePhoneNumbersNational",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-    private fun validateListAvailablePhoneNumbersNationalRequest(request: AvailablePhoneNumbers.ListAvailablePhoneNumbersNationalRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+    private fun validateListAvailablePhoneNumbersNationalRequest(
+        request: AvailablePhoneNumbers.ListAvailablePhoneNumbersNationalRequest
+    ) {
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.pageSize != null) {
-            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                request.pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-}
+        }
     }
 
+    private fun buildListAvailablePhoneNumbersNationalQuery(
+        request: AvailablePhoneNumbers.ListAvailablePhoneNumbersNationalRequest
+    ): Map<String, Any?> = buildMap {
+        putAll(buildListAvailablePhoneNumbersNationalQueryPart1(request))
+        putAll(buildListAvailablePhoneNumbersNationalQueryPart2(request))
+    }
 
-    private fun buildListAvailablePhoneNumbersNationalQuery(request: AvailablePhoneNumbers.ListAvailablePhoneNumbersNationalRequest): Map<String, Any?> =
-        buildMap {
-            putAll(buildListAvailablePhoneNumbersNationalQueryPart1(request))
-            putAll(buildListAvailablePhoneNumbersNationalQueryPart2(request))
-        }
-
-    private fun buildListAvailablePhoneNumbersNationalQueryPart1(request: AvailablePhoneNumbers.ListAvailablePhoneNumbersNationalRequest): Map<String, Any?> =
+    private fun buildListAvailablePhoneNumbersNationalQueryPart1(
+        request: AvailablePhoneNumbers.ListAvailablePhoneNumbersNationalRequest
+    ): Map<String, Any?> =
         mapOf(
-            "AreaCode" to
-    SdkClient.queryValue(request.areaCode, "form", true),
-            "Contains" to
-    SdkClient.queryValue(request.contains, "form", true),
-            "SmsEnabled" to
-    SdkClient.queryValue(request.smsEnabled, "form", true),
-            "MmsEnabled" to
-    SdkClient.queryValue(request.mmsEnabled, "form", true),
-            "VoiceEnabled" to
-    SdkClient.queryValue(request.voiceEnabled, "form", true),
+            "AreaCode" to SdkClient.queryValue(request.areaCode, "form", true),
+            "Contains" to SdkClient.queryValue(request.contains, "form", true),
+            "SmsEnabled" to SdkClient.queryValue(request.smsEnabled, "form", true),
+            "MmsEnabled" to SdkClient.queryValue(request.mmsEnabled, "form", true),
+            "VoiceEnabled" to SdkClient.queryValue(request.voiceEnabled, "form", true),
             "ExcludeAllAddressRequired" to
-    SdkClient.queryValue(request.excludeAllAddressRequired, "form", true),
+                SdkClient.queryValue(request.excludeAllAddressRequired, "form", true),
             "ExcludeLocalAddressRequired" to
-    SdkClient.queryValue(request.excludeLocalAddressRequired, "form", true),
+                SdkClient.queryValue(request.excludeLocalAddressRequired, "form", true),
             "ExcludeForeignAddressRequired" to
-    SdkClient.queryValue(request.excludeForeignAddressRequired, "form", true),
+                SdkClient.queryValue(request.excludeForeignAddressRequired, "form", true),
             "Beta" to SdkClient.queryValue(request.beta, "form", true),
-            "NearNumber" to
-    SdkClient.queryValue(request.nearNumber, "form", true),
-            "NearLatLong" to
-    SdkClient.queryValue(request.nearLatLong, "form", true),
-            "Distance" to
-    SdkClient.queryValue(request.distance, "form", true),
+            "NearNumber" to SdkClient.queryValue(request.nearNumber, "form", true),
+            "NearLatLong" to SdkClient.queryValue(request.nearLatLong, "form", true),
+            "Distance" to SdkClient.queryValue(request.distance, "form", true),
         )
 
-    private fun buildListAvailablePhoneNumbersNationalQueryPart2(request: AvailablePhoneNumbers.ListAvailablePhoneNumbersNationalRequest): Map<String, Any?> =
+    private fun buildListAvailablePhoneNumbersNationalQueryPart2(
+        request: AvailablePhoneNumbers.ListAvailablePhoneNumbersNationalRequest
+    ): Map<String, Any?> =
         mapOf(
-            "InPostalCode" to
-    SdkClient.queryValue(request.inPostalCode, "form", true),
-            "InRegion" to
-    SdkClient.queryValue(request.inRegion, "form", true),
-            "InRateCenter" to
-    SdkClient.queryValue(request.inRateCenter, "form", true),
-            "InLata" to
-    SdkClient.queryValue(request.inLata, "form", true),
-            "InLocality" to
-    SdkClient.queryValue(request.inLocality, "form", true),
-            "FaxEnabled" to
-    SdkClient.queryValue(request.faxEnabled, "form", true),
-            "PageSize" to
-    SdkClient.queryValue(request.pageSize, "form", true),
+            "InPostalCode" to SdkClient.queryValue(request.inPostalCode, "form", true),
+            "InRegion" to SdkClient.queryValue(request.inRegion, "form", true),
+            "InRateCenter" to SdkClient.queryValue(request.inRateCenter, "form", true),
+            "InLata" to SdkClient.queryValue(request.inLata, "form", true),
+            "InLocality" to SdkClient.queryValue(request.inLocality, "form", true),
+            "FaxEnabled" to SdkClient.queryValue(request.faxEnabled, "form", true),
+            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
             "Page" to SdkClient.queryValue(request.page, "form", true),
-            "PageToken" to
-    SdkClient.queryValue(request.pageToken, "form", true),
+            "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
         )
 }

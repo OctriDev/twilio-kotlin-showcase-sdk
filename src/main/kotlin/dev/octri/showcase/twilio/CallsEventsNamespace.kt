@@ -3,15 +3,29 @@
 
 package dev.octri.showcase.twilio
 
-
 class CallsEventsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists the events recorded for a specific call. Use `AccountSid` and `CallSid` to identify the account and call, and use the page parameters to navigate the results.
+     * Lists the events recorded for a specific call. Use `AccountSid` and `CallSid` to identify the
+     * account and call, and use the page parameters to navigate the results.
      *
      * Retrieve a list of all events for a call.
      */
-    fun list(accountSid: String, callSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.calls.CallsEvents.ListCallsEventsResponse {
-        return dev.octri.showcase.twilio.methods.calls.CallsEvents.listCallsEvents(clientConfig, accountSid, callSid, pageSize, page, pageToken, options)
+    fun list(
+        accountSid: String,
+        callSid: String,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.calls.CallsEvents.ListCallsEventsResponse {
+        return dev.octri.showcase.twilio.methods.calls.CallsEvents.listCallsEvents(
+            clientConfig,
+            accountSid,
+            callSid,
+            pageSize,
+            page,
+            pageToken,
+            options,
+        )
     }
-
 }

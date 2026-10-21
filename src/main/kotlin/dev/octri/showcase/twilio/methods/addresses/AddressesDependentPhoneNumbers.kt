@@ -11,53 +11,85 @@ import dev.octri.showcase.twilio.Validation
 
 object AddressesDependentPhoneNumbers {
 
-data class ListAddressesDependentPhoneNumbersResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("dependent_phone_numbers") val dependentPhoneNumbers: List<ApiV2010AccountAddressDependentPhoneNumber>? = null
-)
-
+    data class ListAddressesDependentPhoneNumbersResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("dependent_phone_numbers")
+        val dependentPhoneNumbers: List<ApiV2010AccountAddressDependentPhoneNumber>? = null,
+    )
 
     /**
-     * Lists phone numbers that depend on a specified address in an account. Use the account and address SIDs to scope the results, and use the page parameters to navigate the list.
+     * Lists phone numbers that depend on a specified address in an account. Use the account and
+     * address SIDs to scope the results, and use the page parameters to navigate the list.
      *
-     * @param accountSid The SID of the Account that created the DependentPhoneNumber
-     *   resources to read.
-     * @param addressSid The SID of the Address resource associated with the phone
-     *   number.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param accountSid The SID of the Account that created the DependentPhoneNumber resources to
+     *   read.
+     * @param addressSid The SID of the Address resource associated with the phone number.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listAddressesDependentPhoneNumbers(clientConfig: ClientConfig, accountSid: String, addressSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): ListAddressesDependentPhoneNumbersResponse {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    fun listAddressesDependentPhoneNumbers(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        addressSid: String,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): ListAddressesDependentPhoneNumbersResponse {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("AddressSid", addressSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "AddressSid",
+            addressSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AddressSid", addressSid, "^AD[0-9a-fA-F]{32}$")
 
         if (pageSize != null) {
-            Validation.validateRange("PageSize", pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (page != null) {
             Validation.validateRange("Page", page, Validation.RangeOpts(min = 0.0))
-}
+        }
 
-        return SdkClient.request<ListAddressesDependentPhoneNumbersResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Addresses/${SdkClient.encodePathSegment(addressSid)}/DependentPhoneNumbers.json", config = clientConfig, query = mapOf("PageSize" to SdkClient.queryValue(pageSize, "form", true), "Page" to SdkClient.queryValue(page, "form", true), "PageToken" to SdkClient.queryValue(pageToken, "form", true)), operationId = "listAddressesDependentPhoneNumbers", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ListAddressesDependentPhoneNumbersResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Addresses/${SdkClient.encodePathSegment(addressSid)}/DependentPhoneNumbers.json",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "PageSize" to SdkClient.queryValue(pageSize, "form", true),
+                            "Page" to SdkClient.queryValue(page, "form", true),
+                            "PageToken" to SdkClient.queryValue(pageToken, "form", true),
+                        ),
+                    operationId = "listAddressesDependentPhoneNumbers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }
