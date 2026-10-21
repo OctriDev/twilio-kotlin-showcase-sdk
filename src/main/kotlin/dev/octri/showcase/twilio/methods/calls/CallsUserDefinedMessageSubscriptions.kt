@@ -5,7 +5,7 @@ package dev.octri.showcase.twilio.methods.calls
 
 import dev.octri.showcase.twilio.ApiV2010AccountCallUserDefinedMessageSubscription
 import dev.octri.showcase.twilio.ClientConfig
-import dev.octri.showcase.twilio.CreateCallsUserDefinedMessageSubscriptionsMethodEnum
+import dev.octri.showcase.twilio.CreateCallUserDefinedMessageSubscriptionMethodEnum
 import dev.octri.showcase.twilio.RequestOptions
 import dev.octri.showcase.twilio.SdkClient
 import dev.octri.showcase.twilio.Validation
@@ -29,7 +29,7 @@ object CallsUserDefinedMessageSubscriptions {
      * @param method The HTTP method Twilio will use when requesting the above `Url`.
      *   Either `GET` or `POST`. Default is `POST`.
      */
-    fun createCallsUserDefinedMessageSubscriptions(clientConfig: ClientConfig, accountSid: String, callSid: String, callback: String, idempotencyKey: String? = null, method: CreateCallsUserDefinedMessageSubscriptionsMethodEnum? = null, options: RequestOptions? = null): ApiV2010AccountCallUserDefinedMessageSubscription {
+    fun createCallUserDefinedMessageSubscription(clientConfig: ClientConfig, accountSid: String, callSid: String, callback: String, idempotencyKey: String? = null, method: CreateCallUserDefinedMessageSubscriptionMethodEnum? = null, options: RequestOptions? = null): ApiV2010AccountCallUserDefinedMessageSubscription {
         Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
@@ -38,7 +38,7 @@ object CallsUserDefinedMessageSubscriptions {
 
         Validation.validateUri("Callback", callback)
 
-        return SdkClient.request<ApiV2010AccountCallUserDefinedMessageSubscription>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Calls/${SdkClient.encodePathSegment(callSid)}/UserDefinedMessageSubscriptions.json", config = clientConfig, body = SdkClient.bodyMap("Callback" to (callback), "IdempotencyKey" to (SdkClient.omitIfNull(idempotencyKey)), "Method" to (SdkClient.omitIfNull(method))), contentType = "application/x-www-form-urlencoded", operationId = "createCallsUserDefinedMessageSubscriptions", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ApiV2010AccountCallUserDefinedMessageSubscription>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Calls/${SdkClient.encodePathSegment(callSid)}/UserDefinedMessageSubscriptions.json", config = clientConfig, body = SdkClient.bodyMap("Callback" to (callback), "IdempotencyKey" to (SdkClient.omitIfNull(idempotencyKey)), "Method" to (SdkClient.omitIfNull(method))), contentType = "application/x-www-form-urlencoded", operationId = "createCallUserDefinedMessageSubscription", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
 

@@ -346,20 +346,20 @@ class CreateCallsTranscriptionsStatusCallbackMethodEnum private constructor(
 /**
  * The HTTP method Twilio will use when requesting the above `Url`. Either `GET` or `POST`. Default is `POST`.
  */
-class CreateCallsUserDefinedMessageSubscriptionsMethodEnum private constructor(
+class CreateCallUserDefinedMessageSubscriptionMethodEnum private constructor(
     @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
 ) {
-    override fun equals(other: Any?): Boolean = other is CreateCallsUserDefinedMessageSubscriptionsMethodEnum && value == other.value
+    override fun equals(other: Any?): Boolean = other is CreateCallUserDefinedMessageSubscriptionMethodEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val GET = CreateCallsUserDefinedMessageSubscriptionsMethodEnum("GET")
-        @JvmField val POST = CreateCallsUserDefinedMessageSubscriptionsMethodEnum("POST")
+        @JvmField val GET = CreateCallUserDefinedMessageSubscriptionMethodEnum("GET")
+        @JvmField val POST = CreateCallUserDefinedMessageSubscriptionMethodEnum("POST")
 
         @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CreateCallsUserDefinedMessageSubscriptionsMethodEnum(value)
+        @JvmStatic fun fromValue(value: String) = CreateCallUserDefinedMessageSubscriptionMethodEnum(value)
     }
 }
 

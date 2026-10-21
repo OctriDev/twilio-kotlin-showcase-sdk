@@ -8,8 +8,8 @@ class CallsUserDefinedMessageSubscriptionsNamespace(private val clientConfig: Cl
     /**
      * Subscribe to User Defined Messages for a given Call SID.
      */
-    fun create(accountSid: String, callSid: String, callback: String, idempotencyKey: String? = null, method: CreateCallsUserDefinedMessageSubscriptionsMethodEnum? = null, options: RequestOptions? = null): ApiV2010AccountCallUserDefinedMessageSubscription {
-        return dev.octri.showcase.twilio.methods.calls.CallsUserDefinedMessageSubscriptions.createCallsUserDefinedMessageSubscriptions(clientConfig, accountSid, callSid, callback, idempotencyKey, method, options)
+    fun create(accountSid: String, callSid: String, callback: String, idempotencyKey: String? = null, method: CreateCallUserDefinedMessageSubscriptionMethodEnum? = null, options: RequestOptions? = null): ApiV2010AccountCallUserDefinedMessageSubscription {
+        return dev.octri.showcase.twilio.methods.calls.CallsUserDefinedMessageSubscriptions.createCallUserDefinedMessageSubscription(clientConfig, accountSid, callSid, callback, idempotencyKey, method, options)
     }
 
     /**
