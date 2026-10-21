@@ -12,54 +12,35 @@ import dev.octri.showcase.twilio.Validation
 
 object MessagesFeedback {
 
+
     /**
-     * Creates Message Feedback to record whether the recipient performed a tracked action
-     * associated with a message. Identify the account and message, then optionally provide the
-     * reported `Outcome`. The response contains the created feedback resource.
+     * Creates Message Feedback to record whether the recipient performed a tracked action associated with a message. Identify the account and message, then optionally provide the reported `Outcome`. The response contains the created feedback resource.
      *
-     * Create Message Feedback to confirm a tracked user action was performed by the recipient of
-     * the associated Message
+     * Create Message Feedback to confirm a tracked user action was performed by the recipient of the associated Message
      *
-     * @param accountSid The SID of the Account associated with the Message resource for which to
-     *   create MessageFeedback.
-     * @param messageSid The SID of the Message resource for which to create MessageFeedback.
-     * @param outcome Reported outcome indicating whether there is confirmation that the Message
-     *   recipient performed a tracked user action. Can be: `unconfirmed` or `confirmed`. For more
-     *   details see How to Optimize Message Deliverability with Message Feedback.
+     * @param accountSid The SID of the Account associated with the Message resource
+     *   for which to create MessageFeedback.
+     * @param messageSid The SID of the Message resource for which to create
+     *   MessageFeedback.
+     * @param outcome Reported outcome indicating whether there is confirmation that
+     *   the Message recipient performed a tracked user action. Can be: `unconfirmed`
+     *   or `confirmed`. For more details see How to Optimize Message Deliverability
+     *   with Message Feedback.
      */
-    fun createMessagesFeedback(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        messageSid: String,
-        outcome: MessageFeedbackEnumOutcome? = null,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountMessageMessageFeedback {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun createMessagesFeedback(clientConfig: ClientConfig, accountSid: String, messageSid: String, outcome: MessageFeedbackEnumOutcome? = null, options: RequestOptions? = null): ApiV2010AccountMessageMessageFeedback {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength(
-            "MessageSid",
-            messageSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("MessageSid", messageSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("MessageSid", messageSid, "^(SM|MM)[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountMessageMessageFeedback>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Messages/${SdkClient.encodePathSegment(messageSid)}/Feedback.json",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("Outcome" to (SdkClient.omitIfNull(outcome))),
-                    contentType = "application/x-www-form-urlencoded",
-                    operationId = "createMessagesFeedback",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiV2010AccountMessageMessageFeedback>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Messages/${SdkClient.encodePathSegment(messageSid)}/Feedback.json", config = clientConfig, body = SdkClient.bodyMap("Outcome" to (SdkClient.omitIfNull(outcome))), contentType = "application/x-www-form-urlencoded", operationId = "createMessagesFeedback", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
+
+
+
+
+
+
+
 }

@@ -3,89 +3,41 @@
 
 package dev.octri.showcase.twilio
 
+
 class SigningKeysNamespace(private val clientConfig: ClientConfig) {
-    /** Create a new Signing Key for the account making the request. */
-    fun create(
-        accountSid: String,
-        friendlyName: String? = null,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountNewSigningKey {
-        return dev.octri.showcase.twilio.methods.SigningKeys.createSigningKeys(
-            clientConfig,
-            accountSid,
-            friendlyName,
-            options,
-        )
-    }
-
     /**
-     * Lists signing keys for an account. Use the paging parameters to control which results are
-     * returned and to continue through the paginated list. The response includes signing key
-     * records and page metadata.
+     * Create a new Signing Key for the account making the request.
      */
-    fun list(
-        accountSid: String,
-        pageSize: Long? = null,
-        page: Long? = null,
-        pageToken: String? = null,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.twilio.methods.SigningKeys.ListSigningKeysResponse {
-        return dev.octri.showcase.twilio.methods.SigningKeys.listSigningKeys(
-            clientConfig,
-            accountSid,
-            pageSize,
-            page,
-            pageToken,
-            options,
-        )
+    fun create(accountSid: String, friendlyName: String? = null, options: RequestOptions? = null): ApiV2010AccountNewSigningKey {
+        return dev.octri.showcase.twilio.methods.SigningKeys.createSigningKeys(clientConfig, accountSid, friendlyName, options)
     }
 
     /**
-     * Retrieves a specific signing key from an account. Use `AccountSid` and `Sid` to identify the
-     * account and signing key; both identifiers must match their documented SID formats.
+     * Lists signing keys for an account. Use the paging parameters to control which results are returned and to continue through the paginated list. The response includes signing key records and page metadata.
      */
-    fun fetch(
-        accountSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountSigningKey {
-        return dev.octri.showcase.twilio.methods.SigningKeys.fetchSigningKeys(
-            clientConfig,
-            accountSid,
-            sid,
-            options,
-        )
+    fun list(accountSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.SigningKeys.ListSigningKeysResponse {
+        return dev.octri.showcase.twilio.methods.SigningKeys.listSigningKeys(clientConfig, accountSid, pageSize, page, pageToken, options)
     }
 
     /**
-     * Updates the friendly name of a signing key. Supply `FriendlyName` to change the name; omit it
-     * if you do not want to update that field.
+     * Retrieves a specific signing key from an account. Use `AccountSid` and `Sid` to identify the account and signing key; both identifiers must match their documented SID formats.
      */
-    fun update(
-        accountSid: String,
-        sid: String,
-        friendlyName: String? = null,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountSigningKey {
-        return dev.octri.showcase.twilio.methods.SigningKeys.updateSigningKeys(
-            clientConfig,
-            accountSid,
-            sid,
-            friendlyName,
-            options,
-        )
+    fun fetch(accountSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountSigningKey {
+        return dev.octri.showcase.twilio.methods.SigningKeys.fetchSigningKeys(clientConfig, accountSid, sid, options)
     }
 
     /**
-     * Deletes a signing key from an account. Identify the account and signing key with their SIDs,
-     * using the documented prefixes and 32-character hexadecimal suffixes.
+     * Updates the friendly name of a signing key. Supply `FriendlyName` to change the name; omit it if you do not want to update that field.
+     */
+    fun update(accountSid: String, sid: String, friendlyName: String? = null, options: RequestOptions? = null): ApiV2010AccountSigningKey {
+        return dev.octri.showcase.twilio.methods.SigningKeys.updateSigningKeys(clientConfig, accountSid, sid, friendlyName, options)
+    }
+
+    /**
+     * Deletes a signing key from an account. Identify the account and signing key with their SIDs, using the documented prefixes and 32-character hexadecimal suffixes.
      */
     fun delete(accountSid: String, sid: String, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.twilio.methods.SigningKeys.deleteSigningKeys(
-            clientConfig,
-            accountSid,
-            sid,
-            options,
-        )
+        return dev.octri.showcase.twilio.methods.SigningKeys.deleteSigningKeys(clientConfig, accountSid, sid, options)
     }
+
 }

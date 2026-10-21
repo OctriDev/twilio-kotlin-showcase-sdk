@@ -13,44 +13,30 @@ import java.time.LocalDate
 
 object CallsNotifications {
 
-    data class ListCallsNotificationsResponse(
-        val end: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
-        val firstPageUri: String? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
-        val nextPageUri: String? = null,
-        val page: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
-        val previousPageUri: String? = null,
-        val start: Long? = null,
-        val uri: String? = null,
-        val notifications: List<ApiV2010AccountCallCallNotification>? = null,
-    )
+data class ListCallsNotificationsResponse(
+    val end: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
+    val page: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
+    val start: Long? = null,
+    val uri: String? = null,
+    val notifications: List<ApiV2010AccountCallCallNotification>? = null
+)
+
 
     /**
-     * Retrieves a notification associated with a specific call. Use the account, call, and
-     * notification SIDs to identify the resource and inspect its error details, request, and
-     * response information.
+     * Retrieves a notification associated with a specific call. Use the account, call, and notification SIDs to identify the resource and inspect its error details, request, and response information.
      *
-     * @param accountSid The SID of the Account that created the Call Notification resource to
-     *   fetch.
+     * @param accountSid The SID of the Account that created the Call Notification
+     *   resource to fetch.
      * @param callSid The Call SID of the Call Notification resource to fetch.
-     * @param sid The Twilio-provided string that uniquely identifies the Call Notification resource
-     *   to fetch.
+     * @param sid The Twilio-provided string that uniquely identifies the Call
+     *   Notification resource to fetch.
      */
-    fun fetchCallsNotifications(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        callSid: String,
-        sid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountCallCallNotificationInstance {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun fetchCallsNotifications(clientConfig: ClientConfig, accountSid: String, callSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountCallCallNotificationInstance {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("CallSid", callSid, Validation.LengthOpts(min = 34, max = 34))
@@ -59,18 +45,14 @@ object CallsNotifications {
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^NO[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountCallCallNotificationInstance>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Calls/${SdkClient.encodePathSegment(callSid)}/Notifications/${SdkClient.encodePathSegment(sid)}.json",
-                    config = clientConfig,
-                    operationId = "fetchCallsNotifications",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiV2010AccountCallCallNotificationInstance>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Calls/${SdkClient.encodePathSegment(callSid)}/Notifications/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "fetchCallsNotifications", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
+
+
+
+
+
+
 
     /** Parameters for [listCallsNotifications]. */
     data class ListCallsNotificationsRequest(
@@ -82,67 +64,46 @@ object CallsNotifications {
         val messageDate3: LocalDate? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null,
+        val pageToken: String? = null
     )
 
     /**
-     * Lists notifications associated with a specific call. Filter by log level or message date, and
-     * use the page parameters to navigate the results.
+     * Lists notifications associated with a specific call. Filter by log level or message date, and use the page parameters to navigate the results.
      *
-     * @param accountSid The SID of the Account that created the Call Notification resources to
-     *   read.
+     * @param accountSid The SID of the Account that created the Call Notification
+     *   resources to read.
      * @param callSid The Call SID of the Call Notification resources to read.
-     * @param log Only read notifications of the specified log level. Can be: `0` to read only ERROR
-     *   notifications or `1` to read only WARNING notifications. By default, all notifications are
-     *   read.
-     * @param messageDate Only show notifications for the specified date, formatted as `YYYY-MM-DD`.
-     *   You can also specify an inequality, such as `<=YYYY-MM-DD` for messages logged at or before
-     *   midnight on a date, or `>=YYYY-MM-DD` for messages logged at or after midnight on a date.
-     * @param messageDate2 Only show notifications for the specified date, formatted as
-     *   `YYYY-MM-DD`. You can also specify an inequality, such as `<=YYYY-MM-DD` for messages
-     *   logged at or before midnight on a date, or `>=YYYY-MM-DD` for messages logged at or after
-     *   midnight on a date.
-     * @param messageDate3 Only show notifications for the specified date, formatted as
-     *   `YYYY-MM-DD`. You can also specify an inequality, such as `<=YYYY-MM-DD` for messages
-     *   logged at or before midnight on a date, or `>=YYYY-MM-DD` for messages logged at or after
-     *   midnight on a date.
-     * @param pageSize How many resources to return in each list page. The default is 50, and the
-     *   maximum is 1000.
+     * @param log Only read notifications of the specified log level. Can be: `0` to
+     *   read only ERROR notifications or `1` to read only WARNING notifications. By
+     *   default, all notifications are read.
+     * @param messageDate Only show notifications for the specified date, formatted
+     *   as `YYYY-MM-DD`. You can also specify an inequality, such as `<=YYYY-MM-DD`
+     *   for messages logged at or before midnight on a date, or `>=YYYY-MM-DD` for
+     *   messages logged at or after midnight on a date.
+     * @param messageDate2 Only show notifications for the specified date, formatted
+     *   as `YYYY-MM-DD`. You can also specify an inequality, such as `<=YYYY-MM-DD`
+     *   for messages logged at or before midnight on a date, or `>=YYYY-MM-DD` for
+     *   messages logged at or after midnight on a date.
+     * @param messageDate3 Only show notifications for the specified date, formatted
+     *   as `YYYY-MM-DD`. You can also specify an inequality, such as `<=YYYY-MM-DD`
+     *   for messages logged at or before midnight on a date, or `>=YYYY-MM-DD` for
+     *   messages logged at or after midnight on a date.
+     * @param pageSize How many resources to return in each list page. The default is
+     *   50, and the maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listCallsNotifications(
-        clientConfig: ClientConfig,
-        request: ListCallsNotificationsRequest,
-        options: RequestOptions? = null,
-    ): ListCallsNotificationsResponse {
+    fun listCallsNotifications(clientConfig: ClientConfig, request: ListCallsNotificationsRequest, options: RequestOptions? = null): ListCallsNotificationsResponse {
         validateListCallsNotificationsRequest(request)
 
-        return SdkClient.request<ListCallsNotificationsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Calls/${SdkClient.encodePathSegment(request.callSid)}/Notifications.json",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "Log" to SdkClient.queryValue(request.log, "form", true),
-                            "MessageDate" to
-                                SdkClient.queryValue(request.messageDate, "form", true, "date"),
-                            "MessageDate<" to
-                                SdkClient.queryValue(request.messageDate2, "form", true, "date"),
-                            "MessageDate>" to
-                                SdkClient.queryValue(request.messageDate3, "form", true, "date"),
-                            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
-                            "Page" to SdkClient.queryValue(request.page, "form", true),
-                            "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
-                        ),
-                    operationId = "listCallsNotifications",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ListCallsNotificationsResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Calls/${SdkClient.encodePathSegment(request.callSid)}/Notifications.json", config = clientConfig, query = mapOf("Log" to SdkClient.queryValue(request.log, "form", true), "MessageDate" to
+    SdkClient.queryValue(request.messageDate, "form", true, "date"), "MessageDate<" to
+    SdkClient.queryValue(request.messageDate2, "form", true, "date"), "MessageDate>" to
+    SdkClient.queryValue(request.messageDate3, "form", true, "date"), "PageSize" to
+    SdkClient.queryValue(request.pageSize, "form", true), "Page" to SdkClient.queryValue(request.page, "form", true), "PageToken" to
+    SdkClient.queryValue(request.pageToken, "form", true)), operationId = "listCallsNotifications", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
+
 
     private fun validateListCallsNotificationsRequest(request: ListCallsNotificationsRequest) {
         validateListCallsNotificationsRequestPart1(request)
@@ -150,44 +111,38 @@ object CallsNotifications {
     }
 
     private fun validateListCallsNotificationsRequestPart1(request: ListCallsNotificationsRequest) {
-        Validation.validateLength(
-            "AccountSid",
-            request.accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength(
-            "CallSid",
-            request.callSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("CallSid", request.callSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("CallSid", request.callSid, "^CA[0-9a-fA-F]{32}$")
 
         if (request.messageDate != null) {
             Validation.validateDate("MessageDate", request.messageDate)
-        }
+}
 
         if (request.messageDate2 != null) {
             Validation.validateDate("MessageDate<", request.messageDate2)
-        }
+}
 
         if (request.messageDate3 != null) {
             Validation.validateDate("MessageDate>", request.messageDate3)
-        }
+}
     }
 
     private fun validateListCallsNotificationsRequestPart2(request: ListCallsNotificationsRequest) {
         if (request.pageSize != null) {
-            Validation.validateRange(
-                "PageSize",
-                request.pageSize,
-                Validation.RangeOpts(min = 1.0, max = 1000.0),
-            )
-        }
+            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
+}
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-        }
+}
     }
+
+
+
+
+
+
 }

@@ -3,39 +3,24 @@
 
 package dev.octri.showcase.twilio
 
+
 class CallsTranscriptionsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Creates a realtime transcription for a call. Use `Track` to select which audio tracks to
-     * transcribe, and configure callback, language, or transcription options as needed. The
-     * response includes the transcription SID, associated call and account SIDs, and status.
+     * Creates a realtime transcription for a call. Use `Track` to select which audio tracks to transcribe, and configure callback, language, or transcription options as needed. The response includes the transcription SID, associated call and account SIDs, and status.
      *
      * Create a Transcription
      */
-    fun create(
-        request:
-            dev.octri.showcase.twilio.methods.calls.CallsTranscriptions.CreateCallsTranscriptionsRequest,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountCallRealtimeTranscription {
-        return dev.octri.showcase.twilio.methods.calls.CallsTranscriptions
-            .createCallsTranscriptions(clientConfig, request, options)
+    fun create(request: dev.octri.showcase.twilio.methods.calls.CallsTranscriptions.CreateCallsTranscriptionsRequest, options: RequestOptions? = null): ApiV2010AccountCallRealtimeTranscription {
+        return dev.octri.showcase.twilio.methods.calls.CallsTranscriptions.createCallsTranscriptions(clientConfig, request, options)
     }
 
     /**
-     * Stops a realtime transcription associated with a call. Identify it by its transcription SID
-     * or by the `name` supplied when it was created, and set `Status` to `stopped`. The response
-     * contains the transcription object with its updated status.
+     * Stops a realtime transcription associated with a call. Identify it by its transcription SID or by the `name` supplied when it was created, and set `Status` to `stopped`. The response contains the transcription object with its updated status.
      *
-     * Stop a Transcription using either the SID of the Transcription resource or the `name` used
-     * when creating the resource
+     * Stop a Transcription using either the SID of the Transcription resource or the `name` used when creating the resource
      */
-    fun update(
-        accountSid: String,
-        callSid: String,
-        sid: String,
-        status: RealtimeTranscriptionEnumUpdateStatus,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountCallRealtimeTranscription {
-        return dev.octri.showcase.twilio.methods.calls.CallsTranscriptions
-            .updateCallsTranscriptions(clientConfig, accountSid, callSid, sid, status, options)
+    fun update(accountSid: String, callSid: String, sid: String, status: RealtimeTranscriptionEnumUpdateStatus, options: RequestOptions? = null): ApiV2010AccountCallRealtimeTranscription {
+        return dev.octri.showcase.twilio.methods.calls.CallsTranscriptions.updateCallsTranscriptions(clientConfig, accountSid, callSid, sid, status, options)
     }
+
 }

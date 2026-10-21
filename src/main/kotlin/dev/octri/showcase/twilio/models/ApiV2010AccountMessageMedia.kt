@@ -3,9 +3,13 @@
 
 package dev.octri.showcase.twilio.models
 
-/** Typed representation of the `ApiV2010AccountMessageMedia` API schema. */
+/**
+ * Typed representation of the `ApiV2010AccountMessageMedia` API schema.
+ */
 data class ApiV2010AccountMessageMedia(
-    /** The SID of the Account associated with this Media resource. */
+    /**
+     * The SID of the Account associated with this Media resource.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
     /**
      * The default MIME type of the media, for example `image/jpeg`, `image/png`, or `image/gif`.
@@ -16,14 +20,19 @@ data class ApiV2010AccountMessageMedia(
      */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
     /**
-     * The date and time in GMT when this Media resource was last updated, specified in RFC 2822
-     * format.
+     * The date and time in GMT when this Media resource was last updated, specified in RFC 2822 format.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
-    /** The SID of the Message resource that is associated with this Media resource. */
+    /**
+     * The SID of the Message resource that is associated with this Media resource.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("parent_sid") val parentSid: String? = null,
-    /** The unique string that identifies this Media resource. */
+    /**
+     * The unique string that identifies this Media resource.
+     */
     val sid: String? = null,
-    /** The URI of this Media resource, relative to `api.twilio.com`. */
-    val uri: String? = null,
+    /**
+     * The URI of this Media resource, relative to `api.twilio.com`.
+     */
+    val uri: String? = null
 )

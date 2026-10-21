@@ -3,28 +3,32 @@
 
 package dev.octri.showcase.twilio.models
 
-/** Typed representation of the `ApiV2010AccountMessageMessageFeedback` API schema. */
+/**
+ * Typed representation of the `ApiV2010AccountMessageMessageFeedback` API schema.
+ */
 data class ApiV2010AccountMessageMessageFeedback(
-    /** The SID of the Account associated with this MessageFeedback resource. */
+    /**
+     * The SID of the Account associated with this MessageFeedback resource.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
-    /** The SID of the Message resource associated with this MessageFeedback resource. */
+    /**
+     * The SID of the Message resource associated with this MessageFeedback resource.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("message_sid") val messageSid: String? = null,
     /**
-     * Reported outcome indicating whether there is confirmation that the Message recipient
-     * performed a tracked user action. Can be: `unconfirmed` or `confirmed`. For more details see
-     * How to Optimize Message Deliverability with Message Feedback.
+     * Reported outcome indicating whether there is confirmation that the Message recipient performed a tracked user action. Can be: `unconfirmed` or `confirmed`. For more details see How to Optimize Message Deliverability with Message Feedback.
      */
     val outcome: MessageFeedbackEnumOutcome? = null,
     /**
-     * The date and time in GMT when this MessageFeedback resource was created, specified in RFC
-     * 2822 format.
+     * The date and time in GMT when this MessageFeedback resource was created, specified in RFC 2822 format.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
     /**
-     * The date and time in GMT when this MessageFeedback resource was last updated, specified in
-     * RFC 2822 format.
+     * The date and time in GMT when this MessageFeedback resource was last updated, specified in RFC 2822 format.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
-    /** The URI of the resource, relative to `api.twilio.com`. */
-    val uri: String? = null,
+    /**
+     * The URI of the resource, relative to `api.twilio.com`.
+     */
+    val uri: String? = null
 )

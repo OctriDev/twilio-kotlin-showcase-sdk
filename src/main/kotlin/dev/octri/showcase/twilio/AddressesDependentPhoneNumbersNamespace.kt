@@ -3,28 +3,13 @@
 
 package dev.octri.showcase.twilio
 
+
 class AddressesDependentPhoneNumbersNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists phone numbers that depend on a specified address in an account. Use the account and
-     * address SIDs to scope the results, and use the page parameters to navigate the list.
+     * Lists phone numbers that depend on a specified address in an account. Use the account and address SIDs to scope the results, and use the page parameters to navigate the list.
      */
-    fun list(
-        accountSid: String,
-        addressSid: String,
-        pageSize: Long? = null,
-        page: Long? = null,
-        pageToken: String? = null,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.twilio.methods.addresses.AddressesDependentPhoneNumbers.ListAddressesDependentPhoneNumbersResponse {
-        return dev.octri.showcase.twilio.methods.addresses.AddressesDependentPhoneNumbers
-            .listAddressesDependentPhoneNumbers(
-                clientConfig,
-                accountSid,
-                addressSid,
-                pageSize,
-                page,
-                pageToken,
-                options,
-            )
+    fun list(accountSid: String, addressSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.addresses.AddressesDependentPhoneNumbers.ListAddressesDependentPhoneNumbersResponse {
+        return dev.octri.showcase.twilio.methods.addresses.AddressesDependentPhoneNumbers.listAddressesDependentPhoneNumbers(clientConfig, accountSid, addressSid, pageSize, page, pageToken, options)
     }
+
 }

@@ -11,329 +11,244 @@ import dev.octri.showcase.twilio.Validation
 
 internal object IncomingPhoneNumbersListIncomingPhoneNumbersOperation {
     /**
-     * Lists incoming phone numbers belonging to an account. Filter the results by beta status,
-     * friendly name, phone number, or origin, and use the page parameters to navigate the list.
+     * Lists incoming phone numbers belonging to an account. Filter the results by beta status, friendly name, phone number, or origin, and use the page parameters to navigate the list.
      *
      * Retrieve a list of incoming-phone-numbers belonging to the account used to make the request.
      *
-     * @param accountSid The SID of the Account that created the IncomingPhoneNumber resources to
-     *   read.
-     * @param beta Whether to include phone numbers new to the Twilio platform. Can be: `true` or
-     *   `false` and the default is `true`.
-     * @param friendlyName A string that identifies the IncomingPhoneNumber resources to read.
-     * @param phoneNumber The phone numbers of the IncomingPhoneNumber resources to read. You can
-     *   specify partial numbers and use '*' as a wildcard for any digit.
-     * @param origin Whether to include phone numbers based on their origin. Can be: `twilio` or
-     *   `hosted`. By default, phone numbers of all origin are included.
-     * @param pageSize How many resources to return in each list page. The default is 50, and the
-     *   maximum is 1000.
+     * @param accountSid The SID of the Account that created the IncomingPhoneNumber
+     *   resources to read.
+     * @param beta Whether to include phone numbers new to the Twilio platform. Can
+     *   be: `true` or `false` and the default is `true`.
+     * @param friendlyName A string that identifies the IncomingPhoneNumber resources
+     *   to read.
+     * @param phoneNumber The phone numbers of the IncomingPhoneNumber resources to
+     *   read. You can specify partial numbers and use '*' as a wildcard for any digit.
+     * @param origin Whether to include phone numbers based on their origin. Can be:
+     *   `twilio` or `hosted`. By default, phone numbers of all origin are included.
+     * @param pageSize How many resources to return in each list page. The default is
+     *   50, and the maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listIncomingPhoneNumbers(
-        clientConfig: ClientConfig,
-        request: IncomingPhoneNumbers.ListIncomingPhoneNumbersRequest,
-        options: RequestOptions? = null,
-    ): IncomingPhoneNumbers.ListIncomingPhoneNumbersResponse {
+    fun listIncomingPhoneNumbers(clientConfig: ClientConfig, request: IncomingPhoneNumbers.ListIncomingPhoneNumbersRequest, options: RequestOptions? = null): IncomingPhoneNumbers.ListIncomingPhoneNumbersResponse {
         validateListIncomingPhoneNumbersRequest(request)
 
-        return SdkClient.request<IncomingPhoneNumbers.ListIncomingPhoneNumbersResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/IncomingPhoneNumbers.json",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "Beta" to SdkClient.queryValue(request.beta, "form", true),
-                            "FriendlyName" to
-                                SdkClient.queryValue(request.friendlyName, "form", true),
-                            "PhoneNumber" to
-                                SdkClient.queryValue(request.phoneNumber, "form", true),
-                            "Origin" to SdkClient.queryValue(request.origin, "form", true),
-                            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
-                            "Page" to SdkClient.queryValue(request.page, "form", true),
-                            "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
-                        ),
-                    operationId = "listIncomingPhoneNumbers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<IncomingPhoneNumbers.ListIncomingPhoneNumbersResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/IncomingPhoneNumbers.json", config = clientConfig, query = mapOf("Beta" to SdkClient.queryValue(request.beta, "form", true), "FriendlyName" to
+    SdkClient.queryValue(request.friendlyName, "form", true), "PhoneNumber" to
+    SdkClient.queryValue(request.phoneNumber, "form", true), "Origin" to
+    SdkClient.queryValue(request.origin, "form", true), "PageSize" to
+    SdkClient.queryValue(request.pageSize, "form", true), "Page" to SdkClient.queryValue(request.page, "form", true), "PageToken" to
+    SdkClient.queryValue(request.pageToken, "form", true)), operationId = "listIncomingPhoneNumbers", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
-    private fun validateListIncomingPhoneNumbersRequest(
-        request: IncomingPhoneNumbers.ListIncomingPhoneNumbersRequest
-    ) {
-        Validation.validateLength(
-            "AccountSid",
-            request.accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+
+    private fun validateListIncomingPhoneNumbersRequest(request: IncomingPhoneNumbers.ListIncomingPhoneNumbersRequest) {
+        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.pageSize != null) {
-            Validation.validateRange(
-                "PageSize",
-                request.pageSize,
-                Validation.RangeOpts(min = 1.0, max = 1000.0),
-            )
-        }
+            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
+}
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-        }
+}
     }
 }
 
 internal object IncomingPhoneNumbersCreateIncomingPhoneNumbersOperation {
     /**
-     * Creates a new incoming phone number by purchasing it for an account. Configure optional SMS
-     * and voice handling settings in the form-encoded body. An application SID takes precedence
-     * over the corresponding URL settings.
+     * Creates a new incoming phone number by purchasing it for an account. Configure optional SMS and voice handling settings in the form-encoded body. An application SID takes precedence over the corresponding URL settings.
      *
      * Purchase a phone-number for the account.
      *
      * @param accountSid The SID of the Account that will create the resource.
-     * @param apiVersion The API version to use for incoming calls made to the new phone number. The
-     *   default is `2010-04-01`.
-     * @param friendlyName A descriptive string that you created to describe the new phone number.
-     *   It can be up to 64 characters long. By default, this is a formatted version of the new
-     *   phone number.
-     * @param smsApplicationSid The SID of the application that should handle SMS messages sent to
-     *   the new phone number. If an `sms_application_sid` is present, we ignore all of the
-     *   `sms_*_url` urls and use those set on the application.
-     * @param smsFallbackMethod The HTTP method that we should use to call `sms_fallback_url`. Can
-     *   be: `GET` or `POST` and defaults to `POST`.
-     * @param smsFallbackUrl The URL that we should call when an error occurs while requesting or
-     *   executing the TwiML defined by `sms_url`.
-     * @param smsMethod The HTTP method that we should use to call `sms_url`. Can be: `GET` or
-     *   `POST` and defaults to `POST`.
-     * @param smsUrl The URL we should call when the new phone number receives an incoming SMS
-     *   message.
-     * @param statusCallback The URL we should call using the `status_callback_method` to send
-     *   status information to your application.
-     * @param statusCallbackMethod The HTTP method we should use to call `status_callback`. Can be:
+     * @param apiVersion The API version to use for incoming calls made to the new
+     *   phone number. The default is `2010-04-01`.
+     * @param friendlyName A descriptive string that you created to describe the new
+     *   phone number. It can be up to 64 characters long. By default, this is a
+     *   formatted version of the new phone number.
+     * @param smsApplicationSid The SID of the application that should handle SMS
+     *   messages sent to the new phone number. If an `sms_application_sid` is present,
+     *   we ignore all of the `sms_*_url` urls and use those set on the application.
+     * @param smsFallbackMethod The HTTP method that we should use to call
+     *   `sms_fallback_url`. Can be: `GET` or `POST` and defaults to `POST`.
+     * @param smsFallbackUrl The URL that we should call when an error occurs while
+     *   requesting or executing the TwiML defined by `sms_url`.
+     * @param smsMethod The HTTP method that we should use to call `sms_url`. Can be:
      *   `GET` or `POST` and defaults to `POST`.
-     * @param voiceApplicationSid The SID of the application we should use to handle calls to the
-     *   new phone number. If a `voice_application_sid` is present, we ignore all of the voice urls
-     *   and use only those set on the application. Setting a `voice_application_sid` will
-     *   automatically delete your `trunk_sid` and vice versa.
-     * @param voiceCallerIdLookup Whether to lookup the caller's name from the CNAM database and
-     *   post it to your app. Can be: `true` or `false` and defaults to `false`.
-     * @param voiceFallbackMethod The HTTP method that we should use to call `voice_fallback_url`.
-     *   Can be: `GET` or `POST` and defaults to `POST`.
-     * @param voiceFallbackUrl The URL that we should call when an error occurs retrieving or
-     *   executing the TwiML requested by `url`.
-     * @param voiceMethod The HTTP method that we should use to call `voice_url`. Can be: `GET` or
-     *   `POST` and defaults to `POST`.
-     * @param voiceUrl The URL that we should call to answer a call to the new phone number. The
-     *   `voice_url` will not be called if a `voice_application_sid` or a `trunk_sid` is set.
-     * @param emergencyStatus The parameter displays if emergency calling is enabled for this
-     *   number. Active numbers may place emergency calls by dialing valid emergency numbers for the
-     *   country.
-     * @param emergencyAddressSid The SID of the emergency address configuration to use for
-     *   emergency calling from the new phone number.
-     * @param trunkSid The SID of the Trunk we should use to handle calls to the new phone number.
-     *   If a `trunk_sid` is present, we ignore all of the voice urls and voice applications and use
-     *   only those set on the Trunk. Setting a `trunk_sid` will automatically delete your
-     *   `voice_application_sid` and vice versa.
-     * @param identitySid The SID of the Identity resource that we should associate with the new
-     *   phone number. Some regions require an identity to meet local regulations.
-     * @param addressSid The SID of the Address resource we should associate with the new phone
-     *   number. Some regions require addresses to meet local regulations.
-     * @param bundleSid The SID of the Bundle resource that you associate with the phone number.
-     *   Some regions require a Bundle to meet local Regulations.
-     * @param phoneNumber The phone number to purchase specified in E.164 format. E.164 phone
-     *   numbers consist of a + followed by the country code and subscriber number without
-     *   punctuation characters. For example, +14155551234.
-     * @param areaCode The desired area code for your new incoming phone number. Can be any
-     *   three-digit, US or Canada area code. We will provision an available phone number within
-     *   this area code for you. **You must provide an `area_code` or a `phone_number`.** (US and
-     *   Canada only).
+     * @param smsUrl The URL we should call when the new phone number receives an
+     *   incoming SMS message.
+     * @param statusCallback The URL we should call using the
+     *   `status_callback_method` to send status information to your application.
+     * @param statusCallbackMethod The HTTP method we should use to call
+     *   `status_callback`. Can be: `GET` or `POST` and defaults to `POST`.
+     * @param voiceApplicationSid The SID of the application we should use to handle
+     *   calls to the new phone number. If a `voice_application_sid` is present, we
+     *   ignore all of the voice urls and use only those set on the application.
+     *   Setting a `voice_application_sid` will automatically delete your `trunk_sid`
+     *   and vice versa.
+     * @param voiceCallerIdLookup Whether to lookup the caller's name from the CNAM
+     *   database and post it to your app. Can be: `true` or `false` and defaults to
+     *   `false`.
+     * @param voiceFallbackMethod The HTTP method that we should use to call
+     *   `voice_fallback_url`. Can be: `GET` or `POST` and defaults to `POST`.
+     * @param voiceFallbackUrl The URL that we should call when an error occurs
+     *   retrieving or executing the TwiML requested by `url`.
+     * @param voiceMethod The HTTP method that we should use to call `voice_url`. Can
+     *   be: `GET` or `POST` and defaults to `POST`.
+     * @param voiceUrl The URL that we should call to answer a call to the new phone
+     *   number. The `voice_url` will not be called if a `voice_application_sid` or a
+     *   `trunk_sid` is set.
+     * @param emergencyStatus The parameter displays if emergency calling is enabled
+     *   for this number. Active numbers may place emergency calls by dialing valid
+     *   emergency numbers for the country.
+     * @param emergencyAddressSid The SID of the emergency address configuration to
+     *   use for emergency calling from the new phone number.
+     * @param trunkSid The SID of the Trunk we should use to handle calls to the new
+     *   phone number. If a `trunk_sid` is present, we ignore all of the voice urls and
+     *   voice applications and use only those set on the Trunk. Setting a `trunk_sid`
+     *   will automatically delete your `voice_application_sid` and vice versa.
+     * @param identitySid The SID of the Identity resource that we should associate
+     *   with the new phone number. Some regions require an identity to meet local
+     *   regulations.
+     * @param addressSid The SID of the Address resource we should associate with the
+     *   new phone number. Some regions require addresses to meet local regulations.
+     * @param bundleSid The SID of the Bundle resource that you associate with the
+     *   phone number. Some regions require a Bundle to meet local Regulations.
+     * @param phoneNumber The phone number to purchase specified in E.164 format.
+     *   E.164 phone numbers consist of a + followed by the country code and subscriber
+     *   number without punctuation characters. For example, +14155551234.
+     * @param areaCode The desired area code for your new incoming phone number. Can
+     *   be any three-digit, US or Canada area code. We will provision an available
+     *   phone number within this area code for you. **You must provide an `area_code`
+     *   or a `phone_number`.** (US and Canada only).
      */
-    fun createIncomingPhoneNumbers(
-        clientConfig: ClientConfig,
-        request: IncomingPhoneNumbers.CreateIncomingPhoneNumbersRequest,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountIncomingPhoneNumber {
+    fun createIncomingPhoneNumbers(clientConfig: ClientConfig, request: IncomingPhoneNumbers.CreateIncomingPhoneNumbersRequest, options: RequestOptions? = null): ApiV2010AccountIncomingPhoneNumber {
         validateCreateIncomingPhoneNumbersRequest(request)
 
-        return SdkClient.request<ApiV2010AccountIncomingPhoneNumber>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/IncomingPhoneNumbers.json",
-                    config = clientConfig,
-                    body = buildCreateIncomingPhoneNumbersBody(request),
-                    contentType = "application/x-www-form-urlencoded",
-                    operationId = "createIncomingPhoneNumbers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiV2010AccountIncomingPhoneNumber>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/IncomingPhoneNumbers.json", config = clientConfig, body = buildCreateIncomingPhoneNumbersBody(request), contentType = "application/x-www-form-urlencoded", operationId = "createIncomingPhoneNumbers", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
-    private fun validateCreateIncomingPhoneNumbersRequest(
-        request: IncomingPhoneNumbers.CreateIncomingPhoneNumbersRequest
-    ) {
+
+    private fun validateCreateIncomingPhoneNumbersRequest(request: IncomingPhoneNumbers.CreateIncomingPhoneNumbersRequest) {
         validateCreateIncomingPhoneNumbersRequestPart1(request)
         validateCreateIncomingPhoneNumbersRequestPart2(request)
         validateCreateIncomingPhoneNumbersRequestPart3(request)
     }
 
-    private fun validateCreateIncomingPhoneNumbersRequestPart1(
-        request: IncomingPhoneNumbers.CreateIncomingPhoneNumbersRequest
-    ) {
-        Validation.validateLength(
-            "AccountSid",
-            request.accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    private fun validateCreateIncomingPhoneNumbersRequestPart1(request: IncomingPhoneNumbers.CreateIncomingPhoneNumbersRequest) {
+        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.smsApplicationSid != null) {
-            Validation.validateLength(
-                "SmsApplicationSid",
-                request.smsApplicationSid,
-                Validation.LengthOpts(min = 34, max = 34),
-            )
-            Validation.validatePattern(
-                "SmsApplicationSid",
-                request.smsApplicationSid,
-                "^AP[0-9a-fA-F]{32}$",
-            )
-        }
+            Validation.validateLength("SmsApplicationSid", request.smsApplicationSid, Validation.LengthOpts(min = 34, max = 34))
+            Validation.validatePattern("SmsApplicationSid", request.smsApplicationSid, "^AP[0-9a-fA-F]{32}$")
+}
 
         if (request.smsFallbackUrl != null) {
             Validation.validateUri("SmsFallbackUrl", request.smsFallbackUrl)
-        }
+}
 
         if (request.smsUrl != null) {
             Validation.validateUri("SmsUrl", request.smsUrl)
-        }
+}
 
         if (request.statusCallback != null) {
             Validation.validateUri("StatusCallback", request.statusCallback)
-        }
+}
     }
 
-    private fun validateCreateIncomingPhoneNumbersRequestPart2(
-        request: IncomingPhoneNumbers.CreateIncomingPhoneNumbersRequest
-    ) {
+    private fun validateCreateIncomingPhoneNumbersRequestPart2(request: IncomingPhoneNumbers.CreateIncomingPhoneNumbersRequest) {
         if (request.voiceApplicationSid != null) {
-            Validation.validateLength(
-                "VoiceApplicationSid",
-                request.voiceApplicationSid,
-                Validation.LengthOpts(min = 34, max = 34),
-            )
-            Validation.validatePattern(
-                "VoiceApplicationSid",
-                request.voiceApplicationSid,
-                "^AP[0-9a-fA-F]{32}$",
-            )
-        }
+            Validation.validateLength("VoiceApplicationSid", request.voiceApplicationSid, Validation.LengthOpts(min = 34, max = 34))
+            Validation.validatePattern("VoiceApplicationSid", request.voiceApplicationSid, "^AP[0-9a-fA-F]{32}$")
+}
 
         if (request.voiceFallbackUrl != null) {
             Validation.validateUri("VoiceFallbackUrl", request.voiceFallbackUrl)
-        }
+}
 
         if (request.voiceUrl != null) {
             Validation.validateUri("VoiceUrl", request.voiceUrl)
-        }
+}
 
         if (request.emergencyAddressSid != null) {
-            Validation.validateLength(
-                "EmergencyAddressSid",
-                request.emergencyAddressSid,
-                Validation.LengthOpts(min = 34, max = 34),
-            )
-            Validation.validatePattern(
-                "EmergencyAddressSid",
-                request.emergencyAddressSid,
-                "^AD[0-9a-fA-F]{32}$",
-            )
-        }
+            Validation.validateLength("EmergencyAddressSid", request.emergencyAddressSid, Validation.LengthOpts(min = 34, max = 34))
+            Validation.validatePattern("EmergencyAddressSid", request.emergencyAddressSid, "^AD[0-9a-fA-F]{32}$")
+}
 
         if (request.trunkSid != null) {
-            Validation.validateLength(
-                "TrunkSid",
-                request.trunkSid,
-                Validation.LengthOpts(min = 34, max = 34),
-            )
+            Validation.validateLength("TrunkSid", request.trunkSid, Validation.LengthOpts(min = 34, max = 34))
             Validation.validatePattern("TrunkSid", request.trunkSid, "^TK[0-9a-fA-F]{32}$")
-        }
+}
     }
 
-    private fun validateCreateIncomingPhoneNumbersRequestPart3(
-        request: IncomingPhoneNumbers.CreateIncomingPhoneNumbersRequest
-    ) {
+    private fun validateCreateIncomingPhoneNumbersRequestPart3(request: IncomingPhoneNumbers.CreateIncomingPhoneNumbersRequest) {
         if (request.identitySid != null) {
-            Validation.validateLength(
-                "IdentitySid",
-                request.identitySid,
-                Validation.LengthOpts(min = 34, max = 34),
-            )
+            Validation.validateLength("IdentitySid", request.identitySid, Validation.LengthOpts(min = 34, max = 34))
             Validation.validatePattern("IdentitySid", request.identitySid, "^RI[0-9a-fA-F]{32}$")
-        }
+}
 
         if (request.addressSid != null) {
-            Validation.validateLength(
-                "AddressSid",
-                request.addressSid,
-                Validation.LengthOpts(min = 34, max = 34),
-            )
+            Validation.validateLength("AddressSid", request.addressSid, Validation.LengthOpts(min = 34, max = 34))
             Validation.validatePattern("AddressSid", request.addressSid, "^AD[0-9a-fA-F]{32}$")
-        }
+}
 
         if (request.bundleSid != null) {
-            Validation.validateLength(
-                "BundleSid",
-                request.bundleSid,
-                Validation.LengthOpts(min = 34, max = 34),
-            )
+            Validation.validateLength("BundleSid", request.bundleSid, Validation.LengthOpts(min = 34, max = 34))
             Validation.validatePattern("BundleSid", request.bundleSid, "^BU[0-9a-fA-F]{32}$")
+}
+    }
+
+
+
+    private fun buildCreateIncomingPhoneNumbersBody(request: IncomingPhoneNumbers.CreateIncomingPhoneNumbersRequest): Map<String, Any?> =
+        buildMap {
+            putAll(buildCreateIncomingPhoneNumbersBodyPart1(request))
+            putAll(buildCreateIncomingPhoneNumbersBodyPart2(request))
         }
-    }
 
-    private fun buildCreateIncomingPhoneNumbersBody(
-        request: IncomingPhoneNumbers.CreateIncomingPhoneNumbersRequest
-    ): Map<String, Any?> = buildMap {
-        putAll(buildCreateIncomingPhoneNumbersBodyPart1(request))
-        putAll(buildCreateIncomingPhoneNumbersBodyPart2(request))
-    }
-
-    private fun buildCreateIncomingPhoneNumbersBodyPart1(
-        request: IncomingPhoneNumbers.CreateIncomingPhoneNumbersRequest
-    ): Map<String, Any?> =
+    private fun buildCreateIncomingPhoneNumbersBodyPart1(request: IncomingPhoneNumbers.CreateIncomingPhoneNumbersRequest): Map<String, Any?> =
         SdkClient.bodyMap(
             "ApiVersion" to (SdkClient.omitIfNull(request.apiVersion)),
-            "FriendlyName" to (SdkClient.omitIfNull(request.friendlyName)),
-            "SmsApplicationSid" to (SdkClient.omitIfNull(request.smsApplicationSid)),
-            "SmsFallbackMethod" to (SdkClient.omitIfNull(request.smsFallbackMethod)),
-            "SmsFallbackUrl" to (SdkClient.omitIfNull(request.smsFallbackUrl)),
+            "FriendlyName" to
+    (SdkClient.omitIfNull(request.friendlyName)),
+            "SmsApplicationSid" to
+    (SdkClient.omitIfNull(request.smsApplicationSid)),
+            "SmsFallbackMethod" to
+    (SdkClient.omitIfNull(request.smsFallbackMethod)),
+            "SmsFallbackUrl" to
+    (SdkClient.omitIfNull(request.smsFallbackUrl)),
             "SmsMethod" to (SdkClient.omitIfNull(request.smsMethod)),
             "SmsUrl" to (SdkClient.omitIfNull(request.smsUrl)),
-            "StatusCallback" to (SdkClient.omitIfNull(request.statusCallback)),
-            "StatusCallbackMethod" to (SdkClient.omitIfNull(request.statusCallbackMethod)),
-            "VoiceApplicationSid" to (SdkClient.omitIfNull(request.voiceApplicationSid)),
-            "VoiceCallerIdLookup" to (SdkClient.omitIfNull(request.voiceCallerIdLookup)),
-            "VoiceFallbackMethod" to (SdkClient.omitIfNull(request.voiceFallbackMethod)),
+            "StatusCallback" to
+    (SdkClient.omitIfNull(request.statusCallback)),
+            "StatusCallbackMethod" to
+    (SdkClient.omitIfNull(request.statusCallbackMethod)),
+            "VoiceApplicationSid" to
+    (SdkClient.omitIfNull(request.voiceApplicationSid)),
+            "VoiceCallerIdLookup" to
+    (SdkClient.omitIfNull(request.voiceCallerIdLookup)),
+            "VoiceFallbackMethod" to
+    (SdkClient.omitIfNull(request.voiceFallbackMethod)),
         )
 
-    private fun buildCreateIncomingPhoneNumbersBodyPart2(
-        request: IncomingPhoneNumbers.CreateIncomingPhoneNumbersRequest
-    ): Map<String, Any?> =
+    private fun buildCreateIncomingPhoneNumbersBodyPart2(request: IncomingPhoneNumbers.CreateIncomingPhoneNumbersRequest): Map<String, Any?> =
         SdkClient.bodyMap(
-            "VoiceFallbackUrl" to (SdkClient.omitIfNull(request.voiceFallbackUrl)),
+            "VoiceFallbackUrl" to
+    (SdkClient.omitIfNull(request.voiceFallbackUrl)),
             "VoiceMethod" to (SdkClient.omitIfNull(request.voiceMethod)),
             "VoiceUrl" to (SdkClient.omitIfNull(request.voiceUrl)),
-            "EmergencyStatus" to (SdkClient.omitIfNull(request.emergencyStatus)),
-            "EmergencyAddressSid" to (SdkClient.omitIfNull(request.emergencyAddressSid)),
+            "EmergencyStatus" to
+    (SdkClient.omitIfNull(request.emergencyStatus)),
+            "EmergencyAddressSid" to
+    (SdkClient.omitIfNull(request.emergencyAddressSid)),
             "TrunkSid" to (SdkClient.omitIfNull(request.trunkSid)),
             "IdentitySid" to (SdkClient.omitIfNull(request.identitySid)),
             "AddressSid" to (SdkClient.omitIfNull(request.addressSid)),
-            "VoiceReceiveMode" to (SdkClient.omitIfNull(request.voiceReceiveMode)),
+            "VoiceReceiveMode" to
+    (SdkClient.omitIfNull(request.voiceReceiveMode)),
             "BundleSid" to (SdkClient.omitIfNull(request.bundleSid)),
             "PhoneNumber" to (SdkClient.omitIfNull(request.phoneNumber)),
             "AreaCode" to (SdkClient.omitIfNull(request.areaCode)),

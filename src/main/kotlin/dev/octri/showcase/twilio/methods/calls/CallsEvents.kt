@@ -11,81 +11,53 @@ import dev.octri.showcase.twilio.Validation
 
 object CallsEvents {
 
-    data class ListCallsEventsResponse(
-        val end: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
-        val firstPageUri: String? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
-        val nextPageUri: String? = null,
-        val page: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
-        val previousPageUri: String? = null,
-        val start: Long? = null,
-        val uri: String? = null,
-        val events: List<ApiV2010AccountCallCallEvent>? = null,
-    )
+data class ListCallsEventsResponse(
+    val end: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
+    val page: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
+    val start: Long? = null,
+    val uri: String? = null,
+    val events: List<ApiV2010AccountCallCallEvent>? = null
+)
+
 
     /**
-     * Lists the events recorded for a specific call. Use `AccountSid` and `CallSid` to identify the
-     * account and call, and use the page parameters to navigate the results.
+     * Lists the events recorded for a specific call. Use `AccountSid` and `CallSid` to identify the account and call, and use the page parameters to navigate the results.
      *
      * Retrieve a list of all events for a call.
      *
      * @param accountSid The unique SID identifier of the Account.
      * @param callSid The unique SID identifier of the Call.
-     * @param pageSize How many resources to return in each list page. The default is 50, and the
-     *   maximum is 1000.
+     * @param pageSize How many resources to return in each list page. The default is
+     *   50, and the maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listCallsEvents(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        callSid: String,
-        pageSize: Long? = null,
-        page: Long? = null,
-        pageToken: String? = null,
-        options: RequestOptions? = null,
-    ): ListCallsEventsResponse {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun listCallsEvents(clientConfig: ClientConfig, accountSid: String, callSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): ListCallsEventsResponse {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("CallSid", callSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("CallSid", callSid, "^CA[0-9a-fA-F]{32}$")
 
         if (pageSize != null) {
-            Validation.validateRange(
-                "PageSize",
-                pageSize,
-                Validation.RangeOpts(min = 1.0, max = 1000.0),
-            )
-        }
+            Validation.validateRange("PageSize", pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
+}
 
         if (page != null) {
             Validation.validateRange("Page", page, Validation.RangeOpts(min = 0.0))
-        }
+}
 
-        return SdkClient.request<ListCallsEventsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Calls/${SdkClient.encodePathSegment(callSid)}/Events.json",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "PageSize" to SdkClient.queryValue(pageSize, "form", true),
-                            "Page" to SdkClient.queryValue(page, "form", true),
-                            "PageToken" to SdkClient.queryValue(pageToken, "form", true),
-                        ),
-                    operationId = "listCallsEvents",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ListCallsEventsResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Calls/${SdkClient.encodePathSegment(callSid)}/Events.json", config = clientConfig, query = mapOf("PageSize" to SdkClient.queryValue(pageSize, "form", true), "Page" to SdkClient.queryValue(page, "form", true), "PageToken" to SdkClient.queryValue(pageToken, "form", true)), operationId = "listCallsEvents", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
+
+
+
+
+
+
+
 }

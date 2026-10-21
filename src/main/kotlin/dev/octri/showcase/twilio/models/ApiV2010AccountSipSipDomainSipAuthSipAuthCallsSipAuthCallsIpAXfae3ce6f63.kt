@@ -4,22 +4,27 @@
 package dev.octri.showcase.twilio.models
 
 /**
- * Typed representation of the
- * `ApiV2010AccountSipSipDomainSipAuthSipAuthCallsSipAuthCallsIpAccessControlListMapping` API
- * schema.
+ * Typed representation of the `ApiV2010AccountSipSipDomainSipAuthSipAuthCallsSipAuthCallsIpAccessControlListMapping` API schema.
  */
 data class ApiV2010AccountSipSipDomainSipAuthSipAuthCallsSipAuthCallsIpAXfae3ce6f63(
-    /** The SID of the Account that created the IpAccessControlListMapping resource. */
+    /**
+     * The SID of the Account that created the IpAccessControlListMapping resource.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("account_sid") val accountSid: String? = null,
-    /** The date and time in GMT that the resource was created specified in RFC 2822 format. */
+    /**
+     * The date and time in GMT that the resource was created specified in RFC 2822 format.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("date_created") val dateCreated: String? = null,
-    /** The date and time in GMT that the resource was last updated specified in RFC 2822 format. */
+    /**
+     * The date and time in GMT that the resource was last updated specified in RFC 2822 format.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
-    /** The string that you assigned to describe the resource. */
-    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name")
-    val friendlyName: String? = null,
+    /**
+     * The string that you assigned to describe the resource.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name") val friendlyName: String? = null,
     /**
      * The unique string that that we created to identify the IpAccessControlListMapping resource.
      */
-    val sid: String? = null,
+    val sid: String? = null
 )

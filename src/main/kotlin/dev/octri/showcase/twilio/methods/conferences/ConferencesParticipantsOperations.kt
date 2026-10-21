@@ -11,706 +11,609 @@ import dev.octri.showcase.twilio.Validation
 
 internal object ConferencesParticipantsFetchConferencesParticipantsOperation {
     /**
-     * Retrieves a participant in a specific conference. Use `AccountSid`, `ConferenceSid`, and
-     * `CallSid` to identify the account, conference, and participant. You can identify the
-     * participant by call SID or label; percent-encode characters in a label that are not URL-safe.
+     * Retrieves a participant in a specific conference. Use `AccountSid`, `ConferenceSid`, and `CallSid` to identify the account, conference, and participant. You can identify the participant by call SID or label; percent-encode characters in a label that are not URL-safe.
      *
      * Fetch an instance of a participant
      *
-     * @param accountSid The SID of the Account that created the Participant resource to fetch.
+     * @param accountSid The SID of the Account that created the Participant resource
+     *   to fetch.
      * @param conferenceSid The SID of the conference with the participant to fetch.
-     * @param callSid The Call SID or label of the participant to fetch. Non URL safe characters in
-     *   a label must be percent encoded, for example, a space character is represented as %20.
+     * @param callSid The Call SID or label of the participant to fetch. Non URL safe
+     *   characters in a label must be percent encoded, for example, a space character
+     *   is represented as %20.
      */
-    fun fetchConferencesParticipants(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        conferenceSid: String,
-        callSid: String,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountConferenceParticipant {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun fetchConferencesParticipants(clientConfig: ClientConfig, accountSid: String, conferenceSid: String, callSid: String, options: RequestOptions? = null): ApiV2010AccountConferenceParticipant {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength(
-            "ConferenceSid",
-            conferenceSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("ConferenceSid", conferenceSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("ConferenceSid", conferenceSid, "^CF[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountConferenceParticipant>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Conferences/${SdkClient.encodePathSegment(conferenceSid)}/Participants/${SdkClient.encodePathSegment(callSid)}.json",
-                    config = clientConfig,
-                    operationId = "fetchConferencesParticipants",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiV2010AccountConferenceParticipant>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Conferences/${SdkClient.encodePathSegment(conferenceSid)}/Participants/${SdkClient.encodePathSegment(callSid)}.json", config = clientConfig, operationId = "fetchConferencesParticipants", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object ConferencesParticipantsUpdateConferencesParticipantsOperation {
     /**
-     * Updates configurable properties of a participant in a conference. Use `AccountSid`,
-     * `ConferenceSid`, and `CallSid` to identify the participant, then supply the form fields for
-     * the settings you want to change. If `Coaching` is true, provide `CallSidToCoach`.
+     * Updates configurable properties of a participant in a conference. Use `AccountSid`, `ConferenceSid`, and `CallSid` to identify the participant, then supply the form fields for the settings you want to change. If `Coaching` is true, provide `CallSidToCoach`.
      *
      * Update the properties of the participant
      *
-     * @param accountSid The SID of the Account that created the Participant resources to update.
+     * @param accountSid The SID of the Account that created the Participant
+     *   resources to update.
      * @param conferenceSid The SID of the conference with the participant to update.
-     * @param callSid The Call SID or label of the participant to update. Non URL safe characters in
-     *   a label must be percent encoded, for example, a space character is represented as %20.
-     * @param muted Whether the participant should be muted. Can be `true` or `false`. `true` will
-     *   mute the participant, and `false` will un-mute them. Anything value other than `true` or
-     *   `false` is interpreted as `false`.
-     * @param hold Whether the participant should be on hold. Can be: `true` or `false`. `true` puts
-     *   the participant on hold, and `false` lets them rejoin the conference.
-     * @param holdUrl The URL we call using the `hold_method` for music that plays when the
-     *   participant is on hold. The URL may return an MP3 file, a WAV file, or a TwiML document
-     *   that contains `<Play>`, `<Say>`, `<Pause>`, or `<Redirect>` verbs.
-     * @param holdMethod The HTTP method we should use to call `hold_url`. Can be: `GET` or `POST`
-     *   and the default is `GET`.
-     * @param announceUrl The URL we call using the `announce_method` for an announcement to the
-     *   participant. The URL may return an MP3 file, a WAV file, or a TwiML document that contains
-     *   `<Play>`, `<Say>`, `<Pause>`, or `<Redirect>` verbs.
-     * @param announceMethod The HTTP method we should use to call `announce_url`. Can be: `GET` or
-     *   `POST` and defaults to `POST`.
-     * @param waitUrl The URL that Twilio calls using the `wait_method` before the conference has
-     *   started. The URL may return an MP3 file, a WAV file, or a TwiML document. The default value
-     *   is the URL of our standard hold music. If you do not want anything to play while waiting
-     *   for the conference to start, specify an empty string by setting `wait_url` to `''`. For
-     *   more details on the allowable verbs within the `waitUrl`, see the `waitUrl` attribute in
-     *   the <Conference> TwiML instruction.
-     * @param waitMethod The HTTP method we should use to call `wait_url`. Can be `GET` or `POST`
-     *   and the default is `POST`. When using a static audio file, this should be `GET` so that we
-     *   can cache the file.
-     * @param beepOnExit Whether to play a notification beep to the conference when the participant
-     *   exits. Can be: `true` or `false`.
-     * @param endConferenceOnExit Whether to end the conference when the participant leaves. Can be:
-     *   `true` or `false` and defaults to `false`.
-     * @param coaching Whether the participant is coaching another call. Can be: `true` or `false`.
-     *   If not present, defaults to `false` unless `call_sid_to_coach` is defined. If `true`,
-     *   `call_sid_to_coach` must be defined.
-     * @param callSidToCoach The SID of the participant who is being `coached`. The participant
-     *   being coached is the only participant who can hear the participant who is `coaching`.
+     * @param callSid The Call SID or label of the participant to update. Non URL
+     *   safe characters in a label must be percent encoded, for example, a space
+     *   character is represented as %20.
+     * @param muted Whether the participant should be muted. Can be `true` or
+     *   `false`. `true` will mute the participant, and `false` will un-mute them.
+     *   Anything value other than `true` or `false` is interpreted as `false`.
+     * @param hold Whether the participant should be on hold. Can be: `true` or
+     *   `false`. `true` puts the participant on hold, and `false` lets them rejoin the
+     *   conference.
+     * @param holdUrl The URL we call using the `hold_method` for music that plays
+     *   when the participant is on hold. The URL may return an MP3 file, a WAV file,
+     *   or a TwiML document that contains `<Play>`, `<Say>`, `<Pause>`, or
+     *   `<Redirect>` verbs.
+     * @param holdMethod The HTTP method we should use to call `hold_url`. Can be:
+     *   `GET` or `POST` and the default is `GET`.
+     * @param announceUrl The URL we call using the `announce_method` for an
+     *   announcement to the participant. The URL may return an MP3 file, a WAV file,
+     *   or a TwiML document that contains `<Play>`, `<Say>`, `<Pause>`, or
+     *   `<Redirect>` verbs.
+     * @param announceMethod The HTTP method we should use to call `announce_url`.
+     *   Can be: `GET` or `POST` and defaults to `POST`.
+     * @param waitUrl The URL that Twilio calls using the `wait_method` before the
+     *   conference has started. The URL may return an MP3 file, a WAV file, or a TwiML
+     *   document. The default value is the URL of our standard hold music. If you do
+     *   not want anything to play while waiting for the conference to start, specify
+     *   an empty string by setting `wait_url` to `''`. For more details on the
+     *   allowable verbs within the `waitUrl`, see the `waitUrl` attribute in the
+     *   <Conference> TwiML instruction.
+     * @param waitMethod The HTTP method we should use to call `wait_url`. Can be
+     *   `GET` or `POST` and the default is `POST`. When using a static audio file,
+     *   this should be `GET` so that we can cache the file.
+     * @param beepOnExit Whether to play a notification beep to the conference when
+     *   the participant exits. Can be: `true` or `false`.
+     * @param endConferenceOnExit Whether to end the conference when the participant
+     *   leaves. Can be: `true` or `false` and defaults to `false`.
+     * @param coaching Whether the participant is coaching another call. Can be:
+     *   `true` or `false`. If not present, defaults to `false` unless
+     *   `call_sid_to_coach` is defined. If `true`, `call_sid_to_coach` must be
+     *   defined.
+     * @param callSidToCoach The SID of the participant who is being `coached`. The
+     *   participant being coached is the only participant who can hear the participant
+     *   who is `coaching`.
      */
-    fun updateConferencesParticipants(
-        clientConfig: ClientConfig,
-        request: ConferencesParticipants.UpdateConferencesParticipantsRequest,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountConferenceParticipant {
+    fun updateConferencesParticipants(clientConfig: ClientConfig, request: ConferencesParticipants.UpdateConferencesParticipantsRequest, options: RequestOptions? = null): ApiV2010AccountConferenceParticipant {
         validateUpdateConferencesParticipantsRequest(request)
 
-        return SdkClient.request<ApiV2010AccountConferenceParticipant>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Conferences/${SdkClient.encodePathSegment(request.conferenceSid)}/Participants/${SdkClient.encodePathSegment(request.callSid)}.json",
-                    config = clientConfig,
-                    body = buildUpdateConferencesParticipantsBody(request),
-                    contentType = "application/x-www-form-urlencoded",
-                    operationId = "updateConferencesParticipants",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiV2010AccountConferenceParticipant>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Conferences/${SdkClient.encodePathSegment(request.conferenceSid)}/Participants/${SdkClient.encodePathSegment(request.callSid)}.json", config = clientConfig, body = buildUpdateConferencesParticipantsBody(request), contentType = "application/x-www-form-urlencoded", operationId = "updateConferencesParticipants", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
-    private fun validateUpdateConferencesParticipantsRequest(
-        request: ConferencesParticipants.UpdateConferencesParticipantsRequest
-    ) {
+
+    private fun validateUpdateConferencesParticipantsRequest(request: ConferencesParticipants.UpdateConferencesParticipantsRequest) {
         validateUpdateConferencesParticipantsRequestPart1(request)
         validateUpdateConferencesParticipantsRequestPart2(request)
     }
 
-    private fun validateUpdateConferencesParticipantsRequestPart1(
-        request: ConferencesParticipants.UpdateConferencesParticipantsRequest
-    ) {
-        Validation.validateLength(
-            "AccountSid",
-            request.accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    private fun validateUpdateConferencesParticipantsRequestPart1(request: ConferencesParticipants.UpdateConferencesParticipantsRequest) {
+        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength(
-            "ConferenceSid",
-            request.conferenceSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("ConferenceSid", request.conferenceSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("ConferenceSid", request.conferenceSid, "^CF[0-9a-fA-F]{32}$")
 
         if (request.holdUrl != null) {
             Validation.validateUri("HoldUrl", request.holdUrl)
-        }
+}
 
         if (request.announceUrl != null) {
             Validation.validateUri("AnnounceUrl", request.announceUrl)
-        }
+}
 
         if (request.waitUrl != null) {
             Validation.validateUri("WaitUrl", request.waitUrl)
-        }
+}
     }
 
-    private fun validateUpdateConferencesParticipantsRequestPart2(
-        request: ConferencesParticipants.UpdateConferencesParticipantsRequest
-    ) {
+    private fun validateUpdateConferencesParticipantsRequestPart2(request: ConferencesParticipants.UpdateConferencesParticipantsRequest) {
         if (request.callSidToCoach != null) {
-            Validation.validateLength(
-                "CallSidToCoach",
-                request.callSidToCoach,
-                Validation.LengthOpts(min = 34, max = 34),
-            )
-            Validation.validatePattern(
-                "CallSidToCoach",
-                request.callSidToCoach,
-                "^CA[0-9a-fA-F]{32}$",
-            )
+            Validation.validateLength("CallSidToCoach", request.callSidToCoach, Validation.LengthOpts(min = 34, max = 34))
+            Validation.validatePattern("CallSidToCoach", request.callSidToCoach, "^CA[0-9a-fA-F]{32}$")
+}
+    }
+
+
+
+    private fun buildUpdateConferencesParticipantsBody(request: ConferencesParticipants.UpdateConferencesParticipantsRequest): Map<String, Any?> =
+        buildMap {
+            putAll(buildUpdateConferencesParticipantsBodyPart1(request))
         }
-    }
 
-    private fun buildUpdateConferencesParticipantsBody(
-        request: ConferencesParticipants.UpdateConferencesParticipantsRequest
-    ): Map<String, Any?> = buildMap {
-        putAll(buildUpdateConferencesParticipantsBodyPart1(request))
-    }
-
-    private fun buildUpdateConferencesParticipantsBodyPart1(
-        request: ConferencesParticipants.UpdateConferencesParticipantsRequest
-    ): Map<String, Any?> =
+    private fun buildUpdateConferencesParticipantsBodyPart1(request: ConferencesParticipants.UpdateConferencesParticipantsRequest): Map<String, Any?> =
         SdkClient.bodyMap(
             "Muted" to (SdkClient.omitIfNull(request.muted)),
             "Hold" to (SdkClient.omitIfNull(request.hold)),
             "HoldUrl" to (SdkClient.omitIfNull(request.holdUrl)),
             "HoldMethod" to (SdkClient.omitIfNull(request.holdMethod)),
             "AnnounceUrl" to (SdkClient.omitIfNull(request.announceUrl)),
-            "AnnounceMethod" to (SdkClient.omitIfNull(request.announceMethod)),
+            "AnnounceMethod" to
+    (SdkClient.omitIfNull(request.announceMethod)),
             "WaitUrl" to (SdkClient.omitIfNull(request.waitUrl)),
             "WaitMethod" to (SdkClient.omitIfNull(request.waitMethod)),
             "BeepOnExit" to (SdkClient.omitIfNull(request.beepOnExit)),
-            "EndConferenceOnExit" to (SdkClient.omitIfNull(request.endConferenceOnExit)),
+            "EndConferenceOnExit" to
+    (SdkClient.omitIfNull(request.endConferenceOnExit)),
             "Coaching" to (SdkClient.omitIfNull(request.coaching)),
-            "CallSidToCoach" to (SdkClient.omitIfNull(request.callSidToCoach)),
+            "CallSidToCoach" to
+    (SdkClient.omitIfNull(request.callSidToCoach)),
         )
 }
 
 internal object ConferencesParticipantsDeleteConferencesParticipantsOperation {
     /**
-     * Removes a participant from a conference. Use `AccountSid`, `ConferenceSid`, and `CallSid` to
-     * identify the account, conference, and participant. You can identify the participant by call
-     * SID or label; percent-encode characters in a label that are not URL-safe.
+     * Removes a participant from a conference. Use `AccountSid`, `ConferenceSid`, and `CallSid` to identify the account, conference, and participant. You can identify the participant by call SID or label; percent-encode characters in a label that are not URL-safe.
      *
      * Kick a participant from a given conference
      *
-     * @param accountSid The SID of the Account that created the Participant resources to delete.
-     * @param conferenceSid The SID of the conference with the participants to delete.
-     * @param callSid The Call SID or label of the participant to delete. Non URL safe characters in
-     *   a label must be percent encoded, for example, a space character is represented as %20.
+     * @param accountSid The SID of the Account that created the Participant
+     *   resources to delete.
+     * @param conferenceSid The SID of the conference with the participants to
+     *   delete.
+     * @param callSid The Call SID or label of the participant to delete. Non URL
+     *   safe characters in a label must be percent encoded, for example, a space
+     *   character is represented as %20.
      */
-    fun deleteConferencesParticipants(
-        clientConfig: ClientConfig,
-        accountSid: String,
-        conferenceSid: String,
-        callSid: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        Validation.validateLength(
-            "AccountSid",
-            accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    fun deleteConferencesParticipants(clientConfig: ClientConfig, accountSid: String, conferenceSid: String, callSid: String, options: RequestOptions? = null): Unit {
+        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength(
-            "ConferenceSid",
-            conferenceSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("ConferenceSid", conferenceSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("ConferenceSid", conferenceSid, "^CF[0-9a-fA-F]{32}$")
 
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Conferences/${SdkClient.encodePathSegment(conferenceSid)}/Participants/${SdkClient.encodePathSegment(callSid)}.json",
-                config = clientConfig,
-                operationId = "deleteConferencesParticipants",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Conferences/${SdkClient.encodePathSegment(conferenceSid)}/Participants/${SdkClient.encodePathSegment(callSid)}.json", config = clientConfig, operationId = "deleteConferencesParticipants", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object ConferencesParticipantsCreateConferencesParticipantsOperation {
     /**
-     * Creates a participant in a conference by placing a call from `From` to `To`. Provide both
-     * endpoints and optionally configure call behavior, conference settings, and status callbacks.
-     * The response includes the participant and associated call identifiers.
+     * Creates a participant in a conference by placing a call from `From` to `To`. Provide both endpoints and optionally configure call behavior, conference settings, and status callbacks. The response includes the participant and associated call identifiers.
      *
      * @param accountSid The SID of the Account that will create the resource.
      * @param conferenceSid The SID of the participant's conference.
-     * @param from The phone number, Client identifier, or username portion of SIP address that made
-     *   this call. Phone numbers are in E.164 format (e.g., +16175551212). Client identifiers are
-     *   formatted `client:name`. If using a phone number, it must be a Twilio number or a Verified
-     *   outgoing caller id for your account. If the `to` parameter is a phone number, `from` must
-     *   also be a phone number. If `to` is sip address, this value of `from` should be a username
-     *   portion to be used to populate the…
-     * @param to The phone number, SIP address, Client, TwiML App identifier that received this
-     *   call. Phone numbers are in E.164 format (e.g., +16175551212). SIP addresses are formatted
-     *   as `sip:name@company.com`. Client identifiers are formatted `client:name`. TwiML App
-     *   identifiers are formatted `app:<APP_SID>`. Custom parameters may also be specified.
-     * @param statusCallback The URL we should call using the `status_callback_method` to send
-     *   status information to your application.
-     * @param statusCallbackMethod The HTTP method we should use to call `status_callback`. Can be:
-     *   `GET` and `POST` and defaults to `POST`.
-     * @param statusCallbackEvent The conference state changes that should generate a call to
-     *   `status_callback`. Can be: `initiated`, `ringing`, `answered`, and `completed`. Separate
-     *   multiple values with a space. The default value is `completed`.
-     * @param label A label for this participant. If one is supplied, it may subsequently be used to
-     *   fetch, update or delete the participant.
-     * @param timeout The number of seconds that we should allow the phone to ring before assuming
-     *   there is no answer. Can be an integer between `5` and `600`, inclusive. The default value
-     *   is `60`. We always add a 5-second timeout buffer to outgoing calls, so value of 10 would
-     *   result in an actual timeout that was closer to 15 seconds.
-     * @param record Whether to record the participant and their conferences, including the time
-     *   between conferences. Can be `true` or `false` and the default is `false`.
-     * @param muted Whether the agent is muted in the conference. Can be `true` or `false` and the
+     * @param from The phone number, Client identifier, or username portion of SIP
+     *   address that made this call. Phone numbers are in E.164 format (e.g.,
+     *   +16175551212). Client identifiers are formatted `client:name`. If using a
+     *   phone number, it must be a Twilio number or a Verified outgoing caller id for
+     *   your account. If the `to` parameter is a phone number, `from` must also be a
+     *   phone number. If `to` is sip address, this value of `from` should be a
+     *   username portion to be used to populate the…
+     * @param to The phone number, SIP address, Client, TwiML App identifier that
+     *   received this call. Phone numbers are in E.164 format (e.g., +16175551212).
+     *   SIP addresses are formatted as `sip:name@company.com`. Client identifiers are
+     *   formatted `client:name`. TwiML App identifiers are formatted `app:<APP_SID>`.
+     *   Custom parameters may also be specified.
+     * @param statusCallback The URL we should call using the
+     *   `status_callback_method` to send status information to your application.
+     * @param statusCallbackMethod The HTTP method we should use to call
+     *   `status_callback`. Can be: `GET` and `POST` and defaults to `POST`.
+     * @param statusCallbackEvent The conference state changes that should generate a
+     *   call to `status_callback`. Can be: `initiated`, `ringing`, `answered`, and
+     *   `completed`. Separate multiple values with a space. The default value is
+     *   `completed`.
+     * @param label A label for this participant. If one is supplied, it may
+     *   subsequently be used to fetch, update or delete the participant.
+     * @param timeout The number of seconds that we should allow the phone to ring
+     *   before assuming there is no answer. Can be an integer between `5` and `600`,
+     *   inclusive. The default value is `60`. We always add a 5-second timeout buffer
+     *   to outgoing calls, so value of 10 would result in an actual timeout that was
+     *   closer to 15 seconds.
+     * @param record Whether to record the participant and their conferences,
+     *   including the time between conferences. Can be `true` or `false` and the
      *   default is `false`.
-     * @param beep Whether to play a notification beep to the conference when the participant joins.
-     *   Can be: `true`, `false`, `onEnter`, or `onExit`. The default value is `true`.
-     * @param startConferenceOnEnter Whether to start the conference when the participant joins, if
-     *   it has not already started. Can be: `true` or `false` and the default is `true`. If `false`
-     *   and the conference has not started, the participant is muted and hears background music
-     *   until another participant starts the conference.
-     * @param endConferenceOnExit Whether to end the conference when the participant leaves. Can be:
-     *   `true` or `false` and defaults to `false`.
-     * @param waitUrl The URL that Twilio calls using the `wait_method` before the conference has
-     *   started. The URL may return an MP3 file, a WAV file, or a TwiML document. The default value
-     *   is the URL of our standard hold music. If you do not want anything to play while waiting
-     *   for the conference to start, specify an empty string by setting `wait_url` to `''`. For
-     *   more details on the allowable verbs within the `waitUrl`, see the `waitUrl` attribute in
-     *   the <Conference> TwiML instruction.
-     * @param waitMethod The HTTP method we should use to call `wait_url`. Can be `GET` or `POST`
-     *   and the default is `POST`. When using a static audio file, this should be `GET` so that we
-     *   can cache the file.
-     * @param earlyMedia Whether to allow an agent to hear the state of the outbound call, including
-     *   ringing or disconnect messages. Can be: `true` or `false` and defaults to `true`.
-     * @param maxParticipants The maximum number of participants in the conference. Can be a
-     *   positive integer from `2` to `250`. The default value is `250`.
-     * @param conferenceRecord Whether to record the conference the participant is joining. Can be:
-     *   `true`, `false`, `record-from-start`, and `do-not-record`. The default value is `false`.
-     * @param conferenceTrim Whether to trim leading and trailing silence from the conference
-     *   recording. Can be: `trim-silence` or `do-not-trim` and defaults to `trim-silence`.
+     * @param muted Whether the agent is muted in the conference. Can be `true` or
+     *   `false` and the default is `false`.
+     * @param beep Whether to play a notification beep to the conference when the
+     *   participant joins. Can be: `true`, `false`, `onEnter`, or `onExit`. The
+     *   default value is `true`.
+     * @param startConferenceOnEnter Whether to start the conference when the
+     *   participant joins, if it has not already started. Can be: `true` or `false`
+     *   and the default is `true`. If `false` and the conference has not started, the
+     *   participant is muted and hears background music until another participant
+     *   starts the conference.
+     * @param endConferenceOnExit Whether to end the conference when the participant
+     *   leaves. Can be: `true` or `false` and defaults to `false`.
+     * @param waitUrl The URL that Twilio calls using the `wait_method` before the
+     *   conference has started. The URL may return an MP3 file, a WAV file, or a TwiML
+     *   document. The default value is the URL of our standard hold music. If you do
+     *   not want anything to play while waiting for the conference to start, specify
+     *   an empty string by setting `wait_url` to `''`. For more details on the
+     *   allowable verbs within the `waitUrl`, see the `waitUrl` attribute in the
+     *   <Conference> TwiML instruction.
+     * @param waitMethod The HTTP method we should use to call `wait_url`. Can be
+     *   `GET` or `POST` and the default is `POST`. When using a static audio file,
+     *   this should be `GET` so that we can cache the file.
+     * @param earlyMedia Whether to allow an agent to hear the state of the outbound
+     *   call, including ringing or disconnect messages. Can be: `true` or `false` and
+     *   defaults to `true`.
+     * @param maxParticipants The maximum number of participants in the conference.
+     *   Can be a positive integer from `2` to `250`. The default value is `250`.
+     * @param conferenceRecord Whether to record the conference the participant is
+     *   joining. Can be: `true`, `false`, `record-from-start`, and `do-not-record`.
+     *   The default value is `false`.
+     * @param conferenceTrim Whether to trim leading and trailing silence from the
+     *   conference recording. Can be: `trim-silence` or `do-not-trim` and defaults to
+     *   `trim-silence`.
      * @param conferenceStatusCallback The URL we should call using the
      *   `conference_status_callback_method` when the conference events in
-     *   `conference_status_callback_event` occur. Only the value set by the first participant to
-     *   join the conference is used. Subsequent `conference_status_callback` values are ignored.
+     *   `conference_status_callback_event` occur. Only the value set by the first
+     *   participant to join the conference is used. Subsequent
+     *   `conference_status_callback` values are ignored.
      * @param conferenceStatusCallbackMethod The HTTP method we should use to call
      *   `conference_status_callback`. Can be: `GET` or `POST` and defaults to `POST`.
-     * @param conferenceStatusCallbackEvent The conference state changes that should generate a call
-     *   to `conference_status_callback`. Can be: `start`, `end`, `join`, `leave`, `mute`, `hold`,
-     *   `modify`, `speaker`, and `announcement`. Separate multiple values with a space. Defaults to
-     *   `start end`.
-     * @param recordingChannels The recording channels for the final recording. Can be: `mono` or
-     *   `dual` and the default is `mono`.
+     * @param conferenceStatusCallbackEvent The conference state changes that should
+     *   generate a call to `conference_status_callback`. Can be: `start`, `end`,
+     *   `join`, `leave`, `mute`, `hold`, `modify`, `speaker`, and `announcement`.
+     *   Separate multiple values with a space. Defaults to `start end`.
+     * @param recordingChannels The recording channels for the final recording. Can
+     *   be: `mono` or `dual` and the default is `mono`.
      * @param recordingStatusCallback The URL that we should call using the
      *   `recording_status_callback_method` when the recording status changes.
-     * @param recordingStatusCallbackMethod The HTTP method we should use when we call
-     *   `recording_status_callback`. Can be: `GET` or `POST` and defaults to `POST`.
+     * @param recordingStatusCallbackMethod The HTTP method we should use when we
+     *   call `recording_status_callback`. Can be: `GET` or `POST` and defaults to
+     *   `POST`.
      * @param sipAuthUsername The SIP username used for authentication.
      * @param sipAuthPassword The SIP password for authentication.
-     * @param region The region where we should mix the recorded audio. Can be:`us1`, `us2`, `ie1`,
-     *   `de1`, `sg1`, `br1`, `au1`, or `jp1`.
+     * @param region The region where we should mix the recorded audio. Can be:`us1`,
+     *   `us2`, `ie1`, `de1`, `sg1`, `br1`, `au1`, or `jp1`.
      * @param conferenceRecordingStatusCallback The URL we should call using the
-     *   `conference_recording_status_callback_method` when the conference recording is available.
-     * @param conferenceRecordingStatusCallbackMethod The HTTP method we should use to call
-     *   `conference_recording_status_callback`. Can be: `GET` or `POST` and defaults to `POST`.
-     * @param recordingStatusCallbackEvent The recording state changes that should generate a call
-     *   to `recording_status_callback`. Can be: `started`, `in-progress`, `paused`, `resumed`,
-     *   `stopped`, `completed`, `failed`, and `absent`. Separate multiple values with a space, ex:
-     *   `'in-progress completed failed'`.
-     * @param conferenceRecordingStatusCallbackEvent The conference recording state changes that
-     *   generate a call to `conference_recording_status_callback`. Can be: `in-progress`,
-     *   `completed`, `failed`, and `absent`. Separate multiple values with a space, ex:
-     *   `'in-progress completed failed'`
-     * @param coaching Whether the participant is coaching another call. Can be: `true` or `false`.
-     *   If not present, defaults to `false` unless `call_sid_to_coach` is defined. If `true`,
-     *   `call_sid_to_coach` must be defined.
-     * @param callSidToCoach The SID of the participant who is being `coached`. The participant
-     *   being coached is the only participant who can hear the participant who is `coaching`.
-     * @param jitterBufferSize Jitter buffer size for the connecting participant. Twilio will use
-     *   this setting to apply Jitter Buffer before participant's audio is mixed into the
-     *   conference. Can be: `off`, `small`, `medium`, and `large`. Default to `large`.
-     * @param byoc The SID of a BYOC (Bring Your Own Carrier) trunk to route this call with. Note
-     *   that `byoc` is only meaningful when `to` is a phone number; it will otherwise be ignored.
-     *   (Beta)
-     * @param callerId The phone number, Client identifier, or username portion of SIP address that
-     *   made this call. Phone numbers are in E.164 format (e.g., +16175551212). Client identifiers
-     *   are formatted `client:name`. If using a phone number, it must be a Twilio number or a
-     *   Verified outgoing caller id for your account. If the `to` parameter is a phone number,
-     *   `callerId` must also be a phone number. If `to` is sip address, this value of `callerId`
-     *   should be a username portion to be used to…
-     * @param callReason The Reason for the outgoing call. Use it to specify the purpose of the call
-     *   that is presented on the called party's phone. (Branded Calls Beta)
-     * @param recordingTrack The audio track to record for the call. Can be: `inbound`, `outbound`
-     *   or `both`. The default is `both`. `inbound` records the audio that is received by Twilio.
-     *   `outbound` records the audio that is sent from Twilio. `both` records the audio that is
-     *   received and sent by Twilio.
-     * @param recordingConfigurationId The identifier of the configuration to be used when creating
-     *   and processing the recording
-     * @param timeLimit The maximum duration of the call in seconds. Constraints depend on account
-     *   and configuration.
-     * @param machineDetection Whether to detect if a human, answering machine, or fax has picked up
-     *   the call. Can be: `Enable` or `DetectMessageEnd`. Use `Enable` if you would like us to
-     *   return `AnsweredBy` as soon as the called party is identified. Use `DetectMessageEnd`, if
-     *   you would like to leave a message on an answering machine. For more information, see
-     *   Answering Machine Detection.
-     * @param machineDetectionTimeout The number of seconds that we should attempt to detect an
-     *   answering machine before timing out and sending a voice request with `AnsweredBy` of
-     *   `unknown`. The default timeout is 30 seconds.
-     * @param machineDetectionSpeechThreshold The number of milliseconds that is used as the
-     *   measuring stick for the length of the speech activity, where durations lower than this
-     *   value will be interpreted as a human and longer than this value as a machine. Possible
-     *   Values: 1000-6000. Default: 2400.
-     * @param machineDetectionSpeechEndThreshold The number of milliseconds of silence after speech
-     *   activity at which point the speech activity is considered complete. Possible Values:
-     *   500-5000. Default: 1200.
-     * @param machineDetectionSilenceTimeout The number of milliseconds of initial silence after
-     *   which an `unknown` AnsweredBy result will be returned. Possible Values: 2000-10000.
-     *   Default: 5000.
-     * @param amdStatusCallback The URL that we should call using the `amd_status_callback_method`
-     *   to notify customer application whether the call was answered by human, machine or fax.
+     *   `conference_recording_status_callback_method` when the conference recording is
+     *   available.
+     * @param conferenceRecordingStatusCallbackMethod The HTTP method we should use
+     *   to call `conference_recording_status_callback`. Can be: `GET` or `POST` and
+     *   defaults to `POST`.
+     * @param recordingStatusCallbackEvent The recording state changes that should
+     *   generate a call to `recording_status_callback`. Can be: `started`,
+     *   `in-progress`, `paused`, `resumed`, `stopped`, `completed`, `failed`, and
+     *   `absent`. Separate multiple values with a space, ex: `'in-progress completed
+     *   failed'`.
+     * @param conferenceRecordingStatusCallbackEvent The conference recording state
+     *   changes that generate a call to `conference_recording_status_callback`. Can
+     *   be: `in-progress`, `completed`, `failed`, and `absent`. Separate multiple
+     *   values with a space, ex: `'in-progress completed failed'`
+     * @param coaching Whether the participant is coaching another call. Can be:
+     *   `true` or `false`. If not present, defaults to `false` unless
+     *   `call_sid_to_coach` is defined. If `true`, `call_sid_to_coach` must be
+     *   defined.
+     * @param callSidToCoach The SID of the participant who is being `coached`. The
+     *   participant being coached is the only participant who can hear the participant
+     *   who is `coaching`.
+     * @param jitterBufferSize Jitter buffer size for the connecting participant.
+     *   Twilio will use this setting to apply Jitter Buffer before participant's audio
+     *   is mixed into the conference. Can be: `off`, `small`, `medium`, and `large`.
+     *   Default to `large`.
+     * @param byoc The SID of a BYOC (Bring Your Own Carrier) trunk to route this
+     *   call with. Note that `byoc` is only meaningful when `to` is a phone number; it
+     *   will otherwise be ignored. (Beta)
+     * @param callerId The phone number, Client identifier, or username portion of
+     *   SIP address that made this call. Phone numbers are in E.164 format (e.g.,
+     *   +16175551212). Client identifiers are formatted `client:name`. If using a
+     *   phone number, it must be a Twilio number or a Verified outgoing caller id for
+     *   your account. If the `to` parameter is a phone number, `callerId` must also be
+     *   a phone number. If `to` is sip address, this value of `callerId` should be a
+     *   username portion to be used to…
+     * @param callReason The Reason for the outgoing call. Use it to specify the
+     *   purpose of the call that is presented on the called party's phone. (Branded
+     *   Calls Beta)
+     * @param recordingTrack The audio track to record for the call. Can be:
+     *   `inbound`, `outbound` or `both`. The default is `both`. `inbound` records the
+     *   audio that is received by Twilio. `outbound` records the audio that is sent
+     *   from Twilio. `both` records the audio that is received and sent by Twilio.
+     * @param recordingConfigurationId The identifier of the configuration to be used
+     *   when creating and processing the recording
+     * @param timeLimit The maximum duration of the call in seconds. Constraints
+     *   depend on account and configuration.
+     * @param machineDetection Whether to detect if a human, answering machine, or
+     *   fax has picked up the call. Can be: `Enable` or `DetectMessageEnd`. Use
+     *   `Enable` if you would like us to return `AnsweredBy` as soon as the called
+     *   party is identified. Use `DetectMessageEnd`, if you would like to leave a
+     *   message on an answering machine. For more information, see Answering Machine
+     *   Detection.
+     * @param machineDetectionTimeout The number of seconds that we should attempt to
+     *   detect an answering machine before timing out and sending a voice request with
+     *   `AnsweredBy` of `unknown`. The default timeout is 30 seconds.
+     * @param machineDetectionSpeechThreshold The number of milliseconds that is used
+     *   as the measuring stick for the length of the speech activity, where durations
+     *   lower than this value will be interpreted as a human and longer than this
+     *   value as a machine. Possible Values: 1000-6000. Default: 2400.
+     * @param machineDetectionSpeechEndThreshold The number of milliseconds of
+     *   silence after speech activity at which point the speech activity is considered
+     *   complete. Possible Values: 500-5000. Default: 1200.
+     * @param machineDetectionSilenceTimeout The number of milliseconds of initial
+     *   silence after which an `unknown` AnsweredBy result will be returned. Possible
+     *   Values: 2000-10000. Default: 5000.
+     * @param amdStatusCallback The URL that we should call using the
+     *   `amd_status_callback_method` to notify customer application whether the call
+     *   was answered by human, machine or fax.
      * @param amdStatusCallbackMethod The HTTP method we should use when calling the
      *   `amd_status_callback` URL. Can be: `GET` or `POST` and the default is `POST`.
-     * @param trim Whether to trim any leading and trailing silence from the participant recording.
-     *   Can be: `trim-silence` or `do-not-trim` and the default is `trim-silence`.
-     * @param callToken A token string needed to invoke a forwarded call. A call_token is generated
-     *   when an incoming call is received on a Twilio number. Pass an incoming call's call_token
-     *   value to a forwarded call via the call_token parameter when creating a new call. A
-     *   forwarded call should bear the same CallerID of the original incoming call.
-     * @param passports The STIR/SHAKEN passport for this call, provided as a base64 encoded string.
-     *   Multiple passports (at max 5) are comma separated and provided as base64 encoded string
-     * @param clientNotificationUrl The URL that we should use to deliver `push call notification`.
-     * @param callerDisplayName The name that populates the display name in the From header. Must be
-     *   between 2 and 255 characters. Only applicable for calls to sip address.
-     * @param emergencyCallerPosition The emergency caller's GPS coordinates in decimal degrees
-     *   format. Format: "latitude longitude" (space-separated) - Latitude: decimal degrees, range
-     *   -90.0 to +90.0 (negative for South, positive for North) - Longitude: decimal degrees, range
-     *   -180.0 to +180.0 (negative for West, positive for East) - Precision: up to 6 decimal places
-     *   recommended for meter-level accuracy Note: If the value exceeds 150 characters, only the
-     *   first 150 characters will be used.
-     * @param emergencyCallerLocation The emergency caller's physical location description within a
-     *   building or facility. Note: If the value exceeds 20 characters, only the first 20
-     *   characters will be used.
-     * @param emergencyName The emergency caller's organization or entity name. Note: If the value
-     *   exceeds 20 characters, only the first 20 characters will be used.
-     * @param emergencyAddress The emergency caller's street address including street number and
-     *   street name. Note: If the value exceeds 60 characters, only the first 60 characters will be
-     *   used.
-     * @param emergencyZipCode The emergency caller's postal code or ZIP code. Note: If the value
-     *   exceeds 20 characters, only the first 20 characters will be used.
-     * @param emergencyCity The emergency caller's city or municipality name. Should be the official
-     *   city name as recognized by local authorities. Used in combination with state and country
-     *   for emergency call routing. Note: If the value exceeds 20 characters, only the first 20
-     *   characters will be used.
-     * @param emergencyState The emergency caller's state or province. Note: If the value exceeds 20
+     * @param trim Whether to trim any leading and trailing silence from the
+     *   participant recording. Can be: `trim-silence` or `do-not-trim` and the default
+     *   is `trim-silence`.
+     * @param callToken A token string needed to invoke a forwarded call. A
+     *   call_token is generated when an incoming call is received on a Twilio number.
+     *   Pass an incoming call's call_token value to a forwarded call via the
+     *   call_token parameter when creating a new call. A forwarded call should bear
+     *   the same CallerID of the original incoming call.
+     * @param passports The STIR/SHAKEN passport for this call, provided as a base64
+     *   encoded string. Multiple passports (at max 5) are comma separated and provided
+     *   as base64 encoded string
+     * @param clientNotificationUrl The URL that we should use to deliver `push call
+     *   notification`.
+     * @param callerDisplayName The name that populates the display name in the From
+     *   header. Must be between 2 and 255 characters. Only applicable for calls to sip
+     *   address.
+     * @param emergencyCallerPosition The emergency caller's GPS coordinates in
+     *   decimal degrees format. Format: "latitude longitude" (space-separated) -
+     *   Latitude: decimal degrees, range -90.0 to +90.0 (negative for South, positive
+     *   for North) - Longitude: decimal degrees, range -180.0 to +180.0 (negative for
+     *   West, positive for East) - Precision: up to 6 decimal places recommended for
+     *   meter-level accuracy Note: If the value exceeds 150 characters, only the first
+     *   150 characters will be used.
+     * @param emergencyCallerLocation The emergency caller's physical location
+     *   description within a building or facility. Note: If the value exceeds 20
      *   characters, only the first 20 characters will be used.
-     * @param emergencyCountry The emergency caller's country. Currently supported US and CA only.
-     *   Note: If the value exceeds 20 characters, only the first 20 characters will be used.
+     * @param emergencyName The emergency caller's organization or entity name. Note:
+     *   If the value exceeds 20 characters, only the first 20 characters will be used.
+     * @param emergencyAddress The emergency caller's street address including street
+     *   number and street name. Note: If the value exceeds 60 characters, only the
+     *   first 60 characters will be used.
+     * @param emergencyZipCode The emergency caller's postal code or ZIP code. Note:
+     *   If the value exceeds 20 characters, only the first 20 characters will be used.
+     * @param emergencyCity The emergency caller's city or municipality name. Should
+     *   be the official city name as recognized by local authorities. Used in
+     *   combination with state and country for emergency call routing. Note: If the
+     *   value exceeds 20 characters, only the first 20 characters will be used.
+     * @param emergencyState The emergency caller's state or province. Note: If the
+     *   value exceeds 20 characters, only the first 20 characters will be used.
+     * @param emergencyCountry The emergency caller's country. Currently supported US
+     *   and CA only. Note: If the value exceeds 20 characters, only the first 20
+     *   characters will be used.
      */
-    fun createConferencesParticipants(
-        clientConfig: ClientConfig,
-        request: ConferencesParticipants.CreateConferencesParticipantsRequest,
-        options: RequestOptions? = null,
-    ): ApiV2010AccountConferenceParticipant {
+    fun createConferencesParticipants(clientConfig: ClientConfig, request: ConferencesParticipants.CreateConferencesParticipantsRequest, options: RequestOptions? = null): ApiV2010AccountConferenceParticipant {
         validateCreateConferencesParticipantsRequest(request)
 
-        return SdkClient.request<ApiV2010AccountConferenceParticipant>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Conferences/${SdkClient.encodePathSegment(request.conferenceSid)}/Participants.json",
-                    config = clientConfig,
-                    body = buildCreateConferencesParticipantsBody(request),
-                    contentType = "application/x-www-form-urlencoded",
-                    operationId = "createConferencesParticipants",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiV2010AccountConferenceParticipant>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Conferences/${SdkClient.encodePathSegment(request.conferenceSid)}/Participants.json", config = clientConfig, body = buildCreateConferencesParticipantsBody(request), contentType = "application/x-www-form-urlencoded", operationId = "createConferencesParticipants", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
-    private fun validateCreateConferencesParticipantsRequest(
-        request: ConferencesParticipants.CreateConferencesParticipantsRequest
-    ) {
+
+    private fun validateCreateConferencesParticipantsRequest(request: ConferencesParticipants.CreateConferencesParticipantsRequest) {
         validateCreateConferencesParticipantsRequestPart1(request)
         validateCreateConferencesParticipantsRequestPart2(request)
     }
 
-    private fun validateCreateConferencesParticipantsRequestPart1(
-        request: ConferencesParticipants.CreateConferencesParticipantsRequest
-    ) {
-        Validation.validateLength(
-            "AccountSid",
-            request.accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+    private fun validateCreateConferencesParticipantsRequestPart1(request: ConferencesParticipants.CreateConferencesParticipantsRequest) {
+        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
         if (request.statusCallback != null) {
             Validation.validateUri("StatusCallback", request.statusCallback)
-        }
+}
 
         if (request.waitUrl != null) {
             Validation.validateUri("WaitUrl", request.waitUrl)
-        }
+}
 
         if (request.conferenceStatusCallback != null) {
             Validation.validateUri("ConferenceStatusCallback", request.conferenceStatusCallback)
-        }
+}
 
         if (request.recordingStatusCallback != null) {
             Validation.validateUri("RecordingStatusCallback", request.recordingStatusCallback)
-        }
+}
     }
 
-    private fun validateCreateConferencesParticipantsRequestPart2(
-        request: ConferencesParticipants.CreateConferencesParticipantsRequest
-    ) {
+    private fun validateCreateConferencesParticipantsRequestPart2(request: ConferencesParticipants.CreateConferencesParticipantsRequest) {
         if (request.conferenceRecordingStatusCallback != null) {
-            Validation.validateUri(
-                "ConferenceRecordingStatusCallback",
-                request.conferenceRecordingStatusCallback,
-            )
-        }
+            Validation.validateUri("ConferenceRecordingStatusCallback", request.conferenceRecordingStatusCallback)
+}
 
         if (request.callSidToCoach != null) {
-            Validation.validateLength(
-                "CallSidToCoach",
-                request.callSidToCoach,
-                Validation.LengthOpts(min = 34, max = 34),
-            )
-            Validation.validatePattern(
-                "CallSidToCoach",
-                request.callSidToCoach,
-                "^CA[0-9a-fA-F]{32}$",
-            )
-        }
+            Validation.validateLength("CallSidToCoach", request.callSidToCoach, Validation.LengthOpts(min = 34, max = 34))
+            Validation.validatePattern("CallSidToCoach", request.callSidToCoach, "^CA[0-9a-fA-F]{32}$")
+}
 
         if (request.byoc != null) {
-            Validation.validateLength(
-                "Byoc",
-                request.byoc,
-                Validation.LengthOpts(min = 34, max = 34),
-            )
+            Validation.validateLength("Byoc", request.byoc, Validation.LengthOpts(min = 34, max = 34))
             Validation.validatePattern("Byoc", request.byoc, "^BY[0-9a-fA-F]{32}$")
-        }
+}
 
         if (request.amdStatusCallback != null) {
             Validation.validateUri("AmdStatusCallback", request.amdStatusCallback)
-        }
+}
 
         if (request.clientNotificationUrl != null) {
             Validation.validateUri("ClientNotificationUrl", request.clientNotificationUrl)
+}
+    }
+
+
+
+    private fun buildCreateConferencesParticipantsBody(request: ConferencesParticipants.CreateConferencesParticipantsRequest): Map<String, Any?> =
+        buildMap {
+            putAll(buildCreateConferencesParticipantsBodyPart1(request))
+            putAll(buildCreateConferencesParticipantsBodyPart2(request))
+            putAll(buildCreateConferencesParticipantsBodyPart3(request))
+            putAll(buildCreateConferencesParticipantsBodyPart4(request))
+            putAll(buildCreateConferencesParticipantsBodyPart5(request))
         }
-    }
 
-    private fun buildCreateConferencesParticipantsBody(
-        request: ConferencesParticipants.CreateConferencesParticipantsRequest
-    ): Map<String, Any?> = buildMap {
-        putAll(buildCreateConferencesParticipantsBodyPart1(request))
-        putAll(buildCreateConferencesParticipantsBodyPart2(request))
-        putAll(buildCreateConferencesParticipantsBodyPart3(request))
-        putAll(buildCreateConferencesParticipantsBodyPart4(request))
-        putAll(buildCreateConferencesParticipantsBodyPart5(request))
-    }
-
-    private fun buildCreateConferencesParticipantsBodyPart1(
-        request: ConferencesParticipants.CreateConferencesParticipantsRequest
-    ): Map<String, Any?> =
+    private fun buildCreateConferencesParticipantsBodyPart1(request: ConferencesParticipants.CreateConferencesParticipantsRequest): Map<String, Any?> =
         SdkClient.bodyMap(
             "From" to (request.from),
             "To" to (request.to),
-            "StatusCallback" to (SdkClient.omitIfNull(request.statusCallback)),
-            "StatusCallbackMethod" to (SdkClient.omitIfNull(request.statusCallbackMethod)),
-            "StatusCallbackEvent" to (SdkClient.omitIfNull(request.statusCallbackEvent)),
+            "StatusCallback" to
+    (SdkClient.omitIfNull(request.statusCallback)),
+            "StatusCallbackMethod" to
+    (SdkClient.omitIfNull(request.statusCallbackMethod)),
+            "StatusCallbackEvent" to
+    (SdkClient.omitIfNull(request.statusCallbackEvent)),
             "Label" to (SdkClient.omitIfNull(request.label)),
             "Timeout" to (SdkClient.omitIfNull(request.timeout)),
             "Record" to (SdkClient.omitIfNull(request.record)),
             "Muted" to (SdkClient.omitIfNull(request.muted)),
             "Beep" to (SdkClient.omitIfNull(request.beep)),
-            "StartConferenceOnEnter" to (SdkClient.omitIfNull(request.startConferenceOnEnter)),
-            "EndConferenceOnExit" to (SdkClient.omitIfNull(request.endConferenceOnExit)),
+            "StartConferenceOnEnter" to
+    (SdkClient.omitIfNull(request.startConferenceOnEnter)),
+            "EndConferenceOnExit" to
+    (SdkClient.omitIfNull(request.endConferenceOnExit)),
         )
 
-    private fun buildCreateConferencesParticipantsBodyPart2(
-        request: ConferencesParticipants.CreateConferencesParticipantsRequest
-    ): Map<String, Any?> =
+    private fun buildCreateConferencesParticipantsBodyPart2(request: ConferencesParticipants.CreateConferencesParticipantsRequest): Map<String, Any?> =
         SdkClient.bodyMap(
             "WaitUrl" to (SdkClient.omitIfNull(request.waitUrl)),
             "WaitMethod" to (SdkClient.omitIfNull(request.waitMethod)),
             "EarlyMedia" to (SdkClient.omitIfNull(request.earlyMedia)),
-            "MaxParticipants" to (SdkClient.omitIfNull(request.maxParticipants)),
-            "ConferenceRecord" to (SdkClient.omitIfNull(request.conferenceRecord)),
-            "ConferenceTrim" to (SdkClient.omitIfNull(request.conferenceTrim)),
-            "ConferenceStatusCallback" to (SdkClient.omitIfNull(request.conferenceStatusCallback)),
+            "MaxParticipants" to
+    (SdkClient.omitIfNull(request.maxParticipants)),
+            "ConferenceRecord" to
+    (SdkClient.omitIfNull(request.conferenceRecord)),
+            "ConferenceTrim" to
+    (SdkClient.omitIfNull(request.conferenceTrim)),
+            "ConferenceStatusCallback" to
+    (SdkClient.omitIfNull(request.conferenceStatusCallback)),
             "ConferenceStatusCallbackMethod" to
-                (SdkClient.omitIfNull(request.conferenceStatusCallbackMethod)),
+    (SdkClient.omitIfNull(request.conferenceStatusCallbackMethod)),
             "ConferenceStatusCallbackEvent" to
-                (SdkClient.omitIfNull(request.conferenceStatusCallbackEvent)),
-            "RecordingChannels" to (SdkClient.omitIfNull(request.recordingChannels)),
-            "RecordingStatusCallback" to (SdkClient.omitIfNull(request.recordingStatusCallback)),
+    (SdkClient.omitIfNull(request.conferenceStatusCallbackEvent)),
+            "RecordingChannels" to
+    (SdkClient.omitIfNull(request.recordingChannels)),
+            "RecordingStatusCallback" to
+    (SdkClient.omitIfNull(request.recordingStatusCallback)),
             "RecordingStatusCallbackMethod" to
-                (SdkClient.omitIfNull(request.recordingStatusCallbackMethod)),
+    (SdkClient.omitIfNull(request.recordingStatusCallbackMethod)),
         )
 
-    private fun buildCreateConferencesParticipantsBodyPart3(
-        request: ConferencesParticipants.CreateConferencesParticipantsRequest
-    ): Map<String, Any?> =
+    private fun buildCreateConferencesParticipantsBodyPart3(request: ConferencesParticipants.CreateConferencesParticipantsRequest): Map<String, Any?> =
         SdkClient.bodyMap(
-            "SipAuthUsername" to (SdkClient.omitIfNull(request.sipAuthUsername)),
-            "SipAuthPassword" to (SdkClient.omitIfNull(request.sipAuthPassword)),
+            "SipAuthUsername" to
+    (SdkClient.omitIfNull(request.sipAuthUsername)),
+            "SipAuthPassword" to
+    (SdkClient.omitIfNull(request.sipAuthPassword)),
             "Region" to (SdkClient.omitIfNull(request.region)),
             "ConferenceRecordingStatusCallback" to
-                (SdkClient.omitIfNull(request.conferenceRecordingStatusCallback)),
+    (SdkClient.omitIfNull(request.conferenceRecordingStatusCallback)),
             "ConferenceRecordingStatusCallbackMethod" to
-                (SdkClient.omitIfNull(request.conferenceRecordingStatusCallbackMethod)),
+    (SdkClient.omitIfNull(request.conferenceRecordingStatusCallbackMethod)),
             "RecordingStatusCallbackEvent" to
-                (SdkClient.omitIfNull(request.recordingStatusCallbackEvent)),
+    (SdkClient.omitIfNull(request.recordingStatusCallbackEvent)),
             "ConferenceRecordingStatusCallbackEvent" to
-                (SdkClient.omitIfNull(request.conferenceRecordingStatusCallbackEvent)),
+    (SdkClient.omitIfNull(request.conferenceRecordingStatusCallbackEvent)),
             "Coaching" to (SdkClient.omitIfNull(request.coaching)),
-            "CallSidToCoach" to (SdkClient.omitIfNull(request.callSidToCoach)),
-            "JitterBufferSize" to (SdkClient.omitIfNull(request.jitterBufferSize)),
+            "CallSidToCoach" to
+    (SdkClient.omitIfNull(request.callSidToCoach)),
+            "JitterBufferSize" to
+    (SdkClient.omitIfNull(request.jitterBufferSize)),
             "Byoc" to (SdkClient.omitIfNull(request.byoc)),
             "CallerId" to (SdkClient.omitIfNull(request.callerId)),
         )
 
-    private fun buildCreateConferencesParticipantsBodyPart4(
-        request: ConferencesParticipants.CreateConferencesParticipantsRequest
-    ): Map<String, Any?> =
+    private fun buildCreateConferencesParticipantsBodyPart4(request: ConferencesParticipants.CreateConferencesParticipantsRequest): Map<String, Any?> =
         SdkClient.bodyMap(
             "CallReason" to (SdkClient.omitIfNull(request.callReason)),
-            "RecordingTrack" to (SdkClient.omitIfNull(request.recordingTrack)),
-            "RecordingConfigurationId" to (SdkClient.omitIfNull(request.recordingConfigurationId)),
+            "RecordingTrack" to
+    (SdkClient.omitIfNull(request.recordingTrack)),
+            "RecordingConfigurationId" to
+    (SdkClient.omitIfNull(request.recordingConfigurationId)),
             "TimeLimit" to (SdkClient.omitIfNull(request.timeLimit)),
-            "MachineDetection" to (SdkClient.omitIfNull(request.machineDetection)),
-            "MachineDetectionTimeout" to (SdkClient.omitIfNull(request.machineDetectionTimeout)),
+            "MachineDetection" to
+    (SdkClient.omitIfNull(request.machineDetection)),
+            "MachineDetectionTimeout" to
+    (SdkClient.omitIfNull(request.machineDetectionTimeout)),
             "MachineDetectionSpeechThreshold" to
-                (SdkClient.omitIfNull(request.machineDetectionSpeechThreshold)),
+    (SdkClient.omitIfNull(request.machineDetectionSpeechThreshold)),
             "MachineDetectionSpeechEndThreshold" to
-                (SdkClient.omitIfNull(request.machineDetectionSpeechEndThreshold)),
+    (SdkClient.omitIfNull(request.machineDetectionSpeechEndThreshold)),
             "MachineDetectionSilenceTimeout" to
-                (SdkClient.omitIfNull(request.machineDetectionSilenceTimeout)),
-            "AmdStatusCallback" to (SdkClient.omitIfNull(request.amdStatusCallback)),
-            "AmdStatusCallbackMethod" to (SdkClient.omitIfNull(request.amdStatusCallbackMethod)),
+    (SdkClient.omitIfNull(request.machineDetectionSilenceTimeout)),
+            "AmdStatusCallback" to
+    (SdkClient.omitIfNull(request.amdStatusCallback)),
+            "AmdStatusCallbackMethod" to
+    (SdkClient.omitIfNull(request.amdStatusCallbackMethod)),
             "Trim" to (SdkClient.omitIfNull(request.trim)),
         )
 
-    private fun buildCreateConferencesParticipantsBodyPart5(
-        request: ConferencesParticipants.CreateConferencesParticipantsRequest
-    ): Map<String, Any?> =
+    private fun buildCreateConferencesParticipantsBodyPart5(request: ConferencesParticipants.CreateConferencesParticipantsRequest): Map<String, Any?> =
         SdkClient.bodyMap(
             "CallToken" to (SdkClient.omitIfNull(request.callToken)),
             "Passports" to (SdkClient.omitIfNull(request.passports)),
-            "ClientNotificationUrl" to (SdkClient.omitIfNull(request.clientNotificationUrl)),
-            "CallerDisplayName" to (SdkClient.omitIfNull(request.callerDisplayName)),
-            "EmergencyCallerPosition" to (SdkClient.omitIfNull(request.emergencyCallerPosition)),
-            "EmergencyCallerLocation" to (SdkClient.omitIfNull(request.emergencyCallerLocation)),
-            "EmergencyName" to (SdkClient.omitIfNull(request.emergencyName)),
-            "EmergencyAddress" to (SdkClient.omitIfNull(request.emergencyAddress)),
-            "EmergencyZipCode" to (SdkClient.omitIfNull(request.emergencyZipCode)),
-            "EmergencyCity" to (SdkClient.omitIfNull(request.emergencyCity)),
-            "EmergencyState" to (SdkClient.omitIfNull(request.emergencyState)),
-            "EmergencyCountry" to (SdkClient.omitIfNull(request.emergencyCountry)),
+            "ClientNotificationUrl" to
+    (SdkClient.omitIfNull(request.clientNotificationUrl)),
+            "CallerDisplayName" to
+    (SdkClient.omitIfNull(request.callerDisplayName)),
+            "EmergencyCallerPosition" to
+    (SdkClient.omitIfNull(request.emergencyCallerPosition)),
+            "EmergencyCallerLocation" to
+    (SdkClient.omitIfNull(request.emergencyCallerLocation)),
+            "EmergencyName" to
+    (SdkClient.omitIfNull(request.emergencyName)),
+            "EmergencyAddress" to
+    (SdkClient.omitIfNull(request.emergencyAddress)),
+            "EmergencyZipCode" to
+    (SdkClient.omitIfNull(request.emergencyZipCode)),
+            "EmergencyCity" to
+    (SdkClient.omitIfNull(request.emergencyCity)),
+            "EmergencyState" to
+    (SdkClient.omitIfNull(request.emergencyState)),
+            "EmergencyCountry" to
+    (SdkClient.omitIfNull(request.emergencyCountry)),
         )
 }
 
 internal object ConferencesParticipantsListConferencesParticipantsOperation {
     /**
-     * Lists participants in a specific conference. Use `Muted`, `Hold`, and `Coaching` to filter
-     * participants by their current settings. Use `PageSize`, `Page`, and `PageToken` to paginate
-     * the results.
+     * Lists participants in a specific conference. Use `Muted`, `Hold`, and `Coaching` to filter participants by their current settings. Use `PageSize`, `Page`, and `PageToken` to paginate the results.
      *
      * Retrieve a list of participants belonging to the account used to make the request
      *
-     * @param accountSid The SID of the Account that created the Participant resources to read.
+     * @param accountSid The SID of the Account that created the Participant
+     *   resources to read.
      * @param conferenceSid The SID of the conference with the participants to read.
-     * @param muted Whether to return only participants that are muted. Can be: `true` or `false`.
-     * @param hold Whether to return only participants that are on hold. Can be: `true` or `false`.
-     * @param coaching Whether to return only participants who are coaching another call. Can be:
+     * @param muted Whether to return only participants that are muted. Can be:
      *   `true` or `false`.
-     * @param pageSize How many resources to return in each list page. The default is 50, and the
-     *   maximum is 1000.
+     * @param hold Whether to return only participants that are on hold. Can be:
+     *   `true` or `false`.
+     * @param coaching Whether to return only participants who are coaching another
+     *   call. Can be: `true` or `false`.
+     * @param pageSize How many resources to return in each list page. The default is
+     *   50, and the maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listConferencesParticipants(
-        clientConfig: ClientConfig,
-        request: ConferencesParticipants.ListConferencesParticipantsRequest,
-        options: RequestOptions? = null,
-    ): ConferencesParticipants.ListConferencesParticipantsResponse {
+    fun listConferencesParticipants(clientConfig: ClientConfig, request: ConferencesParticipants.ListConferencesParticipantsRequest, options: RequestOptions? = null): ConferencesParticipants.ListConferencesParticipantsResponse {
         validateListConferencesParticipantsRequest(request)
 
-        return SdkClient.request<ConferencesParticipants.ListConferencesParticipantsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Conferences/${SdkClient.encodePathSegment(request.conferenceSid)}/Participants.json",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "Muted" to SdkClient.queryValue(request.muted, "form", true),
-                            "Hold" to SdkClient.queryValue(request.hold, "form", true),
-                            "Coaching" to SdkClient.queryValue(request.coaching, "form", true),
-                            "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
-                            "Page" to SdkClient.queryValue(request.page, "form", true),
-                            "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
-                        ),
-                    operationId = "listConferencesParticipants",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ConferencesParticipants.ListConferencesParticipantsResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Conferences/${SdkClient.encodePathSegment(request.conferenceSid)}/Participants.json", config = clientConfig, query = mapOf("Muted" to SdkClient.queryValue(request.muted, "form", true), "Hold" to SdkClient.queryValue(request.hold, "form", true), "Coaching" to
+    SdkClient.queryValue(request.coaching, "form", true), "PageSize" to
+    SdkClient.queryValue(request.pageSize, "form", true), "Page" to SdkClient.queryValue(request.page, "form", true), "PageToken" to
+    SdkClient.queryValue(request.pageToken, "form", true)), operationId = "listConferencesParticipants", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
-    private fun validateListConferencesParticipantsRequest(
-        request: ConferencesParticipants.ListConferencesParticipantsRequest
-    ) {
-        Validation.validateLength(
-            "AccountSid",
-            request.accountSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+
+    private fun validateListConferencesParticipantsRequest(request: ConferencesParticipants.ListConferencesParticipantsRequest) {
+        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength(
-            "ConferenceSid",
-            request.conferenceSid,
-            Validation.LengthOpts(min = 34, max = 34),
-        )
+        Validation.validateLength("ConferenceSid", request.conferenceSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("ConferenceSid", request.conferenceSid, "^CF[0-9a-fA-F]{32}$")
 
         if (request.pageSize != null) {
-            Validation.validateRange(
-                "PageSize",
-                request.pageSize,
-                Validation.RangeOpts(min = 1.0, max = 1000.0),
-            )
-        }
+            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
+}
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-        }
+}
     }
 }
