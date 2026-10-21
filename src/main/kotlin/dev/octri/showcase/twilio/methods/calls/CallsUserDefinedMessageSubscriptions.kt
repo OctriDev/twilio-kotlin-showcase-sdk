@@ -5,7 +5,7 @@ package dev.octri.showcase.twilio.methods.calls
 
 import dev.octri.showcase.twilio.ApiV2010AccountCallUserDefinedMessageSubscription
 import dev.octri.showcase.twilio.ClientConfig
-import dev.octri.showcase.twilio.CreateCallsUserDefinedMessageSubscriptionsMethodEnum
+import dev.octri.showcase.twilio.CreateCallUserDefinedMessageSubscriptionMethodEnum
 import dev.octri.showcase.twilio.RequestOptions
 import dev.octri.showcase.twilio.SdkClient
 import dev.octri.showcase.twilio.Validation
@@ -25,13 +25,13 @@ object CallsUserDefinedMessageSubscriptions {
      * @param method The HTTP method Twilio will use when requesting the above `Url`. Either `GET`
      *   or `POST`. Default is `POST`.
      */
-    fun createCallsUserDefinedMessageSubscriptions(
+    fun createCallUserDefinedMessageSubscription(
         clientConfig: ClientConfig,
         accountSid: String,
         callSid: String,
         callback: String,
         idempotencyKey: String? = null,
-        method: CreateCallsUserDefinedMessageSubscriptionsMethodEnum? = null,
+        method: CreateCallUserDefinedMessageSubscriptionMethodEnum? = null,
         options: RequestOptions? = null,
     ): ApiV2010AccountCallUserDefinedMessageSubscription {
         Validation.validateLength(
@@ -58,7 +58,7 @@ object CallsUserDefinedMessageSubscriptions {
                             "Method" to (SdkClient.omitIfNull(method)),
                         ),
                     contentType = "application/x-www-form-urlencoded",
-                    operationId = "createCallsUserDefinedMessageSubscriptions",
+                    operationId = "createCallUserDefinedMessageSubscription",
                     decoder = SdkClient.ResponseDecoder.JSON,
                     options = options,
                 )

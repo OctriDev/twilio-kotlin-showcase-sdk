@@ -466,8 +466,8 @@ typealias CreateCallsStreamsStatusCallbackMethodEnum =
 typealias CreateCallsTranscriptionsStatusCallbackMethodEnum =
     dev.octri.showcase.twilio.models.CreateCallsTranscriptionsStatusCallbackMethodEnum
 
-typealias CreateCallsUserDefinedMessageSubscriptionsMethodEnum =
-    dev.octri.showcase.twilio.models.CreateCallsUserDefinedMessageSubscriptionsMethodEnum
+typealias CreateCallUserDefinedMessageSubscriptionMethodEnum =
+    dev.octri.showcase.twilio.models.CreateCallUserDefinedMessageSubscriptionMethodEnum
 
 typealias CreateConferencesParticipantsAmdStatusCallbackMethodEnum =
     dev.octri.showcase.twilio.models.CreateConferencesParticipantsAmdStatusCallbackMethodEnum

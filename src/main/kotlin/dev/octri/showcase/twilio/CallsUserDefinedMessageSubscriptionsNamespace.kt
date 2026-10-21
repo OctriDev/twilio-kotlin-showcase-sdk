@@ -10,11 +10,11 @@ class CallsUserDefinedMessageSubscriptionsNamespace(private val clientConfig: Cl
         callSid: String,
         callback: String,
         idempotencyKey: String? = null,
-        method: CreateCallsUserDefinedMessageSubscriptionsMethodEnum? = null,
+        method: CreateCallUserDefinedMessageSubscriptionMethodEnum? = null,
         options: RequestOptions? = null,
     ): ApiV2010AccountCallUserDefinedMessageSubscription {
         return dev.octri.showcase.twilio.methods.calls.CallsUserDefinedMessageSubscriptions
-            .createCallsUserDefinedMessageSubscriptions(
+            .createCallUserDefinedMessageSubscription(
                 clientConfig,
                 accountSid,
                 callSid,
