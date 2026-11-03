@@ -3,11 +3,11 @@
 
 package dev.octri.showcase.twilio
 
-
 class SipNamespace(clientConfig: ClientConfig) {
     val domains: SipDomainsNamespace
     val credentialLists: SipCredentialListsNamespace
     val ipAccessControlLists: SipIpAccessControlListsNamespace
+
     init {
         domains = SipDomainsNamespace(clientConfig)
         credentialLists = SipCredentialListsNamespace(clientConfig)

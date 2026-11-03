@@ -14,129 +14,230 @@ import dev.octri.showcase.twilio.Validation
 
 object Accounts {
 
-data class ListAccountsResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    val accounts: List<ApiV2010Account>? = null
-) : SdkResource()
+    data class ListAccountsResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        val accounts: List<ApiV2010Account>? = null,
+    ) : SdkResource()
 
     /**
      * Create a new Twilio Subaccount from the account making the request
      *
-     * @param friendlyName A human readable description of the account to create,
-     *   defaults to `SubAccount Created at {YYYY-MM-DD HH:MM meridian}`
+     * @param friendlyName A human readable description of the account to create, defaults to
+     *   `SubAccount Created at {YYYY-MM-DD HH:MM meridian}`
      */
-    fun createAccounts(clientConfig: ClientConfig, friendlyName: String? = null, options: RequestOptions? = null): ApiV2010Account {
+    fun createAccounts(
+        clientConfig: ClientConfig,
+        friendlyName: String? = null,
+        options: RequestOptions? = null,
+    ): ApiV2010Account {
         return createAccountsWithRawResponse(clientConfig, friendlyName, options).data
     }
 
-
-    /** [createAccounts], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun createAccountsWithRawResponse(clientConfig: ClientConfig, friendlyName: String? = null, options: RequestOptions? = null): SdkResponse<ApiV2010Account> {
-        return SdkClient.request<ApiV2010Account>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts.json", config = clientConfig, body = SdkClient.bodyMap("FriendlyName" to (SdkClient.omitIfNull(friendlyName))), contentType = "application/x-www-form-urlencoded", operationId = "createAccounts", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [createAccounts], returning the [SdkResponse] envelope: status code, headers, request ID and
+     * latency.
+     */
+    fun createAccountsWithRawResponse(
+        clientConfig: ClientConfig,
+        friendlyName: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010Account> {
+        return SdkClient.request<ApiV2010Account>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/2010-04-01/Accounts.json",
+                config = clientConfig,
+                body = SdkClient.bodyMap("FriendlyName" to (SdkClient.omitIfNull(friendlyName))),
+                contentType = "application/x-www-form-urlencoded",
+                operationId = "createAccounts",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 
-
-
-
-
-
     /**
-     * Lists account resources associated with the account used to make the request. Filter by exact `FriendlyName` or by `Status`, and use `PageSize`, `Page`, and `PageToken` to control pagination.
+     * Lists account resources associated with the account used to make the request. Filter by exact
+     * `FriendlyName` or by `Status`, and use `PageSize`, `Page`, and `PageToken` to control
+     * pagination.
      *
      * Retrieves a collection of Accounts belonging to the account used to make the request
      *
-     * @param friendlyName Only return the Account resources with friendly names that
-     *   exactly match this name.
-     * @param status Only return Account resources with the given status. Can be
-     *   `closed`, `suspended` or `active`.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param friendlyName Only return the Account resources with friendly names that exactly match
+     *   this name.
+     * @param status Only return Account resources with the given status. Can be `closed`,
+     *   `suspended` or `active`.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listAccounts(clientConfig: ClientConfig, friendlyName: String? = null, status: AccountEnumStatus? = null, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): ListAccountsResponse {
-        return listAccountsWithRawResponse(clientConfig, friendlyName, status, pageSize, page, pageToken, options).data
+    fun listAccounts(
+        clientConfig: ClientConfig,
+        friendlyName: String? = null,
+        status: AccountEnumStatus? = null,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): ListAccountsResponse {
+        return listAccountsWithRawResponse(
+                clientConfig,
+                friendlyName,
+                status,
+                pageSize,
+                page,
+                pageToken,
+                options,
+            )
+            .data
     }
 
-
-    /** [listAccounts], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun listAccountsWithRawResponse(clientConfig: ClientConfig, friendlyName: String? = null, status: AccountEnumStatus? = null, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): SdkResponse<ListAccountsResponse> {
+    /**
+     * [listAccounts], returning the [SdkResponse] envelope: status code, headers, request ID and
+     * latency.
+     */
+    fun listAccountsWithRawResponse(
+        clientConfig: ClientConfig,
+        friendlyName: String? = null,
+        status: AccountEnumStatus? = null,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<ListAccountsResponse> {
         if (pageSize != null) {
-            Validation.validateRange("PageSize", pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (page != null) {
             Validation.validateRange("Page", page, Validation.RangeOpts(min = 0.0))
-}
+        }
 
-        return SdkClient.request<ListAccountsResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts.json", config = clientConfig, query = mapOf("FriendlyName" to
-    SdkClient.queryValue(friendlyName, "form", true), "Status" to SdkClient.queryValue(status, "form", true), "PageSize" to SdkClient.queryValue(pageSize, "form", true), "Page" to SdkClient.queryValue(page, "form", true), "PageToken" to SdkClient.queryValue(pageToken, "form", true)), operationId = "listAccounts", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+        return SdkClient.request<ListAccountsResponse>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/2010-04-01/Accounts.json",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "FriendlyName" to SdkClient.queryValue(friendlyName, "form", true),
+                        "Status" to SdkClient.queryValue(status, "form", true),
+                        "PageSize" to SdkClient.queryValue(pageSize, "form", true),
+                        "Page" to SdkClient.queryValue(page, "form", true),
+                        "PageToken" to SdkClient.queryValue(pageToken, "form", true),
+                    ),
+                operationId = "listAccounts",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 
-
-
-
-
-
     /**
-     * Retrieves a specific account by its Account SID. Supply `Sid` as a 34-character account identifier beginning with `AC` followed by 32 hexadecimal characters.
+     * Retrieves a specific account by its Account SID. Supply `Sid` as a 34-character account
+     * identifier beginning with `AC` followed by 32 hexadecimal characters.
      *
      * Fetch the account specified by the provided Account Sid
      *
      * @param sid The Account Sid that uniquely identifies the account to fetch
      */
-    fun fetchAccounts(clientConfig: ClientConfig, sid: String, options: RequestOptions? = null): ApiV2010Account {
+    fun fetchAccounts(
+        clientConfig: ClientConfig,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010Account {
         return fetchAccountsWithRawResponse(clientConfig, sid, options).data
     }
 
-
-    /** [fetchAccounts], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun fetchAccountsWithRawResponse(clientConfig: ClientConfig, sid: String, options: RequestOptions? = null): SdkResponse<ApiV2010Account> {
+    /**
+     * [fetchAccounts], returning the [SdkResponse] envelope: status code, headers, request ID and
+     * latency.
+     */
+    fun fetchAccountsWithRawResponse(
+        clientConfig: ClientConfig,
+        sid: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010Account> {
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^AC[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010Account>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "fetchAccounts", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+        return SdkClient.request<ApiV2010Account>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(sid)}.json",
+                config = clientConfig,
+                operationId = "fetchAccounts",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 
-
-
-
-
-
     /**
-     * Updates properties of a specific account. Supply `FriendlyName`, `Status`, or both to change the account; a 409 response indicates that another request modified the account concurrently.
+     * Updates properties of a specific account. Supply `FriendlyName`, `Status`, or both to change
+     * the account; a 409 response indicates that another request modified the account concurrently.
      *
      * Modify the properties of a given Account
      *
      * @param sid The Account Sid that uniquely identifies the account to update
      * @param friendlyName Update the human-readable description of this Account
-     * @param status The status of this account. Usually `active`, but can be
-     *   `suspended` or `closed`.
+     * @param status The status of this account. Usually `active`, but can be `suspended` or
+     *   `closed`.
      */
-    fun updateAccounts(clientConfig: ClientConfig, sid: String, friendlyName: String? = null, status: AccountEnumStatus? = null, options: RequestOptions? = null): ApiV2010Account {
+    fun updateAccounts(
+        clientConfig: ClientConfig,
+        sid: String,
+        friendlyName: String? = null,
+        status: AccountEnumStatus? = null,
+        options: RequestOptions? = null,
+    ): ApiV2010Account {
         return updateAccountsWithRawResponse(clientConfig, sid, friendlyName, status, options).data
     }
 
-
-    /** [updateAccounts], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun updateAccountsWithRawResponse(clientConfig: ClientConfig, sid: String, friendlyName: String? = null, status: AccountEnumStatus? = null, options: RequestOptions? = null): SdkResponse<ApiV2010Account> {
+    /**
+     * [updateAccounts], returning the [SdkResponse] envelope: status code, headers, request ID and
+     * latency.
+     */
+    fun updateAccountsWithRawResponse(
+        clientConfig: ClientConfig,
+        sid: String,
+        friendlyName: String? = null,
+        status: AccountEnumStatus? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010Account> {
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^AC[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010Account>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, body = SdkClient.bodyMap("FriendlyName" to (SdkClient.omitIfNull(friendlyName)), "Status" to (SdkClient.omitIfNull(status))), contentType = "application/x-www-form-urlencoded", operationId = "updateAccounts", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+        return SdkClient.request<ApiV2010Account>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(sid)}.json",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "FriendlyName" to (SdkClient.omitIfNull(friendlyName)),
+                        "Status" to (SdkClient.omitIfNull(status)),
+                    ),
+                contentType = "application/x-www-form-urlencoded",
+                operationId = "updateAccounts",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
-
-
-
-
-
-
-
 }

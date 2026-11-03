@@ -218,52 +218,82 @@ object CallsSiprec {
         val parameter98Name: String? = null,
         val parameter98Value: String? = null,
         val parameter99Name: String? = null,
-        val parameter99Value: String? = null
+        val parameter99Value: String? = null,
     )
 
     /**
-     * Creates a SIPREC resource associated with a call. Use `Track` to choose which audio tracks to record, and optionally provide a connector name and status callback settings.
+     * Creates a SIPREC resource associated with a call. Use `Track` to choose which audio tracks to
+     * record, and optionally provide a connector name and status callback settings.
      */
-    fun createCallsSiprec(clientConfig: ClientConfig, request: CreateCallsSiprecRequest, options: RequestOptions? = null): ApiV2010AccountCallSiprec =
-        dev.octri.showcase.twilio.methods.calls.CallsSiprecCreateCallsSiprecOperation.createCallsSiprec(
-            clientConfig,
-            request,
-            options,
-        )
+    fun createCallsSiprec(
+        clientConfig: ClientConfig,
+        request: CreateCallsSiprecRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountCallSiprec =
+        dev.octri.showcase.twilio.methods.calls.CallsSiprecCreateCallsSiprecOperation
+            .createCallsSiprec(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Creates a SIPREC resource associated with a call. Use `Track` to choose which audio tracks to record, and optionally provide a connector name and status callback settings.
+     * Creates a SIPREC resource associated with a call. Use `Track` to choose which audio tracks to
+     * record, and optionally provide a connector name and status callback settings.
      */
-    fun createCallsSiprecWithRawResponse(clientConfig: ClientConfig, request: CreateCallsSiprecRequest, options: RequestOptions? = null): SdkResponse<ApiV2010AccountCallSiprec> =
-        dev.octri.showcase.twilio.methods.calls.CallsSiprecCreateCallsSiprecOperation.createCallsSiprecWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun createCallsSiprecWithRawResponse(
+        clientConfig: ClientConfig,
+        request: CreateCallsSiprecRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010AccountCallSiprec> =
+        dev.octri.showcase.twilio.methods.calls.CallsSiprecCreateCallsSiprecOperation
+            .createCallsSiprecWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Stops a SIPREC resource associated with a call. Set `Status` to `stopped`, and identify the resource by its SID or the name used when it was created.
+     * Stops a SIPREC resource associated with a call. Set `Status` to `stopped`, and identify the
+     * resource by its SID or the name used when it was created.
      */
-    fun updateCallsSiprec(clientConfig: ClientConfig, accountSid: String, callSid: String, sid: String, status: SiprecEnumUpdateStatus, options: RequestOptions? = null): ApiV2010AccountCallSiprec =
-        dev.octri.showcase.twilio.methods.calls.CallsSiprecUpdateCallsSiprecOperation.updateCallsSiprec(
-            clientConfig,
-            accountSid,
-            callSid,
-            sid,
-            status,
-            options,
-        )
+    fun updateCallsSiprec(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        callSid: String,
+        sid: String,
+        status: SiprecEnumUpdateStatus,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountCallSiprec =
+        dev.octri.showcase.twilio.methods.calls.CallsSiprecUpdateCallsSiprecOperation
+            .updateCallsSiprec(
+                clientConfig,
+                accountSid,
+                callSid,
+                sid,
+                status,
+                options,
+            )
 
     /**
-     * Stops a SIPREC resource associated with a call. Set `Status` to `stopped`, and identify the resource by its SID or the name used when it was created.
+     * Stops a SIPREC resource associated with a call. Set `Status` to `stopped`, and identify the
+     * resource by its SID or the name used when it was created.
      */
-    fun updateCallsSiprecWithRawResponse(clientConfig: ClientConfig, accountSid: String, callSid: String, sid: String, status: SiprecEnumUpdateStatus, options: RequestOptions? = null): SdkResponse<ApiV2010AccountCallSiprec> =
-        dev.octri.showcase.twilio.methods.calls.CallsSiprecUpdateCallsSiprecOperation.updateCallsSiprecWithRawResponse(
-            clientConfig,
-            accountSid,
-            callSid,
-            sid,
-            status,
-            options,
-        )
+    fun updateCallsSiprecWithRawResponse(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        callSid: String,
+        sid: String,
+        status: SiprecEnumUpdateStatus,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010AccountCallSiprec> =
+        dev.octri.showcase.twilio.methods.calls.CallsSiprecUpdateCallsSiprecOperation
+            .updateCallsSiprecWithRawResponse(
+                clientConfig,
+                accountSid,
+                callSid,
+                sid,
+                status,
+                options,
+            )
 }

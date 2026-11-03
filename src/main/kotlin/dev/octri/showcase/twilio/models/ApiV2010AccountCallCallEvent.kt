@@ -5,16 +5,12 @@ package dev.octri.showcase.twilio.models
 
 import dev.octri.showcase.twilio.SdkResource
 
-/**
- * Typed representation of the `ApiV2010AccountCallCallEvent` API schema.
- */
+/** Typed representation of the `ApiV2010AccountCallCallEvent` API schema. */
 data class ApiV2010AccountCallCallEvent(
-    /**
-     * Contains a dictionary representing the request of the call.
-     */
+    /** Contains a dictionary representing the request of the call. */
     val request: Any? = null,
     /**
      * Contains a dictionary representing the call response, including a list of the call events.
      */
-    val response: Any? = null
+    val response: Any? = null,
 ) : SdkResource()

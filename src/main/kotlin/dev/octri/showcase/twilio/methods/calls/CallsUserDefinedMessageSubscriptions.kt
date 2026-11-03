@@ -16,27 +16,55 @@ object CallsUserDefinedMessageSubscriptions {
     /**
      * Subscribe to User Defined Messages for a given Call SID.
      *
-     * @param accountSid The SID of the Account that subscribed to the User Defined
-     *   Messages.
-     * @param callSid The SID of the Call the User Defined Messages subscription is
-     *   associated with. This refers to the Call SID that is producing the user
-     *   defined messages.
-     * @param callback The URL we should call using the `method` to send user defined
-     *   events to your application. URLs must contain a valid hostname (underscores
-     *   are not permitted).
-     * @param idempotencyKey A unique string value to identify API call. This should
-     *   be a unique string value per API call and can be a randomly generated.
-     * @param method The HTTP method Twilio will use when requesting the above `Url`.
-     *   Either `GET` or `POST`. Default is `POST`.
+     * @param accountSid The SID of the Account that subscribed to the User Defined Messages.
+     * @param callSid The SID of the Call the User Defined Messages subscription is associated with.
+     *   This refers to the Call SID that is producing the user defined messages.
+     * @param callback The URL we should call using the `method` to send user defined events to your
+     *   application. URLs must contain a valid hostname (underscores are not permitted).
+     * @param idempotencyKey A unique string value to identify API call. This should be a unique
+     *   string value per API call and can be a randomly generated.
+     * @param method The HTTP method Twilio will use when requesting the above `Url`. Either `GET`
+     *   or `POST`. Default is `POST`.
      */
-    fun createCallUserDefinedMessageSubscription(clientConfig: ClientConfig, accountSid: String, callSid: String, callback: String, idempotencyKey: String? = null, method: CreateCallUserDefinedMessageSubscriptionMethodEnum? = null, options: RequestOptions? = null): ApiV2010AccountCallUserDefinedMessageSubscription {
-        return createCallUserDefinedMessageSubscriptionWithRawResponse(clientConfig, accountSid, callSid, callback, idempotencyKey, method, options).data
+    fun createCallUserDefinedMessageSubscription(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        callSid: String,
+        callback: String,
+        idempotencyKey: String? = null,
+        method: CreateCallUserDefinedMessageSubscriptionMethodEnum? = null,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountCallUserDefinedMessageSubscription {
+        return createCallUserDefinedMessageSubscriptionWithRawResponse(
+                clientConfig,
+                accountSid,
+                callSid,
+                callback,
+                idempotencyKey,
+                method,
+                options,
+            )
+            .data
     }
 
-
-    /** [createCallUserDefinedMessageSubscription], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun createCallUserDefinedMessageSubscriptionWithRawResponse(clientConfig: ClientConfig, accountSid: String, callSid: String, callback: String, idempotencyKey: String? = null, method: CreateCallUserDefinedMessageSubscriptionMethodEnum? = null, options: RequestOptions? = null): SdkResponse<ApiV2010AccountCallUserDefinedMessageSubscription> {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    /**
+     * [createCallUserDefinedMessageSubscription], returning the [SdkResponse] envelope: status
+     * code, headers, request ID and latency.
+     */
+    fun createCallUserDefinedMessageSubscriptionWithRawResponse(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        callSid: String,
+        callback: String,
+        idempotencyKey: String? = null,
+        method: CreateCallUserDefinedMessageSubscriptionMethodEnum? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010AccountCallUserDefinedMessageSubscription> {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("CallSid", callSid, Validation.LengthOpts(min = 34, max = 34))
@@ -44,33 +72,66 @@ object CallsUserDefinedMessageSubscriptions {
 
         Validation.validateUri("Callback", callback)
 
-        return SdkClient.request<ApiV2010AccountCallUserDefinedMessageSubscription>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Calls/${SdkClient.encodePathSegment(callSid)}/UserDefinedMessageSubscriptions.json", config = clientConfig, body = SdkClient.bodyMap("Callback" to (callback), "IdempotencyKey" to (SdkClient.omitIfNull(idempotencyKey)), "Method" to (SdkClient.omitIfNull(method))), contentType = "application/x-www-form-urlencoded", operationId = "createCallUserDefinedMessageSubscription", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+        return SdkClient.request<ApiV2010AccountCallUserDefinedMessageSubscription>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Calls/${SdkClient.encodePathSegment(callSid)}/UserDefinedMessageSubscriptions.json",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "Callback" to (callback),
+                        "IdempotencyKey" to (SdkClient.omitIfNull(idempotencyKey)),
+                        "Method" to (SdkClient.omitIfNull(method)),
+                    ),
+                contentType = "application/x-www-form-urlencoded",
+                operationId = "createCallUserDefinedMessageSubscription",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
-
-
-
-
-
 
     /**
      * Delete a specific User Defined Message Subscription.
      *
-     * @param accountSid The SID of the Account that subscribed to the User Defined
-     *   Messages.
-     * @param callSid The SID of the Call the User Defined Message Subscription is
-     *   associated with. This refers to the Call SID that is producing the User
-     *   Defined Messages.
-     * @param sid The SID that uniquely identifies this User Defined Message
-     *   Subscription.
+     * @param accountSid The SID of the Account that subscribed to the User Defined Messages.
+     * @param callSid The SID of the Call the User Defined Message Subscription is associated with.
+     *   This refers to the Call SID that is producing the User Defined Messages.
+     * @param sid The SID that uniquely identifies this User Defined Message Subscription.
      */
-    fun deleteCallsUserDefinedMessageSubscriptions(clientConfig: ClientConfig, accountSid: String, callSid: String, sid: String, options: RequestOptions? = null): Unit {
-        return deleteCallsUserDefinedMessageSubscriptionsWithRawResponse(clientConfig, accountSid, callSid, sid, options).data
+    fun deleteCallsUserDefinedMessageSubscriptions(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        callSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        return deleteCallsUserDefinedMessageSubscriptionsWithRawResponse(
+                clientConfig,
+                accountSid,
+                callSid,
+                sid,
+                options,
+            )
+            .data
     }
 
-
-    /** [deleteCallsUserDefinedMessageSubscriptions], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun deleteCallsUserDefinedMessageSubscriptionsWithRawResponse(clientConfig: ClientConfig, accountSid: String, callSid: String, sid: String, options: RequestOptions? = null): SdkResponse<Unit> {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    /**
+     * [deleteCallsUserDefinedMessageSubscriptions], returning the [SdkResponse] envelope: status
+     * code, headers, request ID and latency.
+     */
+    fun deleteCallsUserDefinedMessageSubscriptionsWithRawResponse(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        callSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("CallSid", callSid, Validation.LengthOpts(min = 34, max = 34))
@@ -79,13 +140,15 @@ object CallsUserDefinedMessageSubscriptions {
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^ZY[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Calls/${SdkClient.encodePathSegment(callSid)}/UserDefinedMessageSubscriptions/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "deleteCallsUserDefinedMessageSubscriptions", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Calls/${SdkClient.encodePathSegment(callSid)}/UserDefinedMessageSubscriptions/${SdkClient.encodePathSegment(sid)}.json",
+                config = clientConfig,
+                operationId = "deleteCallsUserDefinedMessageSubscriptions",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
-
-
-
-
-
-
-
 }

@@ -5,18 +5,13 @@ package dev.octri.showcase.twilio.models
 
 import dev.octri.showcase.twilio.SdkResource
 
-/**
- * Typed representation of the `ApiV2010AccountSigningKey` API schema.
- */
+/** Typed representation of the `ApiV2010AccountSigningKey` API schema. */
 data class ApiV2010AccountSigningKey(
-    /**
-     * Optional `string` value serialized in the `sid` wire field.
-     */
+    /** Optional `string` value serialized in the `sid` wire field. */
     val sid: String? = null,
-    /**
-     * Optional `string` value serialized in the `friendly_name` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name") val friendlyName: String? = null,
+    /** Optional `string` value serialized in the `friendly_name` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("friendly_name")
+    val friendlyName: String? = null,
     /**
      * Optional `date-time-rfc-2822`-formatted value serialized in the `date_created` wire field.
      */
@@ -24,5 +19,5 @@ data class ApiV2010AccountSigningKey(
     /**
      * Optional `date-time-rfc-2822`-formatted value serialized in the `date_updated` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("date_updated") val dateUpdated: String? = null,
 ) : SdkResource()

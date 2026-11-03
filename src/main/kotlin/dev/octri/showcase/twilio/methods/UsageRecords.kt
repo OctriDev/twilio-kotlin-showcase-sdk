@@ -19,113 +19,149 @@ import dev.octri.showcase.twilio.SdkResponse
 import java.time.LocalDate
 
 object UsageRecords {
-data class ListUsageRecordsResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("usage_records") val usageRecords: List<ApiV2010AccountUsageUsageRecord>? = null
-) : SdkResource()
+    data class ListUsageRecordsResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("usage_records")
+        val usageRecords: List<ApiV2010AccountUsageUsageRecord>? = null,
+    ) : SdkResource()
 
-data class ListUsageRecordsAllTimeResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("usage_records") val usageRecords: List<ApiV2010AccountUsageUsageRecordUsageRecordAllTime>? = null
-) : SdkResource()
+    data class ListUsageRecordsAllTimeResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("usage_records")
+        val usageRecords: List<ApiV2010AccountUsageUsageRecordUsageRecordAllTime>? = null,
+    ) : SdkResource()
 
-data class ListUsageRecordsDailyResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("usage_records") val usageRecords: List<ApiV2010AccountUsageUsageRecordUsageRecordDaily>? = null
-) : SdkResource()
+    data class ListUsageRecordsDailyResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("usage_records")
+        val usageRecords: List<ApiV2010AccountUsageUsageRecordUsageRecordDaily>? = null,
+    ) : SdkResource()
 
-data class ListUsageRecordsLastMonthResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("usage_records") val usageRecords: List<ApiV2010AccountUsageUsageRecordUsageRecordLastMonth>? = null
-) : SdkResource()
+    data class ListUsageRecordsLastMonthResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("usage_records")
+        val usageRecords: List<ApiV2010AccountUsageUsageRecordUsageRecordLastMonth>? = null,
+    ) : SdkResource()
 
-data class ListUsageRecordsMonthlyResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("usage_records") val usageRecords: List<ApiV2010AccountUsageUsageRecordUsageRecordMonthly>? = null
-) : SdkResource()
+    data class ListUsageRecordsMonthlyResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("usage_records")
+        val usageRecords: List<ApiV2010AccountUsageUsageRecordUsageRecordMonthly>? = null,
+    ) : SdkResource()
 
-data class ListUsageRecordsThisMonthResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("usage_records") val usageRecords: List<ApiV2010AccountUsageUsageRecordUsageRecordThisMonth>? = null
-) : SdkResource()
+    data class ListUsageRecordsThisMonthResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("usage_records")
+        val usageRecords: List<ApiV2010AccountUsageUsageRecordUsageRecordThisMonth>? = null,
+    ) : SdkResource()
 
-data class ListUsageRecordsTodayResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("usage_records") val usageRecords: List<ApiV2010AccountUsageUsageRecordUsageRecordToday>? = null
-) : SdkResource()
+    data class ListUsageRecordsTodayResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("usage_records")
+        val usageRecords: List<ApiV2010AccountUsageUsageRecordUsageRecordToday>? = null,
+    ) : SdkResource()
 
-data class ListUsageRecordsYearlyResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("usage_records") val usageRecords: List<ApiV2010AccountUsageUsageRecordUsageRecordYearly>? = null
-) : SdkResource()
+    data class ListUsageRecordsYearlyResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("usage_records")
+        val usageRecords: List<ApiV2010AccountUsageUsageRecordUsageRecordYearly>? = null,
+    ) : SdkResource()
 
-data class ListUsageRecordsYesterdayResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("usage_records") val usageRecords: List<ApiV2010AccountUsageUsageRecordUsageRecordYesterday>? = null
-) : SdkResource()
+    data class ListUsageRecordsYesterdayResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("usage_records")
+        val usageRecords: List<ApiV2010AccountUsageUsageRecordUsageRecordYesterday>? = null,
+    ) : SdkResource()
 
     /** Parameters for [listUsageRecords]. */
     data class ListUsageRecordsRequest(
@@ -136,7 +172,7 @@ data class ListUsageRecordsYesterdayResponse(
         val includeSubaccounts: Boolean? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null
+        val pageToken: String? = null,
     )
 
     /** Parameters for [listUsageRecordsAllTime]. */
@@ -148,7 +184,7 @@ data class ListUsageRecordsYesterdayResponse(
         val includeSubaccounts: Boolean? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null
+        val pageToken: String? = null,
     )
 
     /** Parameters for [listUsageRecordsDaily]. */
@@ -160,7 +196,7 @@ data class ListUsageRecordsYesterdayResponse(
         val includeSubaccounts: Boolean? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null
+        val pageToken: String? = null,
     )
 
     /** Parameters for [listUsageRecordsLastMonth]. */
@@ -172,7 +208,7 @@ data class ListUsageRecordsYesterdayResponse(
         val includeSubaccounts: Boolean? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null
+        val pageToken: String? = null,
     )
 
     /** Parameters for [listUsageRecordsMonthly]. */
@@ -184,7 +220,7 @@ data class ListUsageRecordsYesterdayResponse(
         val includeSubaccounts: Boolean? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null
+        val pageToken: String? = null,
     )
 
     /** Parameters for [listUsageRecordsThisMonth]. */
@@ -196,7 +232,7 @@ data class ListUsageRecordsYesterdayResponse(
         val includeSubaccounts: Boolean? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null
+        val pageToken: String? = null,
     )
 
     /** Parameters for [listUsageRecordsToday]. */
@@ -208,7 +244,7 @@ data class ListUsageRecordsYesterdayResponse(
         val includeSubaccounts: Boolean? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null
+        val pageToken: String? = null,
     )
 
     /** Parameters for [listUsageRecordsYearly]. */
@@ -220,7 +256,7 @@ data class ListUsageRecordsYesterdayResponse(
         val includeSubaccounts: Boolean? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null
+        val pageToken: String? = null,
     )
 
     /** Parameters for [listUsageRecordsYesterday]. */
@@ -232,13 +268,19 @@ data class ListUsageRecordsYesterdayResponse(
         val includeSubaccounts: Boolean? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null
+        val pageToken: String? = null,
     )
 
     /**
-     * Lists usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`,
+     * and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from
+     * subaccounts is included.
      */
-    fun listUsageRecords(clientConfig: ClientConfig, request: ListUsageRecordsRequest, options: RequestOptions? = null): ListUsageRecordsResponse =
+    fun listUsageRecords(
+        clientConfig: ClientConfig,
+        request: ListUsageRecordsRequest,
+        options: RequestOptions? = null,
+    ): ListUsageRecordsResponse =
         dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsOperation.listUsageRecords(
             clientConfig,
             request,
@@ -246,172 +288,291 @@ data class ListUsageRecordsYesterdayResponse(
         )
 
     /**
-     * Lists usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`,
+     * and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from
+     * subaccounts is included.
      */
-    fun listUsageRecordsWithRawResponse(clientConfig: ClientConfig, request: ListUsageRecordsRequest, options: RequestOptions? = null): SdkResponse<ListUsageRecordsResponse> =
-        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsOperation.listUsageRecordsWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listUsageRecordsWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ListUsageRecordsRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ListUsageRecordsResponse> =
+        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsOperation
+            .listUsageRecordsWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists all-time usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists all-time usage records for the account identified by `AccountSid`. Use `Category`,
+     * `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether
+     * usage from subaccounts is included.
      */
-    fun listUsageRecordsAllTime(clientConfig: ClientConfig, request: ListUsageRecordsAllTimeRequest, options: RequestOptions? = null): ListUsageRecordsAllTimeResponse =
-        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsAllTimeOperation.listUsageRecordsAllTime(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listUsageRecordsAllTime(
+        clientConfig: ClientConfig,
+        request: ListUsageRecordsAllTimeRequest,
+        options: RequestOptions? = null,
+    ): ListUsageRecordsAllTimeResponse =
+        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsAllTimeOperation
+            .listUsageRecordsAllTime(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists all-time usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists all-time usage records for the account identified by `AccountSid`. Use `Category`,
+     * `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether
+     * usage from subaccounts is included.
      */
-    fun listUsageRecordsAllTimeWithRawResponse(clientConfig: ClientConfig, request: ListUsageRecordsAllTimeRequest, options: RequestOptions? = null): SdkResponse<ListUsageRecordsAllTimeResponse> =
-        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsAllTimeOperation.listUsageRecordsAllTimeWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listUsageRecordsAllTimeWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ListUsageRecordsAllTimeRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ListUsageRecordsAllTimeResponse> =
+        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsAllTimeOperation
+            .listUsageRecordsAllTimeWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists daily usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists daily usage records for the account identified by `AccountSid`. Use `Category`,
+     * `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether
+     * usage from subaccounts is included.
      */
-    fun listUsageRecordsDaily(clientConfig: ClientConfig, request: ListUsageRecordsDailyRequest, options: RequestOptions? = null): ListUsageRecordsDailyResponse =
-        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsDailyOperation.listUsageRecordsDaily(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listUsageRecordsDaily(
+        clientConfig: ClientConfig,
+        request: ListUsageRecordsDailyRequest,
+        options: RequestOptions? = null,
+    ): ListUsageRecordsDailyResponse =
+        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsDailyOperation
+            .listUsageRecordsDaily(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists daily usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists daily usage records for the account identified by `AccountSid`. Use `Category`,
+     * `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether
+     * usage from subaccounts is included.
      */
-    fun listUsageRecordsDailyWithRawResponse(clientConfig: ClientConfig, request: ListUsageRecordsDailyRequest, options: RequestOptions? = null): SdkResponse<ListUsageRecordsDailyResponse> =
-        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsDailyOperation.listUsageRecordsDailyWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listUsageRecordsDailyWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ListUsageRecordsDailyRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ListUsageRecordsDailyResponse> =
+        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsDailyOperation
+            .listUsageRecordsDailyWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists usage records for the previous month for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the previous month for the account identified by `AccountSid`. Use
+     * `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to
+     * control whether usage from subaccounts is included.
      */
-    fun listUsageRecordsLastMonth(clientConfig: ClientConfig, request: ListUsageRecordsLastMonthRequest, options: RequestOptions? = null): ListUsageRecordsLastMonthResponse =
-        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsLastMonthOperation.listUsageRecordsLastMonth(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listUsageRecordsLastMonth(
+        clientConfig: ClientConfig,
+        request: ListUsageRecordsLastMonthRequest,
+        options: RequestOptions? = null,
+    ): ListUsageRecordsLastMonthResponse =
+        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsLastMonthOperation
+            .listUsageRecordsLastMonth(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists usage records for the previous month for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the previous month for the account identified by `AccountSid`. Use
+     * `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to
+     * control whether usage from subaccounts is included.
      */
-    fun listUsageRecordsLastMonthWithRawResponse(clientConfig: ClientConfig, request: ListUsageRecordsLastMonthRequest, options: RequestOptions? = null): SdkResponse<ListUsageRecordsLastMonthResponse> =
-        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsLastMonthOperation.listUsageRecordsLastMonthWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listUsageRecordsLastMonthWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ListUsageRecordsLastMonthRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ListUsageRecordsLastMonthResponse> =
+        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsLastMonthOperation
+            .listUsageRecordsLastMonthWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists monthly usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists monthly usage records for the account identified by `AccountSid`. Use `Category`,
+     * `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether
+     * usage from subaccounts is included.
      */
-    fun listUsageRecordsMonthly(clientConfig: ClientConfig, request: ListUsageRecordsMonthlyRequest, options: RequestOptions? = null): ListUsageRecordsMonthlyResponse =
-        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsMonthlyOperation.listUsageRecordsMonthly(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listUsageRecordsMonthly(
+        clientConfig: ClientConfig,
+        request: ListUsageRecordsMonthlyRequest,
+        options: RequestOptions? = null,
+    ): ListUsageRecordsMonthlyResponse =
+        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsMonthlyOperation
+            .listUsageRecordsMonthly(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists monthly usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists monthly usage records for the account identified by `AccountSid`. Use `Category`,
+     * `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether
+     * usage from subaccounts is included.
      */
-    fun listUsageRecordsMonthlyWithRawResponse(clientConfig: ClientConfig, request: ListUsageRecordsMonthlyRequest, options: RequestOptions? = null): SdkResponse<ListUsageRecordsMonthlyResponse> =
-        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsMonthlyOperation.listUsageRecordsMonthlyWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listUsageRecordsMonthlyWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ListUsageRecordsMonthlyRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ListUsageRecordsMonthlyResponse> =
+        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsMonthlyOperation
+            .listUsageRecordsMonthlyWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists usage records for the current month for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the current month for the account identified by `AccountSid`. Use
+     * `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to
+     * control whether usage from subaccounts is included.
      */
-    fun listUsageRecordsThisMonth(clientConfig: ClientConfig, request: ListUsageRecordsThisMonthRequest, options: RequestOptions? = null): ListUsageRecordsThisMonthResponse =
-        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsThisMonthOperation.listUsageRecordsThisMonth(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listUsageRecordsThisMonth(
+        clientConfig: ClientConfig,
+        request: ListUsageRecordsThisMonthRequest,
+        options: RequestOptions? = null,
+    ): ListUsageRecordsThisMonthResponse =
+        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsThisMonthOperation
+            .listUsageRecordsThisMonth(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists usage records for the current month for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the current month for the account identified by `AccountSid`. Use
+     * `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to
+     * control whether usage from subaccounts is included.
      */
-    fun listUsageRecordsThisMonthWithRawResponse(clientConfig: ClientConfig, request: ListUsageRecordsThisMonthRequest, options: RequestOptions? = null): SdkResponse<ListUsageRecordsThisMonthResponse> =
-        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsThisMonthOperation.listUsageRecordsThisMonthWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listUsageRecordsThisMonthWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ListUsageRecordsThisMonthRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ListUsageRecordsThisMonthResponse> =
+        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsThisMonthOperation
+            .listUsageRecordsThisMonthWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists usage records for the current day for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the current day for the account identified by `AccountSid`. Use
+     * `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to
+     * control whether usage from subaccounts is included.
      */
-    fun listUsageRecordsToday(clientConfig: ClientConfig, request: ListUsageRecordsTodayRequest, options: RequestOptions? = null): ListUsageRecordsTodayResponse =
-        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsTodayOperation.listUsageRecordsToday(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listUsageRecordsToday(
+        clientConfig: ClientConfig,
+        request: ListUsageRecordsTodayRequest,
+        options: RequestOptions? = null,
+    ): ListUsageRecordsTodayResponse =
+        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsTodayOperation
+            .listUsageRecordsToday(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists usage records for the current day for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the current day for the account identified by `AccountSid`. Use
+     * `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to
+     * control whether usage from subaccounts is included.
      */
-    fun listUsageRecordsTodayWithRawResponse(clientConfig: ClientConfig, request: ListUsageRecordsTodayRequest, options: RequestOptions? = null): SdkResponse<ListUsageRecordsTodayResponse> =
-        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsTodayOperation.listUsageRecordsTodayWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listUsageRecordsTodayWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ListUsageRecordsTodayRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ListUsageRecordsTodayResponse> =
+        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsTodayOperation
+            .listUsageRecordsTodayWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists yearly usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists yearly usage records for the account identified by `AccountSid`. Use `Category`,
+     * `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether
+     * usage from subaccounts is included.
      */
-    fun listUsageRecordsYearly(clientConfig: ClientConfig, request: ListUsageRecordsYearlyRequest, options: RequestOptions? = null): ListUsageRecordsYearlyResponse =
-        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsYearlyOperation.listUsageRecordsYearly(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listUsageRecordsYearly(
+        clientConfig: ClientConfig,
+        request: ListUsageRecordsYearlyRequest,
+        options: RequestOptions? = null,
+    ): ListUsageRecordsYearlyResponse =
+        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsYearlyOperation
+            .listUsageRecordsYearly(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists yearly usage records for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists yearly usage records for the account identified by `AccountSid`. Use `Category`,
+     * `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether
+     * usage from subaccounts is included.
      */
-    fun listUsageRecordsYearlyWithRawResponse(clientConfig: ClientConfig, request: ListUsageRecordsYearlyRequest, options: RequestOptions? = null): SdkResponse<ListUsageRecordsYearlyResponse> =
-        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsYearlyOperation.listUsageRecordsYearlyWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listUsageRecordsYearlyWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ListUsageRecordsYearlyRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ListUsageRecordsYearlyResponse> =
+        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsYearlyOperation
+            .listUsageRecordsYearlyWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists usage records for the previous day for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the previous day for the account identified by `AccountSid`. Use
+     * `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to
+     * control whether usage from subaccounts is included.
      */
-    fun listUsageRecordsYesterday(clientConfig: ClientConfig, request: ListUsageRecordsYesterdayRequest, options: RequestOptions? = null): ListUsageRecordsYesterdayResponse =
-        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsYesterdayOperation.listUsageRecordsYesterday(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listUsageRecordsYesterday(
+        clientConfig: ClientConfig,
+        request: ListUsageRecordsYesterdayRequest,
+        options: RequestOptions? = null,
+    ): ListUsageRecordsYesterdayResponse =
+        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsYesterdayOperation
+            .listUsageRecordsYesterday(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists usage records for the previous day for the account identified by `AccountSid`. Use `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to control whether usage from subaccounts is included.
+     * Lists usage records for the previous day for the account identified by `AccountSid`. Use
+     * `Category`, `StartDate`, and `EndDate` to filter the records, and `IncludeSubaccounts` to
+     * control whether usage from subaccounts is included.
      */
-    fun listUsageRecordsYesterdayWithRawResponse(clientConfig: ClientConfig, request: ListUsageRecordsYesterdayRequest, options: RequestOptions? = null): SdkResponse<ListUsageRecordsYesterdayResponse> =
-        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsYesterdayOperation.listUsageRecordsYesterdayWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listUsageRecordsYesterdayWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ListUsageRecordsYesterdayRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ListUsageRecordsYesterdayResponse> =
+        dev.octri.showcase.twilio.methods.UsageRecordsListUsageRecordsYesterdayOperation
+            .listUsageRecordsYesterdayWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 }

@@ -14,71 +14,137 @@ import dev.octri.showcase.twilio.Validation
 
 object QueuesMembers {
 
-data class ListQueuesMembersResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("queue_members") val queueMembers: List<ApiV2010AccountQueueMember>? = null
-) : SdkResource()
+    data class ListQueuesMembersResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("queue_members")
+        val queueMembers: List<ApiV2010AccountQueueMember>? = null,
+    ) : SdkResource()
 
     /**
-     * Retrieves a specific member of a queue. Supply the account SID, queue SID, and call SID to identify the queue member.
+     * Retrieves a specific member of a queue. Supply the account SID, queue SID, and call SID to
+     * identify the queue member.
      *
      * Fetch a specific member from the queue
      *
-     * @param accountSid The SID of the Account that created the Member resource(s)
-     *   to fetch.
+     * @param accountSid The SID of the Account that created the Member resource(s) to fetch.
      * @param queueSid The SID of the Queue in which to find the members to fetch.
      * @param callSid The Call SID of the resource(s) to fetch.
      */
-    fun fetchQueuesMembers(clientConfig: ClientConfig, accountSid: String, queueSid: String, callSid: String, options: RequestOptions? = null): ApiV2010AccountQueueMember {
-        return fetchQueuesMembersWithRawResponse(clientConfig, accountSid, queueSid, callSid, options).data
+    fun fetchQueuesMembers(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        queueSid: String,
+        callSid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountQueueMember {
+        return fetchQueuesMembersWithRawResponse(
+                clientConfig,
+                accountSid,
+                queueSid,
+                callSid,
+                options,
+            )
+            .data
     }
 
-
-    /** [fetchQueuesMembers], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun fetchQueuesMembersWithRawResponse(clientConfig: ClientConfig, accountSid: String, queueSid: String, callSid: String, options: RequestOptions? = null): SdkResponse<ApiV2010AccountQueueMember> {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    /**
+     * [fetchQueuesMembers], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun fetchQueuesMembersWithRawResponse(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        queueSid: String,
+        callSid: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010AccountQueueMember> {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("QueueSid", queueSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("QueueSid", queueSid, "^QU[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountQueueMember>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Queues/${SdkClient.encodePathSegment(queueSid)}/Members/${SdkClient.encodePathSegment(callSid)}.json", config = clientConfig, operationId = "fetchQueuesMembers", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+        return SdkClient.request<ApiV2010AccountQueueMember>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Queues/${SdkClient.encodePathSegment(queueSid)}/Members/${SdkClient.encodePathSegment(callSid)}.json",
+                config = clientConfig,
+                operationId = "fetchQueuesMembers",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 
-
-
-
-
-
     /**
-     * Dequeues a specific member and starts the call's execution at the supplied URL. Provide `Url` as the destination, and use `Method` to choose whether request data is sent as form data or query parameters.
+     * Dequeues a specific member and starts the call's execution at the supplied URL. Provide `Url`
+     * as the destination, and use `Method` to choose whether request data is sent as form data or
+     * query parameters.
      *
-     * Dequeue a member from a queue and have the member's call begin executing the TwiML document at that URL
+     * Dequeue a member from a queue and have the member's call begin executing the TwiML document
+     * at that URL
      *
-     * @param accountSid The SID of the Account that created the Member resource(s)
-     *   to update.
+     * @param accountSid The SID of the Account that created the Member resource(s) to update.
      * @param queueSid The SID of the Queue in which to find the members to update.
      * @param callSid The Call SID of the resource(s) to update.
      * @param url The absolute URL of the Queue resource.
-     * @param method How to pass the update request data. Can be `GET` or `POST` and
-     *   the default is `POST`. `POST` sends the data as encoded form data and `GET`
-     *   sends the data as query parameters.
+     * @param method How to pass the update request data. Can be `GET` or `POST` and the default is
+     *   `POST`. `POST` sends the data as encoded form data and `GET` sends the data as query
+     *   parameters.
      */
-    fun updateQueuesMembers(clientConfig: ClientConfig, accountSid: String, queueSid: String, callSid: String, url: String, method: UpdateQueuesMembersMethodEnum? = null, options: RequestOptions? = null): ApiV2010AccountQueueMember {
-        return updateQueuesMembersWithRawResponse(clientConfig, accountSid, queueSid, callSid, url, method, options).data
+    fun updateQueuesMembers(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        queueSid: String,
+        callSid: String,
+        url: String,
+        method: UpdateQueuesMembersMethodEnum? = null,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountQueueMember {
+        return updateQueuesMembersWithRawResponse(
+                clientConfig,
+                accountSid,
+                queueSid,
+                callSid,
+                url,
+                method,
+                options,
+            )
+            .data
     }
 
-
-    /** [updateQueuesMembers], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun updateQueuesMembersWithRawResponse(clientConfig: ClientConfig, accountSid: String, queueSid: String, callSid: String, url: String, method: UpdateQueuesMembersMethodEnum? = null, options: RequestOptions? = null): SdkResponse<ApiV2010AccountQueueMember> {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    /**
+     * [updateQueuesMembers], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun updateQueuesMembersWithRawResponse(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        queueSid: String,
+        callSid: String,
+        url: String,
+        method: UpdateQueuesMembersMethodEnum? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010AccountQueueMember> {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("QueueSid", queueSid, Validation.LengthOpts(min = 34, max = 34))
@@ -86,55 +152,105 @@ data class ListQueuesMembersResponse(
 
         Validation.validateUri("Url", url)
 
-        return SdkClient.request<ApiV2010AccountQueueMember>(SdkClient.RequestSpec("POST", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Queues/${SdkClient.encodePathSegment(queueSid)}/Members/${SdkClient.encodePathSegment(callSid)}.json", config = clientConfig, body = SdkClient.bodyMap("Url" to (url), "Method" to (SdkClient.omitIfNull(method))), contentType = "application/x-www-form-urlencoded", operationId = "updateQueuesMembers", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+        return SdkClient.request<ApiV2010AccountQueueMember>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Queues/${SdkClient.encodePathSegment(queueSid)}/Members/${SdkClient.encodePathSegment(callSid)}.json",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap("Url" to (url), "Method" to (SdkClient.omitIfNull(method))),
+                contentType = "application/x-www-form-urlencoded",
+                operationId = "updateQueuesMembers",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 
-
-
-
-
-
     /**
-     * Lists members of a specific queue. Use the page parameters to navigate the results and review each member's call, position, and wait time.
+     * Lists members of a specific queue. Use the page parameters to navigate the results and review
+     * each member's call, position, and wait time.
      *
      * Retrieve the members of the queue
      *
-     * @param accountSid The SID of the Account that created the Member resource(s)
-     *   to read.
+     * @param accountSid The SID of the Account that created the Member resource(s) to read.
      * @param queueSid The SID of the Queue in which to find the members
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listQueuesMembers(clientConfig: ClientConfig, accountSid: String, queueSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): ListQueuesMembersResponse {
-        return listQueuesMembersWithRawResponse(clientConfig, accountSid, queueSid, pageSize, page, pageToken, options).data
+    fun listQueuesMembers(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        queueSid: String,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): ListQueuesMembersResponse {
+        return listQueuesMembersWithRawResponse(
+                clientConfig,
+                accountSid,
+                queueSid,
+                pageSize,
+                page,
+                pageToken,
+                options,
+            )
+            .data
     }
 
-
-    /** [listQueuesMembers], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun listQueuesMembersWithRawResponse(clientConfig: ClientConfig, accountSid: String, queueSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): SdkResponse<ListQueuesMembersResponse> {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    /**
+     * [listQueuesMembers], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun listQueuesMembersWithRawResponse(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        queueSid: String,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<ListQueuesMembersResponse> {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
         Validation.validateLength("QueueSid", queueSid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("QueueSid", queueSid, "^QU[0-9a-fA-F]{32}$")
 
         if (pageSize != null) {
-            Validation.validateRange("PageSize", pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (page != null) {
             Validation.validateRange("Page", page, Validation.RangeOpts(min = 0.0))
-}
+        }
 
-        return SdkClient.request<ListQueuesMembersResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Queues/${SdkClient.encodePathSegment(queueSid)}/Members.json", config = clientConfig, query = mapOf("PageSize" to SdkClient.queryValue(pageSize, "form", true), "Page" to SdkClient.queryValue(page, "form", true), "PageToken" to SdkClient.queryValue(pageToken, "form", true)), operationId = "listQueuesMembers", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+        return SdkClient.request<ListQueuesMembersResponse>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Queues/${SdkClient.encodePathSegment(queueSid)}/Members.json",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "PageSize" to SdkClient.queryValue(pageSize, "form", true),
+                        "Page" to SdkClient.queryValue(page, "form", true),
+                        "PageToken" to SdkClient.queryValue(pageToken, "form", true),
+                    ),
+                operationId = "listQueuesMembers",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
-
-
-
-
-
-
-
 }

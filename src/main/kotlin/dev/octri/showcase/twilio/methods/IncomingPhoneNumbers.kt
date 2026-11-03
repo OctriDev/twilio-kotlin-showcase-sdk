@@ -46,53 +46,75 @@ import dev.octri.showcase.twilio.UpdateIncomingPhoneNumbersVoiceFallbackMethodEn
 import dev.octri.showcase.twilio.UpdateIncomingPhoneNumbersVoiceMethodEnum
 
 object IncomingPhoneNumbers {
-data class ListIncomingPhoneNumbersResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("incoming_phone_numbers") val incomingPhoneNumbers: List<ApiV2010AccountIncomingPhoneNumber>? = null
-) : SdkResource()
+    data class ListIncomingPhoneNumbersResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("incoming_phone_numbers")
+        val incomingPhoneNumbers: List<ApiV2010AccountIncomingPhoneNumber>? = null,
+    ) : SdkResource()
 
-data class ListIncomingPhoneNumbersLocalResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("incoming_phone_numbers") val incomingPhoneNumbers: List<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocal>? = null
-) : SdkResource()
+    data class ListIncomingPhoneNumbersLocalResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("incoming_phone_numbers")
+        val incomingPhoneNumbers:
+            List<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocal>? =
+            null,
+    ) : SdkResource()
 
-data class ListIncomingPhoneNumbersMobileResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("incoming_phone_numbers") val incomingPhoneNumbers: List<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobile>? = null
-) : SdkResource()
+    data class ListIncomingPhoneNumbersMobileResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("incoming_phone_numbers")
+        val incomingPhoneNumbers:
+            List<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobile>? =
+            null,
+    ) : SdkResource()
 
-data class ListIncomingPhoneNumbersTollFreeResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("incoming_phone_numbers") val incomingPhoneNumbers: List<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberTollFree>? = null
-) : SdkResource()
+    data class ListIncomingPhoneNumbersTollFreeResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("incoming_phone_numbers")
+        val incomingPhoneNumbers:
+            List<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberTollFree>? =
+            null,
+    ) : SdkResource()
 
     /** Parameters for [updateIncomingPhoneNumbers]. */
     data class UpdateIncomingPhoneNumbersRequest(
@@ -120,7 +142,7 @@ data class ListIncomingPhoneNumbersTollFreeResponse(
         val voiceReceiveMode: IncomingPhoneNumberEnumVoiceReceiveMode? = null,
         val identitySid: String? = null,
         val addressSid: String? = null,
-        val bundleSid: String? = null
+        val bundleSid: String? = null,
     )
 
     /** Parameters for [listIncomingPhoneNumbers]. */
@@ -132,7 +154,7 @@ data class ListIncomingPhoneNumbersTollFreeResponse(
         val origin: String? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null
+        val pageToken: String? = null,
     )
 
     /** Parameters for [createIncomingPhoneNumbers]. */
@@ -161,7 +183,7 @@ data class ListIncomingPhoneNumbersTollFreeResponse(
         val voiceReceiveMode: IncomingPhoneNumberEnumVoiceReceiveMode? = null,
         val bundleSid: String? = null,
         val phoneNumber: String? = null,
-        val areaCode: String? = null
+        val areaCode: String? = null,
     )
 
     /** Parameters for [listIncomingPhoneNumbersLocal]. */
@@ -173,7 +195,7 @@ data class ListIncomingPhoneNumbersTollFreeResponse(
         val origin: String? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null
+        val pageToken: String? = null,
     )
 
     /** Parameters for [createIncomingPhoneNumbersLocal]. */
@@ -201,7 +223,7 @@ data class ListIncomingPhoneNumbersTollFreeResponse(
         val emergencyAddressSid: String? = null,
         val trunkSid: String? = null,
         val voiceReceiveMode: IncomingPhoneNumberLocalEnumVoiceReceiveMode? = null,
-        val bundleSid: String? = null
+        val bundleSid: String? = null,
     )
 
     /** Parameters for [listIncomingPhoneNumbersMobile]. */
@@ -213,7 +235,7 @@ data class ListIncomingPhoneNumbersTollFreeResponse(
         val origin: String? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null
+        val pageToken: String? = null,
     )
 
     /** Parameters for [createIncomingPhoneNumbersMobile]. */
@@ -241,7 +263,7 @@ data class ListIncomingPhoneNumbersTollFreeResponse(
         val emergencyAddressSid: String? = null,
         val trunkSid: String? = null,
         val voiceReceiveMode: IncomingPhoneNumberMobileEnumVoiceReceiveMode? = null,
-        val bundleSid: String? = null
+        val bundleSid: String? = null,
     )
 
     /** Parameters for [listIncomingPhoneNumbersTollFree]. */
@@ -253,7 +275,7 @@ data class ListIncomingPhoneNumbersTollFreeResponse(
         val origin: String? = null,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null
+        val pageToken: String? = null,
     )
 
     /** Parameters for [createIncomingPhoneNumbersTollFree]. */
@@ -268,7 +290,8 @@ data class ListIncomingPhoneNumbersTollFreeResponse(
         val smsMethod: CreateIncomingPhoneNumbersTollFreeSmsMethodEnum? = null,
         val smsUrl: String? = null,
         val statusCallback: String? = null,
-        val statusCallbackMethod: CreateIncomingPhoneNumbersTollFreeStatusCallbackMethodEnum? = null,
+        val statusCallbackMethod: CreateIncomingPhoneNumbersTollFreeStatusCallbackMethodEnum? =
+            null,
         val voiceApplicationSid: String? = null,
         val voiceCallerIdLookup: Boolean? = null,
         val voiceFallbackMethod: CreateIncomingPhoneNumbersTollFreeVoiceFallbackMethodEnum? = null,
@@ -281,230 +304,384 @@ data class ListIncomingPhoneNumbersTollFreeResponse(
         val emergencyAddressSid: String? = null,
         val trunkSid: String? = null,
         val voiceReceiveMode: IncomingPhoneNumberTollFreeEnumVoiceReceiveMode? = null,
-        val bundleSid: String? = null
+        val bundleSid: String? = null,
     )
 
     /**
-     * Updates the configuration of an incoming phone number. Supply only the settings you want to change, such as the SMS or voice handlers and their callback methods. An application SID takes precedence over the corresponding URL settings.
+     * Updates the configuration of an incoming phone number. Supply only the settings you want to
+     * change, such as the SMS or voice handlers and their callback methods. An application SID
+     * takes precedence over the corresponding URL settings.
      */
-    fun updateIncomingPhoneNumbers(clientConfig: ClientConfig, request: UpdateIncomingPhoneNumbersRequest, options: RequestOptions? = null): ApiV2010AccountIncomingPhoneNumber =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersUpdateIncomingPhoneNumbersOperation.updateIncomingPhoneNumbers(
-            clientConfig,
-            request,
-            options,
-        )
+    fun updateIncomingPhoneNumbers(
+        clientConfig: ClientConfig,
+        request: UpdateIncomingPhoneNumbersRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountIncomingPhoneNumber =
+        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersUpdateIncomingPhoneNumbersOperation
+            .updateIncomingPhoneNumbers(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Updates the configuration of an incoming phone number. Supply only the settings you want to change, such as the SMS or voice handlers and their callback methods. An application SID takes precedence over the corresponding URL settings.
+     * Updates the configuration of an incoming phone number. Supply only the settings you want to
+     * change, such as the SMS or voice handlers and their callback methods. An application SID
+     * takes precedence over the corresponding URL settings.
      */
-    fun updateIncomingPhoneNumbersWithRawResponse(clientConfig: ClientConfig, request: UpdateIncomingPhoneNumbersRequest, options: RequestOptions? = null): SdkResponse<ApiV2010AccountIncomingPhoneNumber> =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersUpdateIncomingPhoneNumbersOperation.updateIncomingPhoneNumbersWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun updateIncomingPhoneNumbersWithRawResponse(
+        clientConfig: ClientConfig,
+        request: UpdateIncomingPhoneNumbersRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010AccountIncomingPhoneNumber> =
+        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersUpdateIncomingPhoneNumbersOperation
+            .updateIncomingPhoneNumbersWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Retrieves an incoming phone number belonging to an account. Use the account SID and the phone number's SID to identify the resource.
+     * Retrieves an incoming phone number belonging to an account. Use the account SID and the phone
+     * number's SID to identify the resource.
      */
-    fun fetchIncomingPhoneNumbers(clientConfig: ClientConfig, accountSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountIncomingPhoneNumber =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersFetchIncomingPhoneNumbersOperation.fetchIncomingPhoneNumbers(
-            clientConfig,
-            accountSid,
-            sid,
-            options,
-        )
+    fun fetchIncomingPhoneNumbers(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountIncomingPhoneNumber =
+        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersFetchIncomingPhoneNumbersOperation
+            .fetchIncomingPhoneNumbers(
+                clientConfig,
+                accountSid,
+                sid,
+                options,
+            )
 
     /**
-     * Retrieves an incoming phone number belonging to an account. Use the account SID and the phone number's SID to identify the resource.
+     * Retrieves an incoming phone number belonging to an account. Use the account SID and the phone
+     * number's SID to identify the resource.
      */
-    fun fetchIncomingPhoneNumbersWithRawResponse(clientConfig: ClientConfig, accountSid: String, sid: String, options: RequestOptions? = null): SdkResponse<ApiV2010AccountIncomingPhoneNumber> =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersFetchIncomingPhoneNumbersOperation.fetchIncomingPhoneNumbersWithRawResponse(
-            clientConfig,
-            accountSid,
-            sid,
-            options,
-        )
+    fun fetchIncomingPhoneNumbersWithRawResponse(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010AccountIncomingPhoneNumber> =
+        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersFetchIncomingPhoneNumbersOperation
+            .fetchIncomingPhoneNumbersWithRawResponse(
+                clientConfig,
+                accountSid,
+                sid,
+                options,
+            )
+
+    /** Delete a phone-numbers belonging to the account used to make the request. */
+    fun deleteIncomingPhoneNumbers(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersDeleteIncomingPhoneNumbersOperation
+            .deleteIncomingPhoneNumbers(
+                clientConfig,
+                accountSid,
+                sid,
+                options,
+            )
+
+    /** Delete a phone-numbers belonging to the account used to make the request. */
+    fun deleteIncomingPhoneNumbersWithRawResponse(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersDeleteIncomingPhoneNumbersOperation
+            .deleteIncomingPhoneNumbersWithRawResponse(
+                clientConfig,
+                accountSid,
+                sid,
+                options,
+            )
 
     /**
-     * Delete a phone-numbers belonging to the account used to make the request.
+     * Lists incoming phone numbers belonging to an account. Filter the results by beta status,
+     * friendly name, phone number, or origin, and use the page parameters to navigate the list.
      */
-    fun deleteIncomingPhoneNumbers(clientConfig: ClientConfig, accountSid: String, sid: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersDeleteIncomingPhoneNumbersOperation.deleteIncomingPhoneNumbers(
-            clientConfig,
-            accountSid,
-            sid,
-            options,
-        )
+    fun listIncomingPhoneNumbers(
+        clientConfig: ClientConfig,
+        request: ListIncomingPhoneNumbersRequest,
+        options: RequestOptions? = null,
+    ): ListIncomingPhoneNumbersResponse =
+        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersListIncomingPhoneNumbersOperation
+            .listIncomingPhoneNumbers(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Delete a phone-numbers belonging to the account used to make the request.
+     * Lists incoming phone numbers belonging to an account. Filter the results by beta status,
+     * friendly name, phone number, or origin, and use the page parameters to navigate the list.
      */
-    fun deleteIncomingPhoneNumbersWithRawResponse(clientConfig: ClientConfig, accountSid: String, sid: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersDeleteIncomingPhoneNumbersOperation.deleteIncomingPhoneNumbersWithRawResponse(
-            clientConfig,
-            accountSid,
-            sid,
-            options,
-        )
+    fun listIncomingPhoneNumbersWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ListIncomingPhoneNumbersRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ListIncomingPhoneNumbersResponse> =
+        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersListIncomingPhoneNumbersOperation
+            .listIncomingPhoneNumbersWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists incoming phone numbers belonging to an account. Filter the results by beta status, friendly name, phone number, or origin, and use the page parameters to navigate the list.
+     * Creates a new incoming phone number by purchasing it for an account. Configure optional SMS
+     * and voice handling settings in the form-encoded body. An application SID takes precedence
+     * over the corresponding URL settings.
      */
-    fun listIncomingPhoneNumbers(clientConfig: ClientConfig, request: ListIncomingPhoneNumbersRequest, options: RequestOptions? = null): ListIncomingPhoneNumbersResponse =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersListIncomingPhoneNumbersOperation.listIncomingPhoneNumbers(
-            clientConfig,
-            request,
-            options,
-        )
+    fun createIncomingPhoneNumbers(
+        clientConfig: ClientConfig,
+        request: CreateIncomingPhoneNumbersRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountIncomingPhoneNumber =
+        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersCreateIncomingPhoneNumbersOperation
+            .createIncomingPhoneNumbers(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists incoming phone numbers belonging to an account. Filter the results by beta status, friendly name, phone number, or origin, and use the page parameters to navigate the list.
+     * Creates a new incoming phone number by purchasing it for an account. Configure optional SMS
+     * and voice handling settings in the form-encoded body. An application SID takes precedence
+     * over the corresponding URL settings.
      */
-    fun listIncomingPhoneNumbersWithRawResponse(clientConfig: ClientConfig, request: ListIncomingPhoneNumbersRequest, options: RequestOptions? = null): SdkResponse<ListIncomingPhoneNumbersResponse> =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersListIncomingPhoneNumbersOperation.listIncomingPhoneNumbersWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun createIncomingPhoneNumbersWithRawResponse(
+        clientConfig: ClientConfig,
+        request: CreateIncomingPhoneNumbersRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010AccountIncomingPhoneNumber> =
+        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersCreateIncomingPhoneNumbersOperation
+            .createIncomingPhoneNumbersWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Creates a new incoming phone number by purchasing it for an account. Configure optional SMS and voice handling settings in the form-encoded body. An application SID takes precedence over the corresponding URL settings.
+     * Lists local incoming phone numbers available to an account. Use the filters to narrow results
+     * by name, phone number, or origin, and the paging parameters to select a page of results.
      */
-    fun createIncomingPhoneNumbers(clientConfig: ClientConfig, request: CreateIncomingPhoneNumbersRequest, options: RequestOptions? = null): ApiV2010AccountIncomingPhoneNumber =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersCreateIncomingPhoneNumbersOperation.createIncomingPhoneNumbers(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listIncomingPhoneNumbersLocal(
+        clientConfig: ClientConfig,
+        request: ListIncomingPhoneNumbersLocalRequest,
+        options: RequestOptions? = null,
+    ): ListIncomingPhoneNumbersLocalResponse =
+        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersListIncomingPhoneNumbersLocalOperation
+            .listIncomingPhoneNumbersLocal(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Creates a new incoming phone number by purchasing it for an account. Configure optional SMS and voice handling settings in the form-encoded body. An application SID takes precedence over the corresponding URL settings.
+     * Lists local incoming phone numbers available to an account. Use the filters to narrow results
+     * by name, phone number, or origin, and the paging parameters to select a page of results.
      */
-    fun createIncomingPhoneNumbersWithRawResponse(clientConfig: ClientConfig, request: CreateIncomingPhoneNumbersRequest, options: RequestOptions? = null): SdkResponse<ApiV2010AccountIncomingPhoneNumber> =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersCreateIncomingPhoneNumbersOperation.createIncomingPhoneNumbersWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listIncomingPhoneNumbersLocalWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ListIncomingPhoneNumbersLocalRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ListIncomingPhoneNumbersLocalResponse> =
+        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersListIncomingPhoneNumbersLocalOperation
+            .listIncomingPhoneNumbersLocalWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists local incoming phone numbers available to an account. Use the filters to narrow results by name, phone number, or origin, and the paging parameters to select a page of results.
+     * Creates a local incoming phone number for an account. Supply `PhoneNumber` in E.164 format
+     * and configure optional voice, SMS, and callback settings as needed. The response includes the
+     * created phone number resource and its SID.
      */
-    fun listIncomingPhoneNumbersLocal(clientConfig: ClientConfig, request: ListIncomingPhoneNumbersLocalRequest, options: RequestOptions? = null): ListIncomingPhoneNumbersLocalResponse =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersListIncomingPhoneNumbersLocalOperation.listIncomingPhoneNumbersLocal(
-            clientConfig,
-            request,
-            options,
-        )
+    fun createIncomingPhoneNumbersLocal(
+        clientConfig: ClientConfig,
+        request: CreateIncomingPhoneNumbersLocalRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocal =
+        dev.octri.showcase.twilio.methods
+            .IncomingPhoneNumbersCreateIncomingPhoneNumbersLocalOperation
+            .createIncomingPhoneNumbersLocal(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists local incoming phone numbers available to an account. Use the filters to narrow results by name, phone number, or origin, and the paging parameters to select a page of results.
+     * Creates a local incoming phone number for an account. Supply `PhoneNumber` in E.164 format
+     * and configure optional voice, SMS, and callback settings as needed. The response includes the
+     * created phone number resource and its SID.
      */
-    fun listIncomingPhoneNumbersLocalWithRawResponse(clientConfig: ClientConfig, request: ListIncomingPhoneNumbersLocalRequest, options: RequestOptions? = null): SdkResponse<ListIncomingPhoneNumbersLocalResponse> =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersListIncomingPhoneNumbersLocalOperation.listIncomingPhoneNumbersLocalWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun createIncomingPhoneNumbersLocalWithRawResponse(
+        clientConfig: ClientConfig,
+        request: CreateIncomingPhoneNumbersLocalRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocal> =
+        dev.octri.showcase.twilio.methods
+            .IncomingPhoneNumbersCreateIncomingPhoneNumbersLocalOperation
+            .createIncomingPhoneNumbersLocalWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Creates a local incoming phone number for an account. Supply `PhoneNumber` in E.164 format and configure optional voice, SMS, and callback settings as needed. The response includes the created phone number resource and its SID.
+     * Lists mobile incoming phone numbers available to an account. Use the filters to narrow
+     * results by name, phone number, or origin, and the paging parameters to select a page of
+     * results.
      */
-    fun createIncomingPhoneNumbersLocal(clientConfig: ClientConfig, request: CreateIncomingPhoneNumbersLocalRequest, options: RequestOptions? = null): ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocal =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersCreateIncomingPhoneNumbersLocalOperation.createIncomingPhoneNumbersLocal(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listIncomingPhoneNumbersMobile(
+        clientConfig: ClientConfig,
+        request: ListIncomingPhoneNumbersMobileRequest,
+        options: RequestOptions? = null,
+    ): ListIncomingPhoneNumbersMobileResponse =
+        dev.octri.showcase.twilio.methods
+            .IncomingPhoneNumbersListIncomingPhoneNumbersMobileOperation
+            .listIncomingPhoneNumbersMobile(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Creates a local incoming phone number for an account. Supply `PhoneNumber` in E.164 format and configure optional voice, SMS, and callback settings as needed. The response includes the created phone number resource and its SID.
+     * Lists mobile incoming phone numbers available to an account. Use the filters to narrow
+     * results by name, phone number, or origin, and the paging parameters to select a page of
+     * results.
      */
-    fun createIncomingPhoneNumbersLocalWithRawResponse(clientConfig: ClientConfig, request: CreateIncomingPhoneNumbersLocalRequest, options: RequestOptions? = null): SdkResponse<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberLocal> =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersCreateIncomingPhoneNumbersLocalOperation.createIncomingPhoneNumbersLocalWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listIncomingPhoneNumbersMobileWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ListIncomingPhoneNumbersMobileRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ListIncomingPhoneNumbersMobileResponse> =
+        dev.octri.showcase.twilio.methods
+            .IncomingPhoneNumbersListIncomingPhoneNumbersMobileOperation
+            .listIncomingPhoneNumbersMobileWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists mobile incoming phone numbers available to an account. Use the filters to narrow results by name, phone number, or origin, and the paging parameters to select a page of results.
+     * Creates a mobile incoming phone number for an account. Supply `PhoneNumber` in E.164 format
+     * and configure optional voice, SMS, and callback settings as needed. The response includes the
+     * created phone number resource and its SID.
      */
-    fun listIncomingPhoneNumbersMobile(clientConfig: ClientConfig, request: ListIncomingPhoneNumbersMobileRequest, options: RequestOptions? = null): ListIncomingPhoneNumbersMobileResponse =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersListIncomingPhoneNumbersMobileOperation.listIncomingPhoneNumbersMobile(
-            clientConfig,
-            request,
-            options,
-        )
+    fun createIncomingPhoneNumbersMobile(
+        clientConfig: ClientConfig,
+        request: CreateIncomingPhoneNumbersMobileRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobile =
+        dev.octri.showcase.twilio.methods
+            .IncomingPhoneNumbersCreateIncomingPhoneNumbersMobileOperation
+            .createIncomingPhoneNumbersMobile(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists mobile incoming phone numbers available to an account. Use the filters to narrow results by name, phone number, or origin, and the paging parameters to select a page of results.
+     * Creates a mobile incoming phone number for an account. Supply `PhoneNumber` in E.164 format
+     * and configure optional voice, SMS, and callback settings as needed. The response includes the
+     * created phone number resource and its SID.
      */
-    fun listIncomingPhoneNumbersMobileWithRawResponse(clientConfig: ClientConfig, request: ListIncomingPhoneNumbersMobileRequest, options: RequestOptions? = null): SdkResponse<ListIncomingPhoneNumbersMobileResponse> =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersListIncomingPhoneNumbersMobileOperation.listIncomingPhoneNumbersMobileWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun createIncomingPhoneNumbersMobileWithRawResponse(
+        clientConfig: ClientConfig,
+        request: CreateIncomingPhoneNumbersMobileRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobile> =
+        dev.octri.showcase.twilio.methods
+            .IncomingPhoneNumbersCreateIncomingPhoneNumbersMobileOperation
+            .createIncomingPhoneNumbersMobileWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Creates a mobile incoming phone number for an account. Supply `PhoneNumber` in E.164 format and configure optional voice, SMS, and callback settings as needed. The response includes the created phone number resource and its SID.
+     * Lists toll-free incoming phone numbers available to an account. Use the filters to narrow
+     * results by name, phone number, or origin, and the paging parameters to select a page of
+     * results.
      */
-    fun createIncomingPhoneNumbersMobile(clientConfig: ClientConfig, request: CreateIncomingPhoneNumbersMobileRequest, options: RequestOptions? = null): ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobile =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersCreateIncomingPhoneNumbersMobileOperation.createIncomingPhoneNumbersMobile(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listIncomingPhoneNumbersTollFree(
+        clientConfig: ClientConfig,
+        request: ListIncomingPhoneNumbersTollFreeRequest,
+        options: RequestOptions? = null,
+    ): ListIncomingPhoneNumbersTollFreeResponse =
+        dev.octri.showcase.twilio.methods
+            .IncomingPhoneNumbersListIncomingPhoneNumbersTollFreeOperation
+            .listIncomingPhoneNumbersTollFree(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Creates a mobile incoming phone number for an account. Supply `PhoneNumber` in E.164 format and configure optional voice, SMS, and callback settings as needed. The response includes the created phone number resource and its SID.
+     * Lists toll-free incoming phone numbers available to an account. Use the filters to narrow
+     * results by name, phone number, or origin, and the paging parameters to select a page of
+     * results.
      */
-    fun createIncomingPhoneNumbersMobileWithRawResponse(clientConfig: ClientConfig, request: CreateIncomingPhoneNumbersMobileRequest, options: RequestOptions? = null): SdkResponse<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberMobile> =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersCreateIncomingPhoneNumbersMobileOperation.createIncomingPhoneNumbersMobileWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listIncomingPhoneNumbersTollFreeWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ListIncomingPhoneNumbersTollFreeRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ListIncomingPhoneNumbersTollFreeResponse> =
+        dev.octri.showcase.twilio.methods
+            .IncomingPhoneNumbersListIncomingPhoneNumbersTollFreeOperation
+            .listIncomingPhoneNumbersTollFreeWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists toll-free incoming phone numbers available to an account. Use the filters to narrow results by name, phone number, or origin, and the paging parameters to select a page of results.
+     * Creates a toll-free incoming phone number for an account. Supply `PhoneNumber` in E.164
+     * format and configure optional voice, SMS, and callback settings as needed. The response
+     * includes the created phone number resource and its SID.
      */
-    fun listIncomingPhoneNumbersTollFree(clientConfig: ClientConfig, request: ListIncomingPhoneNumbersTollFreeRequest, options: RequestOptions? = null): ListIncomingPhoneNumbersTollFreeResponse =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersListIncomingPhoneNumbersTollFreeOperation.listIncomingPhoneNumbersTollFree(
-            clientConfig,
-            request,
-            options,
-        )
+    fun createIncomingPhoneNumbersTollFree(
+        clientConfig: ClientConfig,
+        request: CreateIncomingPhoneNumbersTollFreeRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberTollFree =
+        dev.octri.showcase.twilio.methods
+            .IncomingPhoneNumbersCreateIncomingPhoneNumbersTollFreeOperation
+            .createIncomingPhoneNumbersTollFree(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists toll-free incoming phone numbers available to an account. Use the filters to narrow results by name, phone number, or origin, and the paging parameters to select a page of results.
+     * Creates a toll-free incoming phone number for an account. Supply `PhoneNumber` in E.164
+     * format and configure optional voice, SMS, and callback settings as needed. The response
+     * includes the created phone number resource and its SID.
      */
-    fun listIncomingPhoneNumbersTollFreeWithRawResponse(clientConfig: ClientConfig, request: ListIncomingPhoneNumbersTollFreeRequest, options: RequestOptions? = null): SdkResponse<ListIncomingPhoneNumbersTollFreeResponse> =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersListIncomingPhoneNumbersTollFreeOperation.listIncomingPhoneNumbersTollFreeWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
-
-    /**
-     * Creates a toll-free incoming phone number for an account. Supply `PhoneNumber` in E.164 format and configure optional voice, SMS, and callback settings as needed. The response includes the created phone number resource and its SID.
-     */
-    fun createIncomingPhoneNumbersTollFree(clientConfig: ClientConfig, request: CreateIncomingPhoneNumbersTollFreeRequest, options: RequestOptions? = null): ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberTollFree =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersCreateIncomingPhoneNumbersTollFreeOperation.createIncomingPhoneNumbersTollFree(
-            clientConfig,
-            request,
-            options,
-        )
-
-    /**
-     * Creates a toll-free incoming phone number for an account. Supply `PhoneNumber` in E.164 format and configure optional voice, SMS, and callback settings as needed. The response includes the created phone number resource and its SID.
-     */
-    fun createIncomingPhoneNumbersTollFreeWithRawResponse(clientConfig: ClientConfig, request: CreateIncomingPhoneNumbersTollFreeRequest, options: RequestOptions? = null): SdkResponse<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberTollFree> =
-        dev.octri.showcase.twilio.methods.IncomingPhoneNumbersCreateIncomingPhoneNumbersTollFreeOperation.createIncomingPhoneNumbersTollFreeWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun createIncomingPhoneNumbersTollFreeWithRawResponse(
+        clientConfig: ClientConfig,
+        request: CreateIncomingPhoneNumbersTollFreeRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberTollFree> =
+        dev.octri.showcase.twilio.methods
+            .IncomingPhoneNumbersCreateIncomingPhoneNumbersTollFreeOperation
+            .createIncomingPhoneNumbersTollFreeWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 }

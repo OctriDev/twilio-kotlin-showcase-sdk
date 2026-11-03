@@ -3,76 +3,188 @@
 
 package dev.octri.showcase.twilio
 
-
 class SipDomainsCredentialListMappingsNamespace(private val clientConfig: ClientConfig) {
-    /**
-     * Create a CredentialListMapping resource for an account.
-     */
-    fun create(accountSid: String, domainSid: String, credentialListSid: String, options: RequestOptions? = null): ApiV2010AccountSipSipDomainSipCredentialListMapping {
-        return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings.createSipDomainsCredentialListMappings(clientConfig, accountSid, domainSid, credentialListSid, options)
+    /** Create a CredentialListMapping resource for an account. */
+    fun create(
+        accountSid: String,
+        domainSid: String,
+        credentialListSid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountSipSipDomainSipCredentialListMapping {
+        return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings
+            .createSipDomainsCredentialListMappings(
+                clientConfig,
+                accountSid,
+                domainSid,
+                credentialListSid,
+                options,
+            )
     }
 
     /**
-     * Lists credential list mappings for a specified SIP domain and account. Use `PageSize` to control the number of resources on a page and `PageToken` to request a page identified by a token from the API. The response includes page metadata and a `credential_list_mappings` array.
+     * Lists credential list mappings for a specified SIP domain and account. Use `PageSize` to
+     * control the number of resources on a page and `PageToken` to request a page identified by a
+     * token from the API. The response includes page metadata and a `credential_list_mappings`
+     * array.
      *
      * Read multiple CredentialListMapping resources from an account.
      */
-    fun list(accountSid: String, domainSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings.ListSipDomainsCredentialListMappingsResponse {
-        return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings.listSipDomainsCredentialListMappings(clientConfig, accountSid, domainSid, pageSize, page, pageToken, options)
+    fun list(
+        accountSid: String,
+        domainSid: String,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings.ListSipDomainsCredentialListMappingsResponse {
+        return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings
+            .listSipDomainsCredentialListMappings(
+                clientConfig,
+                accountSid,
+                domainSid,
+                pageSize,
+                page,
+                pageToken,
+                options,
+            )
     }
 
     /**
-     * Retrieves a credential list mapping for a SIP domain in an account. Use the account, domain, and mapping identifiers to select the resource; each identifier has a required 34-character format.
+     * Retrieves a credential list mapping for a SIP domain in an account. Use the account, domain,
+     * and mapping identifiers to select the resource; each identifier has a required 34-character
+     * format.
      *
      * Fetch a single CredentialListMapping resource from an account.
      */
-    fun fetch(accountSid: String, domainSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountSipSipDomainSipCredentialListMapping {
-        return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings.fetchSipDomainsCredentialListMappings(clientConfig, accountSid, domainSid, sid, options)
+    fun fetch(
+        accountSid: String,
+        domainSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountSipSipDomainSipCredentialListMapping {
+        return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings
+            .fetchSipDomainsCredentialListMappings(
+                clientConfig,
+                accountSid,
+                domainSid,
+                sid,
+                options,
+            )
+    }
+
+    /** Delete a CredentialListMapping resource from an account. */
+    fun delete(
+        accountSid: String,
+        domainSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings
+            .deleteSipDomainsCredentialListMappings(
+                clientConfig,
+                accountSid,
+                domainSid,
+                sid,
+                options,
+            )
     }
 
     /**
-     * Delete a CredentialListMapping resource from an account.
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
      */
-    fun delete(accountSid: String, domainSid: String, sid: String, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings.deleteSipDomainsCredentialListMappings(clientConfig, accountSid, domainSid, sid, options)
-    }
-
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [SipDomainsCredentialListMappingsNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [SipDomainsCredentialListMappingsNamespace], returning the [SdkResponse]
+     * envelope around each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
-        /**
-         * Create a CredentialListMapping resource for an account.
-         */
-        fun create(accountSid: String, domainSid: String, credentialListSid: String, options: RequestOptions? = null): SdkResponse<ApiV2010AccountSipSipDomainSipCredentialListMapping> {
-            return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings.createSipDomainsCredentialListMappingsWithRawResponse(clientConfig, accountSid, domainSid, credentialListSid, options)
+        /** Create a CredentialListMapping resource for an account. */
+        fun create(
+            accountSid: String,
+            domainSid: String,
+            credentialListSid: String,
+            options: RequestOptions? = null,
+        ): SdkResponse<ApiV2010AccountSipSipDomainSipCredentialListMapping> {
+            return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings
+                .createSipDomainsCredentialListMappingsWithRawResponse(
+                    clientConfig,
+                    accountSid,
+                    domainSid,
+                    credentialListSid,
+                    options,
+                )
         }
 
         /**
-         * Lists credential list mappings for a specified SIP domain and account. Use `PageSize` to control the number of resources on a page and `PageToken` to request a page identified by a token from the API. The response includes page metadata and a `credential_list_mappings` array.
+         * Lists credential list mappings for a specified SIP domain and account. Use `PageSize` to
+         * control the number of resources on a page and `PageToken` to request a page identified by
+         * a token from the API. The response includes page metadata and a
+         * `credential_list_mappings` array.
          *
          * Read multiple CredentialListMapping resources from an account.
          */
-        fun list(accountSid: String, domainSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): SdkResponse<dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings.ListSipDomainsCredentialListMappingsResponse> {
-            return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings.listSipDomainsCredentialListMappingsWithRawResponse(clientConfig, accountSid, domainSid, pageSize, page, pageToken, options)
+        fun list(
+            accountSid: String,
+            domainSid: String,
+            pageSize: Long? = null,
+            page: Long? = null,
+            pageToken: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<
+            dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings.ListSipDomainsCredentialListMappingsResponse
+        > {
+            return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings
+                .listSipDomainsCredentialListMappingsWithRawResponse(
+                    clientConfig,
+                    accountSid,
+                    domainSid,
+                    pageSize,
+                    page,
+                    pageToken,
+                    options,
+                )
         }
 
         /**
-         * Retrieves a credential list mapping for a SIP domain in an account. Use the account, domain, and mapping identifiers to select the resource; each identifier has a required 34-character format.
+         * Retrieves a credential list mapping for a SIP domain in an account. Use the account,
+         * domain, and mapping identifiers to select the resource; each identifier has a required
+         * 34-character format.
          *
          * Fetch a single CredentialListMapping resource from an account.
          */
-        fun fetch(accountSid: String, domainSid: String, sid: String, options: RequestOptions? = null): SdkResponse<ApiV2010AccountSipSipDomainSipCredentialListMapping> {
-            return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings.fetchSipDomainsCredentialListMappingsWithRawResponse(clientConfig, accountSid, domainSid, sid, options)
+        fun fetch(
+            accountSid: String,
+            domainSid: String,
+            sid: String,
+            options: RequestOptions? = null,
+        ): SdkResponse<ApiV2010AccountSipSipDomainSipCredentialListMapping> {
+            return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings
+                .fetchSipDomainsCredentialListMappingsWithRawResponse(
+                    clientConfig,
+                    accountSid,
+                    domainSid,
+                    sid,
+                    options,
+                )
         }
 
-        /**
-         * Delete a CredentialListMapping resource from an account.
-         */
-        fun delete(accountSid: String, domainSid: String, sid: String, options: RequestOptions? = null): SdkResponse<Unit> {
-            return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings.deleteSipDomainsCredentialListMappingsWithRawResponse(clientConfig, accountSid, domainSid, sid, options)
+        /** Delete a CredentialListMapping resource from an account. */
+        fun delete(
+            accountSid: String,
+            domainSid: String,
+            sid: String,
+            options: RequestOptions? = null,
+        ): SdkResponse<Unit> {
+            return dev.octri.showcase.twilio.methods.sip.domains.SipDomainsCredentialListMappings
+                .deleteSipDomainsCredentialListMappingsWithRawResponse(
+                    clientConfig,
+                    accountSid,
+                    domainSid,
+                    sid,
+                    options,
+                )
         }
-
     }
 }

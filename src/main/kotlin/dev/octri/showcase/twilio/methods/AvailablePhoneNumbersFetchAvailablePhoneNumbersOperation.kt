@@ -12,23 +12,56 @@ import dev.octri.showcase.twilio.Validation
 
 internal object AvailablePhoneNumbersFetchAvailablePhoneNumbersOperation {
     /**
-     * Retrieves available phone number information for a specific country. Supply the account SID and an ISO 3166-1 country code to get the country name, beta status, and related available-number resources.
+     * Retrieves available phone number information for a specific country. Supply the account SID
+     * and an ISO 3166-1 country code to get the country name, beta status, and related
+     * available-number resources.
      *
-     * @param accountSid The SID of the Account requesting the available phone number
-     *   Country resource.
-     * @param countryCode The ISO-3166-1 country code of the country to fetch
-     *   available phone number information about.
+     * @param accountSid The SID of the Account requesting the available phone number Country
+     *   resource.
+     * @param countryCode The ISO-3166-1 country code of the country to fetch available phone number
+     *   information about.
      */
-    fun fetchAvailablePhoneNumbers(clientConfig: ClientConfig, accountSid: String, countryCode: String, options: RequestOptions? = null): ApiV2010AccountAvailablePhoneNumberCountry {
-        return fetchAvailablePhoneNumbersWithRawResponse(clientConfig, accountSid, countryCode, options).data
+    fun fetchAvailablePhoneNumbers(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        countryCode: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountAvailablePhoneNumberCountry {
+        return fetchAvailablePhoneNumbersWithRawResponse(
+                clientConfig,
+                accountSid,
+                countryCode,
+                options,
+            )
+            .data
     }
 
-
-    /** [fetchAvailablePhoneNumbers], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun fetchAvailablePhoneNumbersWithRawResponse(clientConfig: ClientConfig, accountSid: String, countryCode: String, options: RequestOptions? = null): SdkResponse<ApiV2010AccountAvailablePhoneNumberCountry> {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    /**
+     * [fetchAvailablePhoneNumbers], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun fetchAvailablePhoneNumbersWithRawResponse(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        countryCode: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010AccountAvailablePhoneNumberCountry> {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountAvailablePhoneNumberCountry>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/AvailablePhoneNumbers/${SdkClient.encodePathSegment(countryCode)}.json", config = clientConfig, operationId = "fetchAvailablePhoneNumbers", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+        return SdkClient.request<ApiV2010AccountAvailablePhoneNumberCountry>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/AvailablePhoneNumbers/${SdkClient.encodePathSegment(countryCode)}.json",
+                config = clientConfig,
+                operationId = "fetchAvailablePhoneNumbers",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }

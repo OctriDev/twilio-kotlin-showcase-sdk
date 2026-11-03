@@ -31,19 +31,24 @@ typealias PaymentsEnumStatus = dev.octri.showcase.twilio.models.PaymentsEnumStat
 
 typealias PaymentsEnumTokenType = dev.octri.showcase.twilio.models.PaymentsEnumTokenType
 
-typealias RealtimeTranscriptionEnumStatus = dev.octri.showcase.twilio.models.RealtimeTranscriptionEnumStatus
+typealias RealtimeTranscriptionEnumStatus =
+    dev.octri.showcase.twilio.models.RealtimeTranscriptionEnumStatus
 
-typealias RealtimeTranscriptionEnumTrack = dev.octri.showcase.twilio.models.RealtimeTranscriptionEnumTrack
+typealias RealtimeTranscriptionEnumTrack =
+    dev.octri.showcase.twilio.models.RealtimeTranscriptionEnumTrack
 
-typealias RealtimeTranscriptionEnumUpdateStatus = dev.octri.showcase.twilio.models.RealtimeTranscriptionEnumUpdateStatus
+typealias RealtimeTranscriptionEnumUpdateStatus =
+    dev.octri.showcase.twilio.models.RealtimeTranscriptionEnumUpdateStatus
 
-typealias RecordingAddOnResultEnumStatus = dev.octri.showcase.twilio.models.RecordingAddOnResultEnumStatus
+typealias RecordingAddOnResultEnumStatus =
+    dev.octri.showcase.twilio.models.RecordingAddOnResultEnumStatus
 
 typealias RecordingEnumSource = dev.octri.showcase.twilio.models.RecordingEnumSource
 
 typealias RecordingEnumStatus = dev.octri.showcase.twilio.models.RecordingEnumStatus
 
-typealias RecordingTranscriptionEnumStatus = dev.octri.showcase.twilio.models.RecordingTranscriptionEnumStatus
+typealias RecordingTranscriptionEnumStatus =
+    dev.octri.showcase.twilio.models.RecordingTranscriptionEnumStatus
 
 typealias SiprecEnumStatus = dev.octri.showcase.twilio.models.SiprecEnumStatus
 
@@ -67,56 +72,81 @@ typealias StreamEnumUpdateStatus = dev.octri.showcase.twilio.models.StreamEnumUp
 
 typealias TranscriptionEnumStatus = dev.octri.showcase.twilio.models.TranscriptionEnumStatus
 
-typealias UpdateApplicationsSmsFallbackMethodEnum = dev.octri.showcase.twilio.models.UpdateApplicationsSmsFallbackMethodEnum
+typealias UpdateApplicationsSmsFallbackMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateApplicationsSmsFallbackMethodEnum
 
-typealias UpdateApplicationsSmsMethodEnum = dev.octri.showcase.twilio.models.UpdateApplicationsSmsMethodEnum
+typealias UpdateApplicationsSmsMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateApplicationsSmsMethodEnum
 
-typealias UpdateApplicationsStatusCallbackMethodEnum = dev.octri.showcase.twilio.models.UpdateApplicationsStatusCallbackMethodEnum
+typealias UpdateApplicationsStatusCallbackMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateApplicationsStatusCallbackMethodEnum
 
-typealias UpdateApplicationsVoiceFallbackMethodEnum = dev.octri.showcase.twilio.models.UpdateApplicationsVoiceFallbackMethodEnum
+typealias UpdateApplicationsVoiceFallbackMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateApplicationsVoiceFallbackMethodEnum
 
-typealias UpdateApplicationsVoiceMethodEnum = dev.octri.showcase.twilio.models.UpdateApplicationsVoiceMethodEnum
+typealias UpdateApplicationsVoiceMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateApplicationsVoiceMethodEnum
 
-typealias UpdateCallsFallbackMethodEnum = dev.octri.showcase.twilio.models.UpdateCallsFallbackMethodEnum
+typealias UpdateCallsFallbackMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateCallsFallbackMethodEnum
 
 typealias UpdateCallsMethodEnum = dev.octri.showcase.twilio.models.UpdateCallsMethodEnum
 
-typealias UpdateCallsStatusCallbackMethodEnum = dev.octri.showcase.twilio.models.UpdateCallsStatusCallbackMethodEnum
+typealias UpdateCallsStatusCallbackMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateCallsStatusCallbackMethodEnum
 
-typealias UpdateConferencesAnnounceMethodEnum = dev.octri.showcase.twilio.models.UpdateConferencesAnnounceMethodEnum
+typealias UpdateConferencesAnnounceMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateConferencesAnnounceMethodEnum
 
-typealias UpdateConferencesParticipantsAnnounceMethodEnum = dev.octri.showcase.twilio.models.UpdateConferencesParticipantsAnnounceMethodEnum
+typealias UpdateConferencesParticipantsAnnounceMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateConferencesParticipantsAnnounceMethodEnum
 
-typealias UpdateConferencesParticipantsHoldMethodEnum = dev.octri.showcase.twilio.models.UpdateConferencesParticipantsHoldMethodEnum
+typealias UpdateConferencesParticipantsHoldMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateConferencesParticipantsHoldMethodEnum
 
-typealias UpdateConferencesParticipantsWaitMethodEnum = dev.octri.showcase.twilio.models.UpdateConferencesParticipantsWaitMethodEnum
+typealias UpdateConferencesParticipantsWaitMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateConferencesParticipantsWaitMethodEnum
 
-typealias UpdateConnectAppsDeauthorizeCallbackMethodEnum = dev.octri.showcase.twilio.models.UpdateConnectAppsDeauthorizeCallbackMethodEnum
+typealias UpdateConnectAppsDeauthorizeCallbackMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateConnectAppsDeauthorizeCallbackMethodEnum
 
-typealias UpdateIncomingPhoneNumbersSmsFallbackMethodEnum = dev.octri.showcase.twilio.models.UpdateIncomingPhoneNumbersSmsFallbackMethodEnum
+typealias UpdateIncomingPhoneNumbersSmsFallbackMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateIncomingPhoneNumbersSmsFallbackMethodEnum
 
-typealias UpdateIncomingPhoneNumbersSmsMethodEnum = dev.octri.showcase.twilio.models.UpdateIncomingPhoneNumbersSmsMethodEnum
+typealias UpdateIncomingPhoneNumbersSmsMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateIncomingPhoneNumbersSmsMethodEnum
 
-typealias UpdateIncomingPhoneNumbersStatusCallbackMethodEnum = dev.octri.showcase.twilio.models.UpdateIncomingPhoneNumbersStatusCallbackMethodEnum
+typealias UpdateIncomingPhoneNumbersStatusCallbackMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateIncomingPhoneNumbersStatusCallbackMethodEnum
 
-typealias UpdateIncomingPhoneNumbersVoiceFallbackMethodEnum = dev.octri.showcase.twilio.models.UpdateIncomingPhoneNumbersVoiceFallbackMethodEnum
+typealias UpdateIncomingPhoneNumbersVoiceFallbackMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateIncomingPhoneNumbersVoiceFallbackMethodEnum
 
-typealias UpdateIncomingPhoneNumbersVoiceMethodEnum = dev.octri.showcase.twilio.models.UpdateIncomingPhoneNumbersVoiceMethodEnum
+typealias UpdateIncomingPhoneNumbersVoiceMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateIncomingPhoneNumbersVoiceMethodEnum
 
-typealias UpdateQueuesMembersMethodEnum = dev.octri.showcase.twilio.models.UpdateQueuesMembersMethodEnum
+typealias UpdateQueuesMembersMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateQueuesMembersMethodEnum
 
-typealias UpdateShortCodesSmsFallbackMethodEnum = dev.octri.showcase.twilio.models.UpdateShortCodesSmsFallbackMethodEnum
+typealias UpdateShortCodesSmsFallbackMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateShortCodesSmsFallbackMethodEnum
 
-typealias UpdateShortCodesSmsMethodEnum = dev.octri.showcase.twilio.models.UpdateShortCodesSmsMethodEnum
+typealias UpdateShortCodesSmsMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateShortCodesSmsMethodEnum
 
-typealias UpdateSipDomainsVoiceFallbackMethodEnum = dev.octri.showcase.twilio.models.UpdateSipDomainsVoiceFallbackMethodEnum
+typealias UpdateSipDomainsVoiceFallbackMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateSipDomainsVoiceFallbackMethodEnum
 
-typealias UpdateSipDomainsVoiceMethodEnum = dev.octri.showcase.twilio.models.UpdateSipDomainsVoiceMethodEnum
+typealias UpdateSipDomainsVoiceMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateSipDomainsVoiceMethodEnum
 
-typealias UpdateSipDomainsVoiceStatusCallbackMethodEnum = dev.octri.showcase.twilio.models.UpdateSipDomainsVoiceStatusCallbackMethodEnum
+typealias UpdateSipDomainsVoiceStatusCallbackMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateSipDomainsVoiceStatusCallbackMethodEnum
 
-typealias UpdateUsageTriggersCallbackMethodEnum = dev.octri.showcase.twilio.models.UpdateUsageTriggersCallbackMethodEnum
+typealias UpdateUsageTriggersCallbackMethodEnum =
+    dev.octri.showcase.twilio.models.UpdateUsageTriggersCallbackMethodEnum
 
 typealias UsageTriggerEnumRecurring = dev.octri.showcase.twilio.models.UsageTriggerEnumRecurring
 
-typealias UsageTriggerEnumTriggerField = dev.octri.showcase.twilio.models.UsageTriggerEnumTriggerField
+typealias UsageTriggerEnumTriggerField =
+    dev.octri.showcase.twilio.models.UsageTriggerEnumTriggerField

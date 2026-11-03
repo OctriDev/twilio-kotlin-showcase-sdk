@@ -218,52 +218,82 @@ object CallsStreams {
         val parameter98Name: String? = null,
         val parameter98Value: String? = null,
         val parameter99Name: String? = null,
-        val parameter99Value: String? = null
+        val parameter99Value: String? = null,
     )
 
     /**
-     * Creates a media Stream associated with a call. Provide the required `Url` for the WebSocket connection and optionally configure audio tracks, a status callback, and callback parameters.
+     * Creates a media Stream associated with a call. Provide the required `Url` for the WebSocket
+     * connection and optionally configure audio tracks, a status callback, and callback parameters.
      */
-    fun createCallsStreams(clientConfig: ClientConfig, request: CreateCallsStreamsRequest, options: RequestOptions? = null): ApiV2010AccountCallStream =
-        dev.octri.showcase.twilio.methods.calls.CallsStreamsCreateCallsStreamsOperation.createCallsStreams(
-            clientConfig,
-            request,
-            options,
-        )
+    fun createCallsStreams(
+        clientConfig: ClientConfig,
+        request: CreateCallsStreamsRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountCallStream =
+        dev.octri.showcase.twilio.methods.calls.CallsStreamsCreateCallsStreamsOperation
+            .createCallsStreams(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Creates a media Stream associated with a call. Provide the required `Url` for the WebSocket connection and optionally configure audio tracks, a status callback, and callback parameters.
+     * Creates a media Stream associated with a call. Provide the required `Url` for the WebSocket
+     * connection and optionally configure audio tracks, a status callback, and callback parameters.
      */
-    fun createCallsStreamsWithRawResponse(clientConfig: ClientConfig, request: CreateCallsStreamsRequest, options: RequestOptions? = null): SdkResponse<ApiV2010AccountCallStream> =
-        dev.octri.showcase.twilio.methods.calls.CallsStreamsCreateCallsStreamsOperation.createCallsStreamsWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun createCallsStreamsWithRawResponse(
+        clientConfig: ClientConfig,
+        request: CreateCallsStreamsRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010AccountCallStream> =
+        dev.octri.showcase.twilio.methods.calls.CallsStreamsCreateCallsStreamsOperation
+            .createCallsStreamsWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Stops a Stream associated with a call. Set `Status` to `stopped`, and identify the Stream by its SID or the name used when it was created.
+     * Stops a Stream associated with a call. Set `Status` to `stopped`, and identify the Stream by
+     * its SID or the name used when it was created.
      */
-    fun updateCallsStreams(clientConfig: ClientConfig, accountSid: String, callSid: String, sid: String, status: StreamEnumUpdateStatus, options: RequestOptions? = null): ApiV2010AccountCallStream =
-        dev.octri.showcase.twilio.methods.calls.CallsStreamsUpdateCallsStreamsOperation.updateCallsStreams(
-            clientConfig,
-            accountSid,
-            callSid,
-            sid,
-            status,
-            options,
-        )
+    fun updateCallsStreams(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        callSid: String,
+        sid: String,
+        status: StreamEnumUpdateStatus,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountCallStream =
+        dev.octri.showcase.twilio.methods.calls.CallsStreamsUpdateCallsStreamsOperation
+            .updateCallsStreams(
+                clientConfig,
+                accountSid,
+                callSid,
+                sid,
+                status,
+                options,
+            )
 
     /**
-     * Stops a Stream associated with a call. Set `Status` to `stopped`, and identify the Stream by its SID or the name used when it was created.
+     * Stops a Stream associated with a call. Set `Status` to `stopped`, and identify the Stream by
+     * its SID or the name used when it was created.
      */
-    fun updateCallsStreamsWithRawResponse(clientConfig: ClientConfig, accountSid: String, callSid: String, sid: String, status: StreamEnumUpdateStatus, options: RequestOptions? = null): SdkResponse<ApiV2010AccountCallStream> =
-        dev.octri.showcase.twilio.methods.calls.CallsStreamsUpdateCallsStreamsOperation.updateCallsStreamsWithRawResponse(
-            clientConfig,
-            accountSid,
-            callSid,
-            sid,
-            status,
-            options,
-        )
+    fun updateCallsStreamsWithRawResponse(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        callSid: String,
+        sid: String,
+        status: StreamEnumUpdateStatus,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010AccountCallStream> =
+        dev.octri.showcase.twilio.methods.calls.CallsStreamsUpdateCallsStreamsOperation
+            .updateCallsStreamsWithRawResponse(
+                clientConfig,
+                accountSid,
+                callSid,
+                sid,
+                status,
+                options,
+            )
 }

@@ -3,8 +3,8 @@
 
 package dev.octri.showcase.twilio.methods.recordings.addOnResults
 
-import dev.octri.showcase.twilio.ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResultPayload
 import dev.octri.showcase.twilio.ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResX725ba4fcaf
+import dev.octri.showcase.twilio.ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResultPayload
 import dev.octri.showcase.twilio.ClientConfig
 import dev.octri.showcase.twilio.RequestOptions
 import dev.octri.showcase.twilio.SdkClient
@@ -14,118 +14,209 @@ import dev.octri.showcase.twilio.Validation
 
 object RecordingsAddOnResultsPayloads {
 
-data class ListRecordingsAddOnResultsPayloadsResponse(
-    val end: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri") val firstPageUri: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri") val nextPageUri: String? = null,
-    val page: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri") val previousPageUri: String? = null,
-    val start: Long? = null,
-    val uri: String? = null,
-    val payloads: List<ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResultPayload>? = null
-) : SdkResource()
+    data class ListRecordingsAddOnResultsPayloadsResponse(
+        val end: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("first_page_uri")
+        val firstPageUri: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("next_page_uri")
+        val nextPageUri: String? = null,
+        val page: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("page_size") val pageSize: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("previous_page_uri")
+        val previousPageUri: String? = null,
+        val start: Long? = null,
+        val uri: String? = null,
+        val payloads:
+            List<ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResultPayload>? =
+            null,
+    ) : SdkResource()
 
     /**
-     * Retrieves a payload belonging to an AddOnResult for a recording. Use the account, recording, result, and payload SIDs to identify the payload and inspect its label, MIME type, and related resource URIs.
+     * Retrieves a payload belonging to an AddOnResult for a recording. Use the account, recording,
+     * result, and payload SIDs to identify the payload and inspect its label, MIME type, and
+     * related resource URIs.
      *
      * Fetch an instance of a result payload
      *
-     * @param accountSid The SID of the Account that created the Recording
-     *   AddOnResult Payload resource to fetch.
-     * @param referenceSid The SID of the recording to which the AddOnResult resource
-     *   that contains the payload to fetch belongs.
-     * @param addOnResultSid The SID of the AddOnResult to which the payload to fetch
-     *   belongs.
-     * @param sid The Twilio-provided string that uniquely identifies the Recording
-     *   AddOnResult Payload resource to fetch.
+     * @param accountSid The SID of the Account that created the Recording AddOnResult Payload
+     *   resource to fetch.
+     * @param referenceSid The SID of the recording to which the AddOnResult resource that contains
+     *   the payload to fetch belongs.
+     * @param addOnResultSid The SID of the AddOnResult to which the payload to fetch belongs.
+     * @param sid The Twilio-provided string that uniquely identifies the Recording AddOnResult
+     *   Payload resource to fetch.
      */
-    fun fetchRecordingsAddOnResultsPayloads(clientConfig: ClientConfig, accountSid: String, referenceSid: String, addOnResultSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResultPayload {
-        return fetchRecordingsAddOnResultsPayloadsWithRawResponse(clientConfig, accountSid, referenceSid, addOnResultSid, sid, options).data
+    fun fetchRecordingsAddOnResultsPayloads(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        referenceSid: String,
+        addOnResultSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResultPayload {
+        return fetchRecordingsAddOnResultsPayloadsWithRawResponse(
+                clientConfig,
+                accountSid,
+                referenceSid,
+                addOnResultSid,
+                sid,
+                options,
+            )
+            .data
     }
 
-
-    /** [fetchRecordingsAddOnResultsPayloads], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun fetchRecordingsAddOnResultsPayloadsWithRawResponse(clientConfig: ClientConfig, accountSid: String, referenceSid: String, addOnResultSid: String, sid: String, options: RequestOptions? = null): SdkResponse<ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResultPayload> {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    /**
+     * [fetchRecordingsAddOnResultsPayloads], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun fetchRecordingsAddOnResultsPayloadsWithRawResponse(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        referenceSid: String,
+        addOnResultSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResultPayload> {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("ReferenceSid", referenceSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "ReferenceSid",
+            referenceSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("ReferenceSid", referenceSid, "^RE[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("AddOnResultSid", addOnResultSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "AddOnResultSid",
+            addOnResultSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AddOnResultSid", addOnResultSid, "^XR[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^XH[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResultPayload>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Recordings/${SdkClient.encodePathSegment(referenceSid)}/AddOnResults/${SdkClient.encodePathSegment(addOnResultSid)}/Payloads/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "fetchRecordingsAddOnResultsPayloads", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+        return SdkClient.request<
+            ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResultPayload
+        >(
+            SdkClient.RequestSpec(
+                "GET",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Recordings/${SdkClient.encodePathSegment(referenceSid)}/AddOnResults/${SdkClient.encodePathSegment(addOnResultSid)}/Payloads/${SdkClient.encodePathSegment(sid)}.json",
+                config = clientConfig,
+                operationId = "fetchRecordingsAddOnResultsPayloads",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
-
-
-
-
-
 
     /**
      * Delete a payload from the result along with all associated Data
      *
-     * @param accountSid The SID of the Account that created the Recording
-     *   AddOnResult Payload resources to delete.
-     * @param referenceSid The SID of the recording to which the AddOnResult resource
-     *   that contains the payloads to delete belongs.
-     * @param addOnResultSid The SID of the AddOnResult to which the payloads to
-     *   delete belongs.
-     * @param sid The Twilio-provided string that uniquely identifies the Recording
-     *   AddOnResult Payload resource to delete.
+     * @param accountSid The SID of the Account that created the Recording AddOnResult Payload
+     *   resources to delete.
+     * @param referenceSid The SID of the recording to which the AddOnResult resource that contains
+     *   the payloads to delete belongs.
+     * @param addOnResultSid The SID of the AddOnResult to which the payloads to delete belongs.
+     * @param sid The Twilio-provided string that uniquely identifies the Recording AddOnResult
+     *   Payload resource to delete.
      */
-    fun deleteRecordingsAddOnResultsPayloads(clientConfig: ClientConfig, accountSid: String, referenceSid: String, addOnResultSid: String, sid: String, options: RequestOptions? = null): Unit {
-        return deleteRecordingsAddOnResultsPayloadsWithRawResponse(clientConfig, accountSid, referenceSid, addOnResultSid, sid, options).data
+    fun deleteRecordingsAddOnResultsPayloads(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        referenceSid: String,
+        addOnResultSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        return deleteRecordingsAddOnResultsPayloadsWithRawResponse(
+                clientConfig,
+                accountSid,
+                referenceSid,
+                addOnResultSid,
+                sid,
+                options,
+            )
+            .data
     }
 
-
-    /** [deleteRecordingsAddOnResultsPayloads], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun deleteRecordingsAddOnResultsPayloadsWithRawResponse(clientConfig: ClientConfig, accountSid: String, referenceSid: String, addOnResultSid: String, sid: String, options: RequestOptions? = null): SdkResponse<Unit> {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    /**
+     * [deleteRecordingsAddOnResultsPayloads], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun deleteRecordingsAddOnResultsPayloadsWithRawResponse(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        referenceSid: String,
+        addOnResultSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("ReferenceSid", referenceSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "ReferenceSid",
+            referenceSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("ReferenceSid", referenceSid, "^RE[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("AddOnResultSid", addOnResultSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "AddOnResultSid",
+            addOnResultSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AddOnResultSid", addOnResultSid, "^XR[0-9a-fA-F]{32}$")
 
         Validation.validateLength("Sid", sid, Validation.LengthOpts(min = 34, max = 34))
         Validation.validatePattern("Sid", sid, "^XH[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Recordings/${SdkClient.encodePathSegment(referenceSid)}/AddOnResults/${SdkClient.encodePathSegment(addOnResultSid)}/Payloads/${SdkClient.encodePathSegment(sid)}.json", config = clientConfig, operationId = "deleteRecordingsAddOnResultsPayloads", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Recordings/${SdkClient.encodePathSegment(referenceSid)}/AddOnResults/${SdkClient.encodePathSegment(addOnResultSid)}/Payloads/${SdkClient.encodePathSegment(sid)}.json",
+                config = clientConfig,
+                operationId = "deleteRecordingsAddOnResultsPayloads",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 
-
-
-
-
-
     /**
-     * Lists payloads belonging to an AddOnResult for a recording. Use `PageSize` and `PageToken` to control which payloads are returned and to navigate the paginated response.
+     * Lists payloads belonging to an AddOnResult for a recording. Use `PageSize` and `PageToken` to
+     * control which payloads are returned and to navigate the paginated response.
      *
      * Retrieve a list of payloads belonging to the AddOnResult
      *
-     * @param accountSid The SID of the Account that created the Recording
-     *   AddOnResult Payload resources to read.
-     * @param referenceSid The SID of the recording to which the AddOnResult resource
-     *   that contains the payloads to read belongs.
-     * @param addOnResultSid The SID of the AddOnResult to which the payloads to read
-     *   belongs.
-     * @param pageSize How many resources to return in each list page. The default is
-     *   50, and the maximum is 1000.
+     * @param accountSid The SID of the Account that created the Recording AddOnResult Payload
+     *   resources to read.
+     * @param referenceSid The SID of the recording to which the AddOnResult resource that contains
+     *   the payloads to read belongs.
+     * @param addOnResultSid The SID of the AddOnResult to which the payloads to read belongs.
+     * @param pageSize How many resources to return in each list page. The default is 50, and the
+     *   maximum is 1000.
      * @param page The page index. This value is simply for client state.
      * @param pageToken The page token. This is provided by the API.
      */
-    fun listRecordingsAddOnResultsPayloads(clientConfig: ClientConfig, request: ListRecordingsAddOnResultsPayloadsRequest, options: RequestOptions? = null): ListRecordingsAddOnResultsPayloadsResponse {
-        return listRecordingsAddOnResultsPayloadsWithRawResponse(clientConfig, request, options).data
+    fun listRecordingsAddOnResultsPayloads(
+        clientConfig: ClientConfig,
+        request: ListRecordingsAddOnResultsPayloadsRequest,
+        options: RequestOptions? = null,
+    ): ListRecordingsAddOnResultsPayloadsResponse {
+        return listRecordingsAddOnResultsPayloadsWithRawResponse(clientConfig, request, options)
+            .data
     }
-
 
     /** Parameters for [listRecordingsAddOnResultsPayloads]. */
     data class ListRecordingsAddOnResultsPayloadsRequest(
@@ -134,82 +225,166 @@ data class ListRecordingsAddOnResultsPayloadsResponse(
         val addOnResultSid: String,
         val pageSize: Long? = null,
         val page: Long? = null,
-        val pageToken: String? = null
+        val pageToken: String? = null,
     )
 
-    /** [listRecordingsAddOnResultsPayloads], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun listRecordingsAddOnResultsPayloadsWithRawResponse(clientConfig: ClientConfig, request: ListRecordingsAddOnResultsPayloadsRequest, options: RequestOptions? = null): SdkResponse<ListRecordingsAddOnResultsPayloadsResponse> {
+    /**
+     * [listRecordingsAddOnResultsPayloads], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun listRecordingsAddOnResultsPayloadsWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ListRecordingsAddOnResultsPayloadsRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ListRecordingsAddOnResultsPayloadsResponse> {
         validateListRecordingsAddOnResultsPayloadsRequest(request)
 
-        return SdkClient.request<ListRecordingsAddOnResultsPayloadsResponse>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Recordings/${SdkClient.encodePathSegment(request.referenceSid)}/AddOnResults/${SdkClient.encodePathSegment(request.addOnResultSid)}/Payloads.json", config = clientConfig, query = mapOf("PageSize" to
-    SdkClient.queryValue(request.pageSize, "form", true), "Page" to SdkClient.queryValue(request.page, "form", true), "PageToken" to
-    SdkClient.queryValue(request.pageToken, "form", true)), operationId = "listRecordingsAddOnResultsPayloads", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+        return SdkClient.request<ListRecordingsAddOnResultsPayloadsResponse>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(request.accountSid)}/Recordings/${SdkClient.encodePathSegment(request.referenceSid)}/AddOnResults/${SdkClient.encodePathSegment(request.addOnResultSid)}/Payloads.json",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "PageSize" to SdkClient.queryValue(request.pageSize, "form", true),
+                        "Page" to SdkClient.queryValue(request.page, "form", true),
+                        "PageToken" to SdkClient.queryValue(request.pageToken, "form", true),
+                    ),
+                operationId = "listRecordingsAddOnResultsPayloads",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 
-
-    private fun validateListRecordingsAddOnResultsPayloadsRequest(request: ListRecordingsAddOnResultsPayloadsRequest) {
-        Validation.validateLength("AccountSid", request.accountSid, Validation.LengthOpts(min = 34, max = 34))
+    private fun validateListRecordingsAddOnResultsPayloadsRequest(
+        request: ListRecordingsAddOnResultsPayloadsRequest
+    ) {
+        Validation.validateLength(
+            "AccountSid",
+            request.accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", request.accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("ReferenceSid", request.referenceSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "ReferenceSid",
+            request.referenceSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("ReferenceSid", request.referenceSid, "^RE[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("AddOnResultSid", request.addOnResultSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "AddOnResultSid",
+            request.addOnResultSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AddOnResultSid", request.addOnResultSid, "^XR[0-9a-fA-F]{32}$")
 
         if (request.pageSize != null) {
-            Validation.validateRange("PageSize", request.pageSize, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "PageSize",
+                request.pageSize,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
         if (request.page != null) {
             Validation.validateRange("Page", request.page, Validation.RangeOpts(min = 0.0))
-}
+        }
     }
 
-
-
-
-
     /**
-     * Retrieves the stored data for a payload belonging to an AddOnResult for a recording. Use the account, recording, result, and payload SIDs to identify the data resource; the response provides a redirect to the stored payload data.
+     * Retrieves the stored data for a payload belonging to an AddOnResult for a recording. Use the
+     * account, recording, result, and payload SIDs to identify the data resource; the response
+     * provides a redirect to the stored payload data.
      *
      * Fetch an instance of a result payload
      *
-     * @param accountSid The SID of the Account that created the Recording
+     * @param accountSid The SID of the Account that created the Recording AddOnResult Payload
+     *   resource to fetch.
+     * @param referenceSid The SID of the recording to which the AddOnResult resource that contains
+     *   the payload to fetch belongs.
+     * @param addOnResultSid The SID of the AddOnResult to which the payload to fetch belongs.
+     * @param payloadSid The Twilio-provided string that uniquely identifies the Recording
      *   AddOnResult Payload resource to fetch.
-     * @param referenceSid The SID of the recording to which the AddOnResult resource
-     *   that contains the payload to fetch belongs.
-     * @param addOnResultSid The SID of the AddOnResult to which the payload to fetch
-     *   belongs.
-     * @param payloadSid The Twilio-provided string that uniquely identifies the
-     *   Recording AddOnResult Payload resource to fetch.
      */
-    fun fetchRecordingsAddOnResultsPayloadsData(clientConfig: ClientConfig, accountSid: String, referenceSid: String, addOnResultSid: String, payloadSid: String, options: RequestOptions? = null): ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResX725ba4fcaf {
-        return fetchRecordingsAddOnResultsPayloadsDataWithRawResponse(clientConfig, accountSid, referenceSid, addOnResultSid, payloadSid, options).data
+    fun fetchRecordingsAddOnResultsPayloadsData(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        referenceSid: String,
+        addOnResultSid: String,
+        payloadSid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResX725ba4fcaf {
+        return fetchRecordingsAddOnResultsPayloadsDataWithRawResponse(
+                clientConfig,
+                accountSid,
+                referenceSid,
+                addOnResultSid,
+                payloadSid,
+                options,
+            )
+            .data
     }
 
-
-    /** [fetchRecordingsAddOnResultsPayloadsData], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun fetchRecordingsAddOnResultsPayloadsDataWithRawResponse(clientConfig: ClientConfig, accountSid: String, referenceSid: String, addOnResultSid: String, payloadSid: String, options: RequestOptions? = null): SdkResponse<ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResX725ba4fcaf> {
-        Validation.validateLength("AccountSid", accountSid, Validation.LengthOpts(min = 34, max = 34))
+    /**
+     * [fetchRecordingsAddOnResultsPayloadsData], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun fetchRecordingsAddOnResultsPayloadsDataWithRawResponse(
+        clientConfig: ClientConfig,
+        accountSid: String,
+        referenceSid: String,
+        addOnResultSid: String,
+        payloadSid: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResX725ba4fcaf> {
+        Validation.validateLength(
+            "AccountSid",
+            accountSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AccountSid", accountSid, "^AC[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("ReferenceSid", referenceSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "ReferenceSid",
+            referenceSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("ReferenceSid", referenceSid, "^RE[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("AddOnResultSid", addOnResultSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "AddOnResultSid",
+            addOnResultSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("AddOnResultSid", addOnResultSid, "^XR[0-9a-fA-F]{32}$")
 
-        Validation.validateLength("PayloadSid", payloadSid, Validation.LengthOpts(min = 34, max = 34))
+        Validation.validateLength(
+            "PayloadSid",
+            payloadSid,
+            Validation.LengthOpts(min = 34, max = 34),
+        )
         Validation.validatePattern("PayloadSid", payloadSid, "^XH[0-9a-fA-F]{32}$")
 
-        return SdkClient.request<ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResX725ba4fcaf>(SdkClient.RequestSpec("GET", "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Recordings/${SdkClient.encodePathSegment(referenceSid)}/AddOnResults/${SdkClient.encodePathSegment(addOnResultSid)}/Payloads/${SdkClient.encodePathSegment(payloadSid)}/Data.json", config = clientConfig, operationId = "fetchRecordingsAddOnResultsPayloadsData", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("307" to ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResX725ba4fcaf::class.java)))
+        return SdkClient.request<
+            ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResX725ba4fcaf
+        >(
+            SdkClient.RequestSpec(
+                "GET",
+                "/2010-04-01/Accounts/${SdkClient.encodePathSegment(accountSid)}/Recordings/${SdkClient.encodePathSegment(referenceSid)}/AddOnResults/${SdkClient.encodePathSegment(addOnResultSid)}/Payloads/${SdkClient.encodePathSegment(payloadSid)}/Data.json",
+                config = clientConfig,
+                operationId = "fetchRecordingsAddOnResultsPayloadsData",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "307" to
+                            ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResX725ba4fcaf::class
+                                .java
+                    ),
+            )
+        )
     }
-
-
-
-
-
-
-
 }

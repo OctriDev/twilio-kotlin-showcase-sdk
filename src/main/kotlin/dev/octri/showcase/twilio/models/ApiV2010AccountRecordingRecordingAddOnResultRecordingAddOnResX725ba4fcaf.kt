@@ -6,11 +6,11 @@ package dev.octri.showcase.twilio.models
 import dev.octri.showcase.twilio.SdkResource
 
 /**
- * Typed representation of the `ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResultPayloadRecordingAddOnResultPayloadData` API schema.
+ * Typed representation of the
+ * `ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResultPayloadRecordingAddOnResultPayloadData`
+ * API schema.
  */
 data class ApiV2010AccountRecordingRecordingAddOnResultRecordingAddOnResX725ba4fcaf(
-    /**
-     * The URL to redirect to to get the data returned by the AddOn that was previously stored.
-     */
+    /** The URL to redirect to to get the data returned by the AddOn that was previously stored. */
     @com.fasterxml.jackson.annotation.JsonProperty("redirect_to") val redirectTo: String? = null
 ) : SdkResource(), dev.octri.showcase.twilio.ErrorBody

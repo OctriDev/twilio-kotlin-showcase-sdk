@@ -3,102 +3,201 @@
 
 package dev.octri.showcase.twilio
 
-
 class SipIpAccessControlListsNamespace(private val clientConfig: ClientConfig) {
     val ipAddresses: SipIpAccessControlListsIpAddressesNamespace
+
     init {
         ipAddresses = SipIpAccessControlListsIpAddressesNamespace(clientConfig)
     }
+
     /**
-     * Lists IP access control lists belonging to an account. Use the page parameters to control which results you retrieve and how many lists appear in each page.
+     * Lists IP access control lists belonging to an account. Use the page parameters to control
+     * which results you retrieve and how many lists appear in each page.
      *
      * Retrieve a list of IpAccessControlLists that belong to the account used to make the request
      */
-    fun list(accountSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists.ListSipIpAccessControlListsResponse {
-        return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists.listSipIpAccessControlLists(clientConfig, accountSid, pageSize, page, pageToken, options)
+    fun list(
+        accountSid: String,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists.ListSipIpAccessControlListsResponse {
+        return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists
+            .listSipIpAccessControlLists(
+                clientConfig,
+                accountSid,
+                pageSize,
+                page,
+                pageToken,
+                options,
+            )
     }
 
     /**
-     * Creates an IP access control list for an account. Provide a `FriendlyName` to identify the list; the response includes its generated SID and resource URI.
+     * Creates an IP access control list for an account. Provide a `FriendlyName` to identify the
+     * list; the response includes its generated SID and resource URI.
      *
      * Create a new IpAccessControlList resource
      */
-    fun create(accountSid: String, friendlyName: String, options: RequestOptions? = null): ApiV2010AccountSipSipIpAccessControlList {
-        return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists.createSipIpAccessControlLists(clientConfig, accountSid, friendlyName, options)
+    fun create(
+        accountSid: String,
+        friendlyName: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountSipSipIpAccessControlList {
+        return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists
+            .createSipIpAccessControlLists(clientConfig, accountSid, friendlyName, options)
     }
 
     /**
-     * Retrieves a specific IP access control list for an account. Use `AccountSid` and `Sid` to identify the account and list; both values must use their resource-specific 34-character identifier format.
+     * Retrieves a specific IP access control list for an account. Use `AccountSid` and `Sid` to
+     * identify the account and list; both values must use their resource-specific 34-character
+     * identifier format.
      *
      * Fetch a specific instance of an IpAccessControlList
      */
-    fun fetch(accountSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountSipSipIpAccessControlList {
-        return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists.fetchSipIpAccessControlLists(clientConfig, accountSid, sid, options)
+    fun fetch(
+        accountSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountSipSipIpAccessControlList {
+        return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists
+            .fetchSipIpAccessControlLists(clientConfig, accountSid, sid, options)
     }
 
     /**
-     * Updates the name of an IP access control list associated with an account. Submit `FriendlyName` to set the human-readable name, which can be up to 255 characters. Use the account and list identifiers to select the resource to update.
+     * Updates the name of an IP access control list associated with an account. Submit
+     * `FriendlyName` to set the human-readable name, which can be up to 255 characters. Use the
+     * account and list identifiers to select the resource to update.
      *
      * Rename an IpAccessControlList
      */
-    fun update(accountSid: String, sid: String, friendlyName: String, options: RequestOptions? = null): ApiV2010AccountSipSipIpAccessControlList {
-        return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists.updateSipIpAccessControlLists(clientConfig, accountSid, sid, friendlyName, options)
+    fun update(
+        accountSid: String,
+        sid: String,
+        friendlyName: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountSipSipIpAccessControlList {
+        return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists
+            .updateSipIpAccessControlLists(clientConfig, accountSid, sid, friendlyName, options)
+    }
+
+    /** Delete an IpAccessControlList from the requested account */
+    fun delete(accountSid: String, sid: String, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists
+            .deleteSipIpAccessControlLists(clientConfig, accountSid, sid, options)
     }
 
     /**
-     * Delete an IpAccessControlList from the requested account
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
      */
-    fun delete(accountSid: String, sid: String, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists.deleteSipIpAccessControlLists(clientConfig, accountSid, sid, options)
-    }
-
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [SipIpAccessControlListsNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [SipIpAccessControlListsNamespace], returning the [SdkResponse] envelope
+     * around each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Lists IP access control lists belonging to an account. Use the page parameters to control which results you retrieve and how many lists appear in each page.
+         * Lists IP access control lists belonging to an account. Use the page parameters to control
+         * which results you retrieve and how many lists appear in each page.
          *
-         * Retrieve a list of IpAccessControlLists that belong to the account used to make the request
+         * Retrieve a list of IpAccessControlLists that belong to the account used to make the
+         * request
          */
-        fun list(accountSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): SdkResponse<dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists.ListSipIpAccessControlListsResponse> {
-            return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists.listSipIpAccessControlListsWithRawResponse(clientConfig, accountSid, pageSize, page, pageToken, options)
+        fun list(
+            accountSid: String,
+            pageSize: Long? = null,
+            page: Long? = null,
+            pageToken: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<
+            dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists.ListSipIpAccessControlListsResponse
+        > {
+            return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists
+                .listSipIpAccessControlListsWithRawResponse(
+                    clientConfig,
+                    accountSid,
+                    pageSize,
+                    page,
+                    pageToken,
+                    options,
+                )
         }
 
         /**
-         * Creates an IP access control list for an account. Provide a `FriendlyName` to identify the list; the response includes its generated SID and resource URI.
+         * Creates an IP access control list for an account. Provide a `FriendlyName` to identify
+         * the list; the response includes its generated SID and resource URI.
          *
          * Create a new IpAccessControlList resource
          */
-        fun create(accountSid: String, friendlyName: String, options: RequestOptions? = null): SdkResponse<ApiV2010AccountSipSipIpAccessControlList> {
-            return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists.createSipIpAccessControlListsWithRawResponse(clientConfig, accountSid, friendlyName, options)
+        fun create(
+            accountSid: String,
+            friendlyName: String,
+            options: RequestOptions? = null,
+        ): SdkResponse<ApiV2010AccountSipSipIpAccessControlList> {
+            return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists
+                .createSipIpAccessControlListsWithRawResponse(
+                    clientConfig,
+                    accountSid,
+                    friendlyName,
+                    options,
+                )
         }
 
         /**
-         * Retrieves a specific IP access control list for an account. Use `AccountSid` and `Sid` to identify the account and list; both values must use their resource-specific 34-character identifier format.
+         * Retrieves a specific IP access control list for an account. Use `AccountSid` and `Sid` to
+         * identify the account and list; both values must use their resource-specific 34-character
+         * identifier format.
          *
          * Fetch a specific instance of an IpAccessControlList
          */
-        fun fetch(accountSid: String, sid: String, options: RequestOptions? = null): SdkResponse<ApiV2010AccountSipSipIpAccessControlList> {
-            return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists.fetchSipIpAccessControlListsWithRawResponse(clientConfig, accountSid, sid, options)
+        fun fetch(
+            accountSid: String,
+            sid: String,
+            options: RequestOptions? = null,
+        ): SdkResponse<ApiV2010AccountSipSipIpAccessControlList> {
+            return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists
+                .fetchSipIpAccessControlListsWithRawResponse(clientConfig, accountSid, sid, options)
         }
 
         /**
-         * Updates the name of an IP access control list associated with an account. Submit `FriendlyName` to set the human-readable name, which can be up to 255 characters. Use the account and list identifiers to select the resource to update.
+         * Updates the name of an IP access control list associated with an account. Submit
+         * `FriendlyName` to set the human-readable name, which can be up to 255 characters. Use the
+         * account and list identifiers to select the resource to update.
          *
          * Rename an IpAccessControlList
          */
-        fun update(accountSid: String, sid: String, friendlyName: String, options: RequestOptions? = null): SdkResponse<ApiV2010AccountSipSipIpAccessControlList> {
-            return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists.updateSipIpAccessControlListsWithRawResponse(clientConfig, accountSid, sid, friendlyName, options)
+        fun update(
+            accountSid: String,
+            sid: String,
+            friendlyName: String,
+            options: RequestOptions? = null,
+        ): SdkResponse<ApiV2010AccountSipSipIpAccessControlList> {
+            return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists
+                .updateSipIpAccessControlListsWithRawResponse(
+                    clientConfig,
+                    accountSid,
+                    sid,
+                    friendlyName,
+                    options,
+                )
         }
 
-        /**
-         * Delete an IpAccessControlList from the requested account
-         */
-        fun delete(accountSid: String, sid: String, options: RequestOptions? = null): SdkResponse<Unit> {
-            return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists.deleteSipIpAccessControlListsWithRawResponse(clientConfig, accountSid, sid, options)
+        /** Delete an IpAccessControlList from the requested account */
+        fun delete(
+            accountSid: String,
+            sid: String,
+            options: RequestOptions? = null,
+        ): SdkResponse<Unit> {
+            return dev.octri.showcase.twilio.methods.sip.SipIpAccessControlLists
+                .deleteSipIpAccessControlListsWithRawResponse(
+                    clientConfig,
+                    accountSid,
+                    sid,
+                    options,
+                )
         }
-
     }
 }

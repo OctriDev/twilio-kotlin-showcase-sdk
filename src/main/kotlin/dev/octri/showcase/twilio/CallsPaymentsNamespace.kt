@@ -3,40 +3,60 @@
 
 package dev.octri.showcase.twilio
 
-
 class CallsPaymentsNamespace(private val clientConfig: ClientConfig) {
-    /**
-     * create an instance of payments. This will start a new payments session
-     */
-    fun create(request: dev.octri.showcase.twilio.methods.calls.CallsPayments.CreateCallsPaymentsRequest, options: RequestOptions? = null): ApiV2010AccountCallPayments {
-        return dev.octri.showcase.twilio.methods.calls.CallsPayments.createCallsPayments(clientConfig, request, options)
+    /** create an instance of payments. This will start a new payments session */
+    fun create(
+        request: dev.octri.showcase.twilio.methods.calls.CallsPayments.CreateCallsPaymentsRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountCallPayments {
+        return dev.octri.showcase.twilio.methods.calls.CallsPayments.createCallsPayments(
+            clientConfig,
+            request,
+            options,
+        )
+    }
+
+    /** update an instance of payments with different phases of payment flows. */
+    fun update(
+        request: dev.octri.showcase.twilio.methods.calls.CallsPayments.UpdateCallsPaymentsRequest,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountCallPayments {
+        return dev.octri.showcase.twilio.methods.calls.CallsPayments.updateCallsPayments(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * update an instance of payments with different phases of payment flows.
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
      */
-    fun update(request: dev.octri.showcase.twilio.methods.calls.CallsPayments.UpdateCallsPaymentsRequest, options: RequestOptions? = null): ApiV2010AccountCallPayments {
-        return dev.octri.showcase.twilio.methods.calls.CallsPayments.updateCallsPayments(clientConfig, request, options)
-    }
-
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [CallsPaymentsNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [CallsPaymentsNamespace], returning the [SdkResponse] envelope around each
+     * result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
-        /**
-         * create an instance of payments. This will start a new payments session
-         */
-        fun create(request: dev.octri.showcase.twilio.methods.calls.CallsPayments.CreateCallsPaymentsRequest, options: RequestOptions? = null): SdkResponse<ApiV2010AccountCallPayments> {
-            return dev.octri.showcase.twilio.methods.calls.CallsPayments.createCallsPaymentsWithRawResponse(clientConfig, request, options)
+        /** create an instance of payments. This will start a new payments session */
+        fun create(
+            request:
+                dev.octri.showcase.twilio.methods.calls.CallsPayments.CreateCallsPaymentsRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<ApiV2010AccountCallPayments> {
+            return dev.octri.showcase.twilio.methods.calls.CallsPayments
+                .createCallsPaymentsWithRawResponse(clientConfig, request, options)
         }
 
-        /**
-         * update an instance of payments with different phases of payment flows.
-         */
-        fun update(request: dev.octri.showcase.twilio.methods.calls.CallsPayments.UpdateCallsPaymentsRequest, options: RequestOptions? = null): SdkResponse<ApiV2010AccountCallPayments> {
-            return dev.octri.showcase.twilio.methods.calls.CallsPayments.updateCallsPaymentsWithRawResponse(clientConfig, request, options)
+        /** update an instance of payments with different phases of payment flows. */
+        fun update(
+            request:
+                dev.octri.showcase.twilio.methods.calls.CallsPayments.UpdateCallsPaymentsRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<ApiV2010AccountCallPayments> {
+            return dev.octri.showcase.twilio.methods.calls.CallsPayments
+                .updateCallsPaymentsWithRawResponse(clientConfig, request, options)
         }
-
     }
 }

@@ -3,70 +3,154 @@
 
 package dev.octri.showcase.twilio
 
-
 class RecordingsAddOnResultsNamespace(private val clientConfig: ClientConfig) {
     val payloads: RecordingsAddOnResultsPayloadsNamespace
+
     init {
         payloads = RecordingsAddOnResultsPayloadsNamespace(clientConfig)
     }
+
     /**
-     * Retrieves an AddOnResult belonging to a recording. Use the account, recording, and result SIDs to identify the resource and inspect its status, timestamps, and related resource URIs.
+     * Retrieves an AddOnResult belonging to a recording. Use the account, recording, and result
+     * SIDs to identify the resource and inspect its status, timestamps, and related resource URIs.
      *
      * Fetch an instance of an AddOnResult
      */
-    fun fetch(accountSid: String, referenceSid: String, sid: String, options: RequestOptions? = null): ApiV2010AccountRecordingRecordingAddOnResult {
-        return dev.octri.showcase.twilio.methods.recordings.RecordingsAddOnResults.fetchRecordingsAddOnResults(clientConfig, accountSid, referenceSid, sid, options)
+    fun fetch(
+        accountSid: String,
+        referenceSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): ApiV2010AccountRecordingRecordingAddOnResult {
+        return dev.octri.showcase.twilio.methods.recordings.RecordingsAddOnResults
+            .fetchRecordingsAddOnResults(clientConfig, accountSid, referenceSid, sid, options)
     }
 
     /**
-     * Deletes an AddOnResult associated with a recording and purges all payloads belonging to that result. Identify the resource with its account, recording, and result SIDs before deletion.
+     * Deletes an AddOnResult associated with a recording and purges all payloads belonging to that
+     * result. Identify the resource with its account, recording, and result SIDs before deletion.
      *
      * Delete a result and purge all associated Payloads
      */
-    fun delete(accountSid: String, referenceSid: String, sid: String, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.twilio.methods.recordings.RecordingsAddOnResults.deleteRecordingsAddOnResults(clientConfig, accountSid, referenceSid, sid, options)
+    fun delete(
+        accountSid: String,
+        referenceSid: String,
+        sid: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        return dev.octri.showcase.twilio.methods.recordings.RecordingsAddOnResults
+            .deleteRecordingsAddOnResults(clientConfig, accountSid, referenceSid, sid, options)
     }
 
     /**
-     * Lists AddOnResults belonging to a recording. Use `PageSize` and `PageToken` to control which results are returned and to navigate the paginated response.
+     * Lists AddOnResults belonging to a recording. Use `PageSize` and `PageToken` to control which
+     * results are returned and to navigate the paginated response.
      *
      * Retrieve a list of results belonging to the recording
      */
-    fun list(accountSid: String, referenceSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): dev.octri.showcase.twilio.methods.recordings.RecordingsAddOnResults.ListRecordingsAddOnResultsResponse {
-        return dev.octri.showcase.twilio.methods.recordings.RecordingsAddOnResults.listRecordingsAddOnResults(clientConfig, accountSid, referenceSid, pageSize, page, pageToken, options)
+    fun list(
+        accountSid: String,
+        referenceSid: String,
+        pageSize: Long? = null,
+        page: Long? = null,
+        pageToken: String? = null,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.twilio.methods.recordings.RecordingsAddOnResults.ListRecordingsAddOnResultsResponse {
+        return dev.octri.showcase.twilio.methods.recordings.RecordingsAddOnResults
+            .listRecordingsAddOnResults(
+                clientConfig,
+                accountSid,
+                referenceSid,
+                pageSize,
+                page,
+                pageToken,
+                options,
+            )
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [RecordingsAddOnResultsNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [RecordingsAddOnResultsNamespace], returning the [SdkResponse] envelope
+     * around each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Retrieves an AddOnResult belonging to a recording. Use the account, recording, and result SIDs to identify the resource and inspect its status, timestamps, and related resource URIs.
+         * Retrieves an AddOnResult belonging to a recording. Use the account, recording, and result
+         * SIDs to identify the resource and inspect its status, timestamps, and related resource
+         * URIs.
          *
          * Fetch an instance of an AddOnResult
          */
-        fun fetch(accountSid: String, referenceSid: String, sid: String, options: RequestOptions? = null): SdkResponse<ApiV2010AccountRecordingRecordingAddOnResult> {
-            return dev.octri.showcase.twilio.methods.recordings.RecordingsAddOnResults.fetchRecordingsAddOnResultsWithRawResponse(clientConfig, accountSid, referenceSid, sid, options)
+        fun fetch(
+            accountSid: String,
+            referenceSid: String,
+            sid: String,
+            options: RequestOptions? = null,
+        ): SdkResponse<ApiV2010AccountRecordingRecordingAddOnResult> {
+            return dev.octri.showcase.twilio.methods.recordings.RecordingsAddOnResults
+                .fetchRecordingsAddOnResultsWithRawResponse(
+                    clientConfig,
+                    accountSid,
+                    referenceSid,
+                    sid,
+                    options,
+                )
         }
 
         /**
-         * Deletes an AddOnResult associated with a recording and purges all payloads belonging to that result. Identify the resource with its account, recording, and result SIDs before deletion.
+         * Deletes an AddOnResult associated with a recording and purges all payloads belonging to
+         * that result. Identify the resource with its account, recording, and result SIDs before
+         * deletion.
          *
          * Delete a result and purge all associated Payloads
          */
-        fun delete(accountSid: String, referenceSid: String, sid: String, options: RequestOptions? = null): SdkResponse<Unit> {
-            return dev.octri.showcase.twilio.methods.recordings.RecordingsAddOnResults.deleteRecordingsAddOnResultsWithRawResponse(clientConfig, accountSid, referenceSid, sid, options)
+        fun delete(
+            accountSid: String,
+            referenceSid: String,
+            sid: String,
+            options: RequestOptions? = null,
+        ): SdkResponse<Unit> {
+            return dev.octri.showcase.twilio.methods.recordings.RecordingsAddOnResults
+                .deleteRecordingsAddOnResultsWithRawResponse(
+                    clientConfig,
+                    accountSid,
+                    referenceSid,
+                    sid,
+                    options,
+                )
         }
 
         /**
-         * Lists AddOnResults belonging to a recording. Use `PageSize` and `PageToken` to control which results are returned and to navigate the paginated response.
+         * Lists AddOnResults belonging to a recording. Use `PageSize` and `PageToken` to control
+         * which results are returned and to navigate the paginated response.
          *
          * Retrieve a list of results belonging to the recording
          */
-        fun list(accountSid: String, referenceSid: String, pageSize: Long? = null, page: Long? = null, pageToken: String? = null, options: RequestOptions? = null): SdkResponse<dev.octri.showcase.twilio.methods.recordings.RecordingsAddOnResults.ListRecordingsAddOnResultsResponse> {
-            return dev.octri.showcase.twilio.methods.recordings.RecordingsAddOnResults.listRecordingsAddOnResultsWithRawResponse(clientConfig, accountSid, referenceSid, pageSize, page, pageToken, options)
+        fun list(
+            accountSid: String,
+            referenceSid: String,
+            pageSize: Long? = null,
+            page: Long? = null,
+            pageToken: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<
+            dev.octri.showcase.twilio.methods.recordings.RecordingsAddOnResults.ListRecordingsAddOnResultsResponse
+        > {
+            return dev.octri.showcase.twilio.methods.recordings.RecordingsAddOnResults
+                .listRecordingsAddOnResultsWithRawResponse(
+                    clientConfig,
+                    accountSid,
+                    referenceSid,
+                    pageSize,
+                    page,
+                    pageToken,
+                    options,
+                )
         }
-
     }
 }
